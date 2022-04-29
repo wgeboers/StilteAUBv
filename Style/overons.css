@@ -1,0 +1,44 @@
+::-webkit-scrollbar {
+    display: none;
+  }
+
+
+.overOns{
+    background-color: rgb(54, 54, 54);
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.overonsColorChange{
+    color: #BB13FE;
+}
+
+#logoOverOns{
+    max-width: 200px;
+    padding: 20px;
+    border: 5px solid;
+    border-color: #BB13FE;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #BB13FE;
+}
+
+@media screen and (max-width: 600px) {
+    .footer{
+      display: none;
+    }
+}
+
+@media print{
+    #logoOverOns{
+        max-width: 100px;
+        padding: 10px;
+        border: 5px solid;
+        border-color: #BB13FE;
+        border-radius: 15px;
+        box-shadow: 0 0 10px #BB13FE;
+    }
+}

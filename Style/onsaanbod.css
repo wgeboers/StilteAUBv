@@ -1,0 +1,258 @@
+body, html{
+    background-color: rgb(0, 0, 0);
+}
+
+.aanbodPage{
+    background-image: url("../Images/aanbodBackground.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.hexagonAanbod{
+    position: relative;
+    width: 220px;
+    height: 250px;
+    margin-top: 20px;
+}
+
+.hexagonAanbod .text{
+    position: absolute;
+    top: 20px;
+    left: 220px;
+    width: 300%;
+    height: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    padding: 20px;
+    text-align: left;
+}
+
+.hexagonAanbod .text h2{
+    font-size: 60px;
+    color: #BB13FE;
+}
+
+.hexagonAanbod .text p{
+    font-size: 20px;
+    width: 100%;
+}
+
+.hexagonAanbod .shape{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+}
+
+.hexagonAanbod .shape img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hexagonAanbod .shape .overlayPlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: 0.8s ease;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hexagonAanbod .shape:hover .overlayPlay{
+    opacity: 1;
+}
+
+.hexagonAanbod .shape .overlayPause{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: 0.8s ease;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hexagonAanbod .shape:hover .overlayPause{
+    opacity: 1;
+}
+
+#containerRight{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.hexagonAanbodRight{
+    position: relative;
+    width: 220px;
+    height: 250px;
+    margin-top: 20px;
+}
+
+.hexagonAanbodRight .text{
+    position: absolute;
+    top: 20px;
+    left: -660px;
+    width: 300%;
+    height: 100%;
+    padding: 20px;
+    text-align: right;
+}
+
+.hexagonAanbodRight .text h2{
+    font-size: 60px;
+    color: #BB13FE;
+}
+
+.hexagonAanbodRight .text p{
+    font-size: 20px;
+    width: 100%;
+}
+
+.hexagonAanbodRight .shape{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+}
+
+.hexagonAanbodRight .shape img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hexagonAanbodRight .shape .overlayPlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: 0.8s ease;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hexagonAanbodRight .shape:hover .overlayPlay{
+    opacity: 1;
+}
+
+.hexagonAanbodRight .shape .overlayPause{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: 0.8s ease;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hexagonAanbodRight .shape:hover .overlayPause{
+    opacity: 1;
+}
+
+.neon-button{
+    position: fixed;
+    right: 2em;
+    bottom: 2em;
+    font-size: 40px;
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    color: #BB13FE;
+    border: currentColor 0.125em solid;
+    padding: 0.25em 1em;
+    border-radius: 0.25em;
+    text-shadow: 0 0 0.125em rgb(104, 104, 104), 0 0 0.5em currentColor;
+    box-shadow: inset 0 0 0.5em 0 currentColor, 0 0 0.5em 0 currentColor;
+}
+
+.neon-button:hover,
+.neon-button:focus{
+    background: #BB13FE;
+    color: white;
+    text-shadow: none;
+}
+
+@media screen and (max-height: 1014px) {
+    .neon-button{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1010px){
+    .hexagonAanbodRight .text{
+        top: -10px;
+        left: -440px;
+        width: 200%;
+    }
+
+    .hexagonAanbod .text{
+        top: -10px;
+        left: 220px;
+        width: 200%;
+    }
+}
+
+@media screen and (max-width: 775px){
+    #containerRight{
+        display: flex;
+        flex-direction: row;
+    }
+
+    .hexagonAanbodRight .shape{
+        display: none;
+    }
+
+    .hexagonAanbod .shape{
+        display: none;
+    }
+
+    .hexagonAanbodRight .text{
+        top: 0;
+        left: 0;
+        padding: 0px;
+        text-align: left;
+    }
+
+    .hexagonAanbod .text{
+        top: 0;
+        left: 0;
+        padding: 0px;
+        text-align: left;
+    }
+}
+
+@media print{
+    .neon-button{
+        display: none;
+    }
+
+    .hexagonAanbod .text h2{
+        color: #000;
+    }
+
+    .hexagonAanbodRight .text h2{
+        color: #000;
+    }
+}

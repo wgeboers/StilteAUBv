@@ -1,0 +1,617 @@
+::-webkit-scrollbar {
+    display: none;
+  }
+
+.homePage{
+    font-family: 'Bebas Neue', cursive;
+    background-color: rgb(54, 54, 54);
+    background-image: url("../Images/Background.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+/*
+Main content
+*/
+
+.container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+/*Hexagon1*/
+
+.container .hexagon{
+    position: relative;
+    width: 650px;
+    height: 800px;
+}
+
+.container .hexagon .text{
+    position: absolute;
+    top: 0;
+    left: -415px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 20px;
+    text-align: left;
+}
+
+.container .hexagon .text h2{
+    font-size: 150px;
+    color: #BB13FE;
+}
+
+.container .hexagon .text p{
+    font-size: 20px;
+    width: 60%;
+}
+
+.container .hexagon .text h2 .hexagonTextChange{
+    color: white;
+}
+
+.container .hexagon .shape{
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+}
+
+.container .hexagon .shape img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/*Hexagon2*/
+.container .hexagon2{
+    position: relative;
+    width: 400px;
+    height: 450px;
+}
+
+.container .hexagon2 .shape{
+    position: absolute;
+    top: -5px;
+    left: 10px;
+    width: 100%;
+    height: 100%;
+    background: black;
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+}
+
+.container .hexagon2 .shape img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/*Hexagon3*/
+.container .hexagon3{
+    position: relative;
+    width: 400px;
+    height: 450px;
+}
+
+.container .hexagon3 .shape{
+    position: absolute;
+    top: -990px;
+    left: 280px;
+    width: 100%;
+    height: 100%;
+    background: black;
+    clip-path: polygon(50% 0, 100% 28%, 100% 75%, 50% 100%, 0 72%, 0 25%);
+}
+
+.container .hexagon3 .shape img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/*Hexagon4*/
+.container .hexagon4{
+    position: relative;
+    width: 250px;
+    height: 300px;
+}
+
+.container .hexagon4 .shape{
+    position: absolute;
+    top: -360px;
+    left: -70px;
+    width: 100%;
+    height: 100%;
+    background: black;
+    clip-path: polygon(50% 0, 100% 23%, 100% 75%, 50% 100%, 0 75%, 0 23%);
+}
+
+.container .hexagon4 .shape img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.container .hexagon4 .shape .text{
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 20px;
+    text-align: right;
+    font-size: 40px;
+}
+
+@media screen and (max-height: 935px) {
+    .container .hexagon{
+        position: relative;
+        width: 450px;
+        height: 550px;
+    }
+
+    .container .hexagon .text{
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        padding: 20px;
+        text-align: left;
+    }
+
+    .container .hexagon .text h2{
+        font-size: 150px;
+        color: white;
+    }
+
+    .container .hexagon .text h2{
+        font-size: 70px;
+    }
+    
+    .container .hexagon .text p{
+        font-size: 20px;
+        width: 90%;
+    }
+
+    .container .hexagon .shape{
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: black;
+        clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    }
+
+    .container .hexagon2{
+        position: relative;
+        width: 300px;
+        height: 350px;
+    }
+    
+    .container .hexagon2 .shape{
+        position: absolute;
+        top: -5px;
+        left: 10px;
+        width: 100%;
+        height: 100%;
+        background: black;
+        clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    }
+
+    .container .hexagon3{
+        position: relative;
+        width: 300px;
+        height: 350px;
+    }
+    
+    .container .hexagon3 .shape{
+        position: absolute;
+        top: -270px;
+        left: -450px;
+        width: 100%;
+        height: 100%;
+        background: black;
+        clip-path: polygon(50% 0, 100% 28%, 100% 75%, 50% 100%, 0 72%, 0 25%);
+    }
+    
+    .container .hexagon4 .shape{
+        position: absolute;
+        top: -180px;
+        left: -60px;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .container .hexagon4 .shape .text{
+        color: white;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        padding: 20px;
+        text-align: right;
+        font-size: 40px;
+    }
+    
+}
+
+@media screen and (max-width: 1853px){
+    .container .hexagon .text{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        padding: 20px;
+        text-align: left;
+    }
+
+    .container .hexagon .text h2{
+        font-size: 150px;
+        color: white;
+    }
+}
+
+@media screen and (max-height: 935px){
+
+    .container .hexagon .text{
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        padding: 20px;
+        text-align: left;
+    }
+
+    .container .hexagon .text h2{
+        font-size: 70px;
+    }
+    
+    .container .hexagon .text p{
+        font-size: 20px;
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 1199px){
+    .container .hexagon{
+        position: relative;
+        width: 450px;
+        height: 550px;
+    }
+
+    .container .hexagon .shape{
+        position: absolute;
+        top: 200px;
+        left: 20px;
+        width: 100%;
+        height: 100%;
+        background: black;
+        clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    }
+
+    .container .hexagon .text{
+        position: absolute;
+        top: 180px;
+        left: 20px;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .container .hexagon .text h2{
+        font-size: 80px;
+        color: white;
+    }
+
+    .container .hexagon .text p{
+        font-size: 20px;
+        width: 100%;
+    }
+
+    .container .hexagon2{
+        position: relative;
+        width: 300px;
+        height: 350px;
+    }
+    
+    .container .hexagon2 .shape{
+        position: absolute;
+        top: 155px;
+        left: 30px;
+        width: 100%;
+        height: 100%;
+        background: black;
+        clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    }
+
+    .container .hexagon3{
+        position: relative;
+        width: 300px;
+        height: 350px;
+    }
+    
+    .container .hexagon3 .shape{
+        position: absolute;
+        top: -568px;
+        left: 202px;
+        width: 100%;
+        height: 100%;
+        background: black;
+        clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 73%, 0 25%);
+    }
+
+    .container .hexagon4{
+        position: relative;
+        width: 200px;
+        height: 250px;
+    }
+
+    .container .hexagon4 .shape{
+        position: absolute;
+        top: -60px;
+        left: -30px;
+        width: 100%;
+        height: 100%;
+        background: black;
+        clip-path: polygon(50% 0, 100% 23%, 100% 75%, 50% 100%, 0 75%, 0 23%);
+    }
+
+    .container .hexagon4 .shape .text{
+        position: absolute;
+        top: 10px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        padding: 20px;
+        text-align: right;
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 990px){
+    .container .hexagon .shape{
+        position: absolute;
+        top: 100px;
+        left: 100px;
+        width: 100%;
+        height: 100%;
+        background: black;
+        clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    }
+
+    .container .hexagon .text{
+        position: absolute;
+        top: 100px;
+        left: 100px;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .container .hexagon2{
+        display: none;
+    }
+    
+    .container .hexagon3{
+        display: none;
+    }
+
+    .container .hexagon4 .shape{
+        position: absolute;
+        top: 310px;
+        left: 20px;
+        width: 100%;
+        height: 100%;
+        background: black;
+        clip-path: polygon(50% 0, 100% 23%, 100% 75%, 50% 100%, 0 75%, 0 23%);
+    }
+}
+
+@media screen and (max-width: 768px){
+    .container .hexagon .shape{
+        position: absolute;
+        top: 100px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: black;
+        clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    }
+
+    .container .hexagon .text{
+        position: absolute;
+        top: 100px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .container .hexagon4{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .footer{
+      display: none;
+    }
+}
+
+@media screen and (max-width: 473px) {
+    .container .hexagon .shape{
+        position: absolute;
+        top: 200px;
+        left: 70px;
+        width: 100%;
+        height: 100%;
+        background: black;
+        clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    }
+
+    .container .hexagon{
+        position: relative;
+        width: 0;
+        height: 0;
+    }
+    
+    .container .hexagon .text{
+        position: absolute;
+        top: 0;
+        left: -60px;
+        width: 300px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .container .hexagon .text h2{
+        font-size: 60px;
+        color: white;
+    }
+
+    .container .hexagon .text p{
+        font-size: 15px;
+        width: 100%;
+    }
+
+    .container .hexagon4{
+        display: flex;
+        position: relative;
+        width: 180px;
+        height: 220px;
+    }
+
+    .container .hexagon4 .shape{
+        position: absolute;
+        top: 220px;
+        left:80px;
+        width: 100%;
+        height: 100%;
+        background: black;
+        clip-path: polygon(50% 0, 100% 23%, 100% 75%, 50% 100%, 0 75%, 0 23%);
+    }
+
+    .container .hexagon4 .shape .text{
+        position: absolute;
+        top: 10px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        padding: 20px;
+        text-align: right;
+        font-size: 30px;
+    }
+}
+
+@media print{
+    .container .hexagon .shape{
+        display: none;
+    }
+
+    .container .hexagon2 .shape{
+        display: none;
+    }
+
+    .container .hexagon3 .shape{
+        display: none;
+    }
+
+    .container .hexagon4 .shape{
+        display: none;
+    }
+
+    .container .hexagon .text{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        padding: 20px;
+        text-align: left;
+    }
+    
+    .container .hexagon .text h2{
+        font-size: 150px;
+        color: #BB13FE;
+    }
+    
+    .container .hexagon .text p{
+        font-size: 20px;
+        width: 60%;
+    }
+    
+    .container .hexagon .text h2 .hexagonTextChange{
+        color: #BB13FE;
+    }
+}
