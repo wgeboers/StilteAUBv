@@ -5,13 +5,13 @@
 	define('DB_PASS', '');
 	
 	function conn_database() {
-		$conn = 'mysql:host=' . DB_HOST . ';DB_NAME= '. DB_NAME;
+		$conn = 'mysql:host=' . DB_HOST . ';dbname= '. DB_NAME;
 		
 		try {
 			return new PDO($conn, DB_USER, DB_PASS);
 		}
 		catch (PDOException $e) {
-			return NULL;
+			return $e;
 		}
 	}
 ?>

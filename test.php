@@ -11,7 +11,7 @@
 				die('<h1>Database-verbinding mislukt</h1>');
 			echo 'gelukt';
 			
-			$sql = 'SELECT  * FROM stilteaubv.products';
+			$sql = 'SELECT  * FROM products';
 			$statement = $db->prepare($sql);
 			$statement->execute();
 			$result = $statement->fetchall(PDO::FETCH_OBJ);
