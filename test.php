@@ -72,4 +72,19 @@
 		?>
 	</ul>
 </body>
+<head>
+	<title>Page Title</title>
+</head>
+<body>
+	<?php			
+		foreach($result as $record) {
+			echo '<ul>';
+				
+			foreach($record as $key => $value) {
+				echo "<li>$key => $value</li>";
+			}
+			echo '</ul>';
+		}
+	?>
+</body>
 </html> 
