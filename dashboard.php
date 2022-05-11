@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 	<title>Dashboard</title>
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -56,7 +55,7 @@
                 </div>
             </div>
         </nav>
-	<form method="post">
+	<form method="post" class="contact">
 		Select CSV to upload:
 		<input type="file" name="fileToUpload" id="fileToUpload">
 		<input type="submit" value="Upload CSV" name="btnUploadCSV">
