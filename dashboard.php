@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Test</title>
+
+	<title>Dashboard</title>
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/jpg" href="Images/Logo.png" />
@@ -13,13 +14,10 @@
 	<?php
 	#Basic SQL statement used to start a connection and to execute a query.
 	require_once('db_conn.php');
+	require_once('queries.php');
 	$db = conn_database();
 	if(is_null( $db ))
 		exit('<h1>Database-verbinding mislukt</h1>');
-	$sql = 'SELECT  * FROM searchqueries';
-	$statement = $db->prepare($sql);
-	$statement->execute();
-	$result = $statement->fetchall(PDO::FETCH_OBJ);
 	?>
 </head>
 <body class='homepage'>
@@ -40,7 +38,7 @@
                             <a class="nav-link" aria-current="page" href="index.html">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="onsaanbod.html">Ons aanbod</a>
+                            <a class="nav-link" href="onsaanbod.html">Ons aanbod</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="bestelnu.html">Bestel nu!</a>
@@ -52,13 +50,25 @@
 							<a class="nav-link" href="test.php">Test</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link"  href="dashboard.php">Dashboard</a>
+							<a class="nav-link active"  href="dashboard.php">Dashboard</a>
 						</li>
                     </ul>
                 </div>
             </div>
         </nav>
+	<form method="post">
+		Select CSV to upload:
+		<input type="file" name="fileToUpload" id="fileToUpload">
+		<input type="submit" value="Upload CSV" name="btnUploadCSV">
+	</form>
 	</div>
+	
+	<?php
+		if(isset($_POST['btnUploadCSV'])) {
+			$fp = fopen($_POST['fileToUpload'], 'r');
+			csvToDatabase($fp, $db);
+		}
+	?>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
