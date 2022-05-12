@@ -43,7 +43,7 @@ class Crud extends db_conn {
 	}
 	
 	#TO DO: Generic update based on the table, the key=>value pairs as data and the id to identify a row.
-	public function update($data, $table, $id) : void {
+	public function update($data, $table, $id) {
 		try {
 			#$update = $this->connection->prepare("UPDATE $table ($data[keys]) VALUES ($data[vals])");
 			
@@ -62,7 +62,7 @@ class Crud extends db_conn {
 		}
 	}
 	
-	#Generic delete, based on the table and the where (which is an id), only works if id is generic.
+	#Generic delete, based on the table and a row id, only works if id is generic.
 	public function deleteData($table, $where) {
 		$delete= $this->connection->prepare("DELETE FROM $table WHERE id=$where");
 		$delete->execute();
