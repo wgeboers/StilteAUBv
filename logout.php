@@ -1,8 +1,7 @@
 <?php
-#Session is killed here.
+
 session_start();
-$_SESSION["id"] = "";
-session_destroy();
+unset($_SESSION["id"]);
 header("Location: index.php");
 
 ?>

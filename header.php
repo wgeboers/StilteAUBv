@@ -46,7 +46,7 @@
 						<li class="nav-item">
 							<a class="nav-link"  href="dashboard.php" id="dashboard">Dashboard</a>
 						</li>
-						<?php if(!isset($_SESSION["id"]) && empty($_SESSION["id"])) {
+						<?php if(!isset($_SESSION["id"])) {
 						?>
 						<form action="./login.php" method="post" name="loginForm" class="form-inline" onSubmit="return validate();">
 							<label for="email">Email</label><span id="email_info"></span>
@@ -58,10 +58,14 @@
 						<?php
 						}
 						?>
-						<div class="dashboard">
-							<div class="user-dashboard">Welcome <b><?php if(isset($firstName)) echo $firstName; ?></b><br>
-								<a href="./logout.php" class="logout-btn">Logout</a>
+						<?php if(isset($_SESSION["id"])) {
+						?>
+						<div class="user-dashboard">Welcome <b> <?php echo $firstName; ?></b><br>
+							<a href="./logout.php" class="logout-btn">Logout</a>
 						</div>
+						<?php
+						}
+						?>
                     </ul>
                 </div>
             </div>
