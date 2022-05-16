@@ -1,6 +1,8 @@
  <!DOCTYPE html>
 <html>
 <head>
+	<?php include('header.php'); ?>
+
 	<title>Test</title>
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,17 +12,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="Style/base.css">
     <link rel="stylesheet" type="text/css" href="Style/index.css">
-	<?php
-	#Basic SQL statement used to start a connection and to execute a query.
-	require_once('db_conn.php');
-	$db = conn_database();
-	if(is_null( $db ))
-		exit('<h1>Database-verbinding mislukt</h1>');
-	$sql = 'SELECT  * FROM products';
-	$statement = $db->prepare($sql);
-	$statement->execute();
-	$result = $statement->fetchall(PDO::FETCH_OBJ);
-	?>
 	<link rel="stylesheet" type="text/css" href="Style/base.css">
 </head>
 <body>
@@ -60,16 +51,8 @@
 				</div>
 			</nav>
 	</div>
-	<ul name="products">
-		<?php
-			#Code used to put a SELECT query into a list.
-			foreach($result as $record) {
-				foreach($record as $key => $value) {
-					echo "<li>$key: $value</li>";
-				}
-				echo "<br>";
-			}
-		?>
-	</ul>
+	<link rel="stylesheet" type="text/css" href="Style/base.css">
+</head>
+<body>
 </body>
 </html> 

@@ -8,8 +8,7 @@ class db_conn {
 	
 	#Creates DB connection default is user = root en password = ''.
 	#If you want to login with a user, just enter parameters at the object creation
-	
-	public function __construct(string $user = 'root', string $pass = '') {
+	public function __construct(string $user, string $pass) {
 		
 		#Checks to see if the connection is existing, if it is, it uses the existing connection, else it will create one.
 		if(!isset($this->connection)) {

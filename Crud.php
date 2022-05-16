@@ -3,23 +3,27 @@
 require_once('db_conn.php');
 
 #Class used to Select, Insert, Delete, Update & otherwise manipulate the database.
-#You can add classes per query you want to run, but preferably every query will be a generic one based on params $data, $id, $table
+#You can add functions per query you want to run, but preferably every query will be a generic one based on params $data, $id, $table
 #############################################
-# TODO: generic select/insert/update/delete #
-#############################################
+# TODO: error handling for all functions.
 class Crud extends db_conn {
 	
-	public function __construct() {
-		parent::__construct();
+	public function __construct(string $user, string $password) {
+		parent::__construct($user, $password);
 	}
 	
 	#TO DO: Change all ID's in database to a single 'id' so we can select globally by id with this function.
 	#IF THIS DOESNT WORK: CHANGE `id` TO `UserId`... BUT PREFERABLY CHANGE DB ENTRY TO `id` SO ITS A GENERAL QUERY
 	#ELSE WE NEED A SEPARATE QUERY FOR EVERY TABLE, WHICH IS ANNOYING AND BLOAT.
+	#OTHER POSSIBILITY IS GETTING THE ID NAME FROM THE TABLE AND PUTTING IT AS PARAM INTO THE FUNCTION
 	public function select($table, $id) {
-		$select = $this->connection->prepare("SELECT * FROM $table WHERE `id` = $id");
-		$select->execute();
-		return $select->fetchall(PDO::FETCH_OBJ);
+		try {
+			$select = $this->connection->prepare("SELECT * FROM $table WHERE `id` = $id");
+			$select->execute();
+			return $select->fetchall(PDO::FETCH_OBJ);
+		} catch(PDOException $e) {
+			echo $e;
+		}
 	}
 	
 	#Values are bound in the while-loop based on position in the array
@@ -67,6 +71,30 @@ class Crud extends db_conn {
 		$delete= $this->connection->prepare("DELETE FROM $table WHERE id=$where");
 		$delete->execute();
 	}
-}	
 
+	#Used to fetch all data from a user based on email & password.
+	public function selectByUser($table, string $email, string $password) {
+		try {
+			$select = $this->connection->prepare("SELECT * FROM `$table` WHERE `Email` = '$email' AND `Password` = '$password'");
+			$select->execute();
+			return $select->fetchall(PDO::FETCH_OBJ);
+		} catch(PDOException $e) {
+			echo $e;
+		}
+	}
+	
+	#Used to fetch a User's ID, if it is there, based on username and password, they will be logged in
+	#if not throws a pdo exception
+	#TO DO: Error handling
+	public function validateUser($table, string $email, string $password) {
+		try {
+			$select = $this->connection->prepare("SELECT * FROM `$table` WHERE `Email` = ? AND `Password` = ?");
+			$selectArray = array($email, $password);
+			$select->execute($selectArray);
+			return $select->fetchColumn();
+		} catch(PDOException $e) {
+			echo $e;
+		}
+	}
+}	
 ?>
