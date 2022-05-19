@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php include('header.php'); ?>
+<?php include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI']; ?>
 <html lang="en">
 
 <head>

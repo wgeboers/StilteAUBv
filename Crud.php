@@ -68,11 +68,10 @@ class Crud extends db_conn {
 	
 	#Generic delete, based on the table and a row id, only works if id is generic.
 	public function deleteData($table, $where) {
-		$delete= $this->connection->prepare("DELETE FROM $table WHERE id=$where");
+		$delete= $this->connection->prepare("DELETE FROM $table WHERE id = $where");
 		$delete->execute();
 	}
-
-	#Used to fetch all data from a user based on email & password.
+	
 	public function selectByUser($table, string $email, string $password) {
 		try {
 			$select = $this->connection->prepare("SELECT * FROM `$table` WHERE `Email` = '$email' AND `Password` = '$password'");

@@ -11,7 +11,7 @@ class db_conn {
 	public function __construct(string $user, string $pass) {
 		
 		#Checks to see if the connection is existing, if it is, it uses the existing connection, else it will create one.
-		if(!isset($this->connection)) {
+		if(!isset($this->connection) && empty($this->connection)) {
 			try {
 				$this->connection = new PDO('mysql:host=' . $this->host . ';dbname=' . $this->dbname, $user, $pass);
 			} catch (PDOException $e) {

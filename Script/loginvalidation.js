@@ -7,11 +7,10 @@ function validate() {
 	 var password = document.getElementById("psw").value;
 	 
 	 if(email == "") {
-		 document.getElementById("email_info").innerHTML = "Required";
+		 document.getElementById("email_info").innerHTML = "Please enter an email address.";
 		 $valid = false;
-	 }
-	 if(password == "") {
-		 document.getElementById("psw").innerHTML = "Required";
+	 } else if(password == "") {
+		 document.getElementById("psw_info").innerHTML = "Please enter a password.";
 		 $valid = false;
 	 }
 	 return $valid;

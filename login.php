@@ -13,7 +13,12 @@ if(!empty($_POST['login'])) {
 	if(!$loggedIn) {
 		$_SESSION["errorMsg"] = "Wrong info";
 		}
-	header("Location: ./index.php");
+	if(isset($_SESSION['url'])) {
+		$url = $_SESSION['url'];
+	} else {
+		$url = "index.php";
+	}
+	header("Location: https://localhost/$url");
 	exit();
 }
 ?>

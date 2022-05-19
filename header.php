@@ -49,9 +49,9 @@
 						<?php if(!isset($_SESSION["id"])) {
 						?>
 						<form action="./login.php" method="post" name="loginForm" class="form-inline" onSubmit="return validate();">
-							<label for="email">Email</label><span id="email_info"></span>
+							<label for="email"></label><span id="email_info">Email:</span>
 							<input type="text" name="email" id="email">
-							<label for="psw">Password</label><span id="psw_info"></span>
+							<label for="psw"></label><span id="psw_info">Password:</span>
 							<input type="text" name="psw" id="psw">
 							<button type="submit" name="login" value="Login">Login</button>
 						</form>
