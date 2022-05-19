@@ -18,7 +18,7 @@ if(!empty($_POST['login'])) {
 	} else {
 		$url = "index.php";
 	}
-	header("Location: https://localhost/$url");
+	header("Location: https://localhost$url");
 	exit();
 }
 ?>

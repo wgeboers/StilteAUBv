@@ -7,6 +7,6 @@ if(isset($_SESSION['url'])) {
 } else {
     $url = "index.php";
 }
-header("Location: https://localhost/$url");
+header("Location: https://localhost$url");
 
 ?>

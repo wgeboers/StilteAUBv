@@ -11,12 +11,6 @@ class User {
 		$this->crud = new Crud('root', '');
 	}
 	
-	#Used to fetch a user from a database, through crud. 
-	public function getUser($table = 'users', $id) {
-		return $this->crud->select($table, $id);
-		
-	}
-	
 	#Used to check with crud if the credentials are valid, if they are a session will be created based on the user's id.
 	#Returns true or false based on whether the user's data was fetched from the database.
 	public function getUser($table = 'users', $id) {
@@ -36,7 +30,7 @@ class User {
 			} else {
 				$url = "index.php";
 			}
-			header("Location: https://localhost/$url");
+			header("Location: https://localhost$url");
 			return false;
 		}
 	}
