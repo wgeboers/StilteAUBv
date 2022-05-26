@@ -1,11 +1,13 @@
 <?php	
-	#checks if a session is started, if it is it displays a welcome message
 	session_start();
 	
+	#Login and loading of a user's information happens here.
+	#Don't touch if you don't have to.
+	#if firstname is ever 'foute boel' it is because the SQL statement on login is wrong.
 	if(isset($_SESSION["id"]) && !empty($_SESSION["id"])) {
 		require_once("user.php");
 		$user = new User();
-		$userData = $user->getUser('users', $_SESSION["id"]);
+		$userData = $user->getUserData();
 		if(!empty($userData[0]->First_Name)) {
 			$firstName = $userData[0]->First_Name;
 		} else {

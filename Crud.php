@@ -1,12 +1,12 @@
 <?php
 
-require_once('db_conn.php');
+require_once('Database.php');
 
 #Class used to Select, Insert, Delete, Update & otherwise manipulate the database.
 #You can add functions per query you want to run, but preferably every query will be a generic one based on params $data, $id, $table
 #############################################
 # TODO: error handling for all functions.
-class Crud extends db_conn {
+class Crud extends Database {
 	
 	#TODO: change constructor to not use user, password.
 	public function __construct(string $user, string $password) {
@@ -16,13 +16,13 @@ class Crud extends db_conn {
 	#IF THIS DOESNT WORK: CHANGE `id` TO `UserId`... BUT PREFERABLY CHANGE DB ENTRY TO `id` SO ITS A GENERAL QUERY
 	#ELSE WE NEED A SEPARATE QUERY FOR EVERY TABLE, WHICH IS ANNOYING AND BLOAT.
 	#OTHER POSSIBILITY IS GETTING THE ID NAME FROM THE TABLE AND PUTTING IT AS PARAM INTO THE FUNCTION
-	public function select($table, $id) {
+	public function select($param, $table = 'users', $where = 'UserId') {
 		try {
-			$select = $this->connection->prepare("SELECT * FROM $table WHERE `id` = $id");
+			$select = $this->connection->prepare("SELECT * FROM {$table} WHERE `{$where}` = '{$param}'");
 			$select->execute();
 			return $select->fetchall(PDO::FETCH_OBJ);
 		} catch(PDOException $e) {
-			echo $e;
+			return $e;
 		}
 	}
 	
@@ -73,7 +73,7 @@ class Crud extends db_conn {
 	#Dynamically generated sql statement 'insert' based on a given array and a given table
 	#Input : Array with key=>value using column names from the given mysql table.
 	#Testable in test.php; for output check the database.
-	public function insert($data = array(), $table) {
+	public function insert($data = array(), $table = 'users') {
 		$keys = array_keys($data);
 		$insertData = array_values($data);
 		$values = NULL;
@@ -96,16 +96,18 @@ class Crud extends db_conn {
 	
 	#Generic delete, based on the table and a row id, only works if id is generic.
 	public function deleteData($table, $id, $where) {
-		$delete= $this->connection->prepare("DELETE FROM {$table} WHERE {$id} = {$where}");
+		$delete= $this->connection->prepare("DELETE FROM {$table} WHERE {$where} = {$id}");
 		$delete->execute();
+		return true;
 	}
 	
-	public function selectByUser($table, string $email, string $password) {
+	public function selectByUser(int $id, $table = 'users') {
 		try {
-			$selectArray = array($email, $password);
-			$select = $this->connection->prepare("SELECT * FROM `$table` WHERE `Email` = ? AND `Password` = ?");
-			$select->execute($selectArray);
-			return $select->fetchall(PDO::FETCH_OBJ);
+			if(isset($email)) {
+				$select = $this->connection->prepare("SELECT * FROM `$table` WHERE `UserId` = {$id}");
+				$select->execute();
+				return $select->fetchall(PDO::FETCH_OBJ);
+			}
 		} catch(PDOException $e) {
 			echo $e;
 		}
@@ -114,12 +116,22 @@ class Crud extends db_conn {
 	#Used to fetch a User's ID, if it is there, based on username and password, they will be logged in
 	#if not throws a pdo exception
 	#TO DO: Error handling
-	public function validateUser($table, string $email, string $password) {
+	public function validateUser(string $email, string $password, $table = 'users') {
 		try {
 			$selectArray = array($email, $password);
-			$select = $this->connection->prepare("SELECT * FROM `$table` WHERE `Email` = ? AND `Password` = ?");
+			$select = $this->connection->prepare("SELECT * FROM {$table} WHERE `Email` = ? AND `Password` = ?");
 			$select->execute($selectArray);
 			return $select->fetchColumn();
+		} catch(PDOException $e) {
+			echo $e;
+		}
+	}
+
+	public function selectByEmail($email, $table = 'users') {
+		try {
+			$select = $this->connection->prepare("SELECT * FROM {$table} WHERE `email` = '{$email}'");
+			$select->execute();
+			return $select->fetchall(PDO::FETCH_OBJ);
 		} catch(PDOException $e) {
 			echo $e;
 		}

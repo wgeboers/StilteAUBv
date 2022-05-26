@@ -1,7 +1,8 @@
 <?php
 
-#Action that starts a session when a login attempt is made, creates a user object that logs in via crud on the database
+#Script that's executed on pressing 'login' in the website header.
 #TODO: Error message is not picked up yet.
+var_dump($_SESSION['url']);
 if(!empty($_POST['login'])) {
 	session_start();
 	$email = $_POST["email"];
