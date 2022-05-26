@@ -1,7 +1,9 @@
 <?php
 
 session_start();
-unset($_SESSION["id"]);
+session_unset();
+session_destroy();
+session_write_close();
 if(isset($_SESSION['url'])) {
     $url = $_SESSION['url'];
 } else {

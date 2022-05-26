@@ -12,6 +12,8 @@ if(!empty($_POST['login'])) {
 	$loggedIn = $user->login($email, $password);
 	if(!$loggedIn) {
 		$_SESSION["errorMsg"] = "Wrong info";
+		} else {
+			$_SESSION["userData"] = $user->getUserData();
 		}
 	if(isset($_SESSION['url'])) {
 		$url = $_SESSION['url'];

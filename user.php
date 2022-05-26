@@ -5,23 +5,40 @@ require_once("Crud.php");
 #User fetches from database with the help of a crud object.
 class User {
 	
-	public $crud;
+	private $crud;
 	
 	function  __construct() {
 		$this->crud = new Crud('root', '');
 	}
 	
-	#Used to check with crud if the credentials are valid, if they are a session will be created based on the user's id.
-	#Returns true or false based on whether the user's data was fetched from the database.
-	public function getUser($table = 'users', $id) {
-		return $this->crud->select($table, 1);
+	#get userdata from db via crud
+	public function getUserData() {
+		if(!empty($_SESSION["id"]) && isset($_SESSION["id"])) {
+			$$_SESSION["type"] = "users";
+			$userData = $this->crud->select('users', $_SESSION["email"]);
+			if(!isset($userData)) {
+				$_SESSION["type"] = "employees";
+				$userData =  $this->crud->select('employees', $_SESSION["email"]);
+			} 
+			return $userData;
+		}
 		
+	}
+
+	public function updateUserInformation($userData) {
+		if(isset($userData) && !empty($userData)) {
+			$this->crud->updateProfile($userData, $_SESSION["type"], $_SESSION["email"]);
+		} else {
+			echo "problems yep";
+		}
+
 	}
 	
 	public function login($email, $password) {		
-		$userData = $this->crud->validateUser('users', $email, $password);
-		if(!empty($userData)) {
-			$_SESSION["id"] = $userData[0];
+		$validation = $this->crud->validateUser('users', $email, $password);
+		if(!empty($validation)) {
+			$_SESSION["id"] = $validation[0];
+			$_SESSION["email"] = $email;
 			return true;
 		} else {
 			$_SESSION["ErrorMsg"] = "Email or username invalid";

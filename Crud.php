@@ -8,11 +8,11 @@ require_once('db_conn.php');
 # TODO: error handling for all functions.
 class Crud extends db_conn {
 	
+	#TODO: change constructor to not use user, password.
 	public function __construct(string $user, string $password) {
 		parent::__construct($user, $password);
 	}
 	
-	#TO DO: Change all ID's in database to a single 'id' so we can select globally by id with this function.
 	#IF THIS DOESNT WORK: CHANGE `id` TO `UserId`... BUT PREFERABLY CHANGE DB ENTRY TO `id` SO ITS A GENERAL QUERY
 	#ELSE WE NEED A SEPARATE QUERY FOR EVERY TABLE, WHICH IS ANNOYING AND BLOAT.
 	#OTHER POSSIBILITY IS GETTING THE ID NAME FROM THE TABLE AND PUTTING IT AS PARAM INTO THE FUNCTION
