@@ -194,6 +194,32 @@ body, html{
     text-shadow: none;
 }
 
+.products {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product-card {
+    padding: 2%;
+    flex-grow: 1;
+    flex-basis: 16%;
+    display: flex;
+}
+
+.product-image img {
+    max-width: 100%;
+}
+
+.product-info {
+    margin-top: auto;
+}
+
+@media (max-width: 920px) {
+    .product-card {
+      flex: 1 21%;
+    }
+  }
+
 @media screen and (max-height: 1014px) {
     .neon-button{
         display: none;

@@ -95,5 +95,16 @@ class Crud extends db_conn {
 			echo $e;
 		}
 	}
+
+	//Retreive products from the database
+	public function getProducts() {
+		try {
+			$select = $this->connection->prepare("SELECT * FROM products");
+			$select->execute();
+			return $select->fetchall(PDO::FETCH_ASSOC);
+		} catch(PDOException $e) {
+			echo $e;
+		}
+	}
 }	
 ?>
