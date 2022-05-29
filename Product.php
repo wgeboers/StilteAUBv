@@ -3,7 +3,7 @@
 class Product {
     
     private $ProductID;
-    public $Name;
+    private $Name;
     private $Description;
     private $Stock;
     private $Price;

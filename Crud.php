@@ -97,9 +97,11 @@ class Crud extends db_conn {
 	}
 
 	//Retreive products from the database
-	public function getProducts() {
+	public function getProducts(string $searchTerm = "") {
 		try {
-			$select = $this->connection->prepare("SELECT * FROM products");
+			$searchTerm = "%$searchTerm%";
+			$select = $this->connection->prepare("SELECT * FROM products WHERE name LIKE :search");
+			$select->bindParam(':search', $searchTerm, PDO::PARAM_STR);
 			$select->execute();
 			return $select->fetchall(PDO::FETCH_ASSOC);
 		} catch(PDOException $e) {

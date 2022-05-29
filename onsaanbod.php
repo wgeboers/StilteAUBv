@@ -20,9 +20,25 @@
 </head>
 
 <body class="aanbodPage">
+<!-- TODO: Bootstrap form layout -->
+<form name="searchCatalog" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
+    <input type="text" name="searchTerm"></br>
+    <input type="submit" name="submit" value="Zoeken"></br>
+</form>
+
 <section class="products">
 <?php 
-    $results = $ProductManager->getProducts();
+    //$results = array();
+    if((isset($_POST['searchTerm']) && (!empty($_POST['searchTerm'])))) {
+        $results = array();
+        $searchTerm = htmlspecialchars($_POST['searchTerm']);
+        $ProductManager->getCatalog($searchTerm);
+        $results = $ProductManager->getProducts();
+    } else {        
+        $ProductManager->getCatalog();
+        $results = $ProductManager->getProducts();
+    }
+    
     foreach($results as $result) {
 ?>
 <div class="product-card">
