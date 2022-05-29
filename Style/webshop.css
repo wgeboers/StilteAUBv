@@ -1,0 +1,35 @@
+.main{
+    margin: 20px;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+}
+
+.card{
+  background:#fff;
+  padding:5px;
+  border-radius:6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  width: 300px;
+}
+
+.cardContent{
+    padding:5px;
+    border-radius:6px;
+}
+
+.cardContent img{
+    border-radius:6px;
+    height: 150px;
+    width: 100%;
+}
+
+.cardContent h1{
+    color: black;
+}
+
+.cardContent p{
+    color: black;
+}

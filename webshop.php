@@ -9,43 +9,43 @@
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="Style/base.css">
-    <link rel="stylesheet" type="text/css" href="Style/index.css">
+    <link rel="stylesheet" type="text/css" href="Style/webshop.css">
     <meta name="description" content="Huur een volledige doe-het-zelf Silent Disco set met koptelefoons. Binnen een mum van tijd organiseer jij zelf een Silent Disco!">
     <meta name="keywords" content="SilentDisco, Music, Headset, Party, Dance, Disco">
 </head>
 
 <body class="overOns">
-    <div class="container-fluid text-white">
-        <div class="row">
-            <div class="col-xs-6 col-md-8 p-5 content">
-                <p> Wij zijn 4 jonge gasten die zelf van een feestje houden. Dit hebben wij natuurlijk ook moeten missen door de noodzakelijke restricties van COVID-19.
-                    Door deze restricties is het helaas niet meer mogelijk om in grote groepen te genieten van activiteiten. 
-                    Vandaar dat Stilte AUBv op het idee is gekomen om silent disco’s te leveren. Door de ervaring van een concert, 
-                    disco of nachtclub in de woonkamer van jou te krijgen hopen wij deze tijden ook weer wat gemoedelijker voor jou te maken. 
-                </p>
-                <p>
-                    Wij hebben als doel om het organiseren van een silent disco zo makelijk mogelijk te maken vandaar dat je bij ons een vooraf gedefineerd theme pakket huurt.
-                    Dit pakket bevat alle benodigde apparatuur en muziek wat ervoor zorgt dat het voor jou plug and play is.
-                </p>
-                <p>
+    <div class="main">
+        <div class="container">
+            <?php
+                require_once('crud.php');
+                $classA = new Crud('root', '');
+                $productData = $classA->getProducts('products');
+
+                foreach($productData as $rows){
+            ?>
+            <div class="card">
+                <div class= "cardContent">
+                    <form action="addCart.php?id=<?php echo $rows->ProductID;?>" method="post">
+                        <img src=<?php 
+                            if(empty($rows->ImagePath)){
+                                echo"./Images/Logo.png";
+                            } else {
+                                echo "./".$rows->ImagePath;
+                            }
+                        ?> alt="Logo">
+                        <h1><?php echo $rows->Name;?></h1>
+                        <p><?php echo $rows->Description;?></p>
+                        <p><?php echo "€" . $rows->Price;?></p>
+                        <input type="number" class="form-control" placeholder="Aantal" name="hoeveelheid" id="hoeveelheid">
+                        <button type="submit" name="addcart" value="addcart" class="btn btn-primary" id="addBtn">Toevoegen</button>
+                    </form>
+                </div>
             </div>
-            <div class="col-xs-6 col-md-4 p-5 content">
-                <p>
-                    <img id="logoOverOns" src="Images/Logo.png" />
-                </p>
-                <p>
-                    <span class="overonsColorChange">NAAM: </span>STILTE AUBV<br>
-                    <span class="overonsColorChange">ADRES: </span>HOGESCHOOLLAAN 1<br>
-                    <span class="overonsColorChange">POSTCODE: </span>4818 CR<br>
-                    <span class="overonsColorChange">PLAATS: </span>BREDA<BR>
-                </p>
-                <p>
-                    <span class="overonsColorChange">TEL: </span>088 5698475<br>
-                    <span class="overonsColorChange">E-MAIL: </span>info@stilteaubv.nl<br>
-                    <span class="overonsColorChange">KVK: </span>8978676748<br>
-                </p>
-            </div>
-        </div>
+            <?php
+                }
+            ?> 
+        </div>  
     </div>
     <div class="footer">
         <div class="container-fluid bg-transparent" id="socialMediaBar">

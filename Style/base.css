@@ -8,7 +8,6 @@ body, html {
 }
 
 li, a, button {
-    font-family: 'Bebas Neue', cursive;
     font-weight: 500;
     font-size: 16px;
     color: white;
@@ -34,8 +33,29 @@ li, a, button {
 }
 
 .content{
-    font-family: 'Bebas Neue', cursive;
+    margin-left: 160px;
 }
+
+.sidenav {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    background-color: rgba(29, 29, 29,0.5);
+    padding-top: 20px;
+    z-index: 1;
+}  
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    font-weight: 500;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.sidenav a:hover{
+    color: #BB13FE;;
+} 
 
 .navbar{
     background-color: rgba(29, 29, 29,0.5);
@@ -56,7 +76,6 @@ li, a, button {
 
 .navbar-nav .nav-item .nav-link{
     position: relative;
-    font-family: 'Bebas Neue', cursive;
     font-weight: 500;
     font-size: 20px;
     color: white;
@@ -157,21 +176,19 @@ Scroll buttons
 }
 
 /*
-Contact formulier
+formulier
 */
-
-.contact{
+.form{
     position: relative;
     height: auto;
-    font-family: 'Bebas Neue', cursive;
     padding: 20px;
 }
 
-.contact form label{
+.form form label{
     padding-top: 10px;
 }
 
-.contact form input{
+.form form input{
     background-color: rgb(219, 219, 219);
     border-color: #BB13FE;
     border-width: 2px;
@@ -183,7 +200,7 @@ textarea.form-control{
     border-width: 2px;
 }
 
-.contact form input:focus{
+.form form input:focus{
     border-color: #BB13FE;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 9px #BB13FE;
 }
@@ -193,7 +210,7 @@ textarea.form-control:focus{
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 9px #BB13FE;
 }
 
-.contact form button{
+.form form button{
     width: 100%;
     max-width: 500px;
     margin-top: 10px;
@@ -202,8 +219,99 @@ textarea.form-control:focus{
     border-style: none;
 }
 
-.contact form button:hover{
+.form form button:hover{
     background-color: #8d0fbe;
+}
+
+.customSelect{
+    background-color: rgb(219, 219, 219);
+    border-color: #BB13FE;
+    border-width: 2px;
+    margin-bottom: 20px;
+}
+
+.customSelect:focus{
+    border-color: #BB13FE;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 9px #BB13FE;
+}
+
+.importForm{
+    position: relative;
+    height: auto;
+    padding: 20px;
+}
+
+input[type=file]::file-selector-button {
+    border-style: none;
+    color: white;
+    border-radius: 2px;
+    background-color: #BB13FE;
+}
+  
+input[type=file]::file-selector-button:hover {
+    background-color: #8d0fbe;
+}
+
+.importForm button{
+    width: 50%;
+    max-width: 500px;
+    margin-top: 10px;
+    color: white;
+    background-color: #BB13FE;
+    border-style: none;
+}
+
+.importForm button:hover{
+    background-color: #8d0fbe;
+}
+
+.importForm a{
+    color: #BB13FE;
+}
+
+.importForm a:hover{
+    color: #8d0fbe;
+}
+
+/*
+Table
+*/
+.table{
+    background: rgba(29, 29, 29,0.5);
+    border-radius: 5px;
+    border-collapse: collapse;
+    color: white;
+}
+
+tbody tr {
+    transition: background 0.25s ease;
+  }
+
+tbody tr:hover {
+background: #353535;
+}
+
+/*
+NEON button
+*/
+.neon-button{
+    background-color: transparent;
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    color: #BB13FE;
+    border: currentColor 0.125em solid;
+    padding: 0.25em 1em;
+    border-radius: 0.25em;
+    text-shadow: 0 0 0.125em rgb(104, 104, 104), 0 0 0.5em currentColor;
+    box-shadow: inset 0 0 0.5em 0 currentColor, 0 0 0.5em 0 currentColor;
+}
+
+.neon-button:hover,
+.neon-button:focus{
+    background: #BB13FE;
+    color: white;
+    text-shadow: none;
 }
 
 @media print{
