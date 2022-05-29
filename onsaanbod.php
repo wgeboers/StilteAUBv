@@ -28,15 +28,19 @@
 
 <section class="products">
 <?php 
-    //$results = array();
+    $results = array();
     if((isset($_POST['searchTerm']) && (!empty($_POST['searchTerm'])))) {
         $results = array();
         $searchTerm = htmlspecialchars($_POST['searchTerm']);
         $ProductManager->getCatalog($searchTerm);
         $results = $ProductManager->getProducts();
-    } else {        
-        $ProductManager->getCatalog();
-        $results = $ProductManager->getProducts();
+
+        if (empty($results)) {
+            echo "Geen producten gevonden die voldoen aan de zoekopdracht.";
+        } 
+    } else {
+            $ProductManager->getCatalog();
+            $results = $ProductManager->getProducts();        
     }
     
     foreach($results as $result) {
@@ -47,6 +51,7 @@
     </div>
     <div class="product-info">
       <h5><?php echo $result->getName(); ?></h5>
+      <h5><?php echo $result->getDescription(); ?></h5>
       <h6>€<?php echo $result->getPrice(); ?></h6>
     </div>
   </div>

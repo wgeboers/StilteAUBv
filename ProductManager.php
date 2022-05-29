@@ -17,6 +17,7 @@ class ProductManager {
     }
 
     public function getCatalog($searchTerm = "") {
+        $this->results = array();
         $results = $this->db_crud->getProducts($searchTerm);
 
         foreach($results as $result) {

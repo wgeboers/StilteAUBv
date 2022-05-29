@@ -34,4 +34,8 @@ class Product {
         return $this->Price;
     }
 
+    public function getDescription() {
+        return $this->Description;
+    }
+
 }
