@@ -1,64 +1,53 @@
 <?php
 
-require_once("Crud.php");
-
-#User fetches from database with the help of a crud object.
 class User {
 	
-	private $crud;
+	private int $id;
+	private string $firstName;
+	private ?string $midName;
+	private string $lastName;
+	private string $email;
+	private string $phoneNr;
+	private string $street;
+	private int $houseNr;
+	private ?string $houseNrAdd;
+	private string $zipcode;
+	private string $city;
+
 	
-	function  __construct() {
-		$this->crud = new Crud('root', '');
-	}
-	
-	#pulls all data from a given user or employee email
-	#Does not work without a set session email, which can only be done by logging in.
-	public function getUserData() {
-		if(!empty($_SESSION["id"]) && isset($_SESSION['id'])) {
-			$userData = $this->crud->selectByEmail($_SESSION['email']);
-			if(empty($userData)) {
-				$userData = $this->crud->selectByEmail($_SESSION['email'], 'employees');
-			}
-			return $userData;
-		}		
+	function  __construct($id, $firstName, $midName, $lastName, $email, $phoneNr, $street, $houseNr, $houseNrAdd, $zipcode, $city ) {
+		$this->id = $id;
+		$this->firstName = $firstName;
+		$this->midName = $midName ?? ''; #because midName can be NULL.
+		$this->lastName = $lastName;
+		$this->email = $email;
+		$this->phoneNr = $phoneNr;
+		$this->street = $street;
+		$this->houseNr = $houseNr;
+		$this->houseNrAdd = $houseNrAdd ?? ''; #because houseNrAdd can be NULL.
+		$this->zipcode = $zipcode;
+		$this->city = $city;
+		
 	}
 
-	#Used to update a user's information when they submit a change to their user information.
-	#TODO: Implementation
-	public function updateUserInformation($userData) {
-		if(isset($userData) && !empty($userData)) {
-			$this->crud->updateProfile($userData, $_SESSION['type'], $_SESSION['email']);
-		} else {
-			echo "problems yep";
-		}
+	public function getid() {
+		return $this->id;
 	}
-	
-	#function used to log a user in, automatically checks for an end user or employee login
-	#when the login button is clicked, the users will be redirected to the page they were on when they logged
-	#An error msg will be published to $_SESSION["errormsg"] if the login failed.
-	public function login($email, $password) {		
-		$validation = $this->crud->validateUser($email, $password);
-		if(!empty($validation)) {
-			$_SESSION['id'] = $validation[0];
-			$_SESSION['email'] = $email;
-			return true;
-		} else {
-			$validation = $this->crud->validateUser($email, $password, 'employees');
-			if(!empty($validation)) {
-				$_SESSION['id'] = $validation[0];
-				$_SESSION['email'] = $email;
-				return true;
-			} else {
-				$_SESSION["ErrorMsg"] = 'wrong pass/username';
-			}
-			if(isset($_SESSION['url'])) {
-				$url = $_SESSION['url'];
-			} else {
-				$url = "index.php";
-			}
-			header("Location: https://localhost$url");
-			return false;
-		}
+
+	public function getName() {
+		return "{$this->firstName} {$this->midName} {$this->lastName}";
+	}
+
+	public function getEmail() {
+		return $this->email;
+	}
+
+	public function getPhoneNumber() {
+		return $this->phoneNr;
+	}
+
+	public function getAddress() {
+		return array($this->street, $this->houseNr, $this->houseNrAdd, $this->zipcode, $this->city);
 	}
 }
 ?>
