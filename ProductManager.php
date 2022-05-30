@@ -27,6 +27,10 @@ class ProductManager {
 
     }
 
+    public function addSearchTerm(string $searchTerm, bool $passed) {
+        $this->db_crud->addSearchTerm($searchTerm, $passed);
+    }
+
     public function getProducts() {
         return $this->products;
     }

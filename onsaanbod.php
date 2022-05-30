@@ -37,12 +37,16 @@
 
         if (empty($results)) {
             echo "Geen producten gevonden die voldoen aan de zoekopdracht.";
-        } 
+            $ProductManager->addSearchTerm($searchTerm, 0);
+        } else {
+            $ProductManager->addSearchTerm($searchTerm, 1);
+        }
+        
     } else {
             $ProductManager->getCatalog();
             $results = $ProductManager->getProducts();        
     }
-    
+
     foreach($results as $result) {
 ?>
 <div class="product-card">
