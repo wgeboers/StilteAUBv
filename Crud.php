@@ -101,13 +101,11 @@ class Crud extends Database {
 		return true;
 	}
 	
-	public function selectByUser(int $id, $table = 'users') {
+	public function selectByUser(int $id, $table) {
 		try {
-			if(isset($email)) {
-				$select = $this->connection->prepare("SELECT * FROM `$table` WHERE `UserId` = {$id}");
-				$select->execute();
-				return $select->fetchall(PDO::FETCH_OBJ);
-			}
+			$select = $this->connection->prepare("SELECT * FROM {$table} WHERE `UserId` = {$id}");
+			$select->execute();
+			return $select->fetchall(PDO::FETCH_ASSOC);
 		} catch(PDOException $e) {
 			echo $e;
 		}

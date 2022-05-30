@@ -15,7 +15,7 @@ class User {
 	private string $city;
 
 	
-	function  __construct($id, $firstName, $midName, $lastName, $email, $phoneNr, $street, $houseNr, $houseNrAdd, $zipcode, $city ) {
+	function  __construct($id, $firstName, $midName, $lastName, $email, $phoneNr, $street, $houseNr, $houseNrAdd, $zipcode, $city) {
 		$this->id = $id;
 		$this->firstName = $firstName;
 		$this->midName = $midName ?? ''; #because midName can be NULL.
