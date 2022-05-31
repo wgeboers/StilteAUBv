@@ -14,14 +14,17 @@ class UserUI {
     }
 
     #checks if the user is logged in and returns user object based on that.
-    public function displayUserInformation() {
+    public function fetchUserObject() {
         if($this->u_manager->getLoggedIn())
-            $this->user = $this->u_manager->fetchUserData($_SESSION["id"], 'users');
+            $this->user = $this->u_manager->fetchUserData($_SESSION["id"]);
         else
             $_SESSION["ErrorMsg"] = "You need to be logged in to view user data.";
         return $this->user;
     }
 
+    public function updateUserObject() {
+
+    }
     // SHOULD NOT BE USED; ONLY FOR TESTING PURPOSES!!!!! IF YOU NEED SOMETHING FROM THE MANAGER, GET IT FROM INSIDE THIS CLASS!!!!
     // public function getUMan() {
     //     return $this->u_manager;
@@ -38,6 +41,6 @@ class UserUI {
 session_start();
 $_SESSION["id"] = 0;
 $ui = new UserUI();
-var_dump($ui->displayUserInformation());
+var_dump($ui->getUserObject());
 
 ?>

@@ -8,27 +8,30 @@ require_once('user.php');
 Class UserManager {
     private Crud $crud;
     private ?User $user;
-    private bool $loggedIn = true; // turn back to false; true if you need to test without login functionality.
+    private bool $loggedIn = false; // turn back to false; true if you need to test without login functionality.
 
     function __construct() {
         $this->crud = new Crud('root', ''); 
     }
 
     #Creates a user object based on database row.
-    public function fetchUserData($id, $table) {
-        $results = $this->crud->selectByUser($id, $table);
-        if($table == 'users') {
-            foreach($results as $result) {
-                $this->user = new User($result["UserId"], $result["First_Name"], $result["Middle_Name"], $result["Last_Name"], $result["Email"], $result["Phone_Number"],
-                $result["Street"], $result["House_Number"], $result["House_Number_Addition"], $result["Zipcode"], $result["City"]);
-            }
-        }
+    public function fetchUserData($id) {
+        $results = $this->crud->selectByUser($id, 'users');
+		foreach($results as $result) {
+			$this->user = new User($result["UserId"], $result["First_Name"], $result["Middle_Name"], $result["Last_Name"], $result["Email"], $result["Phone_Number"],
+			$result["Street"], $result["House_Number"], $result["House_Number_Addition"], $result["Zipcode"], $result["City"]);
+		}
+
         return $this->user;
     }
 
     public function getLoggedIn() {
         return $this->loggedIn;
     }
+
+	public function getUserID() {
+		return $this->user->getId();
+	}
 
     #Used to update a user's information when they submit a change to their user information.
     public function updateUserInformation($userData) {
@@ -43,26 +46,21 @@ Class UserManager {
 	#when the login button is clicked, the users will be redirected to the page they were on when they logged
 	#An error msg will be published to $_SESSION["errormsg"] if the login failed.
 	public function login($email, $password) {		
-		$validation = $this->crud->validateUser($email, $password);
+		$validation = $this->crud->validateUser($email, $password, 'users');
 		if(!empty($validation)) {
 			$_SESSION['id'] = $validation[0];
             $this->loggedIn = true;
+			return $validation[0];
 		} else {
-			$validation = $this->crud->validateUser($email, $password, 'employees');
-			if(!empty($validation)) {
-				$_SESSION['id'] = $validation[0];
-				$this->loggedIn = true;
-			} else {
-				$_SESSION["ErrorMsg"] = 'wrong pass/username';
-			}
-			if(isset($_SESSION['url'])) {
-				$url = $_SESSION['url'];
-			} else {
-				$url = "/index.php";
-			}
-			header("Location: https://localhost$url");
-			return false;
+			$_SESSION["ErrorMsg"] = 'wrong pass/username';
 		}
+		if(isset($_SESSION['url'])) {
+			$url = $_SESSION['url'];
+		} else {
+			$url = "/index.php";
+		}
+		header("Location: https://localhost$url");
+		return false;
 	}
 }
 ?>

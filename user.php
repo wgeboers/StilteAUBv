@@ -30,7 +30,7 @@ class User {
 		
 	}
 
-	public function getid() {
+	public function getId() {
 		return $this->id;
 	}
 

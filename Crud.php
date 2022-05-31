@@ -110,11 +110,20 @@ class Crud extends Database {
 			echo $e;
 		}
 	}
+	public function selectByEmployee(int $id, $table) {
+		try {
+			$select = $this->connection->prepare("SELECT * FROM {$table} WHERE `EmployeeID` = {$id}");
+			$select->execute();
+			return $select->fetchall(PDO::FETCH_ASSOC);
+		} catch(PDOException $e) {
+			echo $e;
+		}
+	}
 	
 	#Used to fetch a User's ID, if it is there, based on username and password, they will be logged in
 	#if not throws a pdo exception
 	#TO DO: Error handling
-	public function validateUser(string $email, string $password, $table = 'users') {
+	public function validateUser(string $email, string $password, string $table) {
 		try {
 			$selectArray = array($email, $password);
 			$select = $this->connection->prepare("SELECT * FROM {$table} WHERE `Email` = ? AND `Password` = ?");
