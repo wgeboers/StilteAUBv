@@ -16,7 +16,7 @@
 <body class='homepage'>
     <div class="parallax">
         <?php 
-            require_once('UserUI.php');
+            require_once('UserManager.php');
             $u_ui = new UserManager();
             $user = $u_ui->fetchUserData($_SESSION['id']);
             $userData = array();
@@ -24,10 +24,15 @@
                 $userData = $user->getAllData();
             
 
-            echo "<form name='userDataForm' method='POST'>";
+            echo "<form name='userDataForm' id='userdata' method='POST'>";
             foreach($userData as $key=>$value) {
-                echo "{$key}: <input type='text' name='{$key}' value={$value}><br>";
+                echo "<div class='col-md-3'>";
+                echo "<label for='{$key} class='form-label'>{$key}</label>";
+                echo "<input type='text' class='form-control' name='{$key}' value={$value}>";
+                echo "</div>";
             }
+            echo "<br><div class='col-3 text-center'>
+                <button type='submit' class='btn btn-primary' id='changeBtn'>Change</button>";
             echo "</form>";
             
 
