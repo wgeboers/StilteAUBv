@@ -13,18 +13,18 @@
 			$_SESSION['ErrorMsg'] = 'Wrong login';
 			unset($_SESSION['id']);
 		}
-		unset($e_man); //This object wont be used for anything but displaying a user's name.
+		#unset($e_man); //This object wont be used for anything but displaying a user's name.
 	} elseif(isset($_SESSION["id"]) && !empty($_SESSION["id"])) {
 		require_once("UserManager.php");
 		$u_man = new UserManager();
 		$userData = $u_man->fetchUserData($_SESSION['id']);
 		if(!empty($userData->getName())) {
-			$name = $userData->getName();
+			$name = $userData->getName()['First Name'];
 		} else {
 			$_SESSION['ErrorMsg'] = 'Wrong login';
 			unset($_SESSION['id']);
 		}
-		unset($e_man); //This object wont be used for anything but displaying an employee's name.
+		#unset($e_man); //This object wont be used for anything but displaying an employee's name.
 	}
 ?>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"

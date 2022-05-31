@@ -35,7 +35,7 @@ class User {
 	}
 
 	public function getName() {
-		return "{$this->firstName} {$this->midName} {$this->lastName}";
+		return array('First Name'=>$this->firstName, 'Middle Name'=>$this->midName, 'Last Name'=>$this->lastName);
 	}
 
 	public function getEmail() {
@@ -48,6 +48,11 @@ class User {
 
 	public function getAddress() {
 		return array($this->street, $this->houseNr, $this->houseNrAdd, $this->zipcode, $this->city);
+	}
+
+	public function getAllData() {
+		return array('First Name'=>$this->firstName, 'Middle Name'=>$this->midName, 'Last Name'=>$this->lastName, 'email'=>$this->email, 'Phone'=>$this->phoneNr,
+		'street'=>$this->street, 'House Number'=>$this->houseNr, 'Addition'=>$this->houseNrAdd, 'zipcode'=>$this->zipcode, 'city'=>$this->city);
 	}
 }
 ?>

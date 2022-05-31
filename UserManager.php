@@ -8,7 +8,7 @@ require_once('user.php');
 Class UserManager {
     private Crud $crud;
     private ?User $user;
-    private bool $loggedIn = false; // turn back to false; true if you need to test without login functionality.
+    private ?bool $loggedIn;
 
     function __construct() {
         $this->crud = new Crud('root', ''); 
@@ -25,9 +25,13 @@ Class UserManager {
         return $this->user;
     }
 
-    public function getLoggedIn() {
-        return $this->loggedIn;
-    }
+    // public function getLoggedIn() {
+    //     return $this->loggedIn;
+    // }
+
+	public function setLoggedIn(bool $loggedIn) {
+		$this->loggedIn = $loggedIn;
+	}
 
 	public function getUserID() {
 		return $this->user->getId();
@@ -49,7 +53,7 @@ Class UserManager {
 		$validation = $this->crud->validateUser($email, $password, 'users');
 		if(!empty($validation)) {
 			$_SESSION['id'] = $validation[0];
-            $this->loggedIn = true;
+            $_SESSION['active'] = true;
 			return $validation[0];
 		} else {
 			$_SESSION["ErrorMsg"] = 'wrong pass/username';

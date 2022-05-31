@@ -12,7 +12,8 @@ if(!empty($_POST['login'])) {
 		require_once("UserManager.php");
 		$u_man = new UserManager();
 		$u_man->login($email, $password);
-		if($u_man->getLoggedIn())
+		$_SESSION['active'] = true;
+		if(isset($u_man))
 			$u_man->fetchUserData($_SESSION['id']);
 	} else {
 		require_once("EmployeeManager.php");
