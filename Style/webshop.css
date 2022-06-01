@@ -4,6 +4,7 @@
 
 .container {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
 }
 
@@ -13,6 +14,8 @@
   border-radius:6px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   width: 300px;
+  text-align: center;
+  color: black;
 }
 
 .cardContent{
@@ -22,14 +25,44 @@
 
 .cardContent img{
     border-radius:6px;
-    height: 150px;
+    height: 200px;
     width: 100%;
 }
 
-.cardContent h1{
-    color: black;
+.form-control{
+    background-color: rgb(235, 235, 235);
+    border-color: #BB13FE;
+    border-width: 2px;
+    border-radius: 6px 0px 0px 6px;
 }
 
-.cardContent p{
-    color: black;
+form input:focus{
+    border-color: #BB13FE;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 9px #BB13FE;
+}
+
+.form-control:focus{
+    border-color: #BB13FE;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 9px #BB13FE;
+}
+
+.shopbtn{
+    width: 100%;
+    max-width: 50px;
+    color: white;
+    background-color: #BB13FE;
+    border-style: none;
+    border-radius: 0px 6px 6px 0px;
+}
+
+.shopbtn:hover{
+    background-color: #8d0fbe;
+}
+
+.shopFlex{
+    display: flex;
+}
+
+.shopbtn img{
+    height: 20px;
 }

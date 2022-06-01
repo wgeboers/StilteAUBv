@@ -16,83 +16,87 @@
 
 <body class="overOns">
     <div class="main">
-        <?php
-            $cart = explode("|",$_SESSION['cart']);
-            $total = 0;
-            $i = 0;
-            foreach($cart as $products){
+        <div class="container">
+            <div>
+                <?php
+                    $cart = explode("|",$_SESSION['cart']);
+                    $total = 0;
+                    $i = 0;
+                    foreach($cart as $products){
 
-                $product = explode(",", $products);
+                        $product = explode(",", $products);
 
-                if(strlen(trim($product[1])) <> 0){
-                    require_once('product.php');
-                    $id=$product[0];
-                    $result = new Product();
-                    $result->id = $id;
-                    $result->readOne();
-                    $pro_cart = $result;
-                    $lineprice = $product[1] * $pro_cart->price;
-                    $i++;
-                
-        ?>
-        <div class="row">
-            <div class="col-md-5">
+                        if(strlen(trim($product[1])) <> 0){
+                            require_once('product.php');
+                            $id=$product[0];
+                            $result = new Product();
+                            $result->id = $id;
+                            $result->readOne();
+                            $pro_cart = $result;
+                            $lineprice = $product[1] * $pro_cart->price;
+                            $i++;
+                        
+                ?>
                 <div class="card">
                     <div class= "cardContent">
                         <img src="./Images/80s.jpg" alt="Logo">
                         <div class="cardDescription">
-                            <h1><?php echo $pro_cart->name;?></h1>
-                            <input type="number" name="hoeveelheid" value="<?php echo $product[1];?>">
-                            <p><?php echo "€" .number_format($pro_cart->price, 2, ',', '.');?></p>
-                            <p><?php echo "€" .number_format($lineprice, 2, ',', '');?></p>
-                            <a href="javascript:removeItem(<?php echo $i ?>)">X</a>
+                            <h2><?php echo $pro_cart->name;?></h2>
+                            <h4>Aantal: <?php echo $product[1];?></h4>
+                            <h4>Prijs: <?php echo "€" .number_format($lineprice, 2, ',', '');?></h4>
                         </div>
                     </div>
+                    <div class="cartRemove">
+                        <a href="javascript:removeItem(<?php echo $i ?>)">X</a>
+                    </div>
                 </div>
+                <?php
+                    $total = $total + $lineprice;
+                        }
+                    }
+                ?> 
+            </div>
+            <div class="orderDetails">
+                <div class="orderTotal">
+                    <h2>Totaal: <?php echo "€".number_format($total, 2, ',', '.'); ?></h2>
+                </div>
+                <div class="form"> 
+                    <form action="./checkout.php" method="post" name="checkoutForm" id="checkoutForm">
+                        <div class="row">
+                            <h2>Bestelgegevens</h2>
+                            <div class="col-md-4">
+                                <label for="firstName" class="form-label">Voornaam</label>
+                                <input type="text" class="form-control" placeholder="Voornaam" name="firstName" id="firstName">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="middleName" class="form-label">Tussenvoegsel</label>
+                                <input type="text" class="form-control" placeholder="Tussenvoegsel" name="middleName" id="middleName">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="lastName" class="form-label">Achternaam</label>
+                                <input type="text" class="form-control" placeholder="Achternaam" name="lastName" id="lastName">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="adres" class="form-label">Adres</label>
+                                <input type="text" class="form-control" placeholder="Straat huisnummer-toevoeging" name="adres" id="adres">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="zipcode" class="form-label">Postcode</label>
+                                <input type="text" class="form-control" placeholder="Postcode" name="zipcode" id="zipcode">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="city" class="form-label">Stad</label>
+                                <input type="text" class="form-control" placeholder="Stad" name="city" id="city">
+                            </div>
+                        </div>
+                        <div class="col-12 text-center">
+                            <button type="submit" name="addproduct" value="addproduct" class="btn btn-primary" id="addBtn">Afrekenen</button>
+                        </div>
+                    </form>
+                </div>
+                <a href="javascript:removeCart()" class="OrderRemove">Winkelwagen leegmaken</a>
             </div>
         </div>
-        <?php
-            $total = $total + $lineprice;
-                }
-            }
-        ?>   
-        <p>Totaal</p>
-        <p><?php echo "€".number_format($total, 2, ',', '.'); ?></p>
-        <form action="./checkout.php" method="post" name="checkoutForm" id="checkoutForm">
-            <div class="container">
-                <div class="row">
-                    <h2>Gegevens</h2>
-                    <div class="col-md-4">
-                        <label for="firstName" class="form-label">Voornaam</label>
-                        <input type="text" class="form-control" placeholder="Voornaam" name="firstName" id="firstName">
-                    </div>
-                    <div class="col-md-4">
-                        <label for="middleName" class="form-label">Tussenvoegsel</label>
-                        <input type="text" class="form-control" placeholder="Tussenvoegsel" name="middleName" id="middleName">
-                    </div>
-                    <div class="col-md-4">
-                        <label for="lastName" class="form-label">Achternaam</label>
-                        <input type="text" class="form-control" placeholder="Achternaam" name="lastName" id="lastName">
-                    </div>
-                    <div class="col-md-12">
-                        <label for="adres" class="form-label">Adres</label>
-                        <input type="text" class="form-control" placeholder="Straat huisnummer-toevoeging" name="adres" id="adres">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="zipcode" class="form-label">Postcode</label>
-                        <input type="text" class="form-control" placeholder="Postcode" name="zipcode" id="zipcode">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="city" class="form-label">Stad</label>
-                        <input type="text" class="form-control" placeholder="Stad" name="city" id="city">
-                    </div>
-                </div>
-                <div class="col-12 text-center">
-                    <button type="submit" name="addproduct" value="addproduct" class="btn btn-primary" id="addBtn">Afrekenen</button>
-                </div>
-            </div>
-        </form>
-        <a href="javascript:removeCart()">Winkelwagen leegmaken</a>
     </div>
     <div class="footer">
         <div class="container-fluid bg-transparent" id="socialMediaBar">

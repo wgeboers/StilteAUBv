@@ -2,35 +2,86 @@
     margin: 20px;
 }
 
+.container{
+    display: flex;
+    gap: 20px;
+}
+
 .card{
     background:#fff;
     padding:5px;
     border-radius:6px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     position:relative;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
 }
   
 .cardContent{
     padding:5px;
     border-radius:6px;
     position:relative;
-}
-
-.cardContent img{
-    width: 50%;
-    border-radius:6px;
-    float: left;
-    margin-right: 10px;
-}
-
-.cardContent h1{
-    color: black;
-}
-
-.cardContent p{
     color: black;
 }
 
 .cardContent a{
     color: black;
+}
+
+.cardContent img{
+    width: 40%;
+    border-radius:6px;
+    float: left;
+    margin-right: 10px;
+}
+
+.form{
+    background-color: #fff;
+    color: black;
+    border-radius: 6px;
+}
+
+.orderDetails{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.orderTotal{
+    background-color: #fff;
+    color: black;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.OrderRemove{
+    background-color: rgb(243, 0, 0);
+    color: white;
+    border-radius: 6px;
+    padding: 10px;
+    text-align: center;
+    transition: background-color 0.2s;
+}
+
+.OrderRemove:hover{
+    background-color: rgb(192, 0, 0);
+    color: white;
+}
+
+.cartRemove{
+    margin-top: 5px;
+}
+
+.cartRemove a{
+    background-color: red;
+    text-align: center;
+    padding: 5px 10px 5px 10px;
+    border-radius: 20px;
+    transition: background-color 0.2s;
+}
+
+.cartRemove a:hover{
+    background-color: rgb(192, 0, 0);
+    color: white;
 }

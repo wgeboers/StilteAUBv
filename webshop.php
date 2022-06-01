@@ -36,9 +36,13 @@
                         ?> alt="Logo">
                         <h1><?php echo $rows->Name;?></h1>
                         <p><?php echo $rows->Description;?></p>
-                        <p><?php echo "€" . $rows->Price;?></p>
-                        <input type="number" class="form-control" placeholder="Aantal" name="hoeveelheid" id="hoeveelheid">
-                        <button type="submit" name="addcart" value="addcart" class="btn btn-primary" id="addBtn">Toevoegen</button>
+                        <h3><?php echo "€" . $rows->Price;?></h3>
+                        <div class="shopFlex">
+                            <input type="number" class="form-control" placeholder="Aantal" name="hoeveelheid" id="hoeveelheid" value=0>
+                            <button type="submit" name="addcart" value="addcart" class="shopbtn" id="addBtn">
+                                <img src="./Images/basket-shopping-solid.svg" alt="basket">
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>

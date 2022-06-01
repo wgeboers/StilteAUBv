@@ -6,6 +6,8 @@ if(!empty($_POST['addproduct'])) {
     $stock = $_POST["stock"];
     $price = $_POST["price"];
 
+	echo$price;
+
 	require_once("product.php");
 	$product = new Product();
 	$add = $product->insertProduct($name, $description, $stock, $price);
