@@ -1,7 +1,7 @@
 <?php
-#Script used to log a user out and return to the page they logged out on.
-
 session_start();
+//Code is used to return to the URL the user is coming from.
+//Requires $_SESSION['url'] = $_SERVER['REQUEST_URI'] at the top of the webpage.
 if(isset($_SESSION['url'])) {
     $url = $_SESSION['url'];
 } else {
