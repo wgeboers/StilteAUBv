@@ -16,33 +16,15 @@
 <body class='homepage'>
     <div class="parallax">
         <?php 
-            require_once('UserManager.php');
-            $u_ui = new UserManager();
-            $user = $u_ui->fetchUserData($_SESSION['id']);
-            $userData = array();
-            if(isset($user))
-                $userData = $user->getAllData();
-            
-
-            echo "<form name='userDataForm' id='userdata' method='POST'>";
-            foreach($userData as $key=>$value) {
-                echo "<div class='col-md-3'>";
-                echo "<label for='{$key} class='form-label'>{$key}</label>";
-                echo "<input type='text' class='form-control' name='{$key}' value={$value}>";
-                echo "</div>";
-            }
-            echo "<br><div class='col-3 text-center'>
-                <button type='submit' class='btn btn-primary' id='changeBtn'>Change</button>";
-            echo "</form>";
-            
-
-            ?>
-        <!-- <form name="userDataForm" method="POST">
-            First Name: <input type='text' name='firstName' value=<?php echo $names['First_Name'] ?? 'Default'; ?>><br>
-            Middle Name: <input type='text' name='midName' value=<?php echo $names['Middle_Name'] ?? ''; ?>><br>
-            Last Name: <input type='text' name='lastName' value=<?php echo $names['Last_Name'] ?? 'Default'; ?>><br>
-            <input type='submit' value='Change'>
-        </form> -->
+        //Includes for functionality within the webpage here!!!
+        //TODO: EmployeeUI with employee based functionality.
+        //CSS preferably done here, because it will be consistent with employee/user.
+        //If impossible, make sure UserUI has the same CSS as EmployeeUI.
+        include('UserUI.php'); 
+        //include('EmployeeUI.php');
+        ?>
+        
+        
     </div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"

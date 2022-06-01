@@ -1,53 +1,26 @@
-// <?php
-##################################################
-##### UNUSED BECAUSE ITS UNNECESSARY FOR NOW #####
-##################################################
-// require_once('UserManager.php');
-
-
-// #Used to display data to the dashboard (maybe even post html to it...)
-// class UserUI {
-
-//     private UserManager $u_manager;
-//     private ?User $user;
-
-//     function __construct(UserManager $u_manager) {
-//         $this->u_manager = $u_manager;
-//     }
-
-//     #checks if the user is logged in and returns user object based on that.
-//     public function fetchUserObject() {
-//         if($this->u_manager->getLoggedIn()) {
-//             $this->user = $this->u_manager->fetchUserData($_SESSION["id"]);
-//         } else {
-//             $_SESSION["ErrorMsg"] = "You need to be logged in to view user data.";
-//             $this->user = NULL;
-//         }
-//         return $this->user;
+<!doctype HTML>
+<?php 
+    require_once('UserManager.php');
+    $u_ui = new UserManager();
+    $userData = array();
+    if(isset($_SESSION['id']) && !empty($_SESSION['id'])) {
+        $user = $u_ui->fetchUserData($_SESSION['id']);
+        $userData = array();
         
-//     }
-
-//     public function updateUserObject() {
-
-//     }
-    
-//     public function doLogin($email, $password) {
-//         $id = $this->u_manager->login($email, $password);
-//         $this->u_manager->setLoggedIn(true);
-
-//     }
-
-//     public function getLoggedIn() {
-//         $this->u_manager->getLoggedIn();
-//     }
-
-// }
-
-
-#making sure userUI can access user objects through user manager.
-// session_start();
-// $_SESSION["id"] = 0;
-// $ui = new UserUI();
-// var_dump($ui->getUserObject());
-
+        if(isset($user))
+            $userData = $user->getAllData();
+    }
+   
+    echo "<form name='userDataForm' id='userdata' method='POST' action='userForm.php'>";
+    foreach($userData as $key=>$value) {
+        echo "<div class='col-md-3'>";
+        echo "<label for='{$key} class='form-label'>{$key}</label>";
+        echo "<input type='text' class='form-control' name='{$key}' value={$value}>";
+        echo "</div>";
+        if(array_key_last($userData) == $key) {
+            echo "<br><div class='col-3 text-center'>
+            <button type='submit' class='btn btn-primary' name='changeBtn'>Change</button>";
+            echo "</form>";
+        }
+    }
 ?>

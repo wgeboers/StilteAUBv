@@ -51,8 +51,8 @@ class User {
 	}
 
 	public function getAllData() {
-		return array('First Name'=>$this->firstName, 'Middle Name'=>$this->midName, 'Last Name'=>$this->lastName, 'email'=>$this->email, 'Phone'=>$this->phoneNr,
-		'street'=>$this->street, 'House Number'=>$this->houseNr, 'Addition'=>$this->houseNrAdd, 'zipcode'=>$this->zipcode, 'city'=>$this->city);
+		return array('First Name'=>$this->firstName, 'Middle Name'=>$this->midName, 'Last Name'=>$this->lastName, 'Email'=>$this->email, 'Phone Number'=>$this->phoneNr,
+		'Street'=>$this->street, 'House Number'=>$this->houseNr, 'House Number Addition'=>$this->houseNrAdd, 'Zipcode'=>$this->zipcode, 'City'=>$this->city);
 	}
 }
 ?>

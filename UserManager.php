@@ -25,9 +25,9 @@ Class UserManager {
         return $this->user;
     }
 
-    // public function getLoggedIn() {
-    //     return $this->loggedIn;
-    // }
+    public function updateUserData($userData = array()) {
+		$this->crud->updateProfile($userData, 'users', $userData['Email']);
+	}
 
 	public function setLoggedIn(bool $loggedIn) {
 		$this->loggedIn = $loggedIn;
@@ -35,15 +35,6 @@ Class UserManager {
 
 	public function getUserID() {
 		return $this->user->getId();
-	}
-
-    #Used to update a user's information when they submit a change to their user information.
-    public function updateUserInformation($userData) {
-		if(isset($userData) && !empty($userData)) {
-			$this->crud->updateProfile($userData, $_SESSION['type'], $_SESSION['email']);
-		} else {
-			echo "problems yep";
-		}
 	}
 
     #function used to log a user in, automatically checks for an end user or employee login
