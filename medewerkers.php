@@ -43,25 +43,8 @@
                 </thead>
                 <tbody>
                     <?php
-                        require_once('crud.php');
-                        $classA = new Crud('root', '');
-                        $employeeData = $classA->getTable('employees');
-
-                        foreach($employeeData as $rows){
-                    ?>
-                    <tr>
-                        <td><?php echo $rows->EmployeeID;?></td>
-                        <td><?php echo $rows->First_Name;?></td>
-                        <td><?php echo $rows->Middle_Name;?></td>
-                        <td><?php echo $rows->Last_Name;?></td>
-                        <td><?php echo $rows->Email;?></td>
-                        <td><?php echo $rows->Creation_Date;?></td>
-                        <td><?php echo $rows->ACTIVE;?></td>
-                        <td><a href="medewerkerwijzigen.php?edit=<?php echo $rows->EmployeeID;?>" class="neon-button">Edit</a></td>
-                    </tr>
-                    <?php
-                        }
-                    ?>       
+                        require_once('EmployeeUI.php');
+                    ?>    
                 </tbody>
             </table>
             <div class="col-12 text-center">

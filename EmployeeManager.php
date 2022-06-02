@@ -8,7 +8,7 @@ require_once('employee.php');
 Class EmployeeManager {
     private Crud $crud;
     private ?Employee $employee;
-    private bool $loggedIn = true; // turn back to false; true if you need to test without login functionality.
+    private bool $loggedIn;
 
     function __construct() {
         $this->crud = new Crud('root', ''); 
@@ -60,6 +60,32 @@ Class EmployeeManager {
         }
         header("Location: https://localhost$url");
         return false;
+    }
+
+    public function insertEmployee($firstName, $middleName, $lastName, $email, $password) {
+		#Nog veld validatie toevoegen!!!! (=javascript...)
+        $data = $this->crud->addEmployee($firstName, $middleName, $lastName, $email, $password);
+		$this->id = $data;
+		return $this->id;
+    }
+
+	public function insertEmployeeRole($id, $role) {
+        $data = $this->crud->addEmployeeRole($id, $role);
+    }
+
+	public function editEmployee($id, $firstName, $middleName, $lastName, $email, $password, $active){
+		#Nog veld validatie toevoegen!!!! (=javascript...)
+		$data = $this->crud->updateEmployee($id, $firstName, $middleName, $lastName, $email, $password, $active);
+	}
+
+	public function updateEmployeeRole($id, $role) {
+        $data = $this->crud->UpdateEmployeeRol($id, $role);
+    }
+
+    public function getAllEmployees() {
+        $employeeData = $this->crud->getTableEmployees();
+        return $employeeData;
+        
     }
 }
 ?>

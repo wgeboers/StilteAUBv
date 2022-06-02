@@ -141,7 +141,17 @@ class Crud extends Database {
 		try {
 			$select = $this->connection->prepare("SELECT * FROM `$table`");
 			$select->execute();
-			return $select->fetchall(PDO::FETCH_OBJ);
+			return $select->fetchall(PDO::FETCH_ASSOC);
+		} catch(PDOExeption $e) {
+			echo $e;
+		}
+	}
+	public function getTableEmployees() {
+		try {
+			$select = $this->connection->prepare("SELECT `EmployeeID`, `First_Name`, `Middle_Name`,
+			`Last_Name`, `Email`, `Creation_Date`, `ACTIVE` FROM `employees`");
+			$select->execute();
+			return $select->fetchall(PDO::FETCH_ASSOC);
 		} catch(PDOExeption $e) {
 			echo $e;
 		}
@@ -197,7 +207,7 @@ class Crud extends Database {
 		$update->execute();
 	}
 
-	public function updateEmployeeRol($id, $rol){
+	public function updateEmployeeRole($id, $rol){
 		$update = $this->connection->prepare("UPDATE `employees-roles` SET `RoleID` = $rol WHERE EmployeeID = $id");
 		$update->execute();
 	}
