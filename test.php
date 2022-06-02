@@ -19,5 +19,17 @@
 	<link rel="stylesheet" type="text/css" href="Style/base.css">
 </head>
 <body>
+<?php
+    #require_once("Crud.php");
+    #$crud = new Crud('root', '');
+    #$test = array("First_Name"=>"Bart","Last_Name"=>"Frijters", "Email"=>"bart.frijters@student.avans.nl", "Phone_Number"=>"06-57574266", "Password"=>"kappa", "Street"=>"hogeschoollaan",
+    #"House_Number"=>"13", "Zipcode"=>"5115 BD", "City"=>"Breda");
+    #$crud->update(array("First_Name"=>"Puk", "Last_Name"=>"van de Petteflet"), "users", "bart.frijters@student.avans.nl");
+
+    require_once("user.php");
+    $user = new User();
+    var_dump($user->getUser('users', 0));
+
+?>
 </body>
 </html> 

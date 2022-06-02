@@ -1,6 +1,6 @@
 <?php
 
-class db_conn {
+class Database {
 	private string $host = 'localhost';
 	private string $dbname = 'stilteaubv';
 	
