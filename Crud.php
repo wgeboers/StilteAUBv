@@ -103,7 +103,7 @@ class Crud extends Database {
 	
 	public function selectByUser(int $id, $table) {
 		try {
-			$select = $this->connection->prepare("SELECT * FROM {$table} WHERE `UserId` = {$id}");
+			$select = $this->connection->prepare("SELECT * FROM {$table} WHERE `UserID` = {$id}");
 			$select->execute();
 			return $select->fetchall(PDO::FETCH_ASSOC);
 		} catch(PDOException $e) {
