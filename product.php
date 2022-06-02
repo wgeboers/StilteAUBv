@@ -1,41 +1,57 @@
 <?php
 
+require_once("Crud.php");
+
 class Product {
-    
-    private $ProductID;
-    private $Name;
-    private $Description;
-    private $Stock;
-    private $Price;
-    //Creation date etc. nodig?
-    //private $Creation_Date;
-    //private $Created_By;
-    //private $Product_Image;
-    private $Image_File_Name;
-    private $Image_File_Path;
-    //private $Image_Creation_Date;
+	
+	public $crud;
 
-    public function __construct(int $ProductID, string $Name, string $Description, int $Stock, float $Price, string $Image_File_Name, string $Image_File_Path) {
+	public $id;
+	public $imageId;
+	public $imageName;
+	public $imagePath;
+	public $name;
+	public $description;
+	public $stock;
+	public $price;
+	
+	function  __construct() {
+		$this->crud = new Crud('root', '');
+	}
+	
+	public function readOne(){
+		$id =$this->id;
+		$row = $this->crud->getProduct('products', $id);
+		$this->name = $row['Name'];
+		$this->description = $row['Description'];
+		$this->stock = $row['Stock'];
+		$this->price = $row['Price'];
+		$this->imageId = $row['ImageID'];
+		$this->imageName = $row['ImageName'];
+		$this->imagePath = $row['ImagePath'];
+	}
 
-        $this->ProductID = $ProductID;
-        $this->Name = $Name;
-        $this->Description = $Description;
-        $this->Stock = $Stock;
-        $this->Price = $Price;
-        $this->Image_File_Name = $Image_File_Name;
-        $this->Image_File_Path = $Image_File_Path;
+    public function insertProduct($name, $description, $stock, $price){
+		#Nog veld validatie toevoegen!!!!
+        $data = $this->crud->addProduct($name, $description, $stock, $price);
     }
 
-    public function getName() {
-        return $this->Name;
+	public function insertProductLog($id, $name, $description, $stock, $price){
+		#Nog veld validatie toevoegen!!!!
+        $data = $this->crud->addProductLog($id, $name, $description, $stock, $price);
     }
 
-    public function getPrice() {
-        return $this->Price;
+	public function editProduct($id, $name, $description, $stock, $price){
+		#Nog veld validatie toevoegen!!!!
+		$data = $this->crud->updateProduct($id, $name, $description, $stock, $price);
+	}
+
+	public function insertProductImage($id, $imageId) {
+        $data = $this->crud->addProductImage($id, $imageId);
     }
 
-    public function getDescription() {
-        return $this->Description;
+	public function updateProductImage($id, $imageId) {
+        $data = $this->crud->UpdateProductImage($id, $imageId);
     }
-
 }
+?>
