@@ -32,8 +32,12 @@ class Order {
         $this->status = $row['Status'];
 	}
 
-	public function editOrder($id, $status){
-		$data = $this->crud->updateOrder($id, $status);
+	public function editOrder($id, $status, $finishedDate){
+		$data = $this->crud->updateOrder($id, $status, $finishedDate);
+	}
+
+	public function editStatus($id, $status){
+		$data = $this->crud->updateStatus($id, $status);
 	}
 
 	public function insertHeader($deliverAdres, $deliverZipcode, $deliverCity) {

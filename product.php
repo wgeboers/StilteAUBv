@@ -36,6 +36,11 @@ class Product {
         $data = $this->crud->addProduct($name, $description, $stock, $price);
     }
 
+	public function insertProductLog($id, $name, $description, $stock, $price){
+		#Nog veld validatie toevoegen!!!!
+        $data = $this->crud->addProductLog($id, $name, $description, $stock, $price);
+    }
+
 	public function editProduct($id, $name, $description, $stock, $price){
 		#Nog veld validatie toevoegen!!!!
 		$data = $this->crud->updateProduct($id, $name, $description, $stock, $price);

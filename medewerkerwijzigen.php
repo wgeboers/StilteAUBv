@@ -69,7 +69,7 @@
                                     <?php
                                         require_once('crud.php');
                                         $classA = new Crud('root', '');
-                                        $roleData = $classA->getRoles('roles');
+                                        $roleData = $classA->getTable('roles');
 
                                         foreach($roleData as $rows){
                                     ?>

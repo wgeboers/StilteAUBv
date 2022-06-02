@@ -45,7 +45,7 @@
                     <?php
                         require_once('crud.php');
                         $classA = new Crud('root', '');
-                        $employeeData = $classA->getEmployees('employees');
+                        $employeeData = $classA->getTable('employees');
 
                         foreach($employeeData as $rows){
                     ?>

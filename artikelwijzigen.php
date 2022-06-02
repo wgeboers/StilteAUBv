@@ -61,7 +61,7 @@
                                     <?php
                                         require_once('crud.php');
                                         $classA = new Crud('root', '');
-                                        $imageData = $classA->getRoles('images');
+                                        $imageData = $classA->getTable('images');
 
                                         foreach($imageData as $rows){
                                     ?>
@@ -71,7 +71,6 @@
                                     ?>  
                                 </select>
                             </div>
-                        </div>
                         </div>
                         <div class="col-12 text-center">
                             <button type="submit" name="updateproduct" value="updateproduct" class="btn btn-primary" id="addBtn">Artikel wijzigen</button>

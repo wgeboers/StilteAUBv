@@ -39,7 +39,7 @@
                     <?php
                         require_once('crud.php');
                         $classA = new Crud('root', '');
-                        $imageData = $classA->getImages('images');
+                        $imageData = $classA->getTable('images');
 
                         foreach($imageData as $rows){
                     ?>

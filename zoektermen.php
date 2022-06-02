@@ -39,7 +39,7 @@
                     <?php
                         require_once('crud.php');
                         $classA = new Crud('root', '');
-                        $searchData = $classA->getHistory('searchhistories');
+                        $searchData = $classA->getTable('searchhistories');
 
                         foreach($searchData as $rows){
                     ?>

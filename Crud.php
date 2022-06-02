@@ -99,7 +99,7 @@ class Crud extends db_conn {
 	######################################################
 	####################Employees#########################
 	######################################################
-	public function getEmployees($table) {
+	public function getTable($table) {
 		try {
 			$select = $this->connection->prepare("SELECT * FROM `$table`");
 			$select->execute();
@@ -143,16 +143,6 @@ class Crud extends db_conn {
 	######################################################
 	#######################Rollen#########################
 	######################################################
-	public function getRoles($table) {
-		try {
-			$select = $this->connection->prepare("SELECT * FROM `$table`");
-			$select->execute();
-			return $select->fetchall(PDO::FETCH_OBJ);
-		} catch(PDOExeption $e) {
-			echo $e;
-		}
-	}
-
 	public function addRole($name, $description){
 		$insert = $this->connection->prepare("INSERT INTO `roles` (`Name`, `Description`) VALUES ('$name', '$description')");
 		$insert->execute();
@@ -171,19 +161,6 @@ class Crud extends db_conn {
 	public function updateRole($id, $name, $description){
 		$update = $this->connection->prepare("UPDATE `roles` SET `Name` = '$name', `Description` = '$description' WHERE RoleID = $id");
 		$update->execute();
-	}
-
-	######################################################
-	###################Search history#####################
-	######################################################
-	public function getHistory($table) {
-		try {
-			$select = $this->connection->prepare("SELECT * FROM `$table`");
-			$select->execute();
-			return $select->fetchall(PDO::FETCH_OBJ);
-		} catch(PDOExeption $e) {
-			echo $e;
-		}
 	}
 
 	######################################################
@@ -211,6 +188,11 @@ class Crud extends db_conn {
 
 	public function addProduct($name, $description, $stock, $price){
 		$insert = $this->connection->prepare("INSERT INTO `products` (`Name`, `Description`, `Stock`, `Price`) VALUES ('$name', '$description', $stock, $price)");
+		$insert->execute();
+	}
+
+	public function addProductLog($id, $name, $description, $stock, $price){
+		$insert = $this->connection->prepare("INSERT INTO `productlogs` (`ProductID`, `Name`, `Description`, `Stock`, `Price`) VALUES ($id, '$name', '$description', $stock, $price)");
 		$insert->execute();
 	}
 
@@ -242,16 +224,6 @@ class Crud extends db_conn {
 	######################################################
 	######################Images##########################
 	######################################################
-	public function getImages($table) {
-		try {
-			$select = $this->connection->prepare("SELECT * FROM `$table`");
-			$select->execute();
-			return $select->fetchall(PDO::FETCH_OBJ);
-		} catch(PDOExeption $e) {
-			echo $e;
-		}
-	}
-
 	public function addImage($fileName, $filePath){
 		$insert = $this->connection->prepare("INSERT INTO `images` (`File_Name`, `File_Path`) VALUES ('$fileName', '$filePath')");
 		$insert->execute();
@@ -260,16 +232,6 @@ class Crud extends db_conn {
 	######################################################
 	#######################Orders#########################
 	######################################################
-	public function getOrders($table) {
-		try {
-			$select = $this->connection->prepare("SELECT * FROM `$table`");
-			$select->execute();
-			return $select->fetchall(PDO::FETCH_OBJ);
-		} catch(PDOExeption $e) {
-			echo $e;
-		}
-	}
-
 	public function getOrder($table, $id) {
 		try {
 			$select = $this->connection->prepare("SELECT * FROM `$table` WHERE HeaderID = $id");
@@ -280,7 +242,12 @@ class Crud extends db_conn {
 		}
 	}
 
-	public function updateOrder($id, $status){
+	public function updateOrder($id, $status, $finishedDate){
+		$update = $this->connection->prepare("UPDATE `orderheaders` SET `Status` = '$status', `Finished_Date` = '$finishedDate' WHERE HeaderID = $id");
+		$update->execute();
+	}
+
+	public function updateStatus($id, $status){
 		$update = $this->connection->prepare("UPDATE `orderheaders` SET `Status` = '$status' WHERE HeaderID = $id");
 		$update->execute();
 	}

@@ -42,7 +42,7 @@
                     <?php
                         require_once('crud.php');
                         $classA = new Crud('root', '');
-                        $productData = $classA->getProducts('products');
+                        $productData = $classA->getTable('products');
 
                         foreach($productData as $rows){
                     ?>

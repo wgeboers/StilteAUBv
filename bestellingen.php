@@ -40,7 +40,7 @@
                     <?php
                         require_once('crud.php');
                         $classA = new Crud('root', '');
-                        $orderData = $classA->getOrders('orderheaders');
+                        $orderData = $classA->getTable('orderheaders');
 
                         foreach($orderData as $rows){
                     ?>

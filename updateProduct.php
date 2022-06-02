@@ -11,6 +11,7 @@ if(!empty($_POST['updateproduct'])) {
     require_once("product.php");
 	$product = new Product();
 	$update = $product->editProduct($id, $name, $description, $stock, $price);
+	$insert = $product->insertProductLog($id, $name, $description, $stock, $price);
 
 	require_once('crud.php');
 	$classA = new Crud('root', '');
