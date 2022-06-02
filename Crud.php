@@ -351,5 +351,26 @@ class Crud extends Database {
 			echo $e;
 		}
 	}
+
+	
+	// GetType{
+	// 	SELECT 
+	// 		'Medewerker' as Type,
+	// 		`First_Name`,
+	// 		`Middle_Name`,
+	// 		`Last_Name`,
+	// 		`Email`,
+	// 		`Password`
+	// 	FROM `employees`
+	// 	UNION
+	// 	SELECT 
+	// 		'Klant' as Type,
+	// 		`First_Name`,
+	// 		`Middle_Name`,
+	// 		`Last_Name`,
+	// 		`Email`,
+	// 		`Password`
+	// 	FROM `users`;
+	// }
 }	
 ?>
