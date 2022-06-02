@@ -109,6 +109,20 @@ class Crud extends db_conn {
 		}
 	}
 
+
+	//Retreive products from the database based on a search term on name and description
+	public function getProducts(string $searchTerm = "") {
+		try {
+			$searchTerm = "%$searchTerm%";
+			$select = $this->connection->prepare("SELECT * FROM products WHERE name LIKE :search OR description LIKE :search");
+			$select->bindParam(':search', $searchTerm, PDO::PARAM_STR);
+			$select->execute();
+			return $select->fetchall(PDO::FETCH_ASSOC);
+		} catch(PDOException $e) {
+			echo $e;
+		}
+	}
+
 	public function addEmployee($firstName, $middleName, $lastName, $email, $password){
 		$insert = $this->connection->prepare("INSERT INTO `employees` (`First_Name`, `Middle_Name`, `Last_Name`, `Email`, `Password`) VALUES ('$firstName', '$middleName', '$lastName', '$email', '$password')");
 		$insert->execute();
@@ -272,5 +286,22 @@ class Crud extends db_conn {
 		$insert = $this->connection->prepare("INSERT INTO `orderLines` (`HeaderID`, `ProductID`, `Amount`, `Line_Price`) VALUES ('$headerid', '$productid', $amount, $linePrice)");
 		$insert->execute();
 	}	
-} 
+	
+	public function addSearchTerm(string $searchTerm, bool $passed) {
+		try {
+			//$sql = "INSERT IGNORE INTO searchhistories values (:search, TRUE, '')";
+			$sql2 = "INSERT INTO searchhistories (Search_Description, Passed)
+			SELECT * FROM (SELECT :search, :passed) AS tmp
+			WHERE NOT EXISTS (
+				SELECT Search_Description, Passed FROM searchhistories WHERE Search_Description = :search AND Passed = :passed
+			) LIMIT 1";
+			$insert = $this->connection->prepare($sql2);
+			$insert->bindParam(':search', $searchTerm, PDO::PARAM_STR);
+			$insert->bindParam(':passed', $passed, PDO::PARAM_INT);
+			$insert->execute();
+		}catch (PDOException $e) {
+			echo $e;
+		}
+	}
+}	
 ?>
