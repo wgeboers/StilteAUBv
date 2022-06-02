@@ -22,8 +22,6 @@ if(!empty($_POST['login'])) {
 		if($e_man->getLoggedIn())
 			$e_man->fetchEmployeeData($_SESSION['id']);
 	}
-	//Code is used to return to the URL the user is coming from.
-    //Requires $_SESSION['url'] = $_SERVER['REQUEST_URI'] at the top of the webpage.
 	if(isset($_SESSION['url'])) {
 		$url = $_SESSION['url'];
 	} else {

@@ -1,6 +1,5 @@
 <?php
 
-//Dashboard user form functionality. Updates form from database when changed.
 if(isset($_POST['changeBtn'])) {
     session_start();
     unset($_POST['changeBtn']);
