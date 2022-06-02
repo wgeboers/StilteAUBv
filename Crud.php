@@ -148,18 +148,18 @@ class Crud extends Database {
 	}
 
 
-	//Retreive products from the database based on a search term on name and description
-	public function getProducts(string $searchTerm = "") {
-		try {
-			$searchTerm = "%$searchTerm%";
-			$select = $this->connection->prepare("SELECT * FROM products WHERE name LIKE :search OR description LIKE :search");
-			$select->bindParam(':search', $searchTerm, PDO::PARAM_STR);
-			$select->execute();
-			return $select->fetchall(PDO::FETCH_ASSOC);
-		} catch(PDOException $e) {
-			echo $e;
-		}
-	}
+	// //Retreive products from the database based on a search term on name and description
+	// public function getProducts(string $searchTerm = "") {
+	// 	try {
+	// 		$searchTerm = "%$searchTerm%";
+	// 		$select = $this->connection->prepare("SELECT * FROM products WHERE name LIKE :search OR description LIKE :search");
+	// 		$select->bindParam(':search', $searchTerm, PDO::PARAM_STR);
+	// 		$select->execute();
+	// 		return $select->fetchall(PDO::FETCH_ASSOC);
+	// 	} catch(PDOException $e) {
+	// 		echo $e;
+	// 	}
+	// }
 
 	public function selectByEmail($email, $table = 'users') {
 		try {
