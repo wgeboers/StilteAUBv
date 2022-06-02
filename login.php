@@ -1,18 +1,27 @@
 <?php
 
-#Action that starts a session when a login attempt is made, creates a user object that logs in via crud on the database
+#Script that's executed on pressing 'login' in the website header.
 #TODO: Error message is not picked up yet.
 if(!empty($_POST['login'])) {
 	session_start();
 	$email = $_POST["email"];
 	$password = $_POST["psw"];
-	require_once("user.php");
-			
-	$user = new User();
-	$loggedIn = $user->login($email, $password);
-	if(!$loggedIn) {
-		$_SESSION["errorMsg"] = "Wrong info";
-		}
+	$type = $_POST['chkbox'];
+
+	if(!isset($type)) {
+		require_once("UserManager.php");
+		$u_man = new UserManager();
+		$u_man->login($email, $password);
+		$_SESSION['active'] = true;
+		if(isset($u_man))
+			$u_man->fetchUserData($_SESSION['id']);
+	} else {
+		require_once("EmployeeManager.php");
+		$e_man = new EmployeeManager();
+		$e_man->login($email, $password);
+		if($e_man->getLoggedIn())
+			$e_man->fetchEmployeeData($_SESSION['id']);
+	}
 	if(isset($_SESSION['url'])) {
 		$url = $_SESSION['url'];
 	} else {

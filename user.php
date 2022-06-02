@@ -1,38 +1,58 @@
 <?php
 
-require_once("Crud.php");
-
-#User fetches from database with the help of a crud object.
 class User {
 	
-	public $crud;
+	private int $id;
+	private string $firstName;
+	private ?string $midName;
+	private string $lastName;
+	private string $email;
+	private string $phoneNr;
+	private string $street;
+	private int $houseNr;
+	private ?string $houseNrAdd;
+	private string $zipcode;
+	private string $city;
+
 	
-	function  __construct() {
-		$this->crud = new Crud('root', '');
-	}
-	
-	#Used to check with crud if the credentials are valid, if they are a session will be created based on the user's id.
-	#Returns true or false based on whether the user's data was fetched from the database.
-	public function getUser($table = 'users', $id) {
-		return $this->crud->select($table, 1);
+	function  __construct($id, $firstName, $midName, $lastName, $email, $phoneNr, $street, $houseNr, $houseNrAdd, $zipcode, $city) {
+		$this->id = $id;
+		$this->firstName = $firstName;
+		$this->midName = $midName ?? ''; #because midName can be NULL.
+		$this->lastName = $lastName;
+		$this->email = $email;
+		$this->phoneNr = $phoneNr;
+		$this->street = $street;
+		$this->houseNr = $houseNr;
+		$this->houseNrAdd = $houseNrAdd ?? ''; #because houseNrAdd can be NULL.
+		$this->zipcode = $zipcode;
+		$this->city = $city;
 		
 	}
-	
-	public function login($email, $password) {		
-		$userData = $this->crud->validateUser('users', $email, $password);
-		if(!empty($userData)) {
-			$_SESSION["id"] = $userData[0];
-			return true;
-		} else {
-			$_SESSION["ErrorMsg"] = "Email or username invalid";
-			if(isset($_SESSION['url'])) {
-				$url = $_SESSION['url'];
-			} else {
-				$url = "index.php";
-			}
-			header("Location: https://localhost$url");
-			return false;
-		}
+
+	public function getId() {
+		return $this->id;
+	}
+
+	public function getName() {
+		return array('First Name'=>$this->firstName, 'Middle Name'=>$this->midName, 'Last Name'=>$this->lastName);
+	}
+
+	public function getEmail() {
+		return $this->email;
+	}
+
+	public function getPhoneNumber() {
+		return $this->phoneNr;
+	}
+
+	public function getAddress() {
+		return array($this->street, $this->houseNr, $this->houseNrAdd, $this->zipcode, $this->city);
+	}
+
+	public function getAllData() {
+		return array('First Name'=>$this->firstName, 'Middle Name'=>$this->midName, 'Last Name'=>$this->lastName, 'Email'=>$this->email, 'Phone Number'=>$this->phoneNr,
+		'Street'=>$this->street, 'House Number'=>$this->houseNr, 'House Number Addition'=>$this->houseNrAdd, 'Zipcode'=>$this->zipcode, 'City'=>$this->city);
 	}
 }
 ?>

@@ -1,20 +1,34 @@
 <?php	
-	#checks if a session is started, if it is it displays a welcome message
 	session_start();
 	
-	if(isset($_SESSION["id"]) && !empty($_SESSION["id"])) {
-		require_once("user.php");
-		$user = new User();
-		$userData = $user->getUser('users', $_SESSION["id"]);
-		if(!empty($userData[0]->First_Name)) {
-			$firstName = $userData[0]->First_Name;
+	#Login and loading of user/employee information happens here.
+	#Don't touch if you don't have to.
+	if(isset($_SESSION["id"]) && !empty($_SESSION["id"]) && isset($_SESSION['type'])) {
+		require_once("EmployeeManager.php");
+		$e_man = new EmployeeManager();
+		$empData = $e_man->fetchEmployeeData($_SESSION["id"]);
+		if(!empty($empData->getName())) {
+			$name = $empData->getName();
 		} else {
-			$firstName = "Foute boel";
+			$_SESSION['ErrorMsg'] = 'Wrong login';
+			unset($_SESSION['id']);
 		}
-	} else {
-		unset($_SESSION["id"]);
+		#unset($e_man); //This object wont be used for anything but displaying a user's name.
+	} elseif(isset($_SESSION["id"]) && !empty($_SESSION["id"])) {
+		require_once("UserManager.php");
+		$u_man = new UserManager();
+		$userData = $u_man->fetchUserData($_SESSION['id']);
+		if(!empty($userData->getName())) {
+			$name = $userData->getName()['First Name'];
+		} else {
+			$_SESSION['ErrorMsg'] = 'Wrong login';
+			unset($_SESSION['id']);
+		}
+		#unset($e_man); //This object wont be used for anything but displaying an employee's name.
 	}
 ?>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="Style/base.css">
     <nav class="navbar sticky-top navbar-expand-lg navbar-light">
         <div class="container-fluid">
@@ -54,13 +68,19 @@
 
 						<?php if(!isset($_SESSION["id"])) {
 						?>
-							<form action="./login.php" method="post" name="loginForm" class="form-inline" onSubmit="return validate();">
+						<form action="./login.php" method="post" name="loginForm" class="form-inline" onSubmit="return validate();">
+							<div class="form-group">
 								<label for="email"></label><span id="email_info">Email:</span>
 								<input type="text" name="email" id="email">
 								<label for="psw"></label><span id="psw_info">Password:</span>
 								<input type="text" name="psw" id="psw">
 								<button type="submit" name="login" value="Login">Login</button>
-							</form>
+							</div>
+							<div class="form-group form-inline">
+								<label for="chkbox">Employee: </label>
+								<input type="checkbox" name="chkbox" value="Employee">
+							</div>
+						</form>
 						<?php
 						}
 						?>
@@ -84,9 +104,9 @@
 
 						<?php if(isset($_SESSION["id"])) {
 						?>
-							<div class="user-dashboard">Welcome <b> <?php echo $firstName; ?></b><br>
-								<a href="./logout.php" class="logout-btn">Logout</a>
-							</div>
+						<div class="user-dashboard">Welcome <b> <?php echo $name; ?></b><br>
+							<a href="./logout.php" class="logout-btn">Logout</a>
+						</div>
 						<?php
 						}
 						?>
@@ -98,5 +118,8 @@
                 </div>
             </div>
         </nav>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+crossorigin="anonymous"></script>
 <script type="text/javascript" src="Script/loginvalidation.js"></script>
 <script type="text/javascript" src="Script/header.js"></script>
