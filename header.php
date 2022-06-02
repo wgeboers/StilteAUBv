@@ -18,7 +18,7 @@
 <link rel="stylesheet" type="text/css" href="Style/base.css">
     <nav class="navbar sticky-top navbar-expand-lg navbar-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="index.php">
                 <img src="Images/Logo.png" alt="" width="60" height="auto">
             </a>
             <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"
@@ -68,6 +68,18 @@
 						?>
                     </ul>
                 </div>
+            </div>
+        </nav>
+        <nav class="lang-menu">
+            <div>
+             <div class="selected-lang">
+             Nederlands
+             </div>
+                <ul>
+                    <li>
+                         <a href="indexen.php" class="en">English</a>
+                    </li>
+                 </ul>
             </div>
         </nav>
 <script type="text/javascript" src="Script/loginvalidation.js"></script>

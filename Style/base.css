@@ -6,7 +6,87 @@ body, html {
     background-color: rgb(54, 54, 54);
     font-family: 'Bebas Neue', cursive;
 }
+/*Taal wijzigen*/
 
+.lang-menu {
+    width: 100px;
+    text-align: right;
+    font-weight: bold;
+    margin-top: 25px;
+    margin-right: auto;
+    position: relative;
+}
+
+.lang-menu .selected-lang {
+    display: flex;
+    justify-content: space-between;
+    line-height: 2;
+    cursor: pointer;
+}
+
+.lang-menu .selected-lang:before {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-size: contain;
+    background-image: url("https://www.worldometers.info/img/flags/nl-flag.gif");
+    background-repeat: no-repeat;
+}
+
+.lang-menu ul {
+    margin: auto;
+    padding: 0;
+    display: none;
+    background-color: transparent;
+    border: 1px solid #f8f8f8;
+    position: absolute;
+    top: 45 px;
+    right: 0px;
+    width: 125px;
+    border-radius: 5px;
+    box-shadow: 0px 1px 10px rgba(0,0,0.2);
+}
+
+.lang-menu ul li {
+    list-style: none;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+}
+
+.lang-menu ul li a {
+    text-decoration: none;
+    width: 125px;
+    margin: auto;
+    padding: 10px 15px;
+    display: block;
+}
+
+.lang-menu ul li:hover {
+    background-color: transparent;
+}
+
+.lang-menu ul li a:before {
+    content: '';
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+    margin-right: 10px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.en:before {
+    background-image: url("https://www.worldometers.info/img/flags/uk-flag.gif");
+}
+
+.lang-menu:hover ul {
+    display: block;
+}
+
+/*Einde taal wijzigen*/
 li, a, button {
     font-family: 'Bebas Neue', cursive;
     font-weight: 500;

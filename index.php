@@ -26,7 +26,7 @@
                     <div class="text">
                         <div>
                             <h2>
-                                Silent D<span class="hexagonTextChange">isco</span>
+                                <span class="hexagonTextChange">Silent Disco</span>
                             </h2>
                             <p> Huur een volledige doe-het-zelf Silent Disco set met koptelefoons. Het systeem is makkelijk aan te sluiten op een laptop of op DJ-apparatuur met het door jou gekozen thema pakket. Binnen een mum van tijd organiseer jij zelf een Silent Disco!</p>
                         </div>
