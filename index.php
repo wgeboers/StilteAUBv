@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div class="hexagon4">
-                    <a href="onsaanbod.html">
+                    <a href="webshop.php">
                         <div class="shape">
                             <img src="Images/Main4.png" alt="">
                             <div class="text">
@@ -91,7 +91,7 @@
             <img src="Images/Up.svg" alt="" class="question">
         </button>
     </div>
-    <div class="contact" id="contact">
+    <div class="form" id="contact">
         <h2>Contactformulier</h2>
         <form id="contactForm" class="row">
             <div class="col-md-6">

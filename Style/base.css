@@ -88,7 +88,6 @@ body, html {
 
 /*Einde taal wijzigen*/
 li, a, button {
-    font-family: 'Bebas Neue', cursive;
     font-weight: 500;
     font-size: 16px;
     color: white;
@@ -114,8 +113,29 @@ li, a, button {
 }
 
 .content{
-    font-family: 'Bebas Neue', cursive;
+    margin-left: 160px;
 }
+
+.sidenav {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    background-color: rgba(29, 29, 29,0.5);
+    padding-top: 20px;
+    z-index: 1;
+}  
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    font-weight: 500;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.sidenav a:hover{
+    color: #BB13FE;;
+} 
 
 .navbar{
     background-color: rgba(29, 29, 29,0.5);
@@ -134,9 +154,13 @@ li, a, button {
 "data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(187, 19, 254, 1)' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
+.navbar-nav .nav-item img{
+    height: 30px;
+    color: white;
+}
+
 .navbar-nav .nav-item .nav-link{
     position: relative;
-    font-family: 'Bebas Neue', cursive;
     font-weight: 500;
     font-size: 20px;
     color: white;
@@ -171,6 +195,10 @@ li, a, button {
 
 .navbar-nav .nav-item .nav-link.active:hover{
     color: #8d0fbe;
+}
+
+.cartbtn{
+    height: 20px;
 }
 
 .parallax {
@@ -237,21 +265,19 @@ Scroll buttons
 }
 
 /*
-Contact formulier
+formulier
 */
-
-.contact{
+.form{
     position: relative;
     height: auto;
-    font-family: 'Bebas Neue', cursive;
     padding: 20px;
 }
 
-.contact form label{
+.form form label{
     padding-top: 10px;
 }
 
-.contact form input{
+.form form input{
     background-color: rgb(219, 219, 219);
     border-color: #BB13FE;
     border-width: 2px;
@@ -263,7 +289,7 @@ textarea.form-control{
     border-width: 2px;
 }
 
-.contact form input:focus{
+.form form input:focus{
     border-color: #BB13FE;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 9px #BB13FE;
 }
@@ -273,7 +299,7 @@ textarea.form-control:focus{
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 9px #BB13FE;
 }
 
-.contact form button{
+.form form button{
     width: 100%;
     max-width: 500px;
     margin-top: 10px;
@@ -282,48 +308,41 @@ textarea.form-control:focus{
     border-style: none;
 }
 
-.contact form button:hover{
+.form form button:hover{
     background-color: #8d0fbe;
 }
 
-#userdata{
-    font-family: 'Bebas Neue', cursive;
+.customSelect{
+    background-color: rgb(219, 219, 219);
+    border-color: #BB13FE;
+    border-width: 2px;
+    margin-bottom: 20px;
+}
+
+.customSelect:focus{
+    border-color: #BB13FE;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 9px #BB13FE;
+}
+
+.importForm{
+    position: relative;
     height: auto;
     padding: 20px;
 }
 
-.container{  
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 20px;
-    border-radius: 15px;
+input[type=file]::file-selector-button {
+    border-style: none;
+    color: white;
+    border-radius: 2px;
+    background-color: #BB13FE;
+}
+  
+input[type=file]::file-selector-button:hover {
+    background-color: #8d0fbe;
 }
 
-#userdata form input{
-    background-color: rgb(219, 219, 219);
-    border-color: #BB13FE;
-    border-width: 2px;
-    margin-bottom: 10px;
-}
-
-#userdata form select{
-    background-color: rgb(219, 219, 219);
-    border-color: #BB13FE;
-    border-width: 2px;
-    margin-bottom: 10px;
-}
-
-#userdata form select:focus{
-    border-color: #BB13FE;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 9px #BB13FE;
-}
-
-#userdata form input:focus{
-    border-color: #BB13FE;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 9px #BB13FE;
-}
-
-#userdata form button{
-    width: 100%;
+.importForm button{
+    width: 50%;
     max-width: 500px;
     margin-top: 10px;
     color: white;
@@ -331,76 +350,59 @@ textarea.form-control:focus{
     border-style: none;
 }
 
-#userdata form button:hover{
+.importForm button:hover{
     background-color: #8d0fbe;
 }
 
-.row-right{
-    float: right;
-    text-align: right;
-}
-
-.row-left{
-    float: left;
-    width: 100%;
-}
-
-.card{
-    background-color: rgba(0, 0, 0, 0.0);
-    border-style: none;
-    max-width: 700px;
-}
-
-.card h2{
-    font-size: 60px;
+.importForm a{
     color: #BB13FE;
 }
 
-.card p{
-    font-size: 20px;
+.importForm a:hover{
+    color: #8d0fbe;
 }
 
-.card .cardButton{
-    color: #BB13FE;
-    background-color: rgba(0, 0, 0, 0.0);
-    border-style: none;
-}
-
-.companyImg{
-    max-width: 200px;
-    margin-bottom: 20px;
-    padding: 10px;
-}
-
-.companySocial{
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 20px;
-}
-
-.companySocial a{
-    text-decoration: none;
+/*
+Table
+*/
+.table{
+    background: rgba(29, 29, 29,0.5);
+    border-radius: 5px;
+    border-collapse: collapse;
     color: white;
 }
 
-.hide {
-	display: none;
+tbody tr {
+    transition: background 0.25s ease;
+  }
+
+tbody tr:hover {
+background: #353535;
 }
 
-#alertContainer {
-	text-align: center;
+/*
+NEON button
+*/
+.neon-button{
+    background-color: transparent;
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    color: #BB13FE;
+    border: currentColor 0.125em solid;
+    padding: 0.25em 1em;
+    border-radius: 0.25em;
+    text-shadow: 0 0 0.125em rgb(104, 104, 104), 0 0 0.5em currentColor;
+    box-shadow: inset 0 0 0.5em 0 currentColor, 0 0 0.5em 0 currentColor;
 }
 
-@media print{
-    #userdata form input{
-        border-color: #000;
-    }
-
-    #userdata form select{
-        border-color: #000;
-    }
-    
+.neon-button:hover,
+.neon-button:focus{
+    background: #BB13FE;
+    color: white;
+    text-shadow: none;
 }
+
 @media print{
     h1, h2, h3, p{
         color: #000;
