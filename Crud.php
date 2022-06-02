@@ -120,7 +120,6 @@ class Crud extends db_conn {
 			$insert = $this->connection->prepare($sql2);
 			$insert->bindParam(':search', $searchTerm, PDO::PARAM_STR);
 			$insert->bindParam(':passed', $passed, PDO::PARAM_INT);
-			//var_dump($insert);
 			$insert->execute();
 		}catch (PDOException $e) {
 			echo $e;
