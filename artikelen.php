@@ -38,27 +38,7 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody>
-                    <?php
-                        require_once('crud.php');
-                        $classA = new Crud('root', '');
-                        $productData = $classA->getTable('products');
-
-                        foreach($productData as $rows){
-                    ?>
-                    <tr>
-                        <td><?php echo $rows->ProductID;?></td>
-                        <td><?php echo $rows->Name;?></td>
-                        <td><?php echo $rows->Description;?></td>
-                        <td><?php echo $rows->Stock;?></td>
-                        <td><?php echo $rows->Price;?></td>
-                        <td><?php echo $rows->Creation_Date;?></td>
-                        <td><a href="artikelwijzigen.php?edit=<?php echo $rows->ProductID;?>" class="neon-button">Edit</a></td>
-                    </tr>
-                    <?php
-                        }
-                    ?>       
-                </tbody>
+                <?php include('EmployeeUI.php'); ?>
             </table>
             <div class="col-12 text-center">
                 <a href="artikelimporteren.php" class="neon-button">Artikelen importeren</a>

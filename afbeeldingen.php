@@ -27,32 +27,15 @@
     <div class="main">
         <H2>Afbeeldingen</H2>
             <table class="table">
-                <thead>
+                <!-- <thead>
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Bestandsnaam</th>
                         <th scope="col">Bestandslocatie</th>
                         <th scope="col">Aanmaak Datum</th>
                     </tr>
-                </thead>
-                <tbody>
-                    <?php
-                        require_once('crud.php');
-                        $classA = new Crud('root', '');
-                        $imageData = $classA->getTable('images');
-
-                        foreach($imageData as $rows){
-                    ?>
-                    <tr>
-                        <td><?php echo $rows->ImageID;?></td>
-                        <td><?php echo $rows->File_Name;?></td>
-                        <td><?php echo $rows->File_Path;?></td>
-                        <td><?php echo $rows->Creation_Date;?></td>
-                    </tr>
-                    <?php
-                        }
-                    ?>       
-                </tbody>
+                </thead> -->
+                <?php include('EmployeeUI.php'); ?>
             </table>
             <div class="col-12 text-center">
                 <a href="afbeeldingimport.php" class="neon-button">Afbeelding uploaden</a>

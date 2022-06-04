@@ -27,32 +27,7 @@
         <div class="main">
             <H2>Zoek geschiedenis</H2>
             <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Zoek term</th>
-                        <th scope="col">Geslaagd</th>
-                        <th scope="col">Aanmaak Datum</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                        require_once('crud.php');
-                        $classA = new Crud('root', '');
-                        $searchData = $classA->getTable('searchhistories');
-
-                        foreach($searchData as $rows){
-                    ?>
-                    <tr>
-                        <td><?php echo $rows->SearchID;?></td>
-                        <td><?php echo $rows->Search_Description;?></td>
-                        <td><?php echo $rows->Passed;?></td>
-                        <td><?php echo $rows->Creation_Date;?></td>
-                    </tr>
-                    <?php
-                        }
-                    ?>       
-                </tbody>
+                <?php include('EmployeeUI.php'); ?>
             </table>
             <form method="post" action="searchExport.php">
                 <div class="col-12 text-center">
