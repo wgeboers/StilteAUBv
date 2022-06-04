@@ -1,22 +1,17 @@
 <?php
-if(!empty($_POST['addemployee'])) {
+if(isset($_POST['addemployee'])) {
 	session_start();
-	$firstName = $_POST["firstName"];
-	$middleName = $_POST["middleName"];
-    $lastName = $_POST["lastName"];
-    $email = $_POST["inputEmail"];
-    $password = $_POST["inputPassword"];
-	$rol = $_POST["rol"];
+	unset($_POST['addemployee']);
+	if(count($_POST) === 6) {
+		$empData = $_POST;
+	}
 
-	require_once("employee.php");
-	$employee = new Employee();
-	$add = $employee->insertEmployee($firstName, $middleName, $lastName, $email, $password, $rol);
-	$id = $add;
+	require_once("EmployeeManager.php");
+	$e_man = new EmployeeManager();
+	$e_man->insertEmployee($empData);
 
-	$add = $employee->insertEmployeeRole($id, $rol);
-
-	$url = "medewerkers.php";
-	header("Location: ".$url);
+	$url = "/stilteaubv/medewerkers.php";
+	header("Location: https://localhost$url");
 	exit();
 }
 ?>

@@ -32,46 +32,7 @@
                     <div class="container">
                         <div class="row">
                             <h2>Medewerker aanmaken</h2>
-                            <div class="col-md-4">
-                                <label for="firstName" class="form-label">Voornaam</label>
-                                <input type="text" class="form-control" placeholder="Voornaam" name="firstName" id="firstName">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="middleName" class="form-label">Tussenvoegsel</label>
-                                <input type="text" class="form-control" placeholder="Tussenvoegsel" name="middleName" id="middleName">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="lastName" class="form-label">Achternaam</label>
-                                <input type="text" class="form-control" placeholder="Achternaam" name="lastName" id="lastName">
-                            </div>
-                            <div class="col-md-12">
-                                <label for="inputEmail" class="form-label">Email</label>
-                                <input type="email" class="form-control" placeholder="email@gmail.com" name="inputEmail" id="inputEmail">
-                            </div>
-                            <div class="col-md-12">
-                                <label for="inputPassword" class="form-label">Wachtwoord</label>
-                                <input type="password" class="form-control" placeholder="Wachtwoord" name="inputPassword" id="inputPassword">
-                            </div>
-                            <div class="col-md-12">
-                                <label for="rol" class="form-label">Rol</label>
-                                <select name="rol" id="rol" class="form-select customSelect" aria-label="Default select example">
-                                    <?php
-                                        require_once('crud.php');
-                                        $classA = new Crud('root', '');
-                                        $roleData = $classA->getRoles('roles');
-
-                                        foreach($roleData as $rows){
-                                    ?>
-                                    <option value="<?php echo $rows->RoleID;?>"><?php echo $rows->Name;?></option>
-                                    <?php
-                                        }
-                                    ?>  
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-12 text-center">
-                            <button type="submit" name="addemployee" value="addemployee" class="btn btn-primary" id="addBtn">Gebruiker aanmaken</button>
-                        </div>
+                            <?php include('EmployeeUI.php'); ?>
                     </div>
                 </form>
             </div>

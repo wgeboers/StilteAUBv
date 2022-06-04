@@ -3,7 +3,9 @@
 if(isset($_POST['changeBtn'])) {
     session_start();
     unset($_POST['changeBtn']);
-    $userData = $_POST;
+    if(count($_POST) === 10) {
+      $userData = $_POST;
+    }
     var_dump($userData);
     require_once('UserManager.php');
     $u_man = new UserManager();

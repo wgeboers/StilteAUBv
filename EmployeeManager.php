@@ -2,12 +2,16 @@
 
 require_once('crud.php');
 require_once('employee.php');
+require_once('role.php');
 
 
 #Used to connect to database and put data from the database into a employee object.
 Class EmployeeManager {
     private Crud $crud;
     private ?Employee $employee;
+    private ?Role $role;
+    private array $rolesArray = array();
+    private array $employeesArray;
     private bool $loggedIn;
 
     function __construct() {
@@ -40,7 +44,7 @@ Class EmployeeManager {
 			echo "problems yep";
 		}
 	}
-
+    
     #function used to log a employee in, automatically checks for an end employee or employee login
 	#when the login button is clicked, the employees will be redirected to the page they were on when they logged
 	#An error msg will be published to $_SESSION["errormsg"] if the login failed.
@@ -62,11 +66,25 @@ Class EmployeeManager {
         return false;
     }
 
-    public function insertEmployee($firstName, $middleName, $lastName, $email, $password) {
-		#Nog veld validatie toevoegen!!!! (=javascript...)
-        $data = $this->crud->addEmployee($firstName, $middleName, $lastName, $email, $password);
-		$this->id = $data;
-		return $this->id;
+    public function fetchRolesFromDB() {
+        $roles = $this->crud->getTable('roles');
+        foreach($roles as $role) {
+            $roleObj = new Role($role['RoleID'], $role['Name'], $role['Description'], $role['Creation_Date']);
+            array_push($this->rolesArray, $roleObj); 
+        }
+        return $this->rolesArray;
+    }
+    public function insertRole($name, $description) {
+		#Nog veld validatie toevoegen!!!! (js)
+        $data = $this->crud->addRole($name, $description);
+    }
+
+	public function editRole($id, $name, $description){
+		#Nog veld validatie toevoegen!!!! (js)
+		$data = $this->crud->updateRole($id, $name, $description);
+	}
+    public function insertEmployee($empData) {
+        $this->crud->insert($empData, 'employees');
     }
 
 	public function insertEmployeeRole($id, $role) {
@@ -85,7 +103,10 @@ Class EmployeeManager {
     public function getAllEmployees() {
         $employeeData = $this->crud->getTableEmployees();
         return $employeeData;
-        
     }
 }
+
+$e_man = new EmployeeManager();
+$roles = $e_man->fetchRolesFromDB();
+
 ?>
