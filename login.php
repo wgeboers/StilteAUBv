@@ -20,7 +20,7 @@ if(!empty($_POST['login'])) {
 		$e_man = new EmployeeManager();
 		$e_man->login($email, $password);
 		if($e_man->getLoggedIn())
-			$e_man->fetchEmployeeData($_SESSION['id']);
+			$e_man->fetchEmployeeData('EmployeeID', $_SESSION['id']);
 	}
 	if(isset($_SESSION['url'])) {
 		$url = $_SESSION['url'];

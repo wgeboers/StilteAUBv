@@ -19,8 +19,8 @@ Class EmployeeManager {
     }
 
     #Creates a employee object based on database row.
-    public function fetchEmployeeData($id) {
-        $results = $this->crud->selectByEmployee($id, 'employees');
+    public function fetchEmployeeData($where, $param) {
+        $results = $this->crud->selectByEmployee('employees', $where, $param);
 		foreach($results as $result) {
 			$this->employee = new Employee($result["EmployeeID"], $result["First_Name"], $result["Middle_Name"], $result["Last_Name"], $result["Email"]);
 		}
@@ -87,7 +87,7 @@ Class EmployeeManager {
         $this->crud->insert($empData, 'employees');
     }
 
-	public function insertEmployeeRole($id, $role) {
+	public function insertEmployeeRole($param, $where, $role) {
         $data = $this->crud->addEmployeeRole($id, $role);
     }
 
@@ -106,7 +106,5 @@ Class EmployeeManager {
     }
 }
 
-$e_man = new EmployeeManager();
-$roles = $e_man->fetchRolesFromDB();
-
+    
 ?>

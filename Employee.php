@@ -3,25 +3,25 @@
 class Employee {
 
 	private $id;
-	private $roleID;
-	private $roleName;
 	private $firstName;
 	private $middleName;
 	private $lastName;
 	private $email;
-	private $password;
-	private $active;
 	
-	function  __construct($id, $firstName, $middleName, $lastName, $email, $password, $roleID, $roleName) {
+	function  __construct($id, $firstName, $middleName, $lastName, $email) {
 		$this->id = $id;
 		$this->firstName = $firstName;
 		$this->middleName = $middleName;
 		$this->lastName = $lastName;
 		$this->email = $email;
-		$this->password = $password;
-		$this->roleID = $roleID;
-		$this->roleName = $roleName;
 	}
     
+	public function getEmployeeID() {
+		return $this->id;
+	}
+
+	public function getName() {
+		return $this->firstName;
+	}
 }
 ?>

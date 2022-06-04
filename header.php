@@ -6,7 +6,7 @@
 	if(isset($_SESSION["id"]) && !empty($_SESSION["id"]) && isset($_SESSION['type'])) {
 		require_once("EmployeeManager.php");
 		$e_man = new EmployeeManager();
-		$empData = $e_man->fetchEmployeeData($_SESSION["id"]);
+		$empData = $e_man->fetchEmployeeData('EmployeeID', $_SESSION["id"]);
 		if(!empty($empData->getName())) {
 			$name = $empData->getName();
 		} else {

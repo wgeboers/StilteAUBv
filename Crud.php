@@ -73,7 +73,7 @@ class Crud extends Database {
 	#Dynamically generated sql statement 'insert' based on a given array and a given table
 	#Input : Array with key=>value using column names from the given mysql table.
 	#Testable in test.php; for output check the database.
-	public function insert($data = array(), $table = 'users') {
+	public function insert($data = array(), $table) {
 		$keys = array_keys($data);
 		$insertData = array_values($data);
 		$values = NULL;
@@ -110,9 +110,9 @@ class Crud extends Database {
 			echo $e;
 		}
 	}
-	public function selectByEmployee(int $id, $table) {
+	public function selectByEmployee($table, $where, $param) {
 		try {
-			$select = $this->connection->prepare("SELECT * FROM {$table} WHERE `EmployeeID` = {$id}");
+			$select = $this->connection->prepare("SELECT * FROM {$table} WHERE {$where} = {$param}");
 			$select->execute();
 			return $select->fetchall(PDO::FETCH_ASSOC);
 		} catch(PDOException $e) {
@@ -187,9 +187,14 @@ class Crud extends Database {
 		return $this->connection->lastInsertId();
 	}
 
-	public function addEmployeeRol($id, $rol){
-		$insert = $this->connection->prepare("INSERT INTO `employees-roles` (`EmployeeID`, `RoleID`) VALUES ('$id', '$rol')");
-		$insert->execute();
+	public function addEmployeeRole($id, $role){
+		try {
+			$insert = $this->connection->prepare("INSERT INTO `employees-roles` (`EmployeeID`, `RoleID`) VALUES ('$id', '$role')");
+			$insert->execute();
+		} catch(PDOException $e) {
+			echo $e;
+		}
+
 	}
 
 	public function getEmployee($table, $id) {
