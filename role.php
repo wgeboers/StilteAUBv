@@ -30,5 +30,10 @@ class Role {
 	public function getId() {
 		return $this->id;
 	}
+
+	//To cast object to array for easy data reading in UI.
+	public function toArray() {
+		return array($this->id, $this->name, $this->description, $this->creationDate);
+	}
 }
 ?>

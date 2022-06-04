@@ -1,40 +1,20 @@
 <!doctype HTML>
 <?php 
     require_once('EmployeeManager.php');
-    // if(isset($_SESSION['id']) && !empty($_SESSION['id'])) {
-    //     // $user = $u_ui->fetchUserData($_SESSION['id']);
-    //     // $userData = array();
-        
-    //     // if(isset($user))
-    //     //     $userData = $user->getAllData();
-    // }
-    // echo "<div class='sidenav'>
-    //     <a href='medewerkers.php'>Medewerkers</a>
-    //     <a href='rollen.php'>Rollen</a>
-    //     <a href='bestellingen.php'>Bestellingen</a>
-    //     <a href='zoektermen.php'>Zoektermen</a>
-    //     <a href='artikelen.php'>Artikelen</a>
-    //     <a href='afbeeldingen.php'>Afbeeldingen</a>
-    // </div>"; 
+    $e_man = new EmployeeManager();
     if(basename($_SERVER['PHP_SELF']) === 'medewerkers.php') {
-        $e_man = new EmployeeManager();
-        $empData = array();
         $empData = $e_man->getAllEmployees();
-        foreach($empData as $results) {
+        foreach($empData as $rows) {
             echo "<tr>";
-            foreach($results as $key=>$value) {
+            $row = $rows->toArray();
+            foreach($row as $key=>$value) {
                 echo "<td>{$value}</td>";
-                if(array_key_last($empData) == $key) {
-                    echo "<td><a href='medewerkerwijzigen.php?edit={$empID} class='neon-button'>Edit</a></td>";
-                    
-                }
             }
             echo "</tr>";
         } 
     }
 
     if(basename($_SERVER['PHP_SELF']) === 'medewerkeraanmaken.php') {
-        $e_man = new EmployeeManager();
         $roleData = $e_man->fetchRolesFromDB();
         echo "  <div class='col-md-4'>
                     <label for='First Name' class='form-label'>Voornaam</label>
@@ -71,7 +51,15 @@
     }
 
     if(basename($_SERVER['PHP_SELF']) === 'rollen.php') {
-
+        $roles = $e_man->fetchRolesFromDB();
+        foreach($roles as $rows) {
+            echo "<tr>";
+            $row = $rows->toArray(); //cast object to array
+            foreach($row as $key=>$value) {
+                echo "<td>{$value}</td>";
+            }
+        }
+        echo "</tr>";
     }
 
 ?>

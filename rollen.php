@@ -37,23 +37,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                        require_once('crud.php');
-                        $classA = new Crud('root', '');
-                        $roleData = $classA->getTable('roles');
-
-                        foreach($roleData as $rows){
-                    ?>
-                    <tr>
-                        <td><?php echo $rows->RoleID;?></td>
-                        <td><?php echo $rows->Name;?></td>
-                        <td><?php echo $rows->Description;?></td>
-                        <td><?php echo $rows->Creation_Date;?></td>
-                        <td><a href="rolwijzigen.php?edit=<?php echo $rows->RoleID;?>" class="neon-button">Edit</a></td>
-                    </tr>
-                    <?php
-                        }
-                    ?>       
+                    <?php require_once('EmployeeUI.php'); ?>
                 </tbody>
             </table>
             <div class="col-12 text-center">

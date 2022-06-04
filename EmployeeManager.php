@@ -11,7 +11,7 @@ Class EmployeeManager {
     private ?Employee $employee;
     private ?Role $role;
     private array $rolesArray = array();
-    private array $employeesArray;
+    private array $employeesArray = array();
     private bool $loggedIn;
 
     function __construct() {
@@ -88,6 +88,7 @@ Class EmployeeManager {
     }
 
 	public function insertEmployeeRole($param, $where, $role) {
+        $empData = $this->crud->selectByEmployee('employees', $where, $param);
         $data = $this->crud->addEmployeeRole($id, $role);
     }
 
@@ -101,8 +102,12 @@ Class EmployeeManager {
     }
 
     public function getAllEmployees() {
-        $employeeData = $this->crud->getTableEmployees();
-        return $employeeData;
+        $empData = $this->crud->getTableEmployees();
+        foreach($empData as $emp) {
+            $empObj = new Employee($emp["EmployeeID"], $emp["First_Name"], $emp["Middle_Name"], $emp["Last_Name"], $emp["Email"], $emp['Creation_Date'], $emp['ACTIVE']);
+            array_push($this->employeesArray, $empObj);
+        }
+        return $this->employeesArray;
     }
 }
 
