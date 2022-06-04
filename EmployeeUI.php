@@ -1,14 +1,24 @@
 <!doctype HTML>
 <?php 
+    //UI for an employee's dashboard.
+    //Contains all data from orders, roles, employees & products.
     require_once('EmployeeManager.php');
+    require_once('OrderManager.php');
     $e_man = new EmployeeManager();
+    $o_man = new OrderManager();
     if(basename($_SERVER['PHP_SELF']) === 'medewerkers.php') {
         $empData = $e_man->getAllEmployees();
         foreach($empData as $rows) {
             echo "<tr>";
             $row = $rows->toArray();
             foreach($row as $key=>$value) {
+                if(array_key_first($row) === $key) {
+                    $linkKey = $key;
+                }
                 echo "<td>{$value}</td>";
+                if(array_key_last($row) === $key) {
+                    echo "<td><a href='medewerkerwijzigen.php?edit={$linkKey}' class='neon-button'>Edit</a></td>";
+                }
             }
             echo "</tr>";
         } 
@@ -47,7 +57,7 @@
                 </div>
                 <div class='col-12 text-center'>
                 <button type='submit' name='addemployee' value='addemployee' class='btn btn-primary' id='addBtn'>Gebruiker aanmaken</button>
-                </div";   
+                </div>";   
     }
 
     if(basename($_SERVER['PHP_SELF']) === 'rollen.php') {
@@ -56,10 +66,43 @@
             echo "<tr>";
             $row = $rows->toArray(); //cast object to array
             foreach($row as $key=>$value) {
+                if(array_key_first($row) === $key) {
+                    $linkKey = $key;
+                }
                 echo "<td>{$value}</td>";
+                if(array_key_last($row) === $key) {
+                    echo "<td><a href='rolwijzigen.php?edit={$linkKey}' class='neon-button'>Edit</a></td>";
+                }
             }
         }
         echo "</tr>";
+    }
+
+    if(basename($_SERVER['PHP_SELF']) === 'bestellingen.php') {
+        $orders = $o_man->fetchOrderHeaders();
+        $count = 0;
+        foreach($orders as $rows) {
+            if($count < 1) {
+                echo "<thead><tr>";
+                foreach(array_keys($rows) as $keys) {
+                    echo "<th scope='col'>{$keys}</th>";
+                }
+                $count++;
+                echo "</tr></thead>
+                    <tbody>
+                    <tr>";
+            }
+            foreach($rows as $key=>$value) {
+                if(array_key_first($rows) === $key) {
+                    $linkKey = $key;
+                }
+                echo "<td name={$key}>{$value}</td>";
+                if(array_key_last($rows) === $key) {
+                    echo "<td><a href='artikelwijzigen.php?edit={$linkKey}' class='neon-button'>Edit</a></td>";
+                }
+            }
+            echo "</tr></tbody>";
+        }
     }
 
 ?>

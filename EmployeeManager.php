@@ -109,6 +109,10 @@ Class EmployeeManager {
         }
         return $this->employeesArray;
     }
+
+    public function fetchOrders() {
+        return $this->crud->getTable('orderheaders');
+    }
 }
 
     

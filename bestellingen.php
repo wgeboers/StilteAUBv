@@ -27,34 +27,7 @@
     <div class="main">
         <H2>Bestellingen</H2>
             <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Aanmaak Datum</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Adres</th>
-                        <th scope="col">Finish_Date</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                        require_once('crud.php');
-                        $classA = new Crud('root', '');
-                        $orderData = $classA->getTable('orderheaders');
-
-                        foreach($orderData as $rows){
-                    ?>
-                    <tr>
-                        <td><?php echo $rows->Creation_Date;?></td>
-                        <td><?php echo $rows->Status;?></td>
-                        <td><?php echo $rows->Deliver_Adres;?></td>
-                        <td><?php echo $rows->Finished_Date;?></td>
-                        <td><a href="bestellingdetail.php?edit=<?php echo $rows->HeaderID;?>" class="neon-button">Details</a></td>
-                    </tr>
-                    <?php
-                        }
-                    ?>       
-                </tbody>
+                <?php include('EmployeeUI.php'); ?>
             </table>
         </div>
     </div>
