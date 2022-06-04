@@ -74,11 +74,6 @@ li, a, button {
 "data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(187, 19, 254, 1)' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
-.navbar-nav .nav-item img{
-    height: 30px;
-    color: white;
-}
-
 .navbar-nav .nav-item .nav-link{
     position: relative;
     font-weight: 500;
@@ -117,8 +112,47 @@ li, a, button {
     color: #8d0fbe;
 }
 
-.cartbtn{
-    height: 20px;
+.nav-btn{
+    padding-left: 20px;
+}
+
+.nav-btn button{
+    background-color: transparent;
+    border-style: none;
+}
+
+.nav-btn button:hover, .nav-btn button:focus{
+    background-color: transparent;
+    border-style: none;
+}
+
+.nav-btn img{
+    height: 30px;
+}
+
+.fa-stack[data-count]:after{
+    position:absolute;
+    right:0%;
+    top:-20%;
+    content: attr(data-count);
+    font-size:10px;
+    padding:.6em;
+    border-radius:999px;
+    line-height:.75em;
+    color: white;
+    color: #BB13FE;
+    text-align:center;
+    min-width:2em;
+    font-weight:bold;
+    background: white;
+    border-style:solid;
+  }
+.fa-circle {
+color:#BB13FE;
+}
+
+.icon {
+    color: #BB13FE;
 }
 
 .parallax {
@@ -322,6 +356,65 @@ NEON button
     color: white;
     text-shadow: none;
 }
+
+/*
+PopUp
+*/
+.form-popup {
+    display: none;
+    right: 0;
+    position: fixed;
+    z-index: 9;
+    color: black;
+    text-align: center;
+}
+
+.form-container {
+    width: 400px;
+    padding: 10px;
+    background-color: rgba(29, 29, 29,0.5);
+    color: white;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.form-container .btn{
+    width: 100%;
+    max-width: 500px;
+    margin-top: 10px;
+    color: white;
+    background-color: #BB13FE;
+    border-style: none;
+}
+
+.form-container .btn a{
+    color: white;
+}
+
+.form-popup form input{
+    background-color: rgb(219, 219, 219);
+    border-color: #BB13FE;
+    border-width: 2px;
+    width: 100%;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+textarea.form-popup-control{
+    background-color: rgb(219, 219, 219);
+    border-color: #BB13FE;
+    border-width: 2px;
+}
+
+.form-popup form input:focus{
+    border-color: #BB13FE;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 9px #BB13FE;
+}
+
+textarea.form-popup-control:focus{
+    border-color: #BB13FE;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 9px #BB13FE;
+}
+
 
 @media print{
     h1, h2, h3, p{
