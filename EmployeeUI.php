@@ -33,6 +33,7 @@ if(basename($_SERVER['PHP_SELF']) === 'editEmployeeView.php') {
     unset($empData['EmployeeID']);
     unset($empData['ACTIVE']);
     unset($empData['Creation Date']); 
+    var_dump($empData);
     echo "<form name='EmpUpdateForm' method='post' class='form' action='EmpUpdateForm.php'>";
     foreach($empData as $key=>$value) {
         echo    "<div class='col-md-4'>

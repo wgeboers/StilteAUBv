@@ -21,22 +21,6 @@
         <div class="main">
             <div id="artikelen" class="form">
                 <?php include('EmployeeUI.php'); ?>
-                            <!--<div class="col-md-12">
-                                <label for="image" class="form-label">Afbeelding</label>
-                                <select name="image" id="image" class="form-select customSelect" aria-label="Default select example">
-                                    <option value="<?php echo $product->imageId;?>"><?php echo $product->imageName;?></option>
-                                    <?php
-                                        //require_once('crud.php');
-                                        //$classA = new Crud('root', '');
-                                        //$imageData = $classA->getTable('images');
-
-                                        //foreach($imageData as $rows){
-                                    ?>
-                                    <option value="<?php echo $rows->ImageID;?>"><?php echo $rows->File_Name;?></option>
-                                     <?php
-                                        //}
-                                    ?>  
-                                </select> -->
             </div>
         </div>    
     </div>

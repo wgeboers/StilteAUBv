@@ -23,7 +23,7 @@ class ProductManager {
         $results = $this->crud->getProducts($searchTerm);
 
         foreach($results as $result) {
-            $add_product = new Product($result["ProductID"], $result["Name"], $result["Description"], $result["Stock"], $result["Price"], "EenFoto.png", "Ergens");            
+            $add_product = new Product($result["ProductID"], $result["Name"], $result["Description"], $result["Stock"], $result["Price"], '',"EenFoto.png", "Ergens");            
             array_push($this->products, $add_product);
         }
 

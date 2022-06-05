@@ -4,7 +4,7 @@
     if(isset($_POST["export_excel"])){
         require_once('crud.php');
         $classA = new Crud('root', '');
-        $searchData = $classA->getHistory('searchhistories');
+        $searchData = $classA->getTable('searchhistories');
 
         if($searchData > 0){
             $output .= '
