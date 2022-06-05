@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<?php 
-    include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI'];
-?>
+<?php include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI']; ?>
 <head>
     <title>Silent Disco</title>
    <meta charset="UTF-8">
@@ -11,36 +9,29 @@
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="Style/base.css">
-    <link rel="stylesheet" type="text/css" href="Style/medewerkers.css">
+    <link rel="stylesheet" type="text/css" href="Style/afbeeldingen.css">
     <meta name="description" content="Huur een volledige doe-het-zelf Silent Disco set met koptelefoons. Binnen een mum van tijd organiseer jij zelf een Silent Disco!">
     <meta name="keywords" content="SilentDisco, Music, Headset, Party, Dance, Disco">
 </head>
-<body class="medewerkers">
+
+<body class="medewerkersportaal">
     <?php include('sidenav.php'); ?>
     <div class="content">
-        <div class="main">
-            <H2>Medewerkers</H2>
+    <div class="main">
+        <H2>Afbeeldingen</H2>
             <table class="table">
-                <thead>
+                <!-- <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Voornaam</th>
-                        <th scope="col">Tussenvoegsel</th>
-                        <th scope="col">Achternaam</th>
-                        <th scope="col">Email</th>
+                        <th scope="col">Bestandsnaam</th>
+                        <th scope="col">Bestandslocatie</th>
                         <th scope="col">Aanmaak Datum</th>
-                        <th scope="col">Actief</th>
-                        <th></th>
                     </tr>
-                </thead>
-                <tbody>
-                    <?php
-                        require_once('EmployeeUI.php');
-                    ?>    
-                </tbody>
+                </thead> -->
+                <?php include('EmployeeUI.php'); ?>
             </table>
             <div class="col-12 text-center">
-                <a href="medewerkeraanmaken.php" class="neon-button">Medewerker aanmaken</a>
+                <a href="afbeeldingimport.php" class="neon-button">Afbeelding uploaden</a>
             </div>
         </div>
     </div>

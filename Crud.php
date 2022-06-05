@@ -16,7 +16,7 @@ class Crud extends Database {
 	#IF THIS DOESNT WORK: CHANGE `id` TO `UserId`... BUT PREFERABLY CHANGE DB ENTRY TO `id` SO ITS A GENERAL QUERY
 	#ELSE WE NEED A SEPARATE QUERY FOR EVERY TABLE, WHICH IS ANNOYING AND BLOAT.
 	#OTHER POSSIBILITY IS GETTING THE ID NAME FROM THE TABLE AND PUTTING IT AS PARAM INTO THE FUNCTION
-	public function select($param, $table = 'users', $where = 'UserId') {
+	public function select($param, $table = 'users', $where = 'UserID') {
 		try {
 			$select = $this->connection->prepare("SELECT * FROM {$table} WHERE `{$where}` = '{$param}'");
 			$select->execute();
@@ -49,7 +49,7 @@ class Crud extends Database {
 	#Dynamically generated sql statement 'updateProfile' based on given array, table & user/employee email
 	#Input: Array with key=>value using column names from the given mysql, email is the value used to identify the row to update.
 	#Testable in test.php; for output check the database.
-	public function updateProfile($data = array(), $table, $email) {
+	public function updateProfile($data = array(), $table, $param) {
 		$keys = array_keys($data);
 		$updateData = array_values($data);
 		$values = NULL;
@@ -101,7 +101,7 @@ class Crud extends Database {
 		return true;
 	}
 	
-	public function selectByUser(int $id, $table) {
+	public function selectByUser($id, $table) {
 		try {
 			$select = $this->connection->prepare("SELECT * FROM {$table} WHERE `UserID` = {$id}");
 			$select->execute();
@@ -112,7 +112,7 @@ class Crud extends Database {
 	}
 	public function selectByEmployee($table, $where, $param) {
 		try {
-			$select = $this->connection->prepare("SELECT * FROM {$table} WHERE {$where} = {$param}");
+			$select = $this->connection->prepare("SELECT * FROM {$table} WHERE `{$where}` = {$param}");
 			$select->execute();
 			return $select->fetchall(PDO::FETCH_ASSOC);
 		} catch(PDOException $e) {

@@ -1,14 +1,14 @@
 <?php
 
 require_once('crud.php');
-require_once('employee.php');
+require_once('Employee.php');
 require_once('role.php');
 
 
 #Used to connect to database and put data from the database into a employee object.
 Class EmployeeManager {
     private Crud $crud;
-    private ?Employee $employee;
+    private ?Employee $employee = null;
     private ?Role $role;
     private array $rolesArray = array();
     private array $employeesArray = array();
@@ -22,10 +22,18 @@ Class EmployeeManager {
     public function fetchEmployeeData($where, $param) {
         $results = $this->crud->selectByEmployee('employees', $where, $param);
 		foreach($results as $result) {
-			$this->employee = new Employee($result["EmployeeID"], $result["First_Name"], $result["Middle_Name"], $result["Last_Name"], $result["Email"]);
-		}
+			$this->employee = new Employee($result["EmployeeID"], $result["First_Name"], $result["Middle_Name"], $result["Last_Name"], $result["Email"], $result['Creation_Date'], $result['ACTIVE']);
+        }
+        return $results;
+    }
 
-        return $this->employee;
+    public function getAllEmployees() {
+        $empData = $this->crud->getTableEmployees();
+        foreach($empData as $emp) {
+            $empObj = new Employee($emp["EmployeeID"], $emp["First_Name"], $emp["Middle_Name"], $emp["Last_Name"], $emp["Email"], $emp['Creation_Date'], $emp['ACTIVE']);
+            array_push($this->employeesArray, $empObj);
+        }
+        return $this->employeesArray;
     }
 
     public function getLoggedIn() {
@@ -92,22 +100,12 @@ Class EmployeeManager {
         $data = $this->crud->addEmployeeRole($id, $role);
     }
 
-	public function editEmployee($id, $firstName, $middleName, $lastName, $email, $password, $active){
-		#Nog veld validatie toevoegen!!!! (=javascript...)
-		$data = $this->crud->updateEmployee($id, $firstName, $middleName, $lastName, $email, $password, $active);
+	public function editEmployee($userData = array(), $id){
+		$this->crud->updateProfile($userData, 'employees', $id);
 	}
 
 	public function updateEmployeeRole($id, $role) {
         $data = $this->crud->UpdateEmployeeRol($id, $role);
-    }
-
-    public function getAllEmployees() {
-        $empData = $this->crud->getTableEmployees();
-        foreach($empData as $emp) {
-            $empObj = new Employee($emp["EmployeeID"], $emp["First_Name"], $emp["Middle_Name"], $emp["Last_Name"], $emp["Email"], $emp['Creation_Date'], $emp['ACTIVE']);
-            array_push($this->employeesArray, $empObj);
-        }
-        return $this->employeesArray;
     }
 
     public function fetchOrders() {

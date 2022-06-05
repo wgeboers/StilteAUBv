@@ -13,7 +13,7 @@ if(isset($_POST['addemployee'])) {
 	$e_man->insertEmployeeRole($_POST['Email'], 'Email', $role);
 
 
-	$url = "/stilteaubv/medewerkers.php";
+	$url = "/stilteaubv/employeesView.php";
 	header("Location: https://localhost$url");
 	exit();
 }

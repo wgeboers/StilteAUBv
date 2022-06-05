@@ -5,9 +5,9 @@ if(!empty($_POST['updaterole'])) {
 	$name = $_POST["name"];
 	$description = $_POST["description"];
 
-    require_once("role.php");
-	$role = new Role();
-	$update = $role->editRole($id, $name, $description);
+    require_once("EmployeeManager.php");
+	$e_man = new EmployeeManager();
+	$update = $e_man->editRole($id, $name, $description);
 
 	$url = "rollen.php";
 	header("Location: ".$url);

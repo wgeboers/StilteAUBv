@@ -22,14 +22,7 @@
 </head>
 
 <body class="medewerkersportaal">
-    <div class="sidenav">
-        <a href="medewerkers.php">Medewerkers</a>
-        <a href="rollen.php">Rollen</a>
-        <a href="bestellingen.php">Bestellingen</a>
-        <a href="zoektermen.php">Zoektermen</a>
-        <a href="artikelen.php">Artikelen</a>
-        <a href="afbeeldingen.php">Afbeeldingen</a>
-    </div>
+    <?php include('sidenav.php'); ?>
     <div class="content">
         <div class="main">
         <div id="artikelen" class="form">

@@ -2,11 +2,10 @@
 <?php 
     include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI'];
 
-    require_once('product.php');
+    require_once('ProductManager.php');
     $id=$_GET['edit'];
-    $product = new Product();
-    $product->id = $id;
-    $product->readOne();
+    $p_man = new ProductManager();
+    $product = $p_man->fetchSingleProduct($id);
 ?>
 <head>
     <title>Silent Disco</title>
@@ -23,14 +22,7 @@
 </head>
 
 <body class="medewerkers">
-    <div class="sidenav">
-        <a href="medewerkers.php">Medewerkers</a>
-        <a href="rollen.php">Rollen</a>
-        <a href="bestellingen.php">Bestellingen</a>
-        <a href="zoektermen.php">Zoektermen</a>
-        <a href="artikelen.php">Artikelen</a>
-        <a href="afbeeldingen.php">Afbeeldingen</a>
-    </div>
+    <?php include('sidenav.php'); ?>
     <div class="content">
         <div class="main">
             <div id="artikelen" class="form">

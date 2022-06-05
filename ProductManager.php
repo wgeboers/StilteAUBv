@@ -75,4 +75,8 @@ class ProductManager {
         return $this->crud->getTable('images');
     }
 
+    public function fetchSingleProduct($id) {
+        return $this->crud->select($id, 'products', 'ProductID');
+    }
+
 }

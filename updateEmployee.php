@@ -1,23 +1,22 @@
 <?php
-if(!empty($_POST['updateemployee'])) {
+if(!empty($_POST['updateBtn'])) {
 	session_start();
-    $id = $_GET['id'];
-	$firstName = $_POST["firstName"];
-	$middleName = $_POST["middleName"];
-    $lastName = $_POST["lastName"];
-    $email = $_POST["inputEmail"];
-    $password = $_POST["inputPassword"];
-    $active = $_POST["inputActive"];
-    $rol = $_POST["rol"];
+    unset($_POST['updateBtn']);
+    if(count($_POST) === 10) {
+        $postData = $_POST;
+    }
+    var_dump($postData);
+    require_once('EmployeeManager.php');
+    $e_man = new EmployeeManager();
+	$update = $e_man->editEmployee($id, $firstName, $middleName, $lastName, $email, $password, $active, $rol);
 
-    require_once("employee.php");
-	$employee = new Employee();
-	$update = $employee->editEmployee($id, $firstName, $middleName, $lastName, $email, $password, $active, $rol);
-
-    $update = $employee->UpdateEmployeeRole($id, $rol);
-
-	$url = "medewerkers.php";
-	header("Location: ".$url);
+    $update = $e_man->UpdateEmployeeRole($id, $rol);
+    if(isset($_SESSION['url'])) {
+		$url = $_SESSION['url'];
+	} else {
+		$url = "index.php";
+	}
+	header("Location: https://localhost$url");
     exit();
 }
 ?>

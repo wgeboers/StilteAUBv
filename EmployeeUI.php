@@ -9,25 +9,42 @@
     $o_man = new OrderManager();
     $p_man = new ProductManager();
 
-    if(basename($_SERVER['PHP_SELF']) === 'medewerkers.php') {
+    if(basename($_SERVER['PHP_SELF']) === 'employeesView.php') {
         $empData = $e_man->getAllEmployees();
         foreach($empData as $rows) {
             echo "<tr>";
             $row = $rows->toArray();
+            $linkKey = $row[0];
             foreach($row as $key=>$value) {
-                if(array_key_first($row) === $key) {
-                    $linkKey = $key;
-                }
                 echo "<td>{$value}</td>";
                 if(array_key_last($row) === $key) {
-                    echo "<td><a href='medewerkerwijzigen.php?edit={$linkKey}' class='neon-button'>Edit</a></td>";
+                    echo "<td><a href='editEmployeeView.php?edit={$linkKey}' class='neon-button'>Edit</a></td>";
                 }
             }
             echo "</tr>";
         } 
     }
+    
+    if(basename($_SERVER['PHP_SELF']) === 'editEmployeeView.php') {
+        $id = $_GET['edit'];
+        $empData = $e_man->fetchEmployeeData('EmployeeID', $id);
+        echo "<form name='empForm' method='POST' class='form' id='medewerker'>";
+        foreach($empData as $rows) {
+            foreach($rows as $key=>$value) {
+                echo    "<div class='col-md-4'>
+                        <label for='{$key}' class='form-label'>{$key}</label>
+                        <input type='text' class='form-control' name='{$key}' value={$value}>
+                        </div>";
+                if(array_key_last($rows) === $key) {
+                    echo "<br><div class='col-3 text-center'>
+                    <button type='submit' class='btn btn-primary' name='updateBtn'>Medewerker wijzigen</button>
+                    </form>";
+                }
+            }
+        }
+    }
 
-    if(basename($_SERVER['PHP_SELF']) === 'medewerkeraanmaken.php') {
+    if(basename($_SERVER['PHP_SELF']) === 'createEmployeeView.php') {
         $roleData = $e_man->fetchRolesFromDB();
         echo "  <div class='col-md-4'>
                     <label for='First Name' class='form-label'>Voornaam</label>
@@ -63,7 +80,7 @@
                 </div>";   
     }
 
-    if(basename($_SERVER['PHP_SELF']) === 'rollen.php') {
+    if(basename($_SERVER['PHP_SELF']) === 'rolesView.php') {
         $roles = $e_man->fetchRolesFromDB();
         foreach($roles as $rows) {
             echo "<tr>";
@@ -81,7 +98,7 @@
         echo "</tr>";
     }
 
-    if(basename($_SERVER['PHP_SELF']) === 'bestellingen.php') {
+    if(basename($_SERVER['PHP_SELF']) === 'ordersView.php') {
         $orders = $o_man->fetchOrderHeaders();
         $count = 0;
         foreach($orders as $rows) {
@@ -108,7 +125,7 @@
         }
     }
 
-    if(basename($_SERVER['PHP_SELF']) === 'zoektermen.php') {
+    if(basename($_SERVER['PHP_SELF']) === 'searchtermsView.php') {
         $searchTerms = $p_man->fetchSearchTerms();
         $count = 0;
         foreach($searchTerms as $rows) {
@@ -135,7 +152,7 @@
         }
     }
 
-    if(basename($_SERVER['PHP_SELF']) === 'artikelen.php') {
+    if(basename($_SERVER['PHP_SELF']) === 'productsView.php') {
         $products = $p_man->fetchProductsFromDB();
         foreach($products as $rows) {
             echo "<tr>";
@@ -153,7 +170,7 @@
         echo "</tr>";
     }
 
-    if(basename($_SERVER['PHP_SELF']) === 'afbeeldingen.php') {
+    if(basename($_SERVER['PHP_SELF']) === 'imagesView.php') {
         $images = $p_man->fetchImagesFromDB();
         $count = 0;
         foreach($images as $rows) {
@@ -178,6 +195,10 @@
             }
             echo "</tr></tbody>";
         }
+    }
+
+    if(basename($_SERVER['PHP_SELF']) === 'editProductView.php') {
+
     }
 
 ?>

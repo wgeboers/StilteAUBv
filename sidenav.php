@@ -1,10 +1,10 @@
 <!doctype HTML>
 
 <div class="sidenav">
-        <a href="medewerkers.php">Medewerkers</a>
-        <a href="rollen.php">Rollen</a>
-        <a href="bestellingen.php">Bestellingen</a>
-        <a href="zoektermen.php">Zoektermen</a>
-        <a href="artikelen.php">Artikelen</a>
-        <a href="afbeeldingen.php">Afbeeldingen</a>
+        <a href="employeesView.php">Medewerkers</a>
+        <a href="rolesView.php">Rollen</a>
+        <a href="ordersView.php">Bestellingen</a>
+        <a href="searchtermsView.php">Zoektermen</a>
+        <a href="productsView.php">Artikelen</a>
+        <a href="imagesView.php">Afbeeldingen</a>
 </div>
