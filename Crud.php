@@ -94,13 +94,6 @@ class Crud extends Database {
 		}
 	}
 	
-	#Generic delete, based on the table and a row id, only works if id is generic.
-	public function deleteData($table, $id, $where) {
-		$delete= $this->connection->prepare("DELETE FROM {$table} WHERE {$where} = {$id}");
-		$delete->execute();
-		return true;
-	}
-	
 	public function selectByUser($id, $table) {
 		try {
 			$select = $this->connection->prepare("SELECT * FROM {$table} WHERE `UserID` = {$id}");
@@ -248,9 +241,9 @@ class Crud extends Database {
 	######################################################
 	#####################Products#########################
 	######################################################
-	public function getProducts($table) {
+	public function getProducts() {
 		try {
-			$select = $this->connection->prepare("SELECT prd.*, pi.`ImageID`, img.`File_Name` as ImageName, img.`File_Path` as ImagePath FROM `$table`prd LEFT JOIN `products-images` pi ON prd.`ProductID` = pi.`ProductID` LEFT JOIN `images` img ON pi.`ImageID` = img.`ImageID`");
+			$select = $this->connection->prepare("SELECT prd.*, pi.`ImageID`, img.`File_Name` as ImageName, img.`File_Path` as ImagePath FROM `products`prd LEFT JOIN `products-images` pi ON prd.`ProductID` = pi.`ProductID` LEFT JOIN `images` img ON pi.`ImageID` = img.`ImageID`");
 			$select->execute();
 			return $select->fetchall(PDO::FETCH_OBJ);
 		} catch(PDOExeption $e) {
@@ -392,5 +385,5 @@ class Crud extends Database {
 	// 		`Password`
 	// 	FROM `users`;
 	// }
-}	
+}
 ?>
