@@ -34,8 +34,8 @@
                 <?php include('EmployeeUI.php'); ?>
             </table>
             <div class="col-12 text-center">
-                <a href="artikelimporteren.php" class="neon-button">Artikelen importeren</a>
-                <a href="artikelaanmaken.php" class="neon-button">Artikel aanmaken</a>
+                <a href="productimportView.php" class="neon-button">Artikelen importeren</a>
+                <a href="productCreateView.php" class="neon-button">Artikel aanmaken</a>
             </div>
         </div>
     </div>
