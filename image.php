@@ -9,7 +9,7 @@ class Image {
 	public function __construct($imageID, $imageName, $imageFilePath) {
 		$this->imageID = $imageID;
 		$this->imageName = $imageName;
-		$this->getImageFilePath = $imageFilePath;
+		$this->ImageFilePath = $imageFilePath;
 	}
 	public function getImageName() {
 		return $this->imageName;
@@ -21,6 +21,10 @@ class Image {
 
 	public function getImageFilePath() {
 		return $this->imageFilePath;
+	}
+
+	public function toArray() {
+		return array($this->imageID, $this->imageName, $this->imageFilePath);
 	}
 }
 ?>

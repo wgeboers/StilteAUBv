@@ -267,6 +267,7 @@ if(basename($_SERVER['PHP_SELF']) === 'imagesView.php') {
     $images = $p_man->fetchImagesFromDB();
     $count = 0;
     foreach($images as $rows) {
+        var_dump($rows);
         if($count < 1) {
             echo "<thead><tr>";
             foreach(array_keys($rows) as $keys) {
