@@ -27,7 +27,7 @@ class Role {
 		$this->name = $name;
 	}
 
-	public function getId() {
+	public function getRoleID() {
 		return $this->id;
 	}
 

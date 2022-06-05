@@ -9,7 +9,6 @@ require_once('role.php');
 Class EmployeeManager {
     private Crud $crud;
     private ?Employee $employee = null;
-    private ?Role $role;
     private array $rolesArray = array();
     private array $employeesArray = array();
     private bool $loggedIn;
@@ -73,6 +72,14 @@ Class EmployeeManager {
         }
         return $this->rolesArray;
     }
+
+    public function fetchSingularRoleFromDB($where, $param) {
+        $roles = $this->crud->select('roles', $where, $param);
+        foreach($roles as $role) {
+            $roleObj = new Role($role['RoleID'], $role['Name'], $role['Description'], $role['Creation_Date']);
+        }
+        return $roleObj;
+    }
     public function insertRole($name, $description) {
 		#Nog veld validatie toevoegen!!!! (js)
         $data = $this->crud->addRole($name, $description);
@@ -95,8 +102,8 @@ Class EmployeeManager {
 		$this->crud->update($empData, 'employees', 'Email', $email);
 	}
 
-	public function updateEmployeeRole($id, $role) {
-        $data = $this->crud->updateEmployeeRole($id, $role);
+	public function updateEmployeeRole($role, $id) {
+        $data = $this->crud->updateEmployeeRole($role, $id);
     }
 
     public function fetchOrders() {
@@ -105,7 +112,8 @@ Class EmployeeManager {
 }
 
 //Works
-// $eman = new EmployeeManager();
+ //$eman = new EmployeeManager();
 // $eman->editEmployee(array('First_Name'=>'Wesley'), 'w.geboers@student.avans.nl');
+//var_dump($eman->fetchSingularRoleFromDB('Name', 'Directie'));
 
 ?>

@@ -212,9 +212,10 @@ class Crud extends Database {
 		$update->execute();
 	}
 
-	public function updateEmployeeRole($id, $rol){
+	//doesnt work?
+	public function updateEmployeeRole($role, $id){
 		try {
-			$update = $this->connection->prepare("UPDATE `employees-roles` SET `RoleID` = $rol WHERE EmployeeID = $id");
+			$update = $this->connection->prepare("UPDATE `employees-roles` SET `RoleID` = $role WHERE EmployeeID = $id");
 			$update->execute();
 		} catch(PDOException $e) {
 			echo $e;
