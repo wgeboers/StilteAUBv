@@ -245,7 +245,17 @@ class Crud extends Database {
 		try {
 			$select = $this->connection->prepare("SELECT prd.*, pi.`ImageID`, img.`File_Name` as ImageName, img.`File_Path` as ImagePath FROM `products`prd LEFT JOIN `products-images` pi ON prd.`ProductID` = pi.`ProductID` LEFT JOIN `images` img ON pi.`ImageID` = img.`ImageID`");
 			$select->execute();
-			return $select->fetchall(PDO::FETCH_OBJ);
+			return $select->fetchall(PDO::FETCH_ASSOC);
+		} catch(PDOExeption $e) {
+			echo $e;
+		}
+	}
+
+	public function getSingleProduct($id) {
+		try {
+			$select = $this->connection->prepare("SELECT prd.*, pi.`ImageID`, img.`File_Name` as ImageName, img.`File_Path` as ImagePath FROM `products`prd LEFT JOIN `products-images` pi ON prd.`ProductID` = pi.`ProductID` LEFT JOIN `images` img ON pi.`ImageID` = img.`ImageID` WHERE prd.`ProductID` = {$id}");
+			$select->execute();
+			return $select->fetchall(PDO::FETCH_ASSOC);
 		} catch(PDOExeption $e) {
 			echo $e;
 		}
@@ -255,7 +265,7 @@ class Crud extends Database {
 		try {
 			$select = $this->connection->prepare("SELECT * FROM `$table`");
 			$select->execute();
-			return $select->fetchall(PDO::FETCH_OBJ);
+			return $select->fetchall(PDO::FETCH_ASSOC);
 		} catch(PDOExeption $e) {
 			echo $e;
 		}

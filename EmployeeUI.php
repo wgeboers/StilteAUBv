@@ -220,17 +220,46 @@ if(basename($_SERVER['PHP_SELF']) === 'productsView.php') {
     foreach($products as $rows) {
         echo "<tr>";
         $row = $rows->toArray(); //cast object to array
+        $linkKey = $row['ID'];
         foreach($row as $key=>$value) {
-            if(array_key_first($row) === $key) {
-                $linkKey = $key;
-            }
             echo "<td>{$value}</td>";
             if(array_key_last($row) === $key) {
-                echo "<td><a href='rolwijzigen.php?edit={$linkKey}' class='neon-button'>Edit</a></td>";
+                echo "<td><a href='ProductEditView.php?edit={$linkKey}' class='neon-button'>Edit</a></td>";
             }
         }
     }
     echo "</tr>";
+}
+
+if(basename($_SERVER['PHP_SELF']) === 'ProductEditView.php') {
+    $product = $p_man->fetchSingleProduct($_GET['edit']);
+    $images = $p_man->fetchImagesFromDB();
+    $prodArray = $product->toArray();
+    $_SESSION['ProductID'] = $prodArray['ID'];
+    $_SESSION['ImageID'] = $prodArray['imageID'];
+    $imName = $prodArray['imageName'];
+    unset($prodArray['ID']);
+    unset($prodArray['imageID']);
+    unset($prodArray['imageFilePath']);
+    echo "<form name='ProductEditForm' method='post' class='form' action='updateProduct.php'>";
+    foreach($prodArray as $key=>$value) {
+        echo    "<div class='col-md-4'>
+        <label for='{$key}' class='form-label'>{$key}</label>
+        <input type='text' class='form-control' name='{$key}' value='{$value}'>
+        </div>";
+    }
+    echo "<label for='image' class='form-label'>Afbeelding</label>
+    <select name='image' id='image' class='form-select customSelect' aria-label='Default select example'>
+    <option value='{$imName}' selected>{$imName}</option>";
+    foreach($images as $rows) {
+        $imID = $rows->getImageID();
+        $imName = $rows->getImageName();
+        echo "<option value='{$imID}'>'{$imName}'</option>";
+    }
+    echo "</select><div class='col-md-4'>
+    <button type='submit' class='btn btn-primary' name='updateproduct'>Wijzigen</button>
+    </div>
+    </form>";
 }
 
 /** AFBEELDINGEN BEGINT HIER */

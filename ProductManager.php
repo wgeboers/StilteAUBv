@@ -2,6 +2,7 @@
 
 require_once("Crud.php");
 require_once("Product.php");
+require_once('Image.php');
 
 class ProductManager {
         
@@ -9,6 +10,7 @@ class ProductManager {
     private $results;
     private $products = array();
     private $productsArray = array();
+    private $imageArray = array();
 
     public function __construct() {
 
@@ -65,18 +67,35 @@ class ProductManager {
     public function fetchProductsFromDB() {
         $prods = $this->crud->getTable('products');
         foreach($prods as $prod) {
-            $prodObj = new Product($prod['ProductID'], $prod['Name'], $prod['Description'], $prod['Stock'], $prod['Price'], $prod['Creation_Date']);
+            $prodObj = new Product($prod['ProductID'], $prod['Name'], $prod['Description'], $prod['Stock'], $prod['Price'] , '', '' ,'');
             array_push($this->productsArray, $prodObj); 
         }
         return $this->productsArray;
     }
 
     public function fetchImagesFromDB() {
-        return $this->crud->getTable('images');
+        $images = $this->crud->getTable('images');
+        foreach($images as $image) {
+            $imageObj = new Image($image['ImageID'], $image['File_Name'], $image['File_Path']);
+            array_push($this->imageArray, $imageObj);
+        }
+        return $this->imageArray;
     }
 
     public function fetchSingleProduct($id) {
-        return $this->crud->select($id, 'products', 'ProductID');
+        $productData =  $this->crud->getSingleProduct($id);
+        foreach($productData as $product) {
+            $prodObj = new Product($product['ProductID'], $product['Name'], $product['Description'], $product['Stock'], $product['Price'], $product['ImageID'], $product['ImageName'], $product['ImagePath']);
+        }
+        return $prodObj;
+    }
+
+    public function insertImage($image) {
+        $this->crud->addImage($image->getImageName(), $image->getImagePath());
+    }
+
+    public function getProductsImages() {
+        return $this->crud->getProductsImages('products-images');
     }
 
 }

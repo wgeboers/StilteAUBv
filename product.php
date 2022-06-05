@@ -1,6 +1,8 @@
 <?php
 
-class Product {
+require_once('Image.php');
+
+class Product extends Image {
 	
 
 	private $id;
@@ -10,18 +12,22 @@ class Product {
 	private $price;
 	private $creationDate;
 	
-	function  __construct($id, $name, $desc, $stock, $price, $creationDate) {
+	function  __construct($id, $name, $desc, $stock, $price, $imageID, $imageName, $imageFilePath) {
 		$this->id = $id;
 		$this->name = $name;
 		$this->desc = $desc;
 		$this->stock = $stock;
 		$this->price = $price;
-		$this->creationDate = $creationDate;
+		$this->imageID = $imageID;
+		$this->imageName = $imageName;
+		$this->imageFilePath = $imageFilePath;
 	}
 	
 	public function toArray() {
-		return array($this->id, $this->name, $this->desc, $this->stock, $this->price, $this->creationDate);
+		return array('ID'=>$this->id, 'Name'=>$this->name, 'Desc'=>$this->desc, 'Stock'=>$this->stock, 'Price'=>$this->price, 'imageID'=>$this->imageID, 'imageName'=>$this->imageName, 'imageFilePath'=>$this->imageFilePath);
 	}
+
+	
 
    
 }

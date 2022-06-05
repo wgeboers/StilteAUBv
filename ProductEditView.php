@@ -20,49 +20,23 @@
     <div class="content">
         <div class="main">
             <div id="artikelen" class="form">
-                <form action="./updateProduct.php?id=<?php echo $id; ?>" method="post" name="artikelForm" id="artikelForm">
-                    <div class="container">
-                        <div class="row">
-                            <h2>Artikel wijzigen</h2>
-                            <div class="col-md-12">
-                                <label for="name" class="form-label">Naam</label>
-                                <input type="text" class="form-control" placeholder="Naam" name="name" id="name" value='<?php echo $product->name; ?>'>
-                            </div>
-                            <div class="col-md-12">
-                                <label for="description" class="form-label">Omschrijving</label>
-                                <input type="text" class="form-control" placeholder="Omschrijving" name="description" id="description" value='<?php echo $product->description; ?>'>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="stock" class="form-label">Voorraad</label>
-                                <input type="text" class="form-control" placeholder="Voorraad" name="stock" id="stock" value='<?php echo $product->stock; ?>'>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="price" class="form-label">Prijs</label>
-                                <input type="text" class="form-control" placeholder="Prijs" name="price" id="inputEmail" value='<?php echo $product->price; ?>'>
-                            </div>
-                            <div class="col-md-12">
+                <?php include('EmployeeUI.php'); ?>
+                            <!--<div class="col-md-12">
                                 <label for="image" class="form-label">Afbeelding</label>
                                 <select name="image" id="image" class="form-select customSelect" aria-label="Default select example">
                                     <option value="<?php echo $product->imageId;?>"><?php echo $product->imageName;?></option>
                                     <?php
-                                        require_once('crud.php');
-                                        $classA = new Crud('root', '');
-                                        $imageData = $classA->getTable('images');
+                                        //require_once('crud.php');
+                                        //$classA = new Crud('root', '');
+                                        //$imageData = $classA->getTable('images');
 
-                                        foreach($imageData as $rows){
+                                        //foreach($imageData as $rows){
                                     ?>
                                     <option value="<?php echo $rows->ImageID;?>"><?php echo $rows->File_Name;?></option>
-                                    <?php
-                                        }
+                                     <?php
+                                        //}
                                     ?>  
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-12 text-center">
-                            <button type="submit" name="updateproduct" value="updateproduct" class="btn btn-primary" id="addBtn">Artikel wijzigen</button>
-                        </div>
-                    </div>
-                </form>
+                                </select> -->
             </div>
         </div>    
     </div>
