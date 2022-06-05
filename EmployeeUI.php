@@ -206,9 +206,6 @@ if(basename($_SERVER['PHP_SELF']) === 'searchtermsView.php') {
                 $linkKey = $key;
             }
             echo "<td name={$key}>{$value}</td>";
-            if(array_key_last($rows) === $key) {
-                echo "<td><a href='artikelwijzigen.php?edit={$linkKey}' class='neon-button'>Edit</a></td>";
-            }
         }
         echo "</tr></tbody>";
     }
@@ -271,9 +268,6 @@ if(basename($_SERVER['PHP_SELF']) === 'imagesView.php') {
         echo" <tbody><tr>";
         foreach($rows as $key=>$value) {
             echo "<td name={$key}>{$value}</td>";
-            if(array_key_last($rows) === $key) {
-                echo "<td><a href='artikelwijzigen.php?edit={$linkKey}' class='neon-button'>Edit</a></td>";
-            }
         }
         echo "</tr></tbody>";
     }
