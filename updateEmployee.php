@@ -8,9 +8,9 @@ if(!empty($_POST['updateBtn'])) {
     var_dump($postData);
     require_once('EmployeeManager.php');
     $e_man = new EmployeeManager();
-	$update = $e_man->editEmployee($id, $firstName, $middleName, $lastName, $email, $password, $active, $rol);
+	$update = $e_man->editEmployee($postData, $_POST['EmployeeID']);
 
-    $update = $e_man->UpdateEmployeeRole($id, $rol);
+    $update = $e_man->updateEmployeeRole($id, $rol);
     if(isset($_SESSION['url'])) {
 		$url = $_SESSION['url'];
 	} else {

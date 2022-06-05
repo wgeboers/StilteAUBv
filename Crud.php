@@ -49,7 +49,7 @@ class Crud extends Database {
 	#Dynamically generated sql statement 'updateProfile' based on given array, table & user/employee email
 	#Input: Array with key=>value using column names from the given mysql, email is the value used to identify the row to update.
 	#Testable in test.php; for output check the database.
-	public function updateProfile($data = array(), $table, $param) {
+	public function updateProfile($data = array(), $table, $where, $param) {
 		$keys = array_keys($data);
 		$updateData = array_values($data);
 		$values = NULL;
@@ -62,7 +62,7 @@ class Crud extends Database {
 			}
 		}
 		try {
-			$statement = "UPDATE {$table} SET {$values} WHERE `email` = '{$email}'";
+			$statement = "UPDATE {$table} SET {$values} WHERE `{$where}` = '{$param}'";
 			$insert = $this->connection->prepare($statement);
 			$insert->execute();
 		} catch(PDOException $e) {
