@@ -8,7 +8,7 @@ if(!empty($_POST['addrole'])) {
 	$e_man = new EmployeeManager();
 	$add = $e_man->insertRole($name, $description);
 
-	$url = "rollen.php";
+	$url = "rolesView.php";
 	header("Location: ".$url);
 	exit();
 }
