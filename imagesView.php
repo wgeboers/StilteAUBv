@@ -20,18 +20,18 @@
     <div class="main">
         <H2>Afbeeldingen</H2>
             <table class="table">
-                <!-- <thead>
+                <thead>
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Bestandsnaam</th>
                         <th scope="col">Bestandslocatie</th>
-                        <th scope="col">Aanmaak Datum</th>
+                        <th></th>
                     </tr>
-                </thead> -->
+                </thead>
                 <?php include('EmployeeUI.php'); ?>
             </table>
             <div class="col-12 text-center">
-                <a href="afbeeldingimport.php" class="neon-button">Afbeelding uploaden</a>
+                <a href="imagesImportView.php" class="neon-button">Afbeelding uploaden</a>
             </div>
         </div>
     </div>

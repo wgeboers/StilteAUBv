@@ -375,6 +375,7 @@ class Crud extends Database {
 		}
 	}
 
+
 	
 	// GetType{
 	// 	SELECT 

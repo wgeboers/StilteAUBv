@@ -265,23 +265,11 @@ if(basename($_SERVER['PHP_SELF']) === 'ProductEditView.php') {
 /** AFBEELDINGEN BEGINT HIER */
 if(basename($_SERVER['PHP_SELF']) === 'imagesView.php') {
     $images = $p_man->fetchImagesFromDB();
-    $count = 0;
     foreach($images as $rows) {
-        var_dump($rows);
-        if($count < 1) {
-            echo "<thead><tr>";
-            foreach(array_keys($rows) as $keys) {
-                echo "<th scope='col'>{$keys}</th>";
-            }
-            $count++;
-            echo "</tr></thead>
-                <tbody>
-                <tr>";
-        }
+        $rows = $rows->toArray();
+        $linkKey = $rows['ImageID'];
+        echo" <tbody><tr>";
         foreach($rows as $key=>$value) {
-            if(array_key_first($rows) === $key) {
-                $linkKey = $key;
-            }
             echo "<td name={$key}>{$value}</td>";
             if(array_key_last($rows) === $key) {
                 echo "<td><a href='artikelwijzigen.php?edit={$linkKey}' class='neon-button'>Edit</a></td>";

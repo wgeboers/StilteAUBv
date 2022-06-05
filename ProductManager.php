@@ -90,8 +90,8 @@ class ProductManager {
         return $prodObj;
     }
 
-    public function insertImage($image) {
-        $this->crud->addImage($image->getImageName(), $image->getImagePath());
+    public function insertImage($imageName, $imagePath) {
+        $this->crud->addImage($imageName, $imagePath);
     }
 
     public function getProductsImages() {
