@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <?php 
-    include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI'];
-
-    require_once('ProductManager.php');
-    $id=$_GET['edit'];
-    $p_man = new ProductManager();
-    $product = $p_man->fetchSingleProduct($id);
-?>
+    include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI']; ?>
 <head>
     <title>Silent Disco</title>
    <meta charset="UTF-8">

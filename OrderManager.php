@@ -30,5 +30,9 @@ Class OrderManager {
     public function fetchOrderHeaders() {
         return $this->crud->getTable('orderheaders');
     }
+    
+    public function fetchSingularOrderHeader($id) {
+        return $this->crud->select('orderheaders', 'HeaderID', $id);
+    }
 }
 ?>

@@ -125,6 +125,7 @@ if(basename($_SERVER['PHP_SELF']) === 'editRoleView.php') {
     </div>
     </form>";
 }
+
 /* BESTELLINGEN BEGINT HIER */
 if(basename($_SERVER['PHP_SELF']) === 'ordersView.php') {
     $orders = $o_man->fetchOrderHeaders();
@@ -140,17 +141,49 @@ if(basename($_SERVER['PHP_SELF']) === 'ordersView.php') {
                 <tbody>
                 <tr>";
         }
+        $linkKey = $rows['HeaderID'];
         foreach($rows as $key=>$value) {
-            if(array_key_first($rows) === $key) {
-                $linkKey = $key;
-            }
             echo "<td name={$key}>{$value}</td>";
             if(array_key_last($rows) === $key) {
-                echo "<td><a href='artikelwijzigen.php?edit={$linkKey}' class='neon-button'>Edit</a></td>";
+                echo "<td><a href='orderDetailsView.php?edit={$linkKey}' class='neon-button'>Edit</a></td>";
             }
         }
         echo "</tr></tbody>";
     }
+}
+
+if(basename($_SERVER['PHP_SELF']) === 'orderDetailsView.php') {
+    $order = $o_man->fetchSingularOrderHeader($_GET['edit']);
+    $_SESSION['HeaderID'] = $_GET['edit'];
+    foreach($order as $rows) {
+        echo "<form name='orderUpdateForm' method='post' class='form' action='updateOrder.php'>";
+        $status = $rows['Status'];
+        unset($rows['HeaderID']);
+        unset($rows['Order_By']);
+        foreach($rows as $key=>$value) {
+            if(array_key_last($rows) === $key) {
+                echo "<div class='col-md-4'>
+                <label for='Status' class='form-label'>Status</label>
+                <select name='Status' id='Status' class='form-select customSelect' aria-label='Default select example'>
+                <option value='{$status}' selected='selected'>'{$status}'</option>
+                <option value='openstaand'>Openstaand</option>
+                <option value='In behandeling'>In behandeling</option>
+                <option value='Verstuurd'>Verstuurd</option>
+                <option value='Geleverd'>Geleverd</option>
+                </select></div>
+                <div class='col-4 text-center'>
+                <button type='submit' class='btn btn-primary' name='updateOrderBtn'>Wijzigen</button>
+                </div></div>
+                </form>";
+            } else {
+            echo    "<div class='col-md-4'>
+                    <label for='{$key}' class='form-label'>'{$key}'</label>
+                    <input type='text' class='form-control' name='{$key}' value='{$value}' readonly>
+                    </div>";
+            }
+        } 
+    }
+    
 }
 
 /** ZOEKTERMEN BEGINT HIER */
@@ -227,7 +260,6 @@ if(basename($_SERVER['PHP_SELF']) === 'imagesView.php') {
         echo "</tr></tbody>";
     }
 }
-
 
 
 ?>
