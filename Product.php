@@ -27,6 +27,14 @@ class Product extends Image {
 		return array('ID'=>$this->id, 'Name'=>$this->name, 'Desc'=>$this->desc, 'Stock'=>$this->stock, 'Price'=>$this->price, 'imageID'=>$this->imageID, 'imageName'=>$this->imageName, 'imageFilePath'=>$this->imageFilePath);
 	}
 
+	public function getPrice() {
+		return $this->price;
+	}
+
+	public function getName() {
+		return $this->name;
+	}
+
 	
 
    
