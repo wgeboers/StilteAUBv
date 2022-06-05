@@ -21,7 +21,7 @@
     <div class="content">
         <div class="main">
                 <!-- add styling -->
-                <?php include('EmployeeUI.php'); ?>
+                <?php include('EmployeeUI.php'); ?><br>
         </div>    
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"

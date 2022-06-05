@@ -20,11 +20,11 @@ Class EmployeeManager {
 
     #Creates a employee object based on database row.
     public function fetchEmployeeData($where, $param) {
-        $results = $this->crud->selectByEmployee('employees', $where, $param);
+        $results = $this->crud->select('employees', $where, $param);
 		foreach($results as $result) {
 			$this->employee = new Employee($result["EmployeeID"], $result["First_Name"], $result["Middle_Name"], $result["Last_Name"], $result["Email"], $result['Creation_Date'], $result['ACTIVE']);
         }
-        return $results;
+        return $this->employee;
     }
 
     public function getAllEmployees() {
@@ -42,15 +42,6 @@ Class EmployeeManager {
 
 	public function getEmployeeID() {
 		return $this->employee->getId();
-	}
-
-    #Used to update a employee's information when they submit a change to their employee information.
-    public function updateEmployeeInformation($employeeData) {
-		if(isset($employeeData) && !empty($employeeData)) {
-			$this->crud->updateProfile($employeeData, $_SESSION['type'], $_SESSION['email']);
-		} else {
-			echo "problems yep";
-		}
 	}
     
     #function used to log a employee in, automatically checks for an end employee or employee login
@@ -97,15 +88,15 @@ Class EmployeeManager {
 
 	public function insertEmployeeRole($param, $where, $role) {
         $empData = $this->crud->selectByEmployee('employees', $where, $param);
-        $data = $this->crud->addEmployeeRole($id, $role);
+        $data = $this->crud->addEmployeeRole($role, $where, $param);
     }
 
-	public function editEmployee($userData = array(), $id){
-		$this->crud->updateProfile($userData, 'employees', $id);
+	public function editEmployee($empData = array(), $email){
+		$this->crud->update($empData, 'employees', 'Email', $email);
 	}
 
 	public function updateEmployeeRole($id, $role) {
-        $data = $this->crud->UpdateEmployeeRol($id, $role);
+        $data = $this->crud->updateEmployeeRole($id, $role);
     }
 
     public function fetchOrders() {
@@ -113,5 +104,8 @@ Class EmployeeManager {
     }
 }
 
-    
+//Works
+// $eman = new EmployeeManager();
+// $eman->editEmployee(array('First_Name'=>'Wesley'), 'w.geboers@student.avans.nl');
+
 ?>

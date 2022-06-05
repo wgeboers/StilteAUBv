@@ -26,7 +26,7 @@ Class UserManager {
     }
 
     public function updateUserData($userData = array()) {
-		$this->crud->updateProfile($userData, 'users', 'Email', $userData['Email']);
+		$this->crud->update($userData, 'users', 'Email', $userData['Email']);
 	}
 
 	public function setLoggedIn(bool $loggedIn) {

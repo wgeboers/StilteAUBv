@@ -30,7 +30,7 @@ class Employee {
 	}
 
 	public function toArray() {
-		return array($this->id, $this->firstName, $this->middleName, $this->lastName, $this->email, $this->creationDate, $this->active);
+		return array('EmployeeID'=>$this->id, 'First Name'=>$this->firstName, 'Middle Name'=>$this->middleName, 'Last Name'=>$this->lastName, 'Email'=>$this->email, 'Creation Date'=>$this->creationDate, 'ACTIVE'=>$this->active);
 	}
 }
 ?>
