@@ -9,7 +9,6 @@
 		$empData = $e_man->fetchEmployeeData($_SESSION["id"]);
 		if(!empty($empData->getName())) {
 			$name = $empData->getName();
-			$loggedID = $empData->getId();
 		} else {
 			$_SESSION['ErrorMsg'] = 'Wrong login';
 			unset($_SESSION['id']);
@@ -21,7 +20,6 @@
 		$userData = $u_man->fetchUserData($_SESSION['id']);
 		if(!empty($userData->getName())) {
 			$name = $userData->getName()['First Name'];
-			$loggedID = $userData->getId();
 		} else {
 			$_SESSION['ErrorMsg'] = 'Wrong login';
 			unset($_SESSION['id']);
