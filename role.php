@@ -19,6 +19,10 @@ class Role {
 		return $this->name;
 	}
 
+	public function getRoleDesc() {
+		return $this->description;
+	}
+
 	public function setid($id){
 		$this->id = $id;
 	}

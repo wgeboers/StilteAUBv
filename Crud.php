@@ -212,7 +212,6 @@ class Crud extends Database {
 		$update->execute();
 	}
 
-	//doesnt work?
 	public function updateEmployeeRole($role, $id){
 		try {
 			$update = $this->connection->prepare("UPDATE `employees-roles` SET `RoleID` = $role WHERE EmployeeID = $id");

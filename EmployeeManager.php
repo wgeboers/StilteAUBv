@@ -82,12 +82,11 @@ Class EmployeeManager {
     }
     public function insertRole($name, $description) {
 		#Nog veld validatie toevoegen!!!! (js)
-        $data = $this->crud->addRole($name, $description);
+        $this->crud->addRole($name, $description);
     }
 
 	public function editRole($id, $name, $description){
-		#Nog veld validatie toevoegen!!!! (js)
-		$data = $this->crud->updateRole($id, $name, $description);
+		$this->crud->updateRole($id, $name, $description);
 	}
     public function insertEmployee($empData) {
         $this->crud->insert($empData, 'employees');

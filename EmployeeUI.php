@@ -9,6 +9,7 @@ $e_man = new EmployeeManager();
 $o_man = new OrderManager();
 $p_man = new ProductManager();
 
+/** MEDEWERKERS BEGINT HIER */
 if(basename($_SERVER['PHP_SELF']) === 'employeesView.php') {
     $empData = $e_man->getAllEmployees();
     foreach($empData as $rows) {
@@ -88,24 +89,43 @@ if(basename($_SERVER['PHP_SELF']) === 'createEmployeeView.php') {
             </div>";   
 }
 
+/* ROLLEN BEGINT HIER */
 if(basename($_SERVER['PHP_SELF']) === 'rolesView.php') {
     $roles = $e_man->fetchRolesFromDB();
     foreach($roles as $rows) {
         echo "<tr>";
         $row = $rows->toArray(); //cast object to array
+        $linkKey = $row[0];
         foreach($row as $key=>$value) {
-            if(array_key_first($row) === $key) {
-                $linkKey = $key;
-            }
             echo "<td>{$value}</td>";
             if(array_key_last($row) === $key) {
-                echo "<td><a href='rolwijzigen.php?edit={$linkKey}' class='neon-button'>Edit</a></td>";
+                echo "<td><a href='editRoleView.php?edit={$linkKey}' class='neon-button'>Edit</a></td>";
             }
         }
     }
     echo "</tr>";
 }
 
+if(basename($_SERVER['PHP_SELF']) === 'editRoleView.php') {
+    $role = $e_man->fetchSingularRoleFromDB('RoleID', $_GET['edit']);
+    $name = $role->getRoleName();
+    $desc = $role->getRoleDesc();
+    $_SESSION['RoleID'] = $role->getRoleID();
+    echo "<form name='roleUpdateForm' method='post' class='form' action='updateRole.php'>
+    <div class='col-md-4'>
+    <label for='Name' class='form-label'>Naam</label>
+    <input type='text' class='form-control' name='Name' value={$name}>
+    </div>
+    <div class='col-md-4'>
+    <label for='Description' class='form-label'>Beschrijving</label>
+    <input type='text' class='form-control' name='Description' value='{$desc}'>
+    </div>
+    </select></div><div class='col-4 text-center'>
+    <button type='submit' class='btn btn-primary' name='updateRolebtn'>Wijzigen</button>
+    </div>
+    </form>";
+}
+/* BESTELLINGEN BEGINT HIER */
 if(basename($_SERVER['PHP_SELF']) === 'ordersView.php') {
     $orders = $o_man->fetchOrderHeaders();
     $count = 0;
@@ -133,6 +153,7 @@ if(basename($_SERVER['PHP_SELF']) === 'ordersView.php') {
     }
 }
 
+/** ZOEKTERMEN BEGINT HIER */
 if(basename($_SERVER['PHP_SELF']) === 'searchtermsView.php') {
     $searchTerms = $p_man->fetchSearchTerms();
     $count = 0;
@@ -160,6 +181,7 @@ if(basename($_SERVER['PHP_SELF']) === 'searchtermsView.php') {
     }
 }
 
+/** ARTIKELEN BEGINT HIER */
 if(basename($_SERVER['PHP_SELF']) === 'productsView.php') {
     $products = $p_man->fetchProductsFromDB();
     foreach($products as $rows) {
@@ -178,6 +200,7 @@ if(basename($_SERVER['PHP_SELF']) === 'productsView.php') {
     echo "</tr>";
 }
 
+/** AFBEELDINGEN BEGINT HIER */
 if(basename($_SERVER['PHP_SELF']) === 'imagesView.php') {
     $images = $p_man->fetchImagesFromDB();
     $count = 0;
@@ -205,8 +228,6 @@ if(basename($_SERVER['PHP_SELF']) === 'imagesView.php') {
     }
 }
 
-if(basename($_SERVER['PHP_SELF']) === 'editProductView.php') {
 
-}
 
 ?>
