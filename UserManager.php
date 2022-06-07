@@ -18,7 +18,7 @@ Class UserManager {
     public function fetchUserData($id) {
         $results = $this->crud->selectByUser($id, 'users');
 		foreach($results as $result) {
-			$this->user = new User($result["UserID"], $result["First_Name"], $result["Middle_Name"], $result["Last_Name"], $result["Email"], $result["Phone_Number"],
+			$this->user = new User($result["UserId"], $result["First_Name"], $result["Middle_Name"], $result["Last_Name"], $result["Email"], $result["Phone_Number"],
 			$result["Street"], $result["House_Number"], $result["House_Number_Addition"], $result["Zipcode"], $result["City"]);
 		}
 

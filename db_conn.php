@@ -1,6 +1,6 @@
 <?php
 
-class Database {
+class db_conn {
 	private string $host = 'localhost';
 	private string $dbname = 'stilteaubv';
 	
@@ -22,6 +22,4 @@ class Database {
 		return $this->connection;
 	}
 }
-
-
 ?>

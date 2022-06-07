@@ -1,3 +1,8 @@
+::-webkit-scrollbar {
+    display: none;
+  }
+
+
 .overOns{
     background-color: rgb(54, 54, 54);
 }

@@ -16,6 +16,7 @@
 </head>
 
 <body class="orderPage">
+    <div class="parallax">
 		<div class="container hide" id="alertContainer">
 			<div class="alert alert-warning alert-dismissible fade show" id="alertId">
 				<button type="button" class="btn-close" aria-label="Close" id="alertBtn"></button>
@@ -127,10 +128,11 @@
                             </div>
                         </div>
                     </div>
-			</form>
+			</form></div>
         </div>
-        </div>
+        
 	</div>
+    </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"

@@ -1,6 +1,13 @@
-
 <!DOCTYPE html>
-<?php include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI']; ?>
+<?php
+
+include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI'];
+
+require_once ('Langmanager.php');
+require_once ('Crud.php');
+    $crud = new Crud ('root', '');
+
+?>
 <html lang="en">
 <head>
     <title>Silent Disco</title>
@@ -26,9 +33,9 @@
                     <div class="text">
                         <div>
                             <h2>
-                                <span class="hexagonTextChange">Silent Disco</span>
+                               <span class="hexagonTextChange">fill</span>
                             </h2>
-                            <p> Huur een volledige doe-het-zelf Silent Disco set met koptelefoons. Het systeem is makkelijk aan te sluiten op een laptop of op DJ-apparatuur met het door jou gekozen thema pakket. Binnen een mum van tijd organiseer jij zelf een Silent Disco!</p>
+                            <p>fill</p>
                         </div>
                     </div>
                 </div>
@@ -43,13 +50,13 @@
                     </div>
                 </div>
                 <div class="hexagon4">
-                    <a href="webshop.php">
+                    <a href="onsaanbod.php">
                         <div class="shape">
                             <img src="Images/Main4.png" alt="">
                             <div class="text">
                                 <div>
                                     <p>
-                                        Bekijk onze producten!
+                                        fill
                                     </p>
                                 </div>
                             </div>
@@ -91,33 +98,33 @@
             <img src="Images/Up.svg" alt="" class="question">
         </button>
     </div>
-    <div class="form" id="contact">
+    <div class="contact" id="contact">
         <h2>Contactformulier</h2>
         <form id="contactForm" class="row">
             <div class="col-md-6">
-                <label for="firstName" class="form-label">Voornaam</label>
+                <label for="firstName" class="form-label">fill</label>
                 <input type="text" class="form-control" id="firstName">
             </div>
             <div class="col-md-6">
-                <label for="lastName" class="form-label">Achternaam</label>
+                <label for="lastName" class="form-label">fill</label>
                 <input type="text" class="form-control" id="lastName">
             </div>
             <div class="col-md-6">
-                <label for="inputEmail" class="form-label">Email</label>
+                <label for="inputEmail" class="form-label">fill</label>
                 <input type="email" class="form-control" id="inputEmail">
-                <small id="emailHelp" class="form-text text-muted">Wij zullen je email adres niet met andere
-                    delen!</small>
+                <small id="emailHelp" class="form-text text-muted">fill
+                    </small>
             </div>
             <div class="col-md-6">
-                <label for="" class="form-label">Telefoon</label>
+                <label for="" class="form-label">fill</label>
                 <input type="text" class="form-control" id="phoneNumber">
             </div>
             <div class="col-md-12">
-                <label for="subject" class="form-label">Onderwerp</label>
+                <label for="subject" class="form-label">fill</label>
                 <input type="text" class="form-control" id="subject">
             </div>
             <div class="col-md-12">
-                <label for="Textarea1" class="form-label">Omschrijving</label>
+                <label for="Textarea1" class="form-label">fill</label>
                 <textarea class="form-control" id="Textarea1" rows="5"></textarea>
             </div>
             <div class="col-12 text-center">
@@ -130,5 +137,6 @@
         crossorigin="anonymous"></script>
     <script type="text/javascript" src="Script/base.js"></script>
 </body>
+
 
 </html>

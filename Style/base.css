@@ -6,88 +6,9 @@ body, html {
     background-color: rgb(54, 54, 54);
     font-family: 'Bebas Neue', cursive;
 }
-/*Taal wijzigen*/
 
-.lang-menu {
-    width: 100px;
-    text-align: right;
-    font-weight: bold;
-    margin-top: 25px;
-    margin-right: auto;
-    position: relative;
-}
-
-.lang-menu .selected-lang {
-    display: flex;
-    justify-content: space-between;
-    line-height: 2;
-    cursor: pointer;
-}
-
-.lang-menu .selected-lang:before {
-    content: '';
-    display: inline-block;
-    width: 32px;
-    height: 32px;
-    background-size: contain;
-    background-image: url("https://www.worldometers.info/img/flags/nl-flag.gif");
-    background-repeat: no-repeat;
-}
-
-.lang-menu ul {
-    margin: auto;
-    padding: 0;
-    display: none;
-    background-color: transparent;
-    border: 1px solid #f8f8f8;
-    position: absolute;
-    top: 45 px;
-    right: 0px;
-    width: 125px;
-    border-radius: 5px;
-    box-shadow: 0px 1px 10px rgba(0,0,0.2);
-}
-
-.lang-menu ul li {
-    list-style: none;
-    text-align: left;
-    display: flex;
-    justify-content: space-between;
-}
-
-.lang-menu ul li a {
-    text-decoration: none;
-    width: 125px;
-    margin: auto;
-    padding: 10px 15px;
-    display: block;
-}
-
-.lang-menu ul li:hover {
-    background-color: transparent;
-}
-
-.lang-menu ul li a:before {
-    content: '';
-    display: inline-block;
-    width: 25px;
-    height: 25px;
-    vertical-align: middle;
-    margin-right: 10px;
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-.en:before {
-    background-image: url("https://www.worldometers.info/img/flags/uk-flag.gif");
-}
-
-.lang-menu:hover ul {
-    display: block;
-}
-
-/*Einde taal wijzigen*/
 li, a, button {
+    font-family: 'Bebas Neue', cursive;
     font-weight: 500;
     font-size: 16px;
     color: white;
@@ -113,29 +34,8 @@ li, a, button {
 }
 
 .content{
-    margin-left: 160px;
+    font-family: 'Bebas Neue', cursive;
 }
-
-.sidenav {
-    height: 100%;
-    width: 160px;
-    position: fixed;
-    background-color: rgba(29, 29, 29,0.5);
-    padding-top: 20px;
-    z-index: 1;
-}  
-
-.sidenav a {
-    padding: 6px 8px 6px 16px;
-    font-weight: 500;
-    font-size: 20px;
-    color: white;
-    text-decoration: none;
-}
-
-.sidenav a:hover{
-    color: #BB13FE;;
-} 
 
 .navbar{
     background-color: rgba(29, 29, 29,0.5);
@@ -154,13 +54,9 @@ li, a, button {
 "data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(187, 19, 254, 1)' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
-.navbar-nav .nav-item img{
-    height: 30px;
-    color: white;
-}
-
 .navbar-nav .nav-item .nav-link{
     position: relative;
+    font-family: 'Bebas Neue', cursive;
     font-weight: 500;
     font-size: 20px;
     color: white;
@@ -195,10 +91,6 @@ li, a, button {
 
 .navbar-nav .nav-item .nav-link.active:hover{
     color: #8d0fbe;
-}
-
-.cartbtn{
-    height: 20px;
 }
 
 .parallax {
@@ -265,19 +157,21 @@ Scroll buttons
 }
 
 /*
-formulier
+Contact formulier
 */
-.form{
+
+.contact{
     position: relative;
     height: auto;
+    font-family: 'Bebas Neue', cursive;
     padding: 20px;
 }
 
-.form form label{
+.contact form label{
     padding-top: 10px;
 }
 
-.form form input{
+.contact form input{
     background-color: rgb(219, 219, 219);
     border-color: #BB13FE;
     border-width: 2px;
@@ -289,7 +183,7 @@ textarea.form-control{
     border-width: 2px;
 }
 
-.form form input:focus{
+.contact form input:focus{
     border-color: #BB13FE;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 9px #BB13FE;
 }
@@ -299,7 +193,7 @@ textarea.form-control:focus{
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 9px #BB13FE;
 }
 
-.form form button{
+.contact form button{
     width: 100%;
     max-width: 500px;
     margin-top: 10px;
@@ -308,41 +202,48 @@ textarea.form-control:focus{
     border-style: none;
 }
 
-.form form button:hover{
+.contact form button:hover{
     background-color: #8d0fbe;
 }
 
-.customSelect{
-    background-color: rgb(219, 219, 219);
-    border-color: #BB13FE;
-    border-width: 2px;
-    margin-bottom: 20px;
-}
-
-.customSelect:focus{
-    border-color: #BB13FE;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 9px #BB13FE;
-}
-
-.importForm{
-    position: relative;
+#userdata{
+    font-family: 'Bebas Neue', cursive;
     height: auto;
     padding: 20px;
 }
 
-input[type=file]::file-selector-button {
-    border-style: none;
-    color: white;
-    border-radius: 2px;
-    background-color: #BB13FE;
-}
-  
-input[type=file]::file-selector-button:hover {
-    background-color: #8d0fbe;
+.container{  
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 15px;
 }
 
-.importForm button{
-    width: 50%;
+#userdata form input{
+    background-color: rgb(219, 219, 219);
+    border-color: #BB13FE;
+    border-width: 2px;
+    margin-bottom: 10px;
+}
+
+#userdata form select{
+    background-color: rgb(219, 219, 219);
+    border-color: #BB13FE;
+    border-width: 2px;
+    margin-bottom: 10px;
+}
+
+#userdata form select:focus{
+    border-color: #BB13FE;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 9px #BB13FE;
+}
+
+#userdata form input:focus{
+    border-color: #BB13FE;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 9px #BB13FE;
+}
+
+#userdata form button{
+    width: 100%;
     max-width: 500px;
     margin-top: 10px;
     color: white;
@@ -350,59 +251,76 @@ input[type=file]::file-selector-button:hover {
     border-style: none;
 }
 
-.importForm button:hover{
+#userdata form button:hover{
     background-color: #8d0fbe;
 }
 
-.importForm a{
+.row-right{
+    float: right;
+    text-align: right;
+}
+
+.row-left{
+    float: left;
+    width: 100%;
+}
+
+.card{
+    background-color: rgba(0, 0, 0, 0.0);
+    border-style: none;
+    max-width: 700px;
+}
+
+.card h2{
+    font-size: 60px;
     color: #BB13FE;
 }
 
-.importForm a:hover{
-    color: #8d0fbe;
+.card p{
+    font-size: 20px;
 }
 
-/*
-Table
-*/
-.table{
-    background: rgba(29, 29, 29,0.5);
-    border-radius: 5px;
-    border-collapse: collapse;
-    color: white;
+.card .cardButton{
+    color: #BB13FE;
+    background-color: rgba(0, 0, 0, 0.0);
+    border-style: none;
 }
 
-tbody tr {
-    transition: background 0.25s ease;
-  }
-
-tbody tr:hover {
-background: #353535;
+.companyImg{
+    max-width: 200px;
+    margin-bottom: 20px;
+    padding: 10px;
 }
 
-/*
-NEON button
-*/
-.neon-button{
-    background-color: transparent;
-    display: inline-block;
-    cursor: pointer;
+.companySocial{
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 20px;
+}
+
+.companySocial a{
     text-decoration: none;
-    color: #BB13FE;
-    border: currentColor 0.125em solid;
-    padding: 0.25em 1em;
-    border-radius: 0.25em;
-    text-shadow: 0 0 0.125em rgb(104, 104, 104), 0 0 0.5em currentColor;
-    box-shadow: inset 0 0 0.5em 0 currentColor, 0 0 0.5em 0 currentColor;
-}
-
-.neon-button:hover,
-.neon-button:focus{
-    background: #BB13FE;
     color: white;
-    text-shadow: none;
 }
 
+.hide {
+	display: none;
+}
+
+#alertContainer {
+	text-align: center;
+}
+
+@media print{
+    #userdata form input{
+        border-color: #000;
+    }
+
+    #userdata form select{
+        border-color: #000;
+    }
+    
+}
 @media print{
     h1, h2, h3, p{
         color: #000;

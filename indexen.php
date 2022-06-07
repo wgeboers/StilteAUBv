@@ -16,18 +16,6 @@
     <meta name="keywords" content="SilentDisco, Music, Headset, Party, Dance, Disco">
 </head>
 <body class='homePage'>
-<nav>
-    <div class="lang-menu">
-        <div class="selected-lang">
-            English
-        </div>
-        <ul>
-            <li>
-                <a href="index.php" class="nl">Nederlands</a>
-            </li>
-        </ul>
-    </div>
-</nav>
 <div class="parallax">
     <div class="content">
         <div class="container">
