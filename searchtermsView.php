@@ -25,6 +25,7 @@
             <form method="post" action="searchExport.php">
                 <div class="col-12 text-center">
                     <input type="submit" name="export_excel" value="Export" class="neon-button">
+                    <input type="submit" name="delete_searchterms" value="Verwijder" class="neon-button">
                 </div>
             </form>
         </div>

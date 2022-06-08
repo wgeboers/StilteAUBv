@@ -1,10 +1,10 @@
 <?php
     $output = '';
-
+    require_once('crud.php');
+    $crud= new Crud('root', '');
     if(isset($_POST["export_excel"])){
-        require_once('crud.php');
-        $classA = new Crud('root', '');
-        $searchData = $classA->getTable('searchhistories');
+        
+        $searchData = $crud->getTable('searchhistories');
 
         if($searchData > 0){
             $output .= '
@@ -32,4 +32,17 @@
             echo $output;
         }
     }
+
+    if(isset($_POST['delete_searchterms'])) {
+        $crud->delete('searchhistories', NULL, NULL);
+    }
+
+    if(isset($_SESSION['url'])) {
+		$url = $_SESSION['url'];
+	} else {
+		$url = "/stilteaubv/index.php";
+	}
+	header("Location: https://localhost$url");
+	exit();
+
 ?>

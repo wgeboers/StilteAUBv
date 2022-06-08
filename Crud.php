@@ -25,11 +25,28 @@ class Crud extends Database {
 			return $e;
 		}
 	}
+
+	public function delete($table, $where, $param) {
+		if(isset($where) && isset($param)) {
+			try {
+				$statement = $this->connection->prepare("DELETE FROM {$table} WHERE {$where} = {$param}");
+				$statement->execute();
+			} catch(PDOException $e) {
+				echo $e;
+			}
+		} else {
+			try {
+				$statement = $this->connection->prepare("DELETE FROM {$table}");
+				$statement->execute();
+			} catch(PDOException $e) {
+				echo $e;
+			}
+		}
+	}
 	
 	#Values are bound in the while-loop based on position in the array
 	#2 counters (i, j), because for some reason bindParam starts at 1 instead of 0 with the assignment of data to the query.
 	public function insertUser(array $data) {
-		
 		try {
 			$insert = $this->connection->prepare("INSERT INTO `users` (`First_Name`, `Last_Name`, `Email`, `Phone_Number`, `Password`, `Street`, `House_Number`, `Zipcode`, `City`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			$i = 0;
@@ -374,27 +391,5 @@ class Crud extends Database {
 			echo $e;
 		}
 	}
-
-
-	
-	// GetType{
-	// 	SELECT 
-	// 		'Medewerker' as Type,
-	// 		`First_Name`,
-	// 		`Middle_Name`,
-	// 		`Last_Name`,
-	// 		`Email`,
-	// 		`Password`
-	// 	FROM `employees`
-	// 	UNION
-	// 	SELECT 
-	// 		'Klant' as Type,
-	// 		`First_Name`,
-	// 		`Middle_Name`,
-	// 		`Last_Name`,
-	// 		`Email`,
-	// 		`Password`
-	// 	FROM `users`;
-	// }
 }
 ?>
