@@ -17,7 +17,7 @@
 
     <?php 
         if(isset($_SESSION['id']) && $_SESSION['type'] === 'user') {
-            include('UserUI.php');
+            include('sidenav.php');
         } elseif(isset($_SESSION['id']) && $_SESSION['type'] === 'employee') {
             include('sidenav.php');
         }
