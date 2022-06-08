@@ -35,14 +35,16 @@
 
     if(isset($_POST['delete_searchterms'])) {
         $crud->delete('searchhistories', NULL, NULL);
+        
+        if(isset($_SESSION['url'])) {
+            $url = $_SESSION['url'];
+        } else {
+            $url = "/stilteaubv/searchtermsView.php";
+        }
+        header("Location: https://localhost$url");
+        exit();
     }
 
-    if(isset($_SESSION['url'])) {
-		$url = $_SESSION['url'];
-	} else {
-		$url = "/stilteaubv/index.php";
-	}
-	header("Location: https://localhost$url");
-	exit();
+    
 
 ?>

@@ -15,7 +15,7 @@ if(!empty($_POST['addproduct'])) {
 	if(isset($_SESSION['url'])) {
 		$url = $_SESSION['url'];
 	} else {
-		$url = "index.php";
+		$url = "/stilteaubv/index.php";
 	}
 	header("Location: https://localhost$url");
 	exit();
