@@ -8,12 +8,16 @@ if(!empty($_POST['addproduct'])) {
 
 	echo$price;
 
-	require_once("product.php");
-	$product = new Product();
-	$add = $product->insertProduct($name, $description, $stock, $price);
+	require_once("ProductManager.php");
+	$pman= new ProductManager();
+	$pman->insertProduct($name, $description, $stock, $price ,'', '' ,'');
 
-	$url = "artikelen.php";
-	header("Location: ".$url);
+	if(isset($_SESSION['url'])) {
+		$url = $_SESSION['url'];
+	} else {
+		$url = "index.php";
+	}
+	header("Location: https://localhost$url");
 	exit();
 }
 ?>

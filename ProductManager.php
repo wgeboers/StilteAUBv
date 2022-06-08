@@ -43,7 +43,7 @@ class ProductManager {
 
     public function insertProduct($name, $description, $stock, $price){
 		#Nog veld validatie toevoegen!!!!
-        $data = $this->crud->addProduct($name, $description, $stock, $price);
+        $data = $this->crud->addProduct($name, $description, $stock, $price ,'' ,'' ,'');
     }
 
 	public function insertProductLog($id, $name, $description, $stock, $price){
