@@ -35,7 +35,7 @@ class User {
 	}
 
 	public function getName() {
-		return array('First Name'=>$this->firstName, 'Middle Name'=>$this->midName, 'Last Name'=>$this->lastName);
+		return $this->firstName;
 	}
 
 	public function getEmail() {

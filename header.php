@@ -1,9 +1,9 @@
 <?php	
 	session_start();
-	
+	$name = '';
 	#Login and loading of user/employee information happens here.
 	#Don't touch if you don't have to.
-	if(isset($_SESSION["id"]) && !empty($_SESSION["id"]) && isset($_SESSION['type'])) {
+	if(isset($_SESSION["id"]) && !empty($_SESSION["id"]) && $_SESSION['type'] === 'employee') {
 		require_once("EmployeeManager.php");
 		$e_man = new EmployeeManager();
 		$empData = $e_man->fetchEmployeeData('EmployeeID', $_SESSION["id"]);
@@ -11,18 +11,18 @@
 			$name = $empData->getName();
 		} else {
 			$_SESSION['ErrorMsg'] = 'Wrong login';
-			unset($_SESSION['id']);
+			
 		}
 		#unset($e_man); //This object wont be used for anything but displaying a user's name.
-	} elseif(isset($_SESSION["id"]) && !empty($_SESSION["id"])) {
+	} elseif(isset($_SESSION["id"]) && !empty($_SESSION["id"]) && $_SESSION['type'] === 'user') {
 		require_once("UserManager.php");
 		$u_man = new UserManager();
 		$userData = $u_man->fetchUserData($_SESSION['id']);
 		if(!empty($userData->getName())) {
-			$name = $userData->getName()['First Name'];
+			$name = $userData->getName();
 		} else {
 			$_SESSION['ErrorMsg'] = 'Wrong login';
-			unset($_SESSION['id']);
+			
 		}
 		#unset($e_man); //This object wont be used for anything but displaying an employee's name.
 	}
@@ -45,14 +45,6 @@
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="index.php" id="index">Home</a>
                         </li>
-						<!--
-                        <li class="nav-item">
-                            <a class="nav-link" href="onsaanbod.php" id="onsaanbod">Ons aanbod</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="bestelnu.php" id="bestelnu">Bestel nu!</a>
-                        </li>
-						-->
 						<li class="nav-item">
                             <a class="nav-link" aria-current="page" href="webshop.php" id="webshop">Webshop</a>
                         </li>
@@ -60,7 +52,7 @@
                             <a class="nav-link" href="overons.php" id="overons">Over ons</a>
                         </li>
 						<li class="nav-item">
-							<a class="nav-link"  href="klantportaal.php" id="klantportaal">Klantportaal</a>
+							<a class="nav-link"  href="dashboardView.php" id="klantportaal">Dashboard</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link"  href="medewerkersportaal.php" id="medewerkersportaal">Medewerkersportaal</a>

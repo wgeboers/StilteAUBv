@@ -11,21 +11,19 @@
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="Style/base.css">
-    <link rel="stylesheet" type="text/css" href="Style/index.css">
+    <link rel="stylesheet" type="text/css" href="Style/medewerkersportaal.css">
 </head>
-<body class='homepage'>
-    <div class="parallax">
-        <?php 
-        //Includes for functionality within the webpage here!!!
-        //TODO: EmployeeUI with employee based functionality.
-        //CSS preferably done here, because it will be consistent with employee/user.
-        //If impossible, make sure UserUI has the same CSS as EmployeeUI.
-        include('UserUI.php'); 
-        //include('EmployeeUI.php');
-        ?>
+<body class='medewerkersportaal'>
+
+    <?php 
+        if(isset($_SESSION['id']) && $_SESSION['type'] === 'user') {
+            include('UserUI.php');
+        } elseif(isset($_SESSION['id']) && $_SESSION['type'] === 'employee') {
+            include('sidenav.php');
+        }
+    ?>
         
         
-    </div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
