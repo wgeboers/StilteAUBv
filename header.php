@@ -54,10 +54,6 @@
 						<li class="nav-item">
 							<a class="nav-link"  href="dashboardView.php" id="klantportaal">Dashboard</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link"  href="medewerkersportaal.php" id="medewerkersportaal">Medewerkersportaal</a>
-						</li>
-
 						<?php if(!isset($_SESSION["id"])) {
 						?>
 						<form action="./login.php" method="post" name="loginForm" class="form-inline" onSubmit="return validate();">
