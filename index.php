@@ -3,10 +3,13 @@
 
 include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI'];
 
-require_once ('Langmanager.php');
 require_once ('Crud.php');
     $crud = new Crud ('root', '');
 
+?>
+<?php
+    if(!empty($result)){
+    foreach($result as $k=>$v){
 ?>
 <html lang="en">
 <head>
@@ -33,7 +36,7 @@ require_once ('Crud.php');
                     <div class="text">
                         <div>
                             <h2>
-                               <span class="hexagonTextChange">fill</span>
+                               <span class="hexagonTextChange"><?php echo $result[$k][$lang.'_title']; ?></span>
                             </h2>
                             <p>fill</p>
                         </div>
@@ -137,6 +140,9 @@ require_once ('Crud.php');
         crossorigin="anonymous"></script>
     <script type="text/javascript" src="Script/base.js"></script>
 </body>
-
+<?php
+}
+}
+?>
 
 </html>

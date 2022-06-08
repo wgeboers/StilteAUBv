@@ -183,27 +183,27 @@ class Crud extends Database
         }
 
     }
-}
 
+class Langmenu
+{
 
-class Langmenu{
-    function Langmenu(){
-        $nl_title = get_class($this);
-        echo 'test of hier'.$nl_title. 'komt te staan.';
-        if (strcmp($nl_title,'A')==0)
-            echo 'Silent Disco';
-        else if(strcmp($en_title,'B')==0)
-            echo 'Silent Disco!';
-        echo ".\n";}
-}
+    private $ds;
 
-class Langmenuen extends Langmenu{
-    function Langmenuen()
+    function __construct__()
     {
-        $this->Langmenu();
+        require_once __DIR__ . './../lib/stilteaubv.sql';
+        $this->ds = new DataSource();
+    }
+
+    public function getAllRecords()
+    {
+        $query = 'select * from tbl_langmenu';
+        $result = $this->ds->select($query);
+        return $result;
     }
 }
+}
 
-$object1 = new Langmenu();
-$object2 = new Langmenuen();
+
+
 ?>
