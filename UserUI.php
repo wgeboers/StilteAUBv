@@ -31,21 +31,41 @@ if(basename($_SERVER['PHP_SELF']) === 'userInfo.php') {
 }
 
 if(basename($_SERVER['PHP_SELF']) === 'userOrders.php') {
-    $orders = $oman->fetchSingularOrderHeader($_SESSION['id']);
+    $orders = $oman->fetchOrderHeadersByUser($_SESSION['id']);
     $count = 0;
     echo "<table class='table'>";
     foreach($orders as $rows) {
+        $linkKey = $rows['HeaderID']; //used to change values.
+        unset($rows['HeaderID'], $rows['Order_By'], $rows['Finished_Date']);
         if($count < 1) {
             echo "<thead><tr>";
             foreach(array_keys($rows) as $keys) {
-                echo "<th scope='col'>{$keys}</th>";
+                switch($keys) {
+                    case 'Total_Price':
+                        $trans = 'Totaalprijs';
+                        break;
+                    case 'Deliver_Adres':
+                        $trans = 'Bezorgadres';
+                        break;
+                    case 'Deliver_Zipcode':
+                        $trans = 'Postcode';
+                        break;
+                    case 'Deliver_City':
+                        $trans = 'Stad';
+                        break;
+                    case 'Creation_Date':
+                        $trans = 'Besteldatum';
+                        break;
+                    default:
+                        break;
+                }
+                echo "<th scope='col'>{$trans}</th>";
             }
             $count++;
             echo "</tr></thead>
                 <tbody>
                 <tr>";
         }
-        $linkKey = $rows['HeaderID'];
         foreach($rows as $key=>$value) {
             echo "<td name={$key}>{$value}</td>";
         }
