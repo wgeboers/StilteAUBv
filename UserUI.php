@@ -7,7 +7,8 @@ $oman = new OrderManager();
 
 if(basename($_SERVER['PHP_SELF']) === 'userInfo.php') {
     
-    
+    $count = 0;
+    $translationArray = array();
     if(isset($_SESSION['id']) && !empty($_SESSION['id'])) {
         $user = $uman->fetchUserData($_SESSION['id']);
         $userData = array();
@@ -19,9 +20,48 @@ if(basename($_SERVER['PHP_SELF']) === 'userInfo.php') {
     echo "<form name='userDataForm' id='userdata' method='POST' action='userForm.php'>";
     foreach($userData as $key=>$value) {
         echo "<div class='col-md-3'>";
-        echo "<label for='{$key} class='form-label'>{$key}</label>";
+        foreach(array_keys($userData) as $keys) {
+            switch($keys) {
+                case 'First Name':
+                    array_push($translationArray, 'Voornaam');
+                    break;
+                case 'Middle Name':
+                    array_push($translationArray, 'tussenvoegsel');
+                    break;
+                case 'Last Name':
+                    array_push($translationArray, 'Achternaam');
+                    break;
+                case 'Phone Number':
+                    array_push($translationArray, 'Telefoonnummer');
+                    break;
+                case 'Street':
+                    array_push($translationArray, 'Straat');
+                    break;
+                case 'House Number':
+                    array_push($translationArray, 'Huisnummer');
+                    break;
+                case 'House Number Addition':
+                    array_push($translationArray, 'Toevoeging');
+                    break;
+                case 'Zipcode':
+                    array_push($translationArray, 'Postcode');
+                    break;
+                case 'City':
+                    array_push($translationArray, 'Stad');
+                    break;
+                default:
+                    break;
+            }
+        }
+        if($key !== 'Email') {
+            $trans = $translationArray[$count];
+            echo "<label for='{$key} class='form-label'>{$trans}</label>";
+        } else {
+            echo "<label for='{$key} class='form-label'>{$key}</label>";
+            }
         echo "<input type='text' class='form-control' name='{$key}' value={$value}>";
         echo "</div>";
+        $count++;
         if(array_key_last($userData) == $key) {
             echo "<br><div class='col-3 text-center'>
             <button type='submit' class='btn btn-primary' name='changeBtn'>Change</button>";
