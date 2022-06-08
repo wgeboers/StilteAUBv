@@ -93,35 +93,35 @@
     </div>
     <div class="form" id="contact">
         <h2>Contactformulier</h2>
-        <form id="contactForm" class="row">
+        <form action="./contactForm.php" method="post" id="contactForm" class="row">
             <div class="col-md-6">
                 <label for="firstName" class="form-label">Voornaam</label>
-                <input type="text" class="form-control" id="firstName">
+                <input type="text" class="form-control" id="firstName" name="firstName">
             </div>
             <div class="col-md-6">
                 <label for="lastName" class="form-label">Achternaam</label>
-                <input type="text" class="form-control" id="lastName">
+                <input type="text" class="form-control" id="lastName" name="lastName">
             </div>
             <div class="col-md-6">
                 <label for="inputEmail" class="form-label">Email</label>
-                <input type="email" class="form-control" id="inputEmail">
+                <input type="email" class="form-control" id="inputEmail" name="inputEmail">
                 <small id="emailHelp" class="form-text text-muted">Wij zullen je email adres niet met andere
                     delen!</small>
             </div>
             <div class="col-md-6">
                 <label for="" class="form-label">Telefoon</label>
-                <input type="text" class="form-control" id="phoneNumber">
+                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
             </div>
             <div class="col-md-12">
                 <label for="subject" class="form-label">Onderwerp</label>
-                <input type="text" class="form-control" id="subject">
+                <input type="text" class="form-control" id="subject" name="subject">
             </div>
             <div class="col-md-12">
                 <label for="Textarea1" class="form-label">Omschrijving</label>
-                <textarea class="form-control" id="Textarea1" rows="5"></textarea>
+                <input type="text" class="form-control" id="description" name="description">
             </div>
             <div class="col-12 text-center">
-                <button type="submit" id="contactButton" class="btn btn-primary">Verstuur</button>
+                <button type="submit" id="contactButton" name="contactForm" class="btn btn-primary">Verstuur</button>
             </div>
         </form>
     </div>

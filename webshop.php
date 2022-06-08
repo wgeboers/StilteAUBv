@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<?php include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI']; ?>
+<?php 
+    include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI']; 
+    require_once('ProductManager.php');
+    $ProductManager = new ProductManager();
+?>
 <head>
     <title>Silent Disco</title>
    <meta charset="UTF-8">
@@ -15,7 +19,7 @@
 </head>
 
 <body class="webshop">
-    <div class="main">
+    <div class="main">    
         <div class="container">
             <?php
                 require_once('crud.php');
