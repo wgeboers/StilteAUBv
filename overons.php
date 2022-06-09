@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<?php include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI']; include('LangManager.php');
+<?php include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI']; 
+        include('LangManager.php');
         $langManager = new LangManager();
         $content = $langManager->getContents("overons.php");
         $titles = $langManager->getTitles();
