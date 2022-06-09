@@ -247,8 +247,7 @@ if(basename($_SERVER['PHP_SELF']) === 'ProductEditView.php') {
         </div>";
     }
     echo "<label for='image' class='form-label'>Afbeelding</label>
-    <select name='image' id='image' class='form-select customSelect' aria-label='Default select example'>
-    <option value='{$imName}' selected>{$imName}</option>";
+    <select name='image' id='image' class='form-select customSelect' aria-label='Default select example'>";
     foreach($images as $rows) {
         $imID = $rows->getImageID();
         $imName = $rows->getImageName();

@@ -14,11 +14,7 @@ if(isset($_POST['updateOrderBtn'])) {
 		$update = $order->editOrder($id, $status, NULL);
 	}
 	
-	if(isset($_SESSION['url'])) {
-		$url = $_SESSION['url'];
-	} else {
-		$url = "index.php";
-	}
+	$url = '/stilteaubv/ordersView.php';
 	header("Location: https://localhost$url");
 	exit();
 }

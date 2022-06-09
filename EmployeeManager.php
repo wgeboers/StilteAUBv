@@ -40,7 +40,7 @@ Class EmployeeManager {
     }
 
 	public function getEmployeeID() {
-		return $this->employee->getId();
+		return $this->employee->getEmployeeID();
 	}
     
     #function used to log a employee in, automatically checks for an end employee or employee login
@@ -49,7 +49,7 @@ Class EmployeeManager {
 	public function login($email, $password) {		
 		$validation = $this->crud->validateUser($email, $password, 'employees');
 		if(!empty($validation)) {
-			$_SESSION['id'] = $validation[0];
+			$_SESSION['id'] = $validation;
             $_SESSION['type'] = 'employee';
             $this->loggedIn = true;
 		} else {

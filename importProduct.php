@@ -14,11 +14,7 @@
     }
 
     fclose($fh);
-    if(isset($_SESSION['url'])) {
-		$url = $_SESSION['url'];
-	} else {
-		$url = "/index.php";
-	}
+    $url = 'stilteaubv/productsView.php';
 	header("Location: https://localhost$url");
 	exit();
 ?>

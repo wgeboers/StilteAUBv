@@ -29,11 +29,11 @@
 
             $oman->insertLine($headerid, $productid, $amount, $linePrice);
         }
-
+        unset($_SESSION['cart']);
         if(isset($_SESSION['url'])) {
             $url = $_SESSION['url'];
         } else {
-            $url = "index.php";
+            $url = "/stilteaubv/index.php";
         }
         header("Location: https://localhost$url");
         exit();

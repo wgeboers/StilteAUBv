@@ -19,10 +19,10 @@
             foreach($searchData as $rows){
                 $output .= '
                     <tr>
-                        <td>'.$rows->SearchID.'</td>
-                        <td>'.$rows->Search_Description.'</td>
-                        <td>'.$rows->Passed.'</td>
-                        <td>'.$rows->Creation_Date.'</td>
+                        <td>'.$rows['SearchID'].'</td>
+                        <td>'.$rows['Search_Description'].'</td>
+                        <td>'.$rows['Passed'].'</td>
+                        <td>'.$rows['Creation_Date'].'</td>
                     </tr>
                 ';
             }

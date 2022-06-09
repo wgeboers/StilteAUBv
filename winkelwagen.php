@@ -19,6 +19,7 @@
         <div class="container">
             <div>
                 <?php
+                    if(isset($_SESSION['cart'])) {
                     $cart = explode("|",$_SESSION['cart']);
                     $total = 0;
                     $i = 0;
@@ -53,11 +54,12 @@
                         }
                     }
                     }
+                }
                 ?> 
             </div>
             <div class="orderDetails">
                 <div class="orderTotal">
-                    <h2>Totaal: <?php echo "€".number_format($total, 2, ',', '.'); ?></h2>
+                    <h2>Totaal: <?php if(isset($total))  echo "€".number_format($total, 2, ',', '.'); ?></h2>
                 </div>
                 <div class="form"> 
                     <form action="./checkout.php" method="post" name="checkoutForm" id="checkoutForm">

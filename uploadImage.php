@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $target_dir = "Images/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
@@ -10,19 +11,31 @@
         $uploadOk = 1;
       } else {
         $uploadOk = 0;
-        echo "Het bestand is geen afbeelding";
+        //echo "Het bestand is geen afbeelding";
+        $_SESSION['ErrorMsg'] = "Het bestand is geen afbeelding";
+        $url = '/stilteaubv/imagesView.php';
+        header("Location: ".$url);
+        exit();
       }
     }
 
     // Check if file already exists
     if (file_exists($target_file)) {
         $uploadOk = 0;
-        echo "Sorry, het bestand bestaat al";
+        //echo "Sorry, het bestand bestaat al";
+        $_SESSION['ErrorMsg'] = "Sorry, het bestand bestaat al";
+        $url = '/stilteaubv/imagesView.php';
+        header("Location: ".$url);
+        exit();
     }
 
     if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
         $uploadOk = 0;
-        echo "Sorry, wij accepteren alleen jpg, png, jpeg of gif";
+        //echo "Sorry, wij accepteren alleen jpg, png, jpeg of gif";
+        $_SESSION['ErrorMsg'] = "Sorry, wij accepteren alleen jpg, png, jpeg of gif";
+        $url = '/stilteaubv/imagesView.php';
+        header("Location: ".$url);
+        exit();
     }
 
     if ($uploadOk == 0) {
@@ -40,12 +53,14 @@
           $pman = new ProductManager();
           $add = $pman->insertImage($fileName, $filePath);
 
-          $url = "afbeeldingen.php";
+          $url = '/stilteaubv/imagesView.php';
           header("Location: ".$url);
           exit();
 
           } else {
-          echo "Sorry, er is een probleem ontstaan bij het uploaden.";
+          //echo "Sorry, er is een probleem ontstaan bij het uploaden.";
+          $_SESSION['ErrorMsg'] = "Sorry, er is een probleem ontstaan bij het uploaden.";
           }
     }
+
 ?>

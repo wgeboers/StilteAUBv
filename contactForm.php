@@ -78,5 +78,8 @@ if(isset($_POST['contactForm'])) {
 } else {
     echo "Formulier kon niet worden verstuurd.";
 }
+    $url = "/stilteaubv/index.php";
+	header("Location: https://localhost$url");
+	exit();
 
 ?>
