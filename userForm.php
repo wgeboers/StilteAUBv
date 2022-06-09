@@ -11,12 +11,8 @@ if(isset($_POST['changeBtn'])) {
     $u_man = new UserManager();
     $u_man->updateUserData($userData);
     $u_man->fetchUserData($_SESSION['id']);
-    if(isset($_SESSION['url'])) {
-		$url = $_SESSION['url'];
-	} else {
-		$url = "index.php";
-	}
-	header("Location: https://localhost$url");
-	exit();
+    
+    header("Location: https://localhost$url");
+    exit();
 }
 ?>

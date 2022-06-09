@@ -66,6 +66,7 @@
 								<label for="psw"></label><span id="psw_info">Password:</span>
 								<input type="text" name="psw" id="psw">
 								<button type="submit" name="login" value="Login">Login</button>
+								
 							</div>
 							<div class="form-group form-inline">
 								<label for="chkbox">Employee: </label>
@@ -75,6 +76,7 @@
 						<?php
 						}
 						?>
+						<a href='registerView.php'><button type="button"name="register" value="Register">Registreer</button></a>
 						<?php if(isset($_SESSION["id"])) {
 						?>
 						<div class="user-dashboard">Welcome <b> <?php echo $name; ?></b><br>

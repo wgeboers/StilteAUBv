@@ -25,6 +25,10 @@ Class UserManager {
         return $this->user;
     }
 
+	public function insertUserIntoDB($userData = array()) {
+		$this->crud->insert($userData, 'users');
+	}
+
     public function updateUserData($userData = array()) {
 		$this->crud->update($userData, 'users', 'Email', $userData['Email']);
 	}
@@ -57,5 +61,6 @@ Class UserManager {
 		header("Location: https://localhost$url");
 		return false;
 	}
+	
 }
 ?>

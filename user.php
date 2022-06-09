@@ -13,6 +13,7 @@ class User {
 	private ?string $houseNrAdd;
 	private string $zipcode;
 	private string $city;
+	private ?string $password;
 
 	
 	function  __construct($id, $firstName, $midName, $lastName, $email, $phoneNr, $street, $houseNr, $houseNrAdd, $zipcode, $city) {
@@ -50,9 +51,18 @@ class User {
 		return array($this->street, $this->houseNr, $this->houseNrAdd, $this->zipcode, $this->city);
 	}
 
+	public function setPassword($password) {
+		$this->password = $password;
+	}
+
 	public function getAllData() {
-		return array('First Name'=>$this->firstName, 'Middle Name'=>$this->midName, 'Last Name'=>$this->lastName, 'Email'=>$this->email, 'Phone Number'=>$this->phoneNr,
+		if(isset($this->password)) {
+			return array('First Name'=>$this->firstName, 'Middle Name'=>$this->midName, 'Last Name'=>$this->lastName, 'Email'=>$this->email, 'Phone Number'=>$this->phoneNr,
+		'Street'=>$this->street, 'House Number'=>$this->houseNr, 'House Number Addition'=>$this->houseNrAdd, 'Zipcode'=>$this->zipcode, 'City'=>$this->city, 'Password'=>$this->password);
+		} else {
+			return array('First Name'=>$this->firstName, 'Middle Name'=>$this->midName, 'Last Name'=>$this->lastName, 'Email'=>$this->email, 'Phone Number'=>$this->phoneNr,
 		'Street'=>$this->street, 'House Number'=>$this->houseNr, 'House Number Addition'=>$this->houseNrAdd, 'Zipcode'=>$this->zipcode, 'City'=>$this->city);
+		}
 	}
 }
 ?>
