@@ -25,14 +25,14 @@
                     foreach($cart as $products){
 
                         $product = explode(",", $products);
-
-                        if(strlen(trim($product[1])) <> 0){
-                            require_once('ProductManager.php');
-                            $p = new ProductManager();
-                            $id=$product[0];
-                            $pObj = $p->fetchSingleProduct($id);
-                            $lineprice = $product[1] * $pObj->getPrice();
-                            $i++;
+                        if(!empty($product)) {
+                            if(strlen(trim($product[1])) <> 0){
+                                require_once('ProductManager.php');
+                                $p = new ProductManager();
+                                $id=$product[0];
+                                $pObj = $p->fetchSingleProduct($id);
+                                $lineprice = $product[1] * $pObj->getPrice();
+                                $i++;
                         
                 ?>
                 <div class="card">
@@ -51,6 +51,7 @@
                 <?php
                     $total = $total + $lineprice;
                         }
+                    }
                     }
                 ?> 
             </div>

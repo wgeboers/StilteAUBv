@@ -25,6 +25,8 @@ Class OrderManager {
 
 	public function insertLine($headerid, $productid, $amount, $linePrice) {
         $data = $this->crud->addOrderLine($headerid, $productid, $amount, $linePrice);
+        $this->lineid = $data;
+        return $this->lineid;
     }
 
     public function fetchOrderHeaders() {
