@@ -1,17 +1,6 @@
 <!DOCTYPE html>
-<?php
-
-include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI'];
-
-require_once ('Crud.php');
-    $crud = new Crud ('root', '');
-
-?>
-<?php
-    if(!empty($result)){
-    foreach($result as $k=>$v){
-?>
-<html lang="en">
+<?php include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI']; ?>
+<html>
 <head>
     <title>Silent Disco</title>
     <meta charset="UTF-8">
@@ -103,35 +92,35 @@ require_once ('Crud.php');
     </div>
     <div class="contact" id="contact">
         <h2>Contactformulier</h2>
-        <form id="contactForm" class="row">
+        <form action="./contactForm.php" method="post" id="contactForm" class="row">
             <div class="col-md-6">
-                <label for="firstName" class="form-label">fill</label>
-                <input type="text" class="form-control" id="firstName">
+                <label for="firstName" class="form-label">Voornaam</label>
+                <input type="text" class="form-control" id="firstName" name="firstName">
             </div>
             <div class="col-md-6">
-                <label for="lastName" class="form-label">fill</label>
-                <input type="text" class="form-control" id="lastName">
+                <label for="lastName" class="form-label">Achternaam</label>
+                <input type="text" class="form-control" id="lastName" name="lastName">
             </div>
             <div class="col-md-6">
-                <label for="inputEmail" class="form-label">fill</label>
-                <input type="email" class="form-control" id="inputEmail">
-                <small id="emailHelp" class="form-text text-muted">fill
-                    </small>
+                <label for="inputEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="inputEmail" name="inputEmail">
+                <small id="emailHelp" class="form-text text-muted">Wij zullen je email adres niet met andere
+                    delen!</small>
             </div>
             <div class="col-md-6">
-                <label for="" class="form-label">fill</label>
-                <input type="text" class="form-control" id="phoneNumber">
+                <label for="" class="form-label">Telefoon</label>
+                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
             </div>
             <div class="col-md-12">
-                <label for="subject" class="form-label">fill</label>
-                <input type="text" class="form-control" id="subject">
+                <label for="subject" class="form-label">Onderwerp</label>
+                <input type="text" class="form-control" id="subject" name="subject">
             </div>
             <div class="col-md-12">
-                <label for="Textarea1" class="form-label">fill</label>
-                <textarea class="form-control" id="Textarea1" rows="5"></textarea>
+                <label for="Textarea1" class="form-label">Omschrijving</label>
+                <input type="text" class="form-control" id="description" name="description">
             </div>
             <div class="col-12 text-center">
-                <button type="submit" id="contactButton" class="btn btn-primary">Verstuur</button>
+                <button type="submit" id="contactButton" name="contactForm" class="btn btn-primary">Verstuur</button>
             </div>
         </form>
     </div>

@@ -5,25 +5,28 @@
 
 .overOns{
     background-color: rgb(54, 54, 54);
+    background-image: url("../Images/overons.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    font-size: 20px;
 }
 
 .container{
     display: flex;
     flex-direction: row;
-    justify-content: left;
+    gap: 200px;
+    padding-top: 20px;
 }
 
-.overonsColorChange{
-    color: #BB13FE;
+.child{
+    background-color: rgba(29, 29, 29,0.5);
+    padding: 20px;
+    border-radius: 5px;
 }
 
 #logoOverOns{
-    max-width: 200px;
-    padding: 20px;
-    border: 5px solid;
-    border-color: #BB13FE;
-    border-radius: 15px;
-    box-shadow: 0 0 10px #BB13FE;
+    width: 250px;
 }
 
 @media screen and (max-width: 600px) {

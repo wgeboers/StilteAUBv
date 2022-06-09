@@ -42,7 +42,7 @@ if (empty($_SESSION['cart']))
 }
 
 // Verwijder de 'oude' winkelwagen en bouw een nieuwe
-session_unset($_SESSION['cart']);
+unset($_SESSION['cart']);
 $_SESSION['cart'] = $newCart;
 
 // En terugsturen

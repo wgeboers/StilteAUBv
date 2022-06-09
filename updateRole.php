@@ -1,16 +1,19 @@
 <?php
-if(!empty($_POST['updaterole'])) {
+if(isset($_POST['updateRolebtn'])) {
 	session_start();
-    $id = $_GET['id'];
-	$name = $_POST["name"];
-	$description = $_POST["description"];
+    require_once("EmployeeManager.php");
+	$e_man = new EmployeeManager();
+	var_dump($_SESSION['RoleID']);
+	$role = $e_man->fetchSingularRoleFromDB('RoleID', $_SESSION['RoleID']);
+	unset($_SESSION['RoleID']);
+	$e_man->editRole($role->getRoleID(), $_POST['Name'], $_POST['Description']);
 
-    require_once("role.php");
-	$role = new Role();
-	$update = $role->editRole($id, $name, $description);
-
-	$url = "rollen.php";
-	header("Location: ".$url);
-    exit();
+	if(isset($_SESSION['url'])) {
+		$url = $_SESSION['url'];
+	} else {
+		$url = "index.php";
+	}
+	header("Location: https://localhost$url");
+	exit();
 }
 ?>

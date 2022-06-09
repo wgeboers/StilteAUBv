@@ -1,22 +1,30 @@
 <?php
 
-require_once("Crud.php");
-
 class Image {
 	
-	public $crud;
+	protected $imageID;
+	protected $imageName;
+	protected $imageFilePath;
 
-	public $id;
-	public $fileName;
-	public $filePath;
-	
-	function  __construct() {
-		$this->crud = new Crud('root', '');
+	public function __construct($imageID, $imageName, $imageFilePath) {
+		$this->imageID = $imageID;
+		$this->imageName = $imageName;
+		$this->imageFilePath = $imageFilePath;
+	}
+	public function getImageName() {
+		return $this->imageName;
 	}
 
-    public function insertImage($fileName, $filePath) {
-        $data = $this->crud->addImage($fileName, $filePath);
-    }
+	public function getImageID() {
+		return $this->imageID;
+	}
 
+	public function getImageFilePath() {
+		return $this->imageFilePath;
+	}
+
+	public function toArray() {
+		return array('ImageID'=>$this->imageID, 'Name'=>$this->imageName, 'FilePath'=>$this->imageFilePath);
+	}
 }
 ?>

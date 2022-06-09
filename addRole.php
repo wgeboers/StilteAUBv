@@ -4,11 +4,11 @@ if(!empty($_POST['addrole'])) {
 	$name = $_POST["name"];
 	$description = $_POST["description"];
 
-	require_once("role.php");
-	$role = new Role();
-	$add = $role->insertRole($name, $description);
+	require_once("EmployeeManager.php");
+	$e_man = new EmployeeManager();
+	$add = $e_man->insertRole($name, $description);
 
-	$url = "rollen.php";
+	$url = "rolesView.php";
 	header("Location: ".$url);
 	exit();
 }
