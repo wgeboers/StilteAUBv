@@ -31,6 +31,9 @@ if(basename($_SERVER['PHP_SELF']) === 'userInfo.php') {
                 case 'Last Name':
                     array_push($translationArray, 'Achternaam');
                     break;
+                case 'Email':
+                    array_push($translationArray, 'Email');
+                    break;
                 case 'Phone Number':
                     array_push($translationArray, 'Telefoonnummer');
                     break;
@@ -53,12 +56,8 @@ if(basename($_SERVER['PHP_SELF']) === 'userInfo.php') {
                     break;
             }
         }
-        if($key !== 'Email') {
-            $trans = $translationArray[$count];
-            echo "<label for='{$key} class='form-label'>{$trans}</label>";
-        } else {
-            echo "<label for='{$key} class='form-label'>{$key}</label>";
-            }
+        $trans = $translationArray[$count];
+        echo "<label for='{$key}' class='form-label'>{$trans}</label>";
         echo "<input type='text' class='form-control' name='{$key}' value={$value}>";
         echo "</div>";
         $count++;
