@@ -47,9 +47,9 @@ Class UserManager {
 	public function login($email, $password) {		
 		$validation = $this->crud->validateUser($email, $password, 'users');
 		if(!empty($validation)) {
-			$_SESSION['id'] = $validation[0];
+			$_SESSION['id'] = $validation;
             $_SESSION['active'] = true;
-			return $validation[0];
+			return $validation;
 		} else {
 			$_SESSION["ErrorMsg"] = 'wrong pass/username';
 		}
@@ -61,6 +61,6 @@ Class UserManager {
 		header("Location: https://localhost$url");
 		return false;
 	}
-	
+
 }
 ?>
