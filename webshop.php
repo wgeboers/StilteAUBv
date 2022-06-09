@@ -42,7 +42,7 @@
                         <p><?php echo $rows['Description']?></p>
                         <h3><?php echo "€" . $rows['Price'];?></h3>
                         <div class="shopFlex">
-                            <input type="number" class="form-control" placeholder="Aantal" name="hoeveelheid" id="hoeveelheid" value=0>
+                            <input type="number" class="form-control" placeholder="Aantal" name="hoeveelheid" id="hoeveelheid" value=0 min="0">
                             <button type="submit" name="addcart" value="addcart" class="shopbtn" id="addBtn">
                                 <img src="./Images/basket-shopping-solid.svg" alt="basket">
                             </button>

@@ -35,7 +35,7 @@
 <link rel="stylesheet" type="text/css" href="Style/base.css">
 <script src="https://kit.fontawesome.com/f05c166ad5.js" crossorigin="anonymous"></script>
     <nav class="navbar sticky-top navbar-expand-lg navbar-light">
-        <div class="container-fluid">
+        <div class="container-fluid" onclick="hidePopup()">
             <a class="navbar-brand">
                 <img src="Images/Logo.png" alt="" width="60" height="auto">
             </a>
@@ -58,11 +58,28 @@
 					<li class="nav-item">
 						<a class="nav-link"  href="dashboardView.php" id="Dashboard">Dashboard</a>
 					</li>
-					<!-- <li class="nav-item">
-						<a class="nav-link"  href="medewerkersportaal.php" id="medewerkersportaal">Medewerkersportaal</a>
-					</li> -->
 				</ul>
 				<ul class="navbar-nav position-absolute end-0 mx-3">
+					<?php 
+					if(isset($_SESSION['lang']) && !empty($_SESSION['lang'])) {
+						if($_SESSION['lang'] == 'lang_en') {
+							$buttonVal = 'Nederlands';
+							echo "<form class = 'LangForm' name='lang_form' action='change_lang.php' method='POST'>
+							<button type='submit' name='langButton' value='{$buttonVal}'>
+							<img src='./Images/nl.svg' alt='DutchFlag'>
+							</button>
+							</form>";
+						} 
+						if($_SESSION['lang'] == 'lang_nl') {
+							$buttonVal = 'English';
+							echo "<form class = 'LangForm' name='lang_form' action='change_lang.php' method='POST'>
+							<button type='submit' name='langButton' value='{$buttonVal}'>
+							<img src='./Images/gb.svg' alt='EnglishFlag'>
+							</button>
+							</form>";
+						}
+					}
+					?>
 					<?php
 						if (empty($_SESSION['cart'])) {
 							echo "<li class='nav-btn'>";
@@ -91,38 +108,24 @@
 				</ul>
 			</div>
 		</div>
-		<?php 
-						
-						if(isset($_SESSION['lang']) && !empty($_SESSION['lang'])) {
-							if($_SESSION['lang'] == 'lang_en') {
-								$buttonVal = 'Nederlands';
-								echo "<form name='lang_form' action='change_lang.php' method='POST'>
-								<button type='submit' name='langButton' value='{$buttonVal}'>{$buttonVal}</button>
-								</form>";
-							} 
-							if($_SESSION['lang'] == 'lang_nl') {
-								$buttonVal = 'English';
-								echo "<form name='lang_form' action='change_lang.php' method='POST'>
-								<button type='submit' name='langButton' value='{$buttonVal}'>{$buttonVal}</button>
-								</form>";
-							}
-						}
-						?>
 	</nav>
 	<div class="form-popup" id="myForm" >
 		<?php if(!isset($_SESSION["id"])) {
 		?>
 		<form action="./login.php" method="post" name="loginForm" class="form-container" onSubmit="return validate();">
-			<h1>Login</h1>
+		<button type="button" class="closeBtn" onclick="closeForm()">
+			<i class="fas fa-times"></i>
+		</button>
+			<h1>Inloggen</h1>
 			<div class="form-group">
 				<label for="email"></label><span id="email_info">Email:</span>
 				<input type="text" name="email" id="email">
-				<label for="psw"></label><span id="psw_info">Password:</span>
+				<label for="psw"></label><span id="psw_info">Wachtwoord:</span>
 				<input type="text" name="psw" id="psw">
-				<label for="chkbox">Employee: </label>
+				<p>Klant maar nog geen account? Druk dan <a href='registerView.php'>hier</a></p>
+				<label for="chkbox">Inloggen als medewerker? Vink aan: </label>
 				<input type="checkbox" name="chkbox" value="Employee">
-				<button type="submit" name="login" value="Login" class="btn">Login</button>
-				<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+				<button type="submit" name="login" value="Login" class="btn">Inloggen</button>
 			</div>
 		</form>
 		<?php
@@ -132,9 +135,11 @@
 		<?php if(isset($_SESSION["id"])) {
 		?>
 		<div class="form-container">
-			<h1>Welcome <?php echo $name; ?></h1>
+			<h1>Welkom <?php echo $name; ?></h1>
 			<a href="./logout.php" class="btn">Logout</a>
-			<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+			<button type="button" class="closeBtn" onclick="closeForm()">
+				<i class="fas fa-times"></i>
+			</button>
 		</div>
 		<?php
 		}
