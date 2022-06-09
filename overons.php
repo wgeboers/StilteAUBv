@@ -1,7 +1,12 @@
 <!DOCTYPE html>
-<?php include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI']; ?>
+<?php include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI']; include('LangManager.php');
+        $langManager = new LangManager();
+        $content = $langManager->getContents("overons.php");
+        $titles = $langManager->getTitles();
+        $texts = $langManager->getTexts();
+?>
 <head>
-    <title>Silent Disco</title>
+    <title><?php echo "$titles[0]"; ?></title>
    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/jpg" href="Images/Logo.png" />
@@ -18,14 +23,10 @@
     <div class="container-fluid text-white">
         <div class="row">
             <div class="col-xs-6 col-md-8 p-5 content">
-                <p> Wij zijn 4 jonge gasten die zelf van een feestje houden. Dit hebben wij natuurlijk ook moeten missen door de noodzakelijke restricties van COVID-19.
-                    Door deze restricties is het helaas niet meer mogelijk om in grote groepen te genieten van activiteiten. 
-                    Vandaar dat Stilte AUBv op het idee is gekomen om silent disco’s te leveren. Door de ervaring van een concert, 
-                    disco of nachtclub in de woonkamer van jou te krijgen hopen wij deze tijden ook weer wat gemoedelijker voor jou te maken. 
+                <p> <?php echo $texts[0]; ?>
                 </p>
                 <p>
-                    Wij hebben als doel om het organiseren van een silent disco zo makelijk mogelijk te maken vandaar dat je bij ons een vooraf gedefineerd theme pakket huurt.
-                    Dit pakket bevat alle benodigde apparatuur en muziek wat ervoor zorgt dat het voor jou plug and play is.
+                    <?php echo $texts[1]; ?>
                 </p>
                 <p>
             </div>
@@ -34,15 +35,15 @@
                     <img id="logoOverOns" src="Images/Logo.png" />
                 </p>
                 <p>
-                    <span class="overonsColorChange">NAAM: </span>STILTE AUBV<br>
-                    <span class="overonsColorChange">ADRES: </span>HOGESCHOOLLAAN 1<br>
-                    <span class="overonsColorChange">POSTCODE: </span>4818 CR<br>
-                    <span class="overonsColorChange">PLAATS: </span>BREDA<BR>
+                    NAAM: STILTE AUBV<br>
+                    ADRES: HOGESCHOOLLAAN 1<br>
+                    POSTCODE: 4818 CR<br>
+                    PLAATS: >BREDA<BR>
                 </p>
                 <p>
-                    <span class="overonsColorChange">TEL: </span>088 5698475<br>
-                    <span class="overonsColorChange">E-MAIL: </span>info@stilteaubv.nl<br>
-                    <span class="overonsColorChange">KVK: </span>8978676748<br>
+                    TEL: 088 5698475<br>
+                    E-MAIL: info@stilteaubv.nl<br>
+                    KVK: 8978676748<br>
                 </p>
             </div>
         </div>

@@ -391,5 +391,16 @@ class Crud extends Database {
 			echo $e;
 		}
 	}
+
+    public function getLanguageContent($titleLang, $contentLang, $link) {
+        try {
+            $stmnt = $this->connection->prepare("SELECT {$titleLang}, {$contentLang} FROM `content` WHERE `link` = '$link'");
+            $stmnt->execute();
+            return $stmnt->fetchall(PDO::FETCH_ASSOC);
+
+        } catch(PDOException $e) {
+            echo $e;
+        }
+    }
 }
 ?>

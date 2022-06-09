@@ -1,6 +1,9 @@
 <?php	
 	session_start();
 	$name = '';
+	if(!isset($_SESSION['lang'])) {
+		$_SESSION['lang'] = 'lang_nl';
+	}
 	#Login and loading of user/employee information happens here.
 	#Don't touch if you don't have to.
 	if(isset($_SESSION["id"]) && !empty($_SESSION["id"]) && $_SESSION['type'] === 'employee') {
@@ -72,24 +75,6 @@
 						<?php
 						}
 						?>
-
-						<?php
-							if (empty($_SESSION['cart'])) {
-								echo "Winkelwagen is leeg\n";
-							} else {
-								$cart2 = explode("|",$_SESSION['cart']);
-
-								$count = count($cart2);
-								if ($count == 1) {
-									echo "1 product ";
-								} else {
-									echo $count." producten ";
-								}
-								echo "in <a href=\"winkelwagen.php\">winkelwagen</a>\n";
-
-							}
-						?>
-
 						<?php if(isset($_SESSION["id"])) {
 						?>
 						<div class="user-dashboard">Welcome <b> <?php echo $name; ?></b><br>
@@ -98,6 +83,44 @@
 						<?php
 						}
 						?>
+						<?php
+							if(isset($_SESSION['id']) && $_SESSION['type'] === 'user') {
+								if (empty($_SESSION['cart'])) {
+									echo "Winkelwagen is leeg\n";
+								} else {
+									$cart2 = explode("|",$_SESSION['cart']);
+
+									$count = count($cart2);
+									if ($count == 1) {
+										echo "1 product ";
+									} else {
+										echo $count." producten ";
+									}
+									echo "in <a href=\"winkelwagen.php\">winkelwagen</a>\n";
+
+								}
+							}
+						?>
+						
+						<?php 
+						
+						if(isset($_SESSION['lang']) && !empty($_SESSION['lang'])) {
+							if($_SESSION['lang'] == 'lang_en') {
+								$buttonVal = 'Nederlands';
+								echo "<form name='lang_form' action='change_lang.php' method='POST'>
+								<button type='submit' name='langButton' value='{$buttonVal}'>{$buttonVal}</button>
+								</form>";
+							} 
+							if($_SESSION['lang'] == 'lang_nl') {
+								$buttonVal = 'English';
+								echo "<form name='lang_form' action='change_lang.php' method='POST'>
+								<button type='submit' name='langButton' value='{$buttonVal}'>{$buttonVal}</button>
+								</form>";
+							}
+						}
+						?>
+							
+						
                     </ul>
                 </div>
             </div>

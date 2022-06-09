@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 <?php include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI']; ?>
-<html lang="en">
+<html>
 <head>
     <title>Silent Disco</title>
     <meta charset="UTF-8">
