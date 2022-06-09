@@ -19,14 +19,14 @@
         <div class="container">
             <div>
                 <?php
-                    if(isset($_SESSION['cart'])) {
+                    if(isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
                     $cart = explode("|",$_SESSION['cart']);
                     $total = 0;
                     $i = 0;
                     foreach($cart as $products){
 
                         $product = explode(",", $products);
-                        if(!empty($product)) {
+                        if(!empty($product) && isset($product)) {
                             if(strlen(trim($product[1])) <> 0){
                                 require_once('ProductManager.php');
                                 $p = new ProductManager();

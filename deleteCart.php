@@ -6,7 +6,7 @@ session_start();
 if (empty($_SESSION['cart']))
 {
 // Nee, ga terug
-header("Location: winkelwagen.php");
+header("Location: https://localhost/stiltaubv/winkelwagen.php");
 } else {
 // Bestaat wel, weghalen
 unset($_SESSION['cart']);

@@ -27,7 +27,7 @@
         } else {
             $cart2 = explode("|",$_SESSION['cart']);
         
-            $count = count($cart);
+            $count = count($cart2);
         
             $add = TRUE;
             
