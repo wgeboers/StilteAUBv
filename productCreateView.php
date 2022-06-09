@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <?php 
     include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI'];
-
-    require_once('role.php');
-    $id=$_GET['edit'];
-    $role = new Role();
-    $role->id = $id;
-    $role->readOne();
 ?>
 <head>
     <title>Silent Disco</title>
@@ -23,32 +17,33 @@
 </head>
 
 <body class="medewerkers">
-    <div class="sidenav">
-        <a href="medewerkers.php">Medewerkers</a>
-        <a href="rollen.php">Rollen</a>
-        <a href="bestellingen.php">Bestellingen</a>
-        <a href="zoektermen.php">Zoektermen</a>
-        <a href="artikelen.php">Artikelen</a>
-        <a href="afbeeldingen.php">Afbeeldingen</a>
-    </div>
+    <?php include('sidenav.php'); ?>
     <div class="content">
         <div class="main">
-            <div id="rollen" class="form">
-                <form action="./updateRole.php?id=<?php echo $id; ?>" method="post" name="roleForm" id="roleForm">
+            <div id="artikel" class="form">
+                <form action="./addProduct.php" method="post" name="artikelForm" id="artikelForm">
                     <div class="container">
                         <div class="row">
-                            <h2>Rol wijzigen</h2>
+                            <h2>Artikel aanmaken</h2>
                             <div class="col-md-12">
                                 <label for="name" class="form-label">Naam</label>
-                                <input type="text" class="form-control" placeholder="Naam" name="name" id="name" value='<?php echo $role->Name; ?>'>
+                                <input type="text" class="form-control" placeholder="Naam" name="name" id="name">
                             </div>
                             <div class="col-md-12">
                                 <label for="description" class="form-label">Omschrijving</label>
-                                <input type="text" class="form-control" placeholder="Omschrijving" name="description" id="description" value='<?php echo $role->Description; ?>'>
+                                <input type="text" class="form-control" placeholder="Omschrijving" name="description" id="description">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="stock" class="form-label">Voorraad</label>
+                                <input type="number" class="form-control" placeholder="Voorraad" name="stock" id="stock">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="price" class="form-label">Prijs</label>
+                                <input type="number" class="form-control" placeholder="Prijs" name="price" id="price" in="0" value="0" step="any">
                             </div>
                         </div>
                         <div class="col-12 text-center">
-                            <button type="submit" name="updaterole" value="updaterole" class="btn btn-primary" id="addBtn">Rol wijzigen</button>
+                            <button type="submit" name="addproduct" value="addproduct" class="btn btn-primary" id="addBtn">Artikel aanmaken</button>
                         </div>
                     </div>
                 </form>

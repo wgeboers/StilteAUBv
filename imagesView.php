@@ -9,55 +9,29 @@
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="Style/base.css">
-    <link rel="stylesheet" type="text/css" href="Style/rollen.css">
+    <link rel="stylesheet" type="text/css" href="Style/afbeeldingen.css">
     <meta name="description" content="Huur een volledige doe-het-zelf Silent Disco set met koptelefoons. Binnen een mum van tijd organiseer jij zelf een Silent Disco!">
     <meta name="keywords" content="SilentDisco, Music, Headset, Party, Dance, Disco">
 </head>
 
 <body class="medewerkersportaal">
-    <div class="sidenav">
-        <a href="medewerkers.php">Medewerkers</a>
-        <a href="rollen.php">Rollen</a>
-        <a href="bestellingen.php">Bestellingen</a>
-        <a href="zoektermen.php">Zoektermen</a>
-        <a href="artikelen.php">Artikelen</a>
-        <a href="afbeeldingen.php">Afbeeldingen</a>
-    </div>
+    <?php include('sidenav.php'); ?>
     <div class="content">
-        <div class="main">
-            <H2>Rollen</H2>
+    <div class="main">
+        <H2>Afbeeldingen</H2>
             <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Naam</th>
-                        <th scope="col">Omschrijving</th>
-                        <th scope="col">Aanmaak Datum</th>
+                        <th scope="col">Bestandsnaam</th>
+                        <th scope="col">Bestandslocatie</th>
                         <th></th>
                     </tr>
                 </thead>
-                <tbody>
-                    <?php
-                        require_once('crud.php');
-                        $classA = new Crud('root', '');
-                        $roleData = $classA->getTable('roles');
-
-                        foreach($roleData as $rows){
-                    ?>
-                    <tr>
-                        <td><?php echo $rows->RoleID;?></td>
-                        <td><?php echo $rows->Name;?></td>
-                        <td><?php echo $rows->Description;?></td>
-                        <td><?php echo $rows->Creation_Date;?></td>
-                        <td><a href="rolwijzigen.php?edit=<?php echo $rows->RoleID;?>" class="neon-button">Edit</a></td>
-                    </tr>
-                    <?php
-                        }
-                    ?>       
-                </tbody>
+                <?php include('EmployeeUI.php'); ?>
             </table>
             <div class="col-12 text-center">
-                <a href="rolaanmaken.php" class="neon-button">Rol aanmaken</a>
+                <a href="imagesImportView.php" class="neon-button">Afbeelding uploaden</a>
             </div>
         </div>
     </div>

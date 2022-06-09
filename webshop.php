@@ -24,23 +24,23 @@
             <?php
                 require_once('crud.php');
                 $classA = new Crud('root', '');
-                $productData = $classA->getProducts('products');
+                $productData = $classA->getProducts();
 
                 foreach($productData as $rows){
             ?>
             <div class="card">
                 <div class= "cardContent">
-                    <form action="addCart.php?id=<?php echo $rows->ProductID;?>" method="post">
+                    <form action="addCart.php?id=<?php echo $rows['ProductID'];?>" method="post">
                         <img src=<?php 
-                            if(empty($rows->ImagePath)){
+                            if(empty($rows['ImagePath'])){
                                 echo"./Images/Logo.png";
                             } else {
-                                echo "./".$rows->ImagePath;
+                                echo "./".$rows['ImagePath'];
                             }
                         ?> alt="Logo">
-                        <h1><?php echo $rows->Name;?></h1>
-                        <p><?php echo $rows->Description;?></p>
-                        <h3><?php echo "€" . $rows->Price;?></h3>
+                        <h1><?php echo $rows['Name'];?></h1>
+                        <p><?php echo $rows['Description']?></p>
+                        <h3><?php echo "€" . $rows['Price'];?></h3>
                         <div class="shopFlex">
                             <input type="number" class="form-control" placeholder="Aantal" name="hoeveelheid" id="hoeveelheid" value=0>
                             <button type="submit" name="addcart" value="addcart" class="shopbtn" id="addBtn">

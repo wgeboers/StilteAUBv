@@ -25,8 +25,12 @@ Class UserManager {
         return $this->user;
     }
 
+	public function insertUserIntoDB($userData = array()) {
+		$this->crud->insert($userData, 'users');
+	}
+
     public function updateUserData($userData = array()) {
-		$this->crud->updateProfile($userData, 'users', $userData['Email']);
+		$this->crud->update($userData, 'users', 'Email', $userData['Email']);
 	}
 
 	public function setLoggedIn(bool $loggedIn) {
@@ -43,9 +47,9 @@ Class UserManager {
 	public function login($email, $password) {		
 		$validation = $this->crud->validateUser($email, $password, 'users');
 		if(!empty($validation)) {
-			$_SESSION['id'] = $validation[0];
+			$_SESSION['id'] = $validation;
             $_SESSION['active'] = true;
-			return $validation[0];
+			return $validation;
 		} else {
 			$_SESSION["ErrorMsg"] = 'wrong pass/username';
 		}
@@ -57,5 +61,6 @@ Class UserManager {
 		header("Location: https://localhost$url");
 		return false;
 	}
+
 }
 ?>

@@ -1,34 +1,36 @@
 <?php
-if(!empty($_POST['updateproduct'])) {
+if(isset($_POST['updateproduct'])) {
 	session_start();
-    $id = $_GET['id'];
+    $id = $_SESSION['ProductID'];
 	$imageId = $_POST['image'];
-	$name = $_POST["name"];
-	$description = $_POST["description"];
-    $stock = $_POST["stock"];
-    $price = $_POST["price"];
+	$name = $_POST["Name"];
+	$description = $_POST["Desc"];
+    $stock = $_POST["Stock"];
+    $price = $_POST["Price"];
 
-    require_once("product.php");
-	$product = new Product();
-	$update = $product->editProduct($id, $name, $description, $stock, $price);
-	$insert = $product->insertProductLog($id, $name, $description, $stock, $price);
-
-	require_once('crud.php');
-	$classA = new Crud('root', '');
-	$productImageData = $classA->getProductsImages('products-images');
+    require_once("ProductManager.php");
+	$p = new ProductManager();
+	$update = $p->editProduct($id, $name, $description, $stock, $price);
+	$insert = $p->insertProductLog($id, $name, $description, $stock, $price);
+	$productImageData = $p->getProductsImages();
 	
 	foreach($productImageData as $rows){
-		$arr[] = $rows->ProductID;
+		$arr[] = $rows['ProductID'];
+		
 	}
 
 	if (in_array($id, $arr)){
-		$update = $product->updateProductImage($id, $imageId);
+		$update = $p->updateProductImage($id, $imageId);
 	} else{
-		$update = $product->insertProductImage($id, $imageId);
+		$update = $p->insertProductImage($id, $imageId);
 	}
 
-	$url = "artikelen.php";
-	header("Location: ".$url);
-    exit();
+	if(isset($_SESSION['url'])) {
+		$url = $_SESSION['url'];
+	} else {
+		$url = "index.php";
+	}
+	header("Location: https://localhost$url");
+	exit();
 }
 ?>

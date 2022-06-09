@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<?php include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI']; ?>
+<?php 
+    include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI'];
+?>
 <head>
     <title>Silent Disco</title>
    <meta charset="UTF-8">
@@ -9,53 +11,37 @@
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="Style/base.css">
-    <link rel="stylesheet" type="text/css" href="Style/bestellingen.css">
+    <link rel="stylesheet" type="text/css" href="Style/medewerkers.css">
     <meta name="description" content="Huur een volledige doe-het-zelf Silent Disco set met koptelefoons. Binnen een mum van tijd organiseer jij zelf een Silent Disco!">
     <meta name="keywords" content="SilentDisco, Music, Headset, Party, Dance, Disco">
 </head>
-
-<body class="medewerkersportaal">
-    <div class="sidenav">
-        <a href="medewerkers.php">Medewerkers</a>
-        <a href="rollen.php">Rollen</a>
-        <a href="bestellingen.php">Bestellingen</a>
-        <a href="zoektermen.php">Zoektermen</a>
-        <a href="artikelen.php">Artikelen</a>
-        <a href="afbeeldingen.php">Afbeeldingen</a>
-    </div>
+<body class="medewerkers">
+    <?php include('sidenav.php'); ?>
     <div class="content">
-    <div class="main">
-        <H2>Bestellingen</H2>
+        <div class="main">
+            <H2>Medewerkers</H2>
             <table class="table">
                 <thead>
                     <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Voornaam</th>
+                        <th scope="col">Tussenvoegsel</th>
+                        <th scope="col">Achternaam</th>
+                        <th scope="col">Email</th>
                         <th scope="col">Aanmaak Datum</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Adres</th>
-                        <th scope="col">Finish_Date</th>
+                        <th scope="col">Actief</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                        require_once('crud.php');
-                        $classA = new Crud('root', '');
-                        $orderData = $classA->getTable('orderheaders');
-
-                        foreach($orderData as $rows){
-                    ?>
-                    <tr>
-                        <td><?php echo $rows->Creation_Date;?></td>
-                        <td><?php echo $rows->Status;?></td>
-                        <td><?php echo $rows->Deliver_Adres;?></td>
-                        <td><?php echo $rows->Finished_Date;?></td>
-                        <td><a href="bestellingdetail.php?edit=<?php echo $rows->HeaderID;?>" class="neon-button">Details</a></td>
-                    </tr>
-                    <?php
-                        }
-                    ?>       
+                        require_once('EmployeeUI.php');
+                    ?>    
                 </tbody>
             </table>
+            <div class="col-12 text-center">
+                <a href="createEmployeeView.php" class="neon-button">Medewerker aanmaken</a>
+            </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"

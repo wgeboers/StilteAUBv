@@ -9,22 +9,19 @@
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="Style/base.css">
-    <link rel="stylesheet" type="text/css" href="Style/medewerkersportaal.css">
+    <link rel="stylesheet" type="text/css" href="Style/medewerkers.css">
     <meta name="description" content="Huur een volledige doe-het-zelf Silent Disco set met koptelefoons. Binnen een mum van tijd organiseer jij zelf een Silent Disco!">
     <meta name="keywords" content="SilentDisco, Music, Headset, Party, Dance, Disco">
 </head>
 
-<body class="medewerkersportaal">
-    <div class="sidenav">
-        <a href="medewerkers.php">Medewerkers</a>
-        <a href="rollen.php">Rollen</a>
-        <a href="bestellingen.php">Bestellingen</a>
-        <a href="zoektermen.php">Zoektermen</a>
-        <a href="artikelen.php">Artikelen</a>
-        <a href="afbeeldingen.php">Afbeeldingen</a>
-    </div>
+<body class="medewerkers">
+    <?php include('sidenav.php'); ?>
     <div class="content">
-
+        <div class="main">
+            <div id="rollen" class="form">
+                <?php include('EmployeeUI.php'); ?>
+            </div>
+        </div>    
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"

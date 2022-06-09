@@ -1,35 +1,43 @@
 <?php
 
-require_once("Crud.php");
 
 class Role {
-	
-	public $crud;
 
-	public $id;
-	public $Name;
-	public $Description;
+	private int $RoleID;
+	private string $name;
+	private string $description;
+	private string $creationDate;
 	
-	function  __construct() {
-		$this->crud = new Crud('root', '');
+	function  __construct($id, $name, $description, $creationDate) {
+		$this->id = $id;
+		$this->name = $name;
+		$this->description = $description;
+		$this->creationDate = $creationDate;
 	}
 	
-	public function readOne(){
-		$id =$this->id;
-		$row = $this->crud->getRole('roles', $id);
-
-		$this->Name = $row['Name'];
-		$this->Description = $row['Description'];
+	public function getRoleName() {
+		return $this->name;
 	}
 
-    public function insertRole($name, $description) {
-		#Nog veld validatie toevoegen!!!!
-        $data = $this->crud->addRole($name, $description);
-    }
+	public function getRoleDesc() {
+		return $this->description;
+	}
 
-	public function editRole($id, $name, $description){
-		#Nog veld validatie toevoegen!!!!
-		$data = $this->crud->updateRole($id, $name, $description);
+	public function setid($id){
+		$this->id = $id;
+	}
+
+	public function setname($name) {
+		$this->name = $name;
+	}
+
+	public function getRoleID() {
+		return $this->id;
+	}
+
+	//To cast object to array for easy data reading in UI.
+	public function toArray() {
+		return array($this->id, $this->name, $this->description, $this->creationDate);
 	}
 }
 ?>

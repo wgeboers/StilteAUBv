@@ -13,19 +13,23 @@ if(!empty($_POST['login'])) {
 		$u_man = new UserManager();
 		$u_man->login($email, $password);
 		$_SESSION['active'] = true;
-		if(isset($u_man))
+		if(isset($u_man)) {
 			$u_man->fetchUserData($_SESSION['id']);
+			$_SESSION['type'] = 'user';
+		}
 	} else {
 		require_once("EmployeeManager.php");
 		$e_man = new EmployeeManager();
 		$e_man->login($email, $password);
-		if($e_man->getLoggedIn())
-			$e_man->fetchEmployeeData($_SESSION['id']);
+		if($e_man->getLoggedIn()) {
+			$e_man->fetchEmployeeData('EmployeeID', $_SESSION['id']);
+			$_SESSION['type'] = 'employee';
+		}
 	}
 	if(isset($_SESSION['url'])) {
 		$url = $_SESSION['url'];
 	} else {
-		$url = "index.php";
+		$url = "/stilteaubv/index.php";
 	}
 	header("Location: https://localhost$url");
 	exit();

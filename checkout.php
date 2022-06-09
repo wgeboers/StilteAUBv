@@ -10,36 +10,32 @@
         $deliverZipcode = $_POST["zipcode"];
         $deliverCity = $_POST["city"];
 
-        require_once("order.php");
-        $order = new Order();
-        $data = $order->insertHeader($deliverAdres, $deliverZipcode, $deliverCity);
+        require_once("OrderManager.php");
+        $oman = new OrderManager();
+        $data = $oman->insertHeader($deliverAdres, $deliverZipcode, $deliverCity);
         $headerid = $data;
 
         foreach($cart as $products){
             $product = explode(",",$products);
 
-            require_once('product.php');
+            require_once('ProductManager.php');
             $id=$product[0];
-            $result = new Product();
-            $result->id = $id;
-            $result->readOne();
-            $pro_cart = $result;
+            $pman = new ProductManager();
+            $pObj = $pman->fetchSingleProduct($id);
 
             $amount = $product[1];
-            $linePrice = $product[1] * $pro_cart->price;
-            $productid = $pro_cart->id;
+            $linePrice = $product[1] * $pObj->getPrice();
+            $productid = $pObj->getProductID();
 
-            require_once("order.php");
-            $order = new Order();
-            $data = $order->insertLine($headerid, $productid, $amount, $linePrice);
+            $oman->insertLine($headerid, $productid, $amount, $linePrice);
         }
 
-        // Sluit de sessie
-            if(isset($_SESSION['cart']))
-            unset($_SESSION['cart']);
-
-        $url = "index.php";
-        header("Location: ".$url);
+        if(isset($_SESSION['url'])) {
+            $url = $_SESSION['url'];
+        } else {
+            $url = "index.php";
+        }
+        header("Location: https://localhost$url");
         exit();
     }
 ?>

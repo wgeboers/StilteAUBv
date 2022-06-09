@@ -1,57 +1,46 @@
 <?php
 
-require_once("Crud.php");
+require_once('Image.php');
 
-class Product {
+class Product extends Image {
 	
-	public $crud;
 
-	public $id;
-	public $imageId;
-	public $imageName;
-	public $imagePath;
-	public $name;
-	public $description;
-	public $stock;
-	public $price;
+	private $id;
+	private $name;
+	private $desc;
+	private $stock;
+	private $price;
+	private $creationDate;
 	
-	function  __construct() {
-		$this->crud = new Crud('root', '');
+	function  __construct($id, $name, $desc, $stock, $price, $imageID, $imageName, $imageFilePath) {
+		$this->id = $id;
+		$this->name = $name;
+		$this->desc = $desc;
+		$this->stock = $stock;
+		$this->price = $price;
+		$this->imageID = $imageID;
+		$this->imageName = $imageName;
+		$this->imageFilePath = $imageFilePath;
 	}
 	
-	public function readOne(){
-		$id =$this->id;
-		$row = $this->crud->getProduct('products', $id);
-		$this->name = $row['Name'];
-		$this->description = $row['Description'];
-		$this->stock = $row['Stock'];
-		$this->price = $row['Price'];
-		$this->imageId = $row['ImageID'];
-		$this->imageName = $row['ImageName'];
-		$this->imagePath = $row['ImagePath'];
+	public function toArray() {
+		return array('ID'=>$this->id, 'Name'=>$this->name, 'Desc'=>$this->desc, 'Stock'=>$this->stock, 'Price'=>$this->price, 'imageID'=>$this->imageID, 'imageName'=>$this->imageName, 'imageFilePath'=>$this->imageFilePath);
 	}
 
-    public function insertProduct($name, $description, $stock, $price){
-		#Nog veld validatie toevoegen!!!!
-        $data = $this->crud->addProduct($name, $description, $stock, $price);
-    }
-
-	public function insertProductLog($id, $name, $description, $stock, $price){
-		#Nog veld validatie toevoegen!!!!
-        $data = $this->crud->addProductLog($id, $name, $description, $stock, $price);
-    }
-
-	public function editProduct($id, $name, $description, $stock, $price){
-		#Nog veld validatie toevoegen!!!!
-		$data = $this->crud->updateProduct($id, $name, $description, $stock, $price);
+	public function getPrice() {
+		return $this->price;
 	}
 
-	public function insertProductImage($id, $imageId) {
-        $data = $this->crud->addProductImage($id, $imageId);
-    }
+	public function getName() {
+		return $this->name;
+	}
 
-	public function updateProductImage($id, $imageId) {
-        $data = $this->crud->UpdateProductImage($id, $imageId);
-    }
+	public function getProductID() {
+		return $this->id;
+	}
+
+	
+
+   
 }
 ?>

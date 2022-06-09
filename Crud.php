@@ -16,20 +16,37 @@ class Crud extends Database {
 	#IF THIS DOESNT WORK: CHANGE `id` TO `UserId`... BUT PREFERABLY CHANGE DB ENTRY TO `id` SO ITS A GENERAL QUERY
 	#ELSE WE NEED A SEPARATE QUERY FOR EVERY TABLE, WHICH IS ANNOYING AND BLOAT.
 	#OTHER POSSIBILITY IS GETTING THE ID NAME FROM THE TABLE AND PUTTING IT AS PARAM INTO THE FUNCTION
-	public function select($param, $table = 'users', $where = 'UserId') {
+	public function select($table, $where, $param) {
 		try {
 			$select = $this->connection->prepare("SELECT * FROM {$table} WHERE `{$where}` = '{$param}'");
 			$select->execute();
-			return $select->fetchall(PDO::FETCH_OBJ);
+			return $select->fetchall(PDO::FETCH_ASSOC);
 		} catch(PDOException $e) {
 			return $e;
+		}
+	}
+
+	public function delete($table, $where, $param) {
+		if(isset($where) && isset($param)) {
+			try {
+				$statement = $this->connection->prepare("DELETE FROM {$table} WHERE {$where} = {$param}");
+				$statement->execute();
+			} catch(PDOException $e) {
+				echo $e;
+			}
+		} else {
+			try {
+				$statement = $this->connection->prepare("DELETE FROM {$table}");
+				$statement->execute();
+			} catch(PDOException $e) {
+				echo $e;
+			}
 		}
 	}
 	
 	#Values are bound in the while-loop based on position in the array
 	#2 counters (i, j), because for some reason bindParam starts at 1 instead of 0 with the assignment of data to the query.
 	public function insertUser(array $data) {
-		
 		try {
 			$insert = $this->connection->prepare("INSERT INTO `users` (`First_Name`, `Last_Name`, `Email`, `Phone_Number`, `Password`, `Street`, `House_Number`, `Zipcode`, `City`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			$i = 0;
@@ -49,7 +66,7 @@ class Crud extends Database {
 	#Dynamically generated sql statement 'updateProfile' based on given array, table & user/employee email
 	#Input: Array with key=>value using column names from the given mysql, email is the value used to identify the row to update.
 	#Testable in test.php; for output check the database.
-	public function updateProfile($data = array(), $table, $email) {
+	public function update($data = array(), $table, $where, $param) {
 		$keys = array_keys($data);
 		$updateData = array_values($data);
 		$values = NULL;
@@ -62,7 +79,7 @@ class Crud extends Database {
 			}
 		}
 		try {
-			$statement = "UPDATE {$table} SET {$values} WHERE `email` = '{$email}'";
+			$statement = "UPDATE {$table} SET {$values} WHERE {$where} = '{$param}'";
 			$insert = $this->connection->prepare($statement);
 			$insert->execute();
 		} catch(PDOException $e) {
@@ -73,7 +90,7 @@ class Crud extends Database {
 	#Dynamically generated sql statement 'insert' based on a given array and a given table
 	#Input : Array with key=>value using column names from the given mysql table.
 	#Testable in test.php; for output check the database.
-	public function insert($data = array(), $table = 'users') {
+	public function insert($data = array(), $table) {
 		$keys = array_keys($data);
 		$insertData = array_values($data);
 		$values = NULL;
@@ -94,14 +111,7 @@ class Crud extends Database {
 		}
 	}
 	
-	#Generic delete, based on the table and a row id, only works if id is generic.
-	public function deleteData($table, $id, $where) {
-		$delete= $this->connection->prepare("DELETE FROM {$table} WHERE {$where} = {$id}");
-		$delete->execute();
-		return true;
-	}
-	
-	public function selectByUser(int $id, $table) {
+	public function selectByUser($id, $table) {
 		try {
 			$select = $this->connection->prepare("SELECT * FROM {$table} WHERE `UserID` = {$id}");
 			$select->execute();
@@ -110,9 +120,9 @@ class Crud extends Database {
 			echo $e;
 		}
 	}
-	public function selectByEmployee(int $id, $table) {
+	public function selectByEmployee($table, $where, $param) {
 		try {
-			$select = $this->connection->prepare("SELECT * FROM {$table} WHERE `EmployeeID` = {$id}");
+			$select = $this->connection->prepare("SELECT * FROM {$table} WHERE {$where} = {$param}");
 			$select->execute();
 			return $select->fetchall(PDO::FETCH_ASSOC);
 		} catch(PDOException $e) {
@@ -141,8 +151,18 @@ class Crud extends Database {
 		try {
 			$select = $this->connection->prepare("SELECT * FROM `$table`");
 			$select->execute();
-			return $select->fetchall(PDO::FETCH_OBJ);
-		} catch(PDOExeption $e) {
+			return $select->fetchall(PDO::FETCH_ASSOC);
+		} catch(PDOException $e) {
+			echo $e;
+		}
+	}
+	public function getTableEmployees() {
+		try {
+			$select = $this->connection->prepare("SELECT `EmployeeID`, `First_Name`, `Middle_Name`,
+			`Last_Name`, `Email`, `Creation_Date`, `ACTIVE` FROM `employees`");
+			$select->execute();
+			return $select->fetchall(PDO::FETCH_ASSOC);
+		} catch(PDOException $e) {
 			echo $e;
 		}
 	}
@@ -177,9 +197,14 @@ class Crud extends Database {
 		return $this->connection->lastInsertId();
 	}
 
-	public function addEmployeeRol($id, $rol){
-		$insert = $this->connection->prepare("INSERT INTO `employees-roles` (`EmployeeID`, `RoleID`) VALUES ('$id', '$rol')");
-		$insert->execute();
+	public function addEmployeeRole($id, $roleID){
+		try {
+			$insert = $this->connection->prepare("INSERT INTO `employees-roles` (`EmployeeID`, `RoleID`) VALUES ('$id', '$roleID')");
+			$insert->execute();
+		} catch(PDOException $e) {
+			echo $e;
+		}
+
 	}
 
 	public function getEmployee($table, $id) {
@@ -187,7 +212,7 @@ class Crud extends Database {
 			$select = $this->connection->prepare("SELECT emp.*, er.`RoleID`, rol.`Name` FROM `$table`emp INNER JOIN `employees-roles` er ON emp.`EmployeeID` = er.`EmployeeID` INNER JOIN `roles` rol ON er.`RoleID` = rol.`RoleID` WHERE emp.EmployeeID = $id");
 			$select->execute();
 			return $select->fetch(PDO::FETCH_ASSOC);
-		} catch(PDOExeption $e) {
+		} catch(PDOException $e) {
 			echo $e;
 		}
 	}
@@ -197,9 +222,14 @@ class Crud extends Database {
 		$update->execute();
 	}
 
-	public function updateEmployeeRol($id, $rol){
-		$update = $this->connection->prepare("UPDATE `employees-roles` SET `RoleID` = $rol WHERE EmployeeID = $id");
-		$update->execute();
+	public function updateEmployeeRole($role, $id){
+		try {
+			$update = $this->connection->prepare("UPDATE `employees-roles` SET `RoleID` = $role WHERE EmployeeID = $id");
+			$update->execute();
+		} catch(PDOException $e) {
+			echo $e;
+		}
+		
 	}
 
 	######################################################
@@ -215,7 +245,7 @@ class Crud extends Database {
 			$select = $this->connection->prepare("SELECT * FROM `$table` WHERE RoleID = $id");
 			$select->execute();
 			return $select->fetch(PDO::FETCH_ASSOC);
-		} catch(PDOExeption $e) {
+		} catch(PDOException $e) {
 			echo $e;
 		}
 	}
@@ -228,12 +258,22 @@ class Crud extends Database {
 	######################################################
 	#####################Products#########################
 	######################################################
-	public function getProducts($table) {
+	public function getProducts() {
 		try {
-			$select = $this->connection->prepare("SELECT prd.*, pi.`ImageID`, img.`File_Name` as ImageName, img.`File_Path` as ImagePath FROM `$table`prd LEFT JOIN `products-images` pi ON prd.`ProductID` = pi.`ProductID` LEFT JOIN `images` img ON pi.`ImageID` = img.`ImageID`");
+			$select = $this->connection->prepare("SELECT prd.*, pi.`ImageID`, img.`File_Name` as ImageName, img.`File_Path` as ImagePath FROM `products`prd LEFT JOIN `products-images` pi ON prd.`ProductID` = pi.`ProductID` LEFT JOIN `images` img ON pi.`ImageID` = img.`ImageID`");
 			$select->execute();
-			return $select->fetchall(PDO::FETCH_OBJ);
-		} catch(PDOExeption $e) {
+			return $select->fetchall(PDO::FETCH_ASSOC);
+		} catch(PDOException $e) {
+			echo $e;
+		}
+	}
+
+	public function getSingleProduct($id) {
+		try {
+			$select = $this->connection->prepare("SELECT prd.*, pi.`ImageID`, img.`File_Name` as ImageName, img.`File_Path` as ImagePath FROM `products`prd LEFT JOIN `products-images` pi ON prd.`ProductID` = pi.`ProductID` LEFT JOIN `images` img ON pi.`ImageID` = img.`ImageID` WHERE prd.`ProductID` = {$id}");
+			$select->execute();
+			return $select->fetchall(PDO::FETCH_ASSOC);
+		} catch(PDOException $e) {
 			echo $e;
 		}
 	}
@@ -242,8 +282,8 @@ class Crud extends Database {
 		try {
 			$select = $this->connection->prepare("SELECT * FROM `$table`");
 			$select->execute();
-			return $select->fetchall(PDO::FETCH_OBJ);
-		} catch(PDOExeption $e) {
+			return $select->fetchall(PDO::FETCH_ASSOC);
+		} catch(PDOException $e) {
 			echo $e;
 		}
 	}
@@ -263,7 +303,7 @@ class Crud extends Database {
 			$select = $this->connection->prepare("SELECT prd.*, pi.`ImageID`, img.`File_Name` as ImageName, img.`File_Path` as ImagePath FROM `$table`prd LEFT JOIN `products-images` pi ON prd.`ProductID` = pi.`ProductID` LEFT JOIN `images` img ON pi.`ImageID` = img.`ImageID` WHERE prd.ProductID = $id;");
 			$select->execute();
 			return $select->fetch(PDO::FETCH_ASSOC);
-		} catch(PDOExeption $e) {
+		} catch(PDOException $e) {
 			echo $e;
 		}
 	}
@@ -299,7 +339,7 @@ class Crud extends Database {
 			$select = $this->connection->prepare("SELECT * FROM `$table` WHERE HeaderID = $id");
 			$select->execute();
 			return $select->fetch(PDO::FETCH_ASSOC);
-		} catch(PDOExeption $e) {
+		} catch(PDOException $e) {
 			echo $e;
 		}
 	}
@@ -319,7 +359,7 @@ class Crud extends Database {
 			$select = $this->connection->prepare("SELECT prd.`Name`, prd.`Description`, ol.`Amount`, ol.`Line_Price` FROM `orderlines` ol INNER JOIN `products` prd ON ol.`ProductID` = prd.`ProductID` where ol.`HeaderID` = $id;");
 			$select->execute();
 			return $select->fetchall(PDO::FETCH_OBJ);
-		} catch(PDOExeption $e) {
+		} catch(PDOException $e) {
 			echo $e;
 		}
 	}
@@ -331,8 +371,12 @@ class Crud extends Database {
 	}	
 
 	public function addOrderLine($headerid, $productid, $amount, $linePrice){
-		$insert = $this->connection->prepare("INSERT INTO `orderLines` (`HeaderID`, `ProductID`, `Amount`, `Line_Price`) VALUES ('$headerid', '$productid', $amount, $linePrice)");
-		$insert->execute();
+		try {
+			$insert = $this->connection->prepare("INSERT INTO `orderLines` (`HeaderID`, `ProductID`, `Amount`, `Line_Price`) VALUES ('$headerid', '$productid', $amount, $linePrice)");
+			$insert->execute();
+		} catch(PDOException $e) {
+			echo $e;
+		}
 	}	
 	
 	public function addSearchTerm(string $searchTerm, bool $passed) {
@@ -352,25 +396,15 @@ class Crud extends Database {
 		}
 	}
 
-	
-	// GetType{
-	// 	SELECT 
-	// 		'Medewerker' as Type,
-	// 		`First_Name`,
-	// 		`Middle_Name`,
-	// 		`Last_Name`,
-	// 		`Email`,
-	// 		`Password`
-	// 	FROM `employees`
-	// 	UNION
-	// 	SELECT 
-	// 		'Klant' as Type,
-	// 		`First_Name`,
-	// 		`Middle_Name`,
-	// 		`Last_Name`,
-	// 		`Email`,
-	// 		`Password`
-	// 	FROM `users`;
-	// }
-}	
+    public function getLanguageContent($titleLang, $contentLang, $link) {
+        try {
+            $stmnt = $this->connection->prepare("SELECT {$titleLang}, {$contentLang} FROM `content` WHERE `link` = '$link'");
+            $stmnt->execute();
+            return $stmnt->fetchall(PDO::FETCH_ASSOC);
+
+        } catch(PDOException $e) {
+            echo $e;
+        }
+    }
+}
 ?>

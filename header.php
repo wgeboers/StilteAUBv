@@ -1,28 +1,31 @@
 <?php	
 	session_start();
-	
+	$name = '';
+	if(!isset($_SESSION['lang'])) {
+		$_SESSION['lang'] = 'lang_nl';
+	}
 	#Login and loading of user/employee information happens here.
 	#Don't touch if you don't have to.
-	if(isset($_SESSION["id"]) && !empty($_SESSION["id"]) && isset($_SESSION['type'])) {
+	if(isset($_SESSION["id"]) && !empty($_SESSION["id"]) && $_SESSION['type'] === 'employee') {
 		require_once("EmployeeManager.php");
 		$e_man = new EmployeeManager();
-		$empData = $e_man->fetchEmployeeData($_SESSION["id"]);
+		$empData = $e_man->fetchEmployeeData('EmployeeID', $_SESSION["id"]);
 		if(!empty($empData->getName())) {
 			$name = $empData->getName();
 		} else {
 			$_SESSION['ErrorMsg'] = 'Wrong login';
-			unset($_SESSION['id']);
+			
 		}
 		#unset($e_man); //This object wont be used for anything but displaying a user's name.
-	} elseif(isset($_SESSION["id"]) && !empty($_SESSION["id"])) {
+	} elseif(isset($_SESSION["id"]) && !empty($_SESSION["id"]) && $_SESSION['type'] === 'user') {
 		require_once("UserManager.php");
 		$u_man = new UserManager();
 		$userData = $u_man->fetchUserData($_SESSION['id']);
 		if(!empty($userData->getName())) {
-			$name = $userData->getName()['First Name'];
+			$name = $userData->getName();
 		} else {
 			$_SESSION['ErrorMsg'] = 'Wrong login';
-			unset($_SESSION['id']);
+			
 		}
 		#unset($e_man); //This object wont be used for anything but displaying an employee's name.
 	}
@@ -88,6 +91,23 @@
 				</ul>
 			</div>
 		</div>
+		<?php 
+						
+						if(isset($_SESSION['lang']) && !empty($_SESSION['lang'])) {
+							if($_SESSION['lang'] == 'lang_en') {
+								$buttonVal = 'Nederlands';
+								echo "<form name='lang_form' action='change_lang.php' method='POST'>
+								<button type='submit' name='langButton' value='{$buttonVal}'>{$buttonVal}</button>
+								</form>";
+							} 
+							if($_SESSION['lang'] == 'lang_nl') {
+								$buttonVal = 'English';
+								echo "<form name='lang_form' action='change_lang.php' method='POST'>
+								<button type='submit' name='langButton' value='{$buttonVal}'>{$buttonVal}</button>
+								</form>";
+							}
+						}
+						?>
 	</nav>
 	<div class="form-popup" id="myForm" >
 		<?php if(!isset($_SESSION["id"])) {
@@ -120,8 +140,7 @@
 		}
 		?>
 	</div>
-
-
+						
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
 integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
 crossorigin="anonymous"></script>

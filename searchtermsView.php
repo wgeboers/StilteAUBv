@@ -15,48 +15,17 @@
 </head>
 
 <body class="medewerkersportaal">
-    <div class="sidenav">
-        <a href="medewerkers.php">Medewerkers</a>
-        <a href="rollen.php">Rollen</a>
-        <a href="bestellingen.php">Bestellingen</a>
-        <a href="zoektermen.php">Zoektermen</a>
-        <a href="artikelen.php">Artikelen</a>
-        <a href="afbeeldingen.php">Afbeeldingen</a>
-    </div>
+    <?php include('sidenav.php'); ?>
     <div class="content">
         <div class="main">
             <H2>Zoek geschiedenis</H2>
             <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Zoek term</th>
-                        <th scope="col">Geslaagd</th>
-                        <th scope="col">Aanmaak Datum</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                        require_once('crud.php');
-                        $classA = new Crud('root', '');
-                        $searchData = $classA->getTable('searchhistories');
-
-                        foreach($searchData as $rows){
-                    ?>
-                    <tr>
-                        <td><?php echo $rows->SearchID;?></td>
-                        <td><?php echo $rows->Search_Description;?></td>
-                        <td><?php echo $rows->Passed;?></td>
-                        <td><?php echo $rows->Creation_Date;?></td>
-                    </tr>
-                    <?php
-                        }
-                    ?>       
-                </tbody>
+                <?php include('EmployeeUI.php'); ?>
             </table>
             <form method="post" action="searchExport.php">
                 <div class="col-12 text-center">
                     <input type="submit" name="export_excel" value="Export" class="neon-button">
+                    <input type="submit" name="delete_searchterms" value="Verwijder" class="neon-button">
                 </div>
             </form>
         </div>

@@ -9,53 +9,33 @@
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="Style/base.css">
-    <link rel="stylesheet" type="text/css" href="Style/afbeeldingen.css">
+    <link rel="stylesheet" type="text/css" href="Style/artikelen.css">
     <meta name="description" content="Huur een volledige doe-het-zelf Silent Disco set met koptelefoons. Binnen een mum van tijd organiseer jij zelf een Silent Disco!">
     <meta name="keywords" content="SilentDisco, Music, Headset, Party, Dance, Disco">
 </head>
 
 <body class="medewerkersportaal">
-    <div class="sidenav">
-        <a href="medewerkers.php">Medewerkers</a>
-        <a href="rollen.php">Rollen</a>
-        <a href="bestellingen.php">Bestellingen</a>
-        <a href="zoektermen.php">Zoektermen</a>
-        <a href="artikelen.php">Artikelen</a>
-        <a href="afbeeldingen.php">Afbeeldingen</a>
-    </div>
+    <?php include('sidenav.php'); ?>
     <div class="content">
-    <div class="main">
-        <H2>Afbeeldingen</H2>
+        <div class="main">
+            <H2>Artikelen</H2>
             <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Bestandsnaam</th>
-                        <th scope="col">Bestandslocatie</th>
+                        <th scope="col">Naam</th>
+                        <th scope="col">Omschrijving</th>
+                        <th scope="col">Voorraad</th>
+                        <th scope="col">Prijs</th>
                         <th scope="col">Aanmaak Datum</th>
+                        <th></th>
                     </tr>
                 </thead>
-                <tbody>
-                    <?php
-                        require_once('crud.php');
-                        $classA = new Crud('root', '');
-                        $imageData = $classA->getTable('images');
-
-                        foreach($imageData as $rows){
-                    ?>
-                    <tr>
-                        <td><?php echo $rows->ImageID;?></td>
-                        <td><?php echo $rows->File_Name;?></td>
-                        <td><?php echo $rows->File_Path;?></td>
-                        <td><?php echo $rows->Creation_Date;?></td>
-                    </tr>
-                    <?php
-                        }
-                    ?>       
-                </tbody>
+                <?php include('EmployeeUI.php'); ?>
             </table>
             <div class="col-12 text-center">
-                <a href="afbeeldingimport.php" class="neon-button">Afbeelding uploaden</a>
+                <a href="productimportView.php" class="neon-button">Artikelen importeren</a>
+                <a href="productCreateView.php" class="neon-button">Artikel aanmaken</a>
             </div>
         </div>
     </div>
