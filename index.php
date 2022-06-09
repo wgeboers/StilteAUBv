@@ -1,8 +1,14 @@
 <!DOCTYPE html>
-<?php include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI']; ?>
+<?php include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI'];
+include('LangManager.php');
+$langManager = new LangManager();
+$content = $langManager->getContents("index.php");
+$titles = $langManager->getTitles();
+$texts = $langManager->getTexts();
+?>
 <html>
 <head>
-    <title>Silent Disco</title>
+    <title>Silent Disco!</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/jpg" href="Images/Logo.png" />
@@ -25,9 +31,9 @@
                     <div class="text">
                         <div>
                             <h2>
-                               <span class="hexagonTextChange"><?php echo $result[$k][$lang.'_title']; ?></span>
+                               <span class="hexagonTextChange"><?php echo "$titles[0]" ?></span>
                             </h2>
-                            <p>fill</p>
+                            <p><?php echo "$texts[0]"?></p>
                         </div>
                     </div>
                 </div>
@@ -48,7 +54,7 @@
                             <div class="text">
                                 <div>
                                     <p>
-                                        fill
+                                        <?php echo "$texts[1]"?>
                                     </p>
                                 </div>
                             </div>
@@ -91,36 +97,35 @@
         </button>
     </div>
     <div class="contact" id="contact">
-        <h2>Contactformulier</h2>
+        <h2><?php echo "$titles[9]"?></h2>
         <form action="./contactForm.php" method="post" id="contactForm" class="row">
             <div class="col-md-6">
-                <label for="firstName" class="form-label">Voornaam</label>
+                <label for="firstName" class="form-label"><?php echo "$titles[2]"?></label>
                 <input type="text" class="form-control" id="firstName" name="firstName">
             </div>
             <div class="col-md-6">
-                <label for="lastName" class="form-label">Achternaam</label>
+                <label for="lastName" class="form-label"><?php echo "$titles[3]"?></label>
                 <input type="text" class="form-control" id="lastName" name="lastName">
             </div>
             <div class="col-md-6">
-                <label for="inputEmail" class="form-label">Email</label>
+                <label for="inputEmail" class="form-label"><?php echo "$titles[4]"?></label>
                 <input type="email" class="form-control" id="inputEmail" name="inputEmail">
-                <small id="emailHelp" class="form-text text-muted">Wij zullen je email adres niet met andere
-                    delen!</small>
+                <small id="emailHelp" class="form-text text-muted"><?php echo "$texts[4]"?></small>
             </div>
             <div class="col-md-6">
-                <label for="" class="form-label">Telefoon</label>
+                <label for="" class="form-label"><?php echo "$titles[5]"?></label>
                 <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
             </div>
             <div class="col-md-12">
-                <label for="subject" class="form-label">Onderwerp</label>
+                <label for="subject" class="form-label"><?php echo "$titles[6]"?></label>
                 <input type="text" class="form-control" id="subject" name="subject">
             </div>
             <div class="col-md-12">
-                <label for="Textarea1" class="form-label">Omschrijving</label>
+                <label for="Textarea1" class="form-label"><?php echo "$titles[7]"?></label>
                 <input type="text" class="form-control" id="description" name="description">
             </div>
             <div class="col-12 text-center">
-                <button type="submit" id="contactButton" name="contactForm" class="btn btn-primary">Verstuur</button>
+                <button type="submit" id="contactButton" name="contactForm" class="btn btn-primary"><?php echo "$titles[8]"?></button>
             </div>
         </form>
     </div>
@@ -129,9 +134,5 @@
         crossorigin="anonymous"></script>
     <script type="text/javascript" src="Script/base.js"></script>
 </body>
-<?php
-}
-}
-?>
 
 </html>

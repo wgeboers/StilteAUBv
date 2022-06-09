@@ -1,6 +1,12 @@
 <!DOCTYPE html>
-<?php include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI']; ?>
-<html lang="en">
+<?php include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI'];
+include('LangManager.php');
+$langManager = new LangManager();
+$content = $langManager->getContents("index.php");
+$titles = $langManager->getTitles();
+$texts = $langManager->getTexts();
+?>
+<html>
 
 <head>
     <title>Silent Disco</title>
@@ -37,7 +43,7 @@
                         </h2>
                         <p>
                             Ga terug naar de jaren 70 met onze 70’s thema pakket. In dit pakket ontvang je alle hits van de jaren 70 om de hustle te kunnen doen.
-                            <br>Je ontvangt van ons 10 headsets en 1 zender met de daarbij horende kabels.
+                            <br>Je ontvangt van ons 10 headsets en 1 zender met de daarbij horende kabels
                         </p>
                         <audio id="audio70s" src="music/70s.mp3"></audio>
                     </div>

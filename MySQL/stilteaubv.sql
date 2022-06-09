@@ -61,48 +61,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ShowUserProfile` (IN `SP_ID` INT)  
     WHERE `UserID` = `SP_ID`;
 END$$
 
---
--- Taal test
---
---
--- Table structure for table `lang-menu`
---
-
-CREATE TABLE `langmenu` (
-                                  `id` int(11) NOT NULL,
-                                  `en_title` varchar(255) NOT NULL,
-                                  `en_description` text NOT NULL,
-                                  `nl_title` varchar(255) NOT NULL,
-                                  `nl_description` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
---
--- Dumping data for table `lang-menu`
---
-
-INSERT INTO `langmenu` (`id`, `en_title`, `en_description`, `nl_title`, `nl_description`) VALUES
-                                                                                                    (1,'Silent Disco', 'Hire your own Silent Disco with headphones.The system is easy-to-use and is compatible with most DJ-gear and laptops. It even has theme songs, so you can get started within minutes! ', 'Silent Disco', 'Huur een volledige doe-het-zelf Silent Disco set met koptelefoons. Het systeem is makkelijk aan te sluiten op een laptop of op DJ-apparatuur met het door jou gekozen thema pakket. Binnen een mum van tijd organiseer jij zelf een Silent Disco!'),
-                                                                                                    (2, '', 'Get your products here!', '', 'Bekijk onze producten!');
-                                                                                                    (3, 'First Name', '', 'Voornaam', '');
-                                                                                                    (4, 'Last Name', '', 'Achternaam','');
-                                                                                                    (5, 'Email', 'We won''t give your email to third parties', 'Email', 'We zullen je email niet delen met anderen');
-                                                                                                    (6, 'Telephone', '', 'Telefoon', '');
-                                                                                                    (7, 'Subject','', 'Onderwerp', '');
-                                                                                                    (8, 'Description', '', 'Omschrijving', '');
---
--- Indexes for table `lang-menu`
---
-ALTER TABLE `langmenu`
-    ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for table `lang-menu`
---
-ALTER TABLE `langmenu`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
---Einde test
---
 
 --
 -- Functions

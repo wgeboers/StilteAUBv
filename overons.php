@@ -26,24 +26,20 @@
             <div class="col-xs-6 col-md-8 p-5 content">
                 <p> <?php echo $texts[0]; ?>
                 </p>
-                <p>
-                    <?php echo $texts[1]; ?>
-                </p>
-                <p>
             </div>
             <div class="col-xs-6 col-md-4 p-5 content">
                 <p>
                     <img id="logoOverOns" src="Images/Logo.png" />
                 </p>
                 <p>
-                    NAAM: STILTE AUBV<br>
+                    <?php echo "$titles[2]"?>: STILTE AUBV<br>
                     ADRES: HOGESCHOOLLAAN 1<br>
-                    POSTCODE: 4818 CR<br>
-                    PLAATS: >BREDA<BR>
+                    <?php echo "$texts[2]"?>: 4818 CR<br>
+                    <?php echo "$texts[1]"?>: BREDA<BR>
                 </p>
                 <p>
                     TEL: 088 5698475<br>
-                    E-MAIL: info@stilteaubv.nl<br>
+                    EMAIL: info@stilteaubv.nl<br>
                     KVK: 8978676748<br>
                 </p>
             </div>

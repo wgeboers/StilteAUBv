@@ -26,24 +26,37 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `content`
 --
-
 CREATE TABLE `content` (
-  `ContentID` int(11) NOT NULL,
-  `title_nl` varchar(255) DEFAULT NULL,
-  `title_en` varchar(255) DEFAULT NULL,
-  `text_nl` varchar(255) DEFAULT NULL,
-  `text_en` varchar(255) DEFAULT NULL,
-  `link` varchar(30) DEFAULT NULL
+                           `ContentID` int(11) NOT NULL,
+                           `title_nl` varchar(255) DEFAULT NULL,
+                           `title_en` varchar(255) DEFAULT NULL,
+                           `text_nl` varchar(255) DEFAULT NULL,
+                           `text_en` varchar(255) DEFAULT NULL,
+                           `link` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 --
 -- Dumping data for table `content`
 --
 
 INSERT INTO `content` (`ContentID`, `title_nl`, `title_en`, `text_nl`, `text_en`, `link`) VALUES
-(1, 'Over Ons', 'About Us', 'Wij verkopen silent disco\'s.', 'We sell silent discos.', 'overons.php'),
-(2, 'Over Ons', 'About Us', 'Wij verkopen nog meer silent disco\'s.', 'We sell even more silent discos.', 'overons.php');
+(1, 'Over Ons', 'About Us', 'Wij verkopen silent disco\'s.', 'We sell silent disco\'s.', 'overons.php'),
+(2, 'Over Ons', 'About Us', 'NULL.', 'NULL', 'overons.php'),
+(3, 'Silent Disco', 'Silent Disco', 'Huur een volledige doe-het-zelf Silent Disco set met koptelefoons. Het systeem is makkelijk aan te sluiten op een laptop of op DJ-apparatuur met het door jou gekozen thema pakket. Binnen een mum van tijd organiseer jij zelf een Silent Disco!', 'Hire your own Silent Disco with headphones. The system is easy-to-use and is compatible with most DJ-gear and laptops. It even has theme songs, so you can get started within minutes!', 'index.php'),
+(4, NULL, NULL, 'Bekijk onze producten!', 'Get your products here!', 'index.php'),
+(5, 'Voornaam', 'First Name', NULL, NULL, 'index.php'),
+(6, 'Achternaam', 'Last Name', NULL, NULL, 'index.php'),
+(7, 'Email', 'Email', 'We zullen je email niet delen met anderen!', 'We won\'t give your email to third parties', 'index.php'),
+(8, 'Telefoon', 'Telephone', NULL, NULL, 'index.php'),
+(9, 'Onderwerp', 'Subject', NULL, NULL, 'index.php'),
+(10, 'Omschrijving', 'Description', NULL, NULL, 'index.php'),
+(11, 'Verzenden', 'Send', NULL, NULL, 'index.php'),
+(12, 'Contactformulier', 'Contact us', NULL, NULL, 'index.php'),
+(13, 'Naam', 'Name', 'Postcode', 'Zip code', 'overons.php'),
+(14, '70s thema', '70s theme', 'NULL', 'NULL', 'onsaanbod.php');
 
+--
 -- --------------------------------------------------------
 
 --

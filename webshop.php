@@ -3,6 +3,12 @@
     include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI']; 
     require_once('ProductManager.php');
     $ProductManager = new ProductManager();
+
+    include('LangManager.php');
+    $langManager = new LangManager();
+    $content = $langManager->getContents("webshop.php");
+    $titles = $langManager->getTitles();
+    $texts = $langManager->getTexts();
 ?>
 <head>
     <title>Silent Disco</title>
