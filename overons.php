@@ -48,23 +48,6 @@
                 </p>
             </div>
         </div>
-        <div class = "child">
-            <p>
-                <img id="logoOverOns" src="Images/Logo.png" />
-            </p>
-            <p>
-                <span class="overonsColorChange">NAAM: </span>STILTE AUBV<br>
-                <span class="overonsColorChange">ADRES: </span>HOGESCHOOLLAAN 1<br>
-                <span class="overonsColorChange">POSTCODE: </span>4818 CR<br>
-                <span class="overonsColorChange">PLAATS: </span>BREDA<BR>
-            </p>
-            <p>
-                <span class="overonsColorChange">TEL: </span>088 5698475<br>
-                <span class="overonsColorChange">E-MAIL: </span>info@stilteaubv.nl<br>
-                <span class="overonsColorChange">KVK: </span>8978676748<br>
-            </p>
-        </div>
-    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
