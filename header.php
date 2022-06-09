@@ -56,11 +56,11 @@
 						<a class="nav-link" href="overons.php" id="overons">Over ons</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link"  href="klantportaal.php" id="klantportaal">Klantportaal</a>
+						<a class="nav-link"  href="dashboardView.php" id="Dashboard">Dashboard</a>
 					</li>
-					<li class="nav-item">
+					<!-- <li class="nav-item">
 						<a class="nav-link"  href="medewerkersportaal.php" id="medewerkersportaal">Medewerkersportaal</a>
-					</li>
+					</li> -->
 				</ul>
 				<ul class="navbar-nav position-absolute end-0 mx-3">
 					<?php
