@@ -35,8 +35,16 @@ class Product extends Image {
 		return $this->name;
 	}
 
+	public function getDescription() {
+		return $this->desc;
+	}
+
 	public function getProductID() {
 		return $this->id;
+	}
+
+	public function getImagePath() {
+		return $this->imageFilePath;
 	}
 
 	

@@ -37,6 +37,28 @@
     width: 100%;
 }
 
+.searchCatalog{
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 20px;
+    float: right;
+}
+
+.searchCatalog .searchBtn{
+    background-color: #BB13FE;
+    color: white;
+    border-color: #BB13FE;
+    border-radius: 0px 6px 6px 0px;
+}
+
+.searchCatalog .searchField{
+    width: 300px;
+    height: 40px;
+    background-color: rgb(235, 235, 235);
+    border-color: #BB13FE;
+    border-radius: 6px 0px 0px 6px;
+}
+
 .form-control{
     background-color: rgb(235, 235, 235);
     border-color: #BB13FE;

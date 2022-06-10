@@ -20,10 +20,10 @@ class ProductManager {
 
     public function getCatalog($searchTerm = "") {
         $this->results = array();
-        $results = $this->crud->getProducts($searchTerm);
+        $results = $this->crud->getProductsSearch($searchTerm);
 
         foreach($results as $result) {
-            $add_product = new Product($result["ProductID"], $result["Name"], $result["Description"], $result["Stock"], $result["Price"], '',"EenFoto.png", "Ergens");            
+            $add_product = new Product($result["ProductID"], $result["Name"], $result["Description"], $result["Stock"], $result["Price"], $result["ImageID"],$result["File_Name"], $result["File_Path"]);            
             array_push($this->products, $add_product);
         }
 

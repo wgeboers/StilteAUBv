@@ -20,14 +20,13 @@
 
 <body class="webshop">
     <div class="main">   
-        <form name="searchCatalog" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
-            <input type="text" name="searchTerm"></br>
-            <input type="submit" name="submit" value="Zoeken"></br>
-        </form> 
-        <section class="products">
+        <form name="searchCatalog" class="searchCatalog" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
+            <input class="searchField" type="text" name="searchTerm"></br>
+            <input class="searchBtn" type="submit" name="submit" value="Zoeken"></br>
+        </form>
+        <div class="container">
             <?php 
                 $results = array();
-                echo$results;
                 if((isset($_POST['searchTerm']) && (!empty($_POST['searchTerm'])))) {
                     $results = array();
                     $searchTerm = htmlspecialchars($_POST['searchTerm']);
@@ -40,50 +39,26 @@
                     } else {
                         $ProductManager->addSearchTerm($searchTerm, 1);
                     }
-                    
+
                 } else {
-                        $ProductManager->getCatalog();
-                        $results = $ProductManager->getProducts();        
-                }
-
+                    $ProductManager->getCatalog();
+                    $results = $ProductManager->getProducts();   
+                }   
                 foreach($results as $result) {
-            ?>
-            <div class="product-card">
-                <div class="product-image">
-                <img src="images/70's.png">
-                </div>
-                <div class="product-info">
-                <h5><?php echo $result->getName(); ?></h5>
-                <h5><?php echo $result->getDescription(); ?></h5>
-                <h6>€<?php echo $result->getPrice(); ?></h6>
-                </div>
-            </div>
-            <?php
-                }
-            ?>
-        </section> 
-
-        <div class="container">
-            <?php
-                require_once('crud.php');
-                $classA = new Crud('root', '');
-                $productData = $classA->getProducts();
-
-                foreach($productData as $rows){
             ?>
             <div class="card">
                 <div class= "cardContent">
-                    <form action="addCart.php?id=<?php echo $rows['ProductID'];?>" method="post">
+                    <form action="addCart.php?id=<?php echo $result->getProductID();?>" method="post">
                         <img src=<?php 
-                            if(empty($rows['ImagePath'])){
+                            if(empty($result->getImageFilePath())){
                                 echo"./Images/Logo.png";
                             } else {
-                                echo "./".$rows['ImagePath'];
+                                echo "./".$result->getImageFilePath();
                             }
                         ?> alt="Logo">
-                        <h1><?php echo $rows['Name'];?></h1>
-                        <p><?php echo $rows['Description']?></p>
-                        <h3><?php echo "€" . $rows['Price'];?></h3>
+                        <h1><?php echo $result->getName();?></h1>
+                        <p><?php echo $result->getDescription();?></p>
+                        <h3><?php echo "€" . $result->getPrice();?></h3>
                         <div class="shopFlex">
                             <input type="number" class="form-control" placeholder="Aantal" name="hoeveelheid" id="hoeveelheid" value=0 min="0">
                             <button type="submit" name="addcart" value="addcart" class="shopbtn" id="addBtn">
@@ -94,9 +69,9 @@
                 </div>
             </div>
             <?php
-                }
-            ?> 
-        </div>  
+            }
+            ?>
+        </div>   
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
