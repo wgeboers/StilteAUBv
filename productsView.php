@@ -29,6 +29,8 @@
                         <th scope="col">Prijs</th>
                         <th scope="col">Aanmaak Datum</th>
                         <th></th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <?php include('EmployeeUI.php'); ?>

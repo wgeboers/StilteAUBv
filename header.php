@@ -12,9 +12,6 @@
 		$empData = $e_man->fetchEmployeeData('EmployeeID', $_SESSION["id"]);
 		if(!empty($empData->getName())) {
 			$name = $empData->getName();
-		} else {
-			$_SESSION['ErrorMsg'] = 'Wrong login';
-			
 		}
 		#unset($e_man); //This object wont be used for anything but displaying a user's name.
 	} elseif(isset($_SESSION["id"]) && !empty($_SESSION["id"]) && $_SESSION['type'] === 'user') {
@@ -23,9 +20,6 @@
 		$userData = $u_man->fetchUserData($_SESSION['id']);
 		if(!empty($userData->getName())) {
 			$name = $userData->getName();
-		} else {
-			$_SESSION['ErrorMsg'] = 'Wrong login';
-			
 		}
 		#unset($e_man); //This object wont be used for anything but displaying an employee's name.
 	}

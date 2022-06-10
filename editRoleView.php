@@ -9,17 +9,22 @@
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="Style/base.css">
-    <link rel="stylesheet" type="text/css" href="Style/medewerkers.css">
+    <link rel="stylesheet" type="text/css" href="Style/rollen.css">
     <meta name="description" content="Huur een volledige doe-het-zelf Silent Disco set met koptelefoons. Binnen een mum van tijd organiseer jij zelf een Silent Disco!">
     <meta name="keywords" content="SilentDisco, Music, Headset, Party, Dance, Disco">
 </head>
 
-<body class="medewerkers">
+<body class="rollen">
     <?php include('sidenav.php'); ?>
     <div class="content">
         <div class="main">
             <div id="rollen" class="form">
-                <?php include('EmployeeUI.php'); ?>
+                <div class="container">
+                    <div class="row">
+                        <h2>Rol wijzigen</h2>
+                        <?php include('EmployeeUI.php'); ?>
+                    </div>    
+                </div>
             </div>
         </div>    
     </div>

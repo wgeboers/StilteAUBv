@@ -14,6 +14,21 @@ li, a, button {
     text-decoration: none;
 }
 
+.messages{
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    padding: 0px 200px 0px 200px;
+}
+
+.messages i{
+    padding-right: 10px;
+}
+
+.messages button{
+    float: right;
+}
+
 ::-webkit-scrollbar{
     width: 5px;
 }

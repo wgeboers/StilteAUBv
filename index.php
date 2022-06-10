@@ -1,6 +1,8 @@
 
 <!DOCTYPE html>
-<?php include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI']; ?>
+<?php 
+include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI'];
+?>
 <html>
 <head>
     <title>Silent Disco</title>
@@ -16,6 +18,9 @@
     <meta name="keywords" content="SilentDisco, Music, Headset, Party, Dance, Disco">
 </head>
 <body class='homePage'>
+    <div class = 'messages'>
+        <?php include('messages.php'); ?>
+    </div>
 	<div class="parallax">
         <div class="content">
             <div class="container">
@@ -93,7 +98,7 @@
     </div>
     <div class="form" id="contact">
         <h2>Contactformulier</h2>
-        <form action="./contactForm.php" method="post" id="contactForm" class="row">
+        <form action="./contactFormValidation.php" method="post" id="contactForm" class="row">
             <div class="col-md-6">
                 <label for="firstName" class="form-label">Voornaam</label>
                 <input type="text" class="form-control" id="firstName" name="firstName">

@@ -19,7 +19,50 @@
 </head>
 
 <body class="webshop">
-    <div class="main">    
+    <div class="main">   
+        <form name="searchCatalog" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
+            <input type="text" name="searchTerm"></br>
+            <input type="submit" name="submit" value="Zoeken"></br>
+        </form> 
+        <section class="products">
+            <?php 
+                $results = array();
+                echo$results;
+                if((isset($_POST['searchTerm']) && (!empty($_POST['searchTerm'])))) {
+                    $results = array();
+                    $searchTerm = htmlspecialchars($_POST['searchTerm']);
+                    $ProductManager->getCatalog($searchTerm);
+                    $results = $ProductManager->getProducts();
+
+                    if (empty($results)) {
+                        echo "Geen producten gevonden die voldoen aan de zoekopdracht.";
+                        $ProductManager->addSearchTerm($searchTerm, 0);
+                    } else {
+                        $ProductManager->addSearchTerm($searchTerm, 1);
+                    }
+                    
+                } else {
+                        $ProductManager->getCatalog();
+                        $results = $ProductManager->getProducts();        
+                }
+
+                foreach($results as $result) {
+            ?>
+            <div class="product-card">
+                <div class="product-image">
+                <img src="images/70's.png">
+                </div>
+                <div class="product-info">
+                <h5><?php echo $result->getName(); ?></h5>
+                <h5><?php echo $result->getDescription(); ?></h5>
+                <h6>€<?php echo $result->getPrice(); ?></h6>
+                </div>
+            </div>
+            <?php
+                }
+            ?>
+        </section> 
+
         <div class="container">
             <?php
                 require_once('crud.php');

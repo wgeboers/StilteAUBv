@@ -20,7 +20,12 @@
     <div class="content">
         <div class="main">
             <div id="artikelen" class="form">
-                <?php include('EmployeeUI.php'); ?>
+                <div class="container">
+                    <div class="row">
+                        <h2>Artikel wijzigen</h2>
+                        <?php include('EmployeeUI.php'); ?>
+                    </div>
+                </div>
             </div>
         </div>    
     </div>

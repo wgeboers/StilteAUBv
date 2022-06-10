@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 if(isset($_POST['contactForm'])) { 
     $errors = array();
     /* firstname validatie */
@@ -68,12 +68,11 @@ if(isset($_POST['contactForm'])) {
         $errors[] = "Geen omschrijving ingevuld";
     }
 
-    if(empty($errors)){
-        echo "Formulier is verstuurd";
-    } else {
-        foreach($errors as $error){
-            echo $error."<br>";
-        }
+    if(!$errors){
+        $errors[] = "Formulier is succesvol verstuurd";
+        $_SESSION['SuccesMsg'] =  $errors;
+    }else{
+        $_SESSION['ErrorMsg'] = $errors;
     }
 } else {
     echo "Formulier kon niet worden verstuurd.";
