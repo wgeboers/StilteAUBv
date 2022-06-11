@@ -10,7 +10,6 @@ class Product extends Image {
 	private $desc;
 	private $stock;
 	private $price;
-	private $creationDate;
 	
 	function  __construct($id, $name, $desc, $stock, $price, $imageID, $imageName, $imageFilePath) {
 		$this->id = $id;
