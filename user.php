@@ -31,31 +31,15 @@ class User {
 		
 	}
 
-	public function getId() {
+	public function getId() : int {
 		return $this->id;
 	}
 
-	public function getName() {
+	public function getName() : string {
 		return $this->firstName;
 	}
 
-	public function getEmail() {
-		return $this->email;
-	}
-
-	public function getPhoneNumber() {
-		return $this->phoneNr;
-	}
-
-	public function getAddress() {
-		return array($this->street, $this->houseNr, $this->houseNrAdd, $this->zipcode, $this->city);
-	}
-
-	public function setPassword($password) {
-		$this->password = $password;
-	}
-
-	public function getAllData() {
+	public function getAllData() : array {
 		if(isset($this->password)) {
 			return array('First Name'=>$this->firstName, 'Middle Name'=>$this->midName, 'Last Name'=>$this->lastName, 'Email'=>$this->email, 'Phone Number'=>$this->phoneNr,
 		'Street'=>$this->street, 'House Number'=>$this->houseNr, 'House Number Addition'=>$this->houseNrAdd, 'Zipcode'=>$this->zipcode, 'City'=>$this->city, 'Password'=>$this->password);
