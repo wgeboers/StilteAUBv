@@ -1,7 +1,7 @@
 <?php
-if(isset($_POST['register'])) {
+if(isset($_POST['adduser'])) {
     session_start();
-    unset($_POST['register']);
+    unset($_POST['adduser']);
     if(count($_POST) === 11) {
         $userData = $_POST;
     }
