@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Class used to describe the entity 'Employee'
+ */
 class Employee {
 
 	private int $id;
@@ -29,6 +31,10 @@ class Employee {
 		return $this->firstName;
 	}
 
+	/**
+	 * Function used to put the object values in an associative array
+	 * Use this function to enable Employee object data to be uploaded to the database.
+	 */
 	public function toArray() {
 		return array('EmployeeID'=>$this->id, 'First Name'=>$this->firstName, 'Middle Name'=>$this->middleName, 'Last Name'=>$this->lastName, 'Email'=>$this->email, 'Creation Date'=>$this->creationDate, 'ACTIVE'=>$this->active);
 	}
