@@ -4,7 +4,7 @@ class Database {
 	private string $host = 'localhost';
 	private string $dbname = 'stilteaubv';
 	
-	protected $connection;
+	protected PDO $connection;
 	
 	#Creates DB connection default is user = root en password = ''.
 	#If you want to login with a user, just enter parameters at the object creation
