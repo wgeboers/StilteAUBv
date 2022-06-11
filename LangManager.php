@@ -5,13 +5,13 @@ require_once('Crud.php');
  class LangManager {
 
     private Crud $crud;
-    private $results =  array();
+    private array $results =  array();
 
     public function __construct() {
         $this->crud = new Crud('root', '');
     }
 
-    public function getContents($link) {
+    public function getContents($link) : array {
         if($_SESSION['lang'] == 'lang_nl') {
             $this->results = $this->crud->getLanguageContent('title_nl', 'text_nl', $link);
         } elseif($_SESSION['lang'] === 'lang_en') {
@@ -21,7 +21,7 @@ require_once('Crud.php');
         return $this->results;
     }
 
-    public function getTexts() {
+    public function getTexts() : array {
         $contents = array();
         foreach($this->results as $rows) {
             foreach($rows as $key=>$value) {
@@ -32,7 +32,7 @@ require_once('Crud.php');
         return $contents;
     }
 
-    public function getTitles() {
+    public function getTitles() : array {
         $titles = array();
         foreach($this->results as $rows) {
             foreach($rows as $key=>$value) {

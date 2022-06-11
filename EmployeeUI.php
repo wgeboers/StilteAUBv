@@ -11,7 +11,7 @@ $p_man = new ProductManager();
 
 /** MEDEWERKERS BEGINT HIER */
 if(basename($_SERVER['PHP_SELF']) === 'employeesView.php') {
-    $empData = $e_man->getAllEmployees();
+    $empData = $e_man->fetchAllEmployees();
     foreach($empData as $rows) {
         echo "<tr>";
         $row = $rows->toArray();
