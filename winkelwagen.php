@@ -38,7 +38,13 @@
                 ?>
                 <div class="card">
                     <div class= "cardContent">
-                        <img src="./Images/80s.jpg" alt="Logo">
+                        <img src=<?php 
+                            if(empty($pObj->getImagePath())){
+                                echo"./Images/Logo.png";
+                            } else {
+                                echo "./".$pObj->getImagePath();
+                            }
+                        ?> alt="Logo">
                         <div class="cardDescription">
                             <h2><?php echo $pObj->getName();?></h2>
                             <h4>Aantal: <?php echo $product[1];?></h4>

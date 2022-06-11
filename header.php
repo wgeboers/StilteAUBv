@@ -49,9 +49,13 @@
 					<li class="nav-item">
 						<a class="nav-link" href="overons.php" id="overons">Over ons</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link"  href="dashboardView.php" id="Dashboard">Dashboard</a>
-					</li>
+					<?php
+						if(isset($_SESSION["id"]) && !empty($_SESSION["id"])){
+							ECHO "<li class='nav-item'>
+							<a class='nav-link'  href='dashboardView.php' id='Dashboard'>Dashboard</a>
+							</li>";
+						}
+					?>
 				</ul>
 				<ul class="navbar-nav position-absolute end-0 mx-3">
 					<?php 
