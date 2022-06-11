@@ -19,6 +19,9 @@
 </head>
 
 <body class="webshop">
+    <div class = 'messages'>
+        <?php include('messages.php'); ?>
+    </div>
     <div class="main">   
         <form name="searchCatalog" class="searchCatalog" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
             <input class="searchField" type="text" name="searchTerm"></br>

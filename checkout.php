@@ -3,7 +3,10 @@
         session_start();
 
         $errors = array();
-        /* firstname validatie */
+        /* 
+            firstname validatie 
+            validatie of de voornaam gevuld is en geen nummers of characters bevat
+        */
         if(isset($_POST["firstName"]) && $_POST["firstName"] != ''){
             if (preg_match('~[0-9]+~', $_POST["firstName"])) {
                 $errors[] = 'Voornaam mag geen nummers bevatten';
@@ -16,7 +19,10 @@
             $errors[] = "Geen voornaam ingevuld";
         }
 
-        /* lastname validatie */
+        /* 
+            lastname validatie 
+            validatie of de achternaam gevuld is en geen nummers of characters bevat
+        */
         if(isset($_POST["lastName"]) && $_POST["lastName"] != ''){
             if (preg_match('~[0-9]+~', $_POST["lastName"])) {
                 $errors[] = 'Achternaam mag geen nummers bevatten';
@@ -29,14 +35,22 @@
             $errors[] = "Geen achternaam ingevuld";
         }
 
-        /* Adres validatie */
+        /* 
+            Adres validatie
+            controle of het adres niet leeg is
+        */
         if(isset($_POST["adres"]) && $_POST["adres"] != ''){
             $adres = $_POST["adres"];
         } else {
             $errors[] = "Geen adres ingevuld";
         }
 
-        /* zipcode validatie */
+        /* 
+            zipcode validatie 
+            controle of de postcode gevuld is
+            controle of de postcode bestaat uit 6 of 7 characters voorbeeld: 3813 JD of 3813JD
+            Controle of de postcode bestaat uit de eerste 4 characters cijfers en de laatste 2 characters letters
+        */
         if(isset($_POST["zipcode"]) && $_POST["zipcode"] != ''){
             if(strlen($_POST["zipcode"]) == 6 || strlen($_POST["zipcode"]) == 7){
                 $zipcode = str_replace(' ', '', $_POST["zipcode"]);
@@ -56,7 +70,10 @@
             $errors[] = "Geen postcode ingevuld";
         }
 
-        /* city validatie */
+        /* 
+            city validatie 
+            controle of de stad niet leeg is en niet bestaat uit cijfers en characters
+        */
         if(isset($_POST["city"]) && $_POST["city"] != ''){
             if (preg_match('~[0-9]+~', $_POST["city"])) {
                 $errors[] = 'Stad mag geen nummers bevatten';
