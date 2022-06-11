@@ -2,9 +2,9 @@
 
 class Image {
 	
-	protected int $imageID;
-	protected string $imageName;
-	protected string $imageFilePath;
+	protected $imageID;
+	protected $imageName;
+	protected $imageFilePath;
 
 	public function __construct($imageID, $imageName, $imageFilePath) {
 		$this->imageID = $imageID;
