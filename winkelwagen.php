@@ -15,6 +15,9 @@
 </head>
 
 <body class="overOns">
+    <div class = 'messages'>
+        <?php include('messages.php'); ?>
+    </div>
     <div class="main">
         <div class="container">
             <div>
@@ -68,11 +71,11 @@
                     <h2>Totaal: <?php if(isset($total))  echo "€".number_format($total, 2, ',', '.'); ?></h2>
                 </div>
                 <div class="form"> 
-                    <form action="./checkout.php" method="post" name="checkoutForm" id="checkoutForm">
+                    <form action="checkout.php" method="post" name="checkoutForm" id="checkoutForm">
                         <div class="row">
                             <h2>Bestelgegevens</h2>
                             <div class="col-md-4">
-                                <label for="firstName" class="form-label">Voornaam</label>
+                                <label for="firstName" class="form-label">Voornaam *</label>
                                 <input type="text" class="form-control" placeholder="Voornaam" name="firstName" id="firstName">
                             </div>
                             <div class="col-md-4">
@@ -80,19 +83,19 @@
                                 <input type="text" class="form-control" placeholder="Tussenvoegsel" name="middleName" id="middleName">
                             </div>
                             <div class="col-md-4">
-                                <label for="lastName" class="form-label">Achternaam</label>
+                                <label for="lastName" class="form-label">Achternaam *</label>
                                 <input type="text" class="form-control" placeholder="Achternaam" name="lastName" id="lastName">
                             </div>
                             <div class="col-md-12">
-                                <label for="adres" class="form-label">Adres</label>
+                                <label for="adres" class="form-label">Adres *</label>
                                 <input type="text" class="form-control" placeholder="Straat huisnummer-toevoeging" name="adres" id="adres">
                             </div>
                             <div class="col-md-6">
-                                <label for="zipcode" class="form-label">Postcode</label>
+                                <label for="zipcode" class="form-label">Postcode *</label>
                                 <input type="text" class="form-control" placeholder="Postcode" name="zipcode" id="zipcode">
                             </div>
                             <div class="col-md-6">
-                                <label for="city" class="form-label">Stad</label>
+                                <label for="city" class="form-label">Stad *</label>
                                 <input type="text" class="form-control" placeholder="Stad" name="city" id="city">
                             </div>
                         </div>
