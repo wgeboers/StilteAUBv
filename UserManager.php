@@ -14,8 +14,10 @@ Class UserManager {
         $this->crud = new Crud('root', ''); 
     }
 
-    #Creates a user object based on database row.
-    public function fetchUserData($id) {
+    /**
+	 * User object is made based based on a given userID.
+	 */
+    public function fetchUserData($id) : User {
         $results = $this->crud->selectByUser($id, 'users');
 		foreach($results as $result) {
 			$this->user = new User($result["UserID"], $result["First_Name"], $result["Middle_Name"], $result["Last_Name"], $result["Email"], $result["Phone_Number"],
@@ -24,39 +26,42 @@ Class UserManager {
 
         return $this->user;
     }
-
-	public function insertUserIntoDB($userData = array()) {
+	/**
+	 * Function to insert a user into DB with crud insert
+	 */
+	public function insertUserIntoDB($userData = array()) : void {
 		$this->crud->insert($userData, 'users');
 	}
-
-    public function updateUserData($userData = array()) {
+	/**
+	 * Function to insert a user into DB with crud update
+	 */
+    public function updateUserData($userData = array()) : void {
 		$this->crud->update($userData, 'users', 'Email', $userData['Email']);
 	}
 
-	public function setLoggedIn(bool $loggedIn) {
-		$this->loggedIn = $loggedIn;
+	/**
+	 * GET $loggedIn
+	 */
+	public function getLoggedIn() : bool {
+		return $this->loggedIn;
 	}
 
-	public function getUserID() {
-		return $this->user->getId();
-	}
-
-    #function used to log a user in, automatically checks for an end user or employee login
-	#when the login button is clicked, the users will be redirected to the page they were on when they logged
-	public function login($email, $password) {		
+    /**
+	 * function used to log a user in, automatically checks for an end user or employee login
+	 * when the login button is clicked, the users will be redirected to the page they were on when they logged
+	 */
+	public function login($email, $password) : void {		
 		$validation = $this->crud->validateUser($email, $password, 'users');
 		if(!empty($validation)) {
 			$_SESSION['id'] = $validation;
-            $_SESSION['active'] = true;
-			return $validation;
+			$this->loggedIn = true;
 		} 
 		if(isset($_SESSION['url'])) {
 			$url = $_SESSION['url'];
 		} else {
-			$url = "/index.php";
+			$url = "/stiltaubv/index.php";
 		}
 		header("Location: https://localhost$url");
-		return false;
 	}
 
 }
