@@ -37,6 +37,10 @@ Class UserManager {
 		$this->loggedIn = $loggedIn;
 	}
 
+	public function getLoggedIn() {
+		return $this->loggedIn;
+	}
+
 	public function getUserID() {
 		return $this->user->getId();
 	}
@@ -47,16 +51,14 @@ Class UserManager {
 		$validation = $this->crud->validateUser($email, $password, 'users');
 		if(!empty($validation)) {
 			$_SESSION['id'] = $validation;
-            $_SESSION['active'] = true;
-			return $validation;
+			$this->loggedIn = true;
 		} 
 		if(isset($_SESSION['url'])) {
 			$url = $_SESSION['url'];
 		} else {
-			$url = "/index.php";
+			$url = "/stiltaubv/index.php";
 		}
 		header("Location: https://localhost$url");
-		return false;
 	}
 
 }

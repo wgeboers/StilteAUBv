@@ -26,7 +26,7 @@ Class EmployeeManager {
         return $this->employee;
     }
 
-    public function getAllEmployees() {
+    public function fetchAllEmployees() : array {
         $empData = $this->crud->getTableEmployees();
         foreach($empData as $emp) {
             $empObj = new Employee($emp["EmployeeID"], $emp["First_Name"], $emp["Middle_Name"], $emp["Last_Name"], $emp["Email"], $emp['Creation_Date'], $emp['ACTIVE']);
@@ -35,18 +35,14 @@ Class EmployeeManager {
         return $this->employeesArray;
     }
 
-    public function getLoggedIn() {
+    public function getLoggedIn() : bool {
         return $this->loggedIn;
     }
-
-	public function getEmployeeID() {
-		return $this->employee->getEmployeeID();
-	}
     
     #function used to log a employee in, automatically checks for an end employee or employee login
 	#when the login button is clicked, the employees will be redirected to the page they were on when they logged
 	#An error msg will be published to $_SESSION["errormsg"] if the login failed.
-	public function login($email, $password) {		
+	public function login($email, $password) : void {		
 		$validation = $this->crud->validateUser($email, $password, 'employees');
 		if(!empty($validation)) {
 			$_SESSION['id'] = $validation;
@@ -61,10 +57,9 @@ Class EmployeeManager {
             $url = "/index.php";
         }
         header("Location: https://localhost$url");
-        return false;
     }
 
-    public function fetchRolesFromDB() {
+    public function fetchRolesFromDB() : array {
         $roles = $this->crud->getTable('roles');
         foreach($roles as $role) {
             $roleObj = new Role($role['RoleID'], $role['Name'], $role['Description'], $role['Creation_Date']);
@@ -73,44 +68,44 @@ Class EmployeeManager {
         return $this->rolesArray;
     }
 
-    public function fetchSingularRoleFromDB($where, $param) {
+    public function fetchSingularRoleFromDB($where, $param) : Role {
         $roles = $this->crud->select('roles', $where, $param);
         foreach($roles as $role) {
             $roleObj = new Role($role['RoleID'], $role['Name'], $role['Description'], $role['Creation_Date']);
         }
         return $roleObj;
     }
-    public function insertRole($name, $description, $createdby) {
+    public function insertRole($name, $description, $createdby) : void {
 		#Nog veld validatie toevoegen!!!! (js)
         $this->crud->addRole($name, $description, $createdby);
     }
 
-	public function editRole($id, $name, $description){
+	public function editRole($id, $name, $description) : void {
 		$this->crud->updateRole($id, $name, $description);
 	}
-    public function insertEmployee($empData) {
+    public function insertEmployee($empData) : void {
         $this->crud->insert($empData, 'employees');
     }
 
-	public function insertEmployeeRole($param, $where, $role) {
+	public function insertEmployeeRole($param, $where, $role) : void {
         $empData = $this->crud->selectByEmployee('employees', $where, $param);
         $empID = $empData[0]['EmployeeID'];
-        $data = $this->crud->addEmployeeRole($empID, $role);
+        $this->crud->addEmployeeRole($empID, $role);
     }
 
-	public function editEmployee($empData = array(), $email){
+	public function editEmployee($empData = array(), $email) : void {
 		$this->crud->update($empData, 'employees', 'Email', $email);
 	}
 
-	public function updateEmployeeRole($role, $id) {
-        $data = $this->crud->updateEmployeeRole($role, $id);
+	public function updateEmployeeRole($role, $id) : void {
+        $this->crud->updateEmployeeRole($role, $id);
     }
 
-    public function fetchOrders() {
+    public function fetchOrders() : array {
         return $this->crud->getTable('orderheaders');
     }
 
-    public function fetchRole($name) {
+    public function fetchRoleByName($name) : array {
         return $this->crud->select('roles', 'Name', $name);
     }
 }

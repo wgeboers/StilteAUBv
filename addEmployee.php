@@ -13,7 +13,7 @@ if(isset($_POST['addemployee'])) {
 	require_once("EmployeeManager.php");
 
 	$e_man = new EmployeeManager();
-	$roleData = $e_man->fetchRole($role['role']);
+	$roleData = $e_man->fetchRoleByName($role['role']);
 	$roleid = $roleData['0']['RoleID'];
 	
 	$e_man->insertEmployee($empData);
