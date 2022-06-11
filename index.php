@@ -98,31 +98,31 @@ include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI'];
     </div>
     <div class="form" id="contact">
         <h2>Contactformulier</h2>
-        <form action="./contactFormValidation.php" method="post" id="contactForm" class="row">
+        <form action="./Validation/contactFormValidation.php" method="post" id="contactForm" class="row">
             <div class="col-md-6">
-                <label for="firstName" class="form-label">Voornaam</label>
+                <label for="firstName" class="form-label">Voornaam *</label>
                 <input type="text" class="form-control" id="firstName" name="firstName">
             </div>
             <div class="col-md-6">
-                <label for="lastName" class="form-label">Achternaam</label>
+                <label for="lastName" class="form-label">Achternaam *</label>
                 <input type="text" class="form-control" id="lastName" name="lastName">
             </div>
             <div class="col-md-6">
-                <label for="inputEmail" class="form-label">Email</label>
+                <label for="inputEmail" class="form-label">Email *</label>
                 <input type="email" class="form-control" id="inputEmail" name="inputEmail">
                 <small id="emailHelp" class="form-text text-muted">Wij zullen je email adres niet met andere
                     delen!</small>
             </div>
             <div class="col-md-6">
-                <label for="" class="form-label">Telefoon</label>
+                <label for="" class="form-label">Telefoon *</label>
                 <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
             </div>
             <div class="col-md-12">
-                <label for="subject" class="form-label">Onderwerp</label>
+                <label for="subject" class="form-label">Onderwerp *</label>
                 <input type="text" class="form-control" id="subject" name="subject">
             </div>
             <div class="col-md-12">
-                <label for="Textarea1" class="form-label">Omschrijving</label>
+                <label for="Textarea1" class="form-label">Omschrijving *</label>
                 <input type="text" class="form-control" id="description" name="description">
             </div>
             <div class="col-12 text-center">
