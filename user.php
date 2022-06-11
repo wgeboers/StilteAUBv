@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Class representing a User Object.
+ */
 class User {
 	
 	private int $id;
@@ -38,7 +40,11 @@ class User {
 	public function getName() : string {
 		return $this->firstName;
 	}
-
+	/**
+	 * Associative array based on object data.
+	 * If password is set, it will be put into the array
+	 * Used to display data more easily on the front end.
+	 */
 	public function getAllData() : array {
 		if(isset($this->password)) {
 			return array('First Name'=>$this->firstName, 'Middle Name'=>$this->midName, 'Last Name'=>$this->lastName, 'Email'=>$this->email, 'Phone Number'=>$this->phoneNr,
