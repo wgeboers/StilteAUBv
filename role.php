@@ -15,28 +15,30 @@ class Role {
 		$this->creationDate = $creationDate;
 	}
 	
-	public function getRoleName() {
+	public function getRoleName() : string {
 		return $this->name;
 	}
 
-	public function getRoleDesc() {
+	public function getRoleDesc() : string {
 		return $this->description;
 	}
 
-	public function setid($id){
+	public function setId($id) : void {
 		$this->id = $id;
 	}
 
-	public function setname($name) {
+	public function setName($name) : void {
 		$this->name = $name;
 	}
 
-	public function getRoleID() {
+	public function getRoleID() : int {
 		return $this->id;
 	}
 
-	//To cast object to array for easy data reading in UI.
-	public function toArray() {
+	/**
+	 * Associative array to be used for easier UI generation in front end.
+	 */
+	public function toArray() : array {
 		return array($this->id, $this->name, $this->description, $this->creationDate);
 	}
 }

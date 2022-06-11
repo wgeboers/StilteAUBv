@@ -65,9 +65,9 @@ class ProductManager {
     }
 
     public function fetchProductsFromDB() {
-        $prods = $this->crud->getTable('products');
-        foreach($prods as $prod) {
-            $prodObj = new Product($prod['ProductID'], $prod['Name'], $prod['Description'], $prod['Stock'], $prod['Price'] , '', '' ,'');
+        $productData = $this->crud->getProductsImages();
+        foreach($productData as $product) {
+            $prodObj = new Product($product['ProductID'], $product['Name'], $product['Description'], $product['Stock'], $product['Price'], $product['ImageID'], $product['ImageName'], $product['ImagePath']);
             array_push($this->productsArray, $prodObj); 
         }
         return $this->productsArray;
@@ -95,7 +95,7 @@ class ProductManager {
     }
 
     public function getProductsImages() {
-        return $this->crud->getProductsImages('products-images');
+        return $this->crud->getTable('products-images');
     }
 
 }
