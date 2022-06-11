@@ -43,16 +43,13 @@ Class UserManager {
 
     #function used to log a user in, automatically checks for an end user or employee login
 	#when the login button is clicked, the users will be redirected to the page they were on when they logged
-	#An error msg will be published to $_SESSION["errormsg"] if the login failed.
 	public function login($email, $password) {		
 		$validation = $this->crud->validateUser($email, $password, 'users');
 		if(!empty($validation)) {
 			$_SESSION['id'] = $validation;
             $_SESSION['active'] = true;
 			return $validation;
-		} else {
-			$_SESSION["ErrorMsg"] = 'wrong pass/username';
-		}
+		} 
 		if(isset($_SESSION['url'])) {
 			$url = $_SESSION['url'];
 		} else {

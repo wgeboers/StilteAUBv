@@ -41,9 +41,9 @@ class ProductManager {
         return $this->crud->getTable('searchhistories');
     }
 
-    public function insertProduct($name, $description, $stock, $price){
+    public function insertProduct($name, $description, $stock, $price, $createdby){
 		#Nog veld validatie toevoegen!!!!
-        $data = $this->crud->addProduct($name, $description, $stock, $price ,'' ,'' ,'');
+        $data = $this->crud->addProduct($name, $description, $stock, $price, $createdby);
     }
 
 	public function insertProductLog($id, $name, $description, $stock, $price){

@@ -27,7 +27,7 @@
                         <th scope="col">Omschrijving</th>
                         <th scope="col">Voorraad</th>
                         <th scope="col">Prijs</th>
-                        <th scope="col">Aanmaak Datum</th>
+                        <th></th>
                         <th></th>
                         <th></th>
                         <th></th>
