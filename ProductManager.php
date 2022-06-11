@@ -3,6 +3,7 @@
 require_once("Crud.php");
 require_once("Product.php");
 require_once('Image.php');
+include('LangManager.php');
 
 class ProductManager {
         
@@ -84,8 +85,14 @@ class ProductManager {
 
     public function fetchSingleProduct($id) {
         $productData =  $this->crud->getSingleProduct($id);
-        foreach($productData as $product) {
-            $prodObj = new Product($product['ProductID'], $product['Name'], $product['Description'], $product['Stock'], $product['Price'], $product['ImageID'], $product['ImageName'], $product['ImagePath']);
+        if($_SESSION['lang'] === 'lang_nl') {
+            foreach($productData as $product) {
+                $prodObj = new Product($product['ProductID'], $product['Name'], $product['Description'], $product['Stock'], $product['Price'], $product['ImageID'], $product['ImageName'], $product['ImagePath']);
+            }
+        } elseif($_SESSION['lang'] === 'lang_en') {
+            foreach($productData as $product) {
+                $prodObj = new Product($product['ProductID'], $product['Name_en'], $product['Description_en'], $product['Stock'], $product['Price'], $product['ImageID'], $product['ImageName'], $product['ImagePath']);
+            }
         }
         return $prodObj;
     }

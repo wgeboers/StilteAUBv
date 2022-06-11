@@ -4,11 +4,6 @@
     require_once('ProductManager.php');
     $ProductManager = new ProductManager();
 
-    include('LangManager.php');
-    $langManager = new LangManager();
-    $content = $langManager->getContents("webshop.php");
-    $titles = $langManager->getTitles();
-    $texts = $langManager->getTexts();
 ?>
 <head>
     <title>Silent Disco</title>
@@ -44,7 +39,7 @@
                                 echo "./".$rows['ImagePath'];
                             }
                         ?> alt="Logo">
-                        <h1><?php echo $rows['Name'];?></h1>
+                        <h1><?php echo $rows['Name'] ?></h1>
                         <p><?php echo $rows['Description']?></p>
                         <h3><?php echo "€" . $rows['Price'];?></h3>
                         <div class="shopFlex">

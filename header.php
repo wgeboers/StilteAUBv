@@ -36,7 +36,7 @@
 <script src="https://kit.fontawesome.com/f05c166ad5.js" crossorigin="anonymous"></script>
     <nav class="navbar sticky-top navbar-expand-lg navbar-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand">
                 <img src="Images/Logo.png" alt="" width="60" height="auto">
             </a>
             <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"

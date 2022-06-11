@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2022 at 07:01 PM
+-- Generation Time: Jun 02, 2022 at 06:52 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.28
 
@@ -23,68 +23,6 @@ USE stilteaubv;
 --
 -- Database: `stilteaubv`
 --
-
-DELIMITER $$
---
--- Procedures
---
-CREATE DEFINER=`root`@`localhost` PROCEDURE `getOrdersUser` (IN `userID` INT)   BEGIN
-	SELECT `Creation_Date`, `HeaderID`, `Total_Price`, `Status`
-    FROM `OrderHeaders`
-    WHERE `Order_by` = `userID`;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `OrderDetails` (IN `SP_HeaderID` INT)   BEGIN
-	SELECT
-    	`prd`.`Name`,
-        `prd`.`Description`,
-        `ol`.`Amount`,
-        `ol`.`Line_Price`
-    FROM `OrderLines` `ol`
-    LEFT JOIN `Products` `prd` ON `prd`.`ProductID` = `ol`.`ProductID`
-    WHERE `ol`.`HeaderID` = `SP_HeaderID`;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ShowUserProfile` (IN `SP_ID` INT)   BEGIN
-	SELECT
-    	`First_Name`, 
-        `Middle_Name`, 
-        `Last_Name`, 
-        `Email`, 
-        `Phone_Number`, 
-        `Street`, 
-        `House_Number`, 
-        `House_Number_Addition`, 
-        `Zipcode`, 
-        `City`
-    FROM `users`
-    WHERE `UserID` = `SP_ID`;
-END$$
-
-
---
--- Functions
---
-CREATE DEFINER=`root`@`localhost` FUNCTION `users_updateName` (`id` INT(11), `FN` VARCHAR(25), `LN` VARCHAR(25)) RETURNS INT(11) DETERMINISTIC BEGIN
-	UPDATE `users` SET `First_Name` = `FN`, `Last_Name` = `LN` WHERE `users`.`UserID` = `id`;
-    RETURN 1;
-END$$
-
-CREATE DEFINER=`root`@`localhost` FUNCTION `yearsEmployeeInCompany` (`empID` INT) RETURNS INT(11)  BEGIN
-	-- Variable voor het startJaar
-    DECLARE `startDate` INT;
-    
-    SELECT YEAR(`Creation_Date`)
-    INTO `startDate`
-    FROM `employees`
-    WHERE `EmployeeID` = `empID`;
-    
-    -- Bepaal huidig jaar en trek daar het startJaar van af
-    RETURN YEAR(CURRENT_TIMESTAMP()) - `startDate`;
-
-END$$
-
-DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -110,12 +48,14 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`EmployeeID`, `First_Name`, `Middle_Name`, `Last_Name`, `Email`, `Password`, `Creation_Date`, `Created_By`, `Last_Active`, `ACTIVE`) VALUES
-(1, 'Wesley', NULL, 'Geboers', 'w.geboers@student.avans.nl', 'P@ssw0rd@2022!', '2022-03-26 18:00:00', NULL, NULL, 1),
+(1, 'wesley', NULL, 'Geboers', 'w.geboers@student.avans.nl', 'P@ssw0rd@2022!', '2022-03-26 18:00:00', NULL, NULL, 1),
 (2, 'Marcel', NULL, 'Forman', 'm.forman@student.avans.nl', 'P@ssw0rd@2022!', '2022-03-26 18:00:00', 1, NULL, 1),
 (3, 'Bart', NULL, 'Frijters', 'bjal.frijters@student.avans.nl', 'P@ssw0rd@2022!', '2022-03-26 18:00:00', 1, NULL, 1),
 (4, 'Thomas', NULL, 'Daane', 'trbl.daane@student.avans.nl', 'P@ssw0rd@2022!', '2022-03-26 18:00:00', 1, NULL, 1),
 (5, 'Sanel', 'van den', 'Bogert', 'avd.bogert@student.avans.nl', 'P@ssw0rd@2022!', '2022-03-26 18:00:00', 1, NULL, 1),
-(6, 'Lysette', NULL, 'Schippers', 'l.schippers@student.avans.nl', 'P@ssw0rd@2022!', '2022-03-26 18:00:00', 1, NULL, 1);
+(6, 'Tinky', '', 'WInky', 'l.schippers@student.avans.nl', '<br /><b>Notice</b>:  Und', '2022-03-26 18:00:00', 1, NULL, 1),
+(14, 'Jan', 'van', 'Blisteren', 'jvanblisteren@gmail.com', '<br /><b>Notice</b>:  Und', '2022-05-29 17:32:11', NULL, NULL, 1),
+(15, 'Piet', '', 'fesfes', 'fesfe@gmail.com', '1Gizmo99mimo7', '2022-05-29 18:24:18', NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -139,7 +79,34 @@ INSERT INTO `employees-roles` (`TableID`, `EmployeeID`, `RoleID`) VALUES
 (3, 3, 3),
 (4, 4, 4),
 (5, 5, 5),
-(6, 5, 5);
+(7, 14, 4),
+(8, 15, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `images`
+--
+
+CREATE TABLE `images` (
+  `ImageID` int(11) NOT NULL,
+  `File_Name` varchar(255) NOT NULL,
+  `File_Path` text NOT NULL,
+  `Creation_Date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `images`
+--
+
+INSERT INTO `images` (`ImageID`, `File_Name`, `File_Path`, `Creation_Date`) VALUES
+(4, 'Headset.jpg', 'Images/Headset.jpg', '2022-05-28 08:52:11'),
+(5, '80s.jpg', 'Images/80s.jpg', '2022-05-28 08:56:56'),
+(6, '70s.png', 'Images/70s.png', '2022-05-28 08:57:28'),
+(7, '90s.png', 'Images/90s.png', '2022-05-28 08:57:34'),
+(8, 'Logo.png', 'Images/Logo.png', '2022-05-28 09:00:47'),
+(9, '00s.jpg', 'Images/00s.jpg', '2022-05-29 20:29:44'),
+(10, '60s.jpg', 'Images/60s.jpg', '2022-05-29 20:29:50');
 
 -- --------------------------------------------------------
 
@@ -170,7 +137,7 @@ CREATE TABLE `orderheaders` (
   `Deliver_City` varchar(50) NOT NULL,
   `Creation_Date` timestamp NOT NULL DEFAULT current_timestamp(),
   `Finished_Date` datetime DEFAULT NULL,
-  `Status` varchar(25) NOT NULL
+  `Status` varchar(25) NOT NULL DEFAULT 'Openstaand'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -179,7 +146,12 @@ CREATE TABLE `orderheaders` (
 
 INSERT INTO `orderheaders` (`HeaderID`, `Order_By`, `Total_Price`, `Deliver_Adres`, `Deliver_Zipcode`, `Deliver_City`, `Creation_Date`, `Finished_Date`, `Status`) VALUES
 (1, 1, '349.95', 'Midscheeps 65', '8899 BT', 'Vlieland', '2022-03-26 18:00:37', NULL, 'In behandeling'),
-(2, 3, '69.99', 'Blauwe Pan 56-A', '1317 AP', 'Almere', '2022-03-26 18:00:37', '2022-03-26 19:00:37', 'Geleverd');
+(2, 3, '69.99', 'Blauwe Pan 56-A', '1317 AP', 'Almere', '2022-03-26 18:00:37', '2022-03-26 19:00:37', 'Openstaand'),
+(35, NULL, '909.30', 'Olivierplaats', '3813 JD', 'Amersfoort', '2022-05-28 16:55:19', '2022-06-02 15:32:20', 'Geleverd'),
+(36, NULL, '684.78', 'Olivierplaats', '3813 JD', 'Amersfoort', '2022-05-28 16:56:36', NULL, 'Vertuurd'),
+(37, NULL, '324.75', 'Olivierplaats 34', '3813 JD', 'Amersfoort', '2022-05-29 14:28:19', NULL, 'Vertuurd'),
+(38, NULL, '584.55', 'Olivierplaats', '3813 JD', 'Amersfoort', '2022-05-29 18:23:24', '2022-06-02 15:27:42', 'Geleverd'),
+(39, NULL, '544.80', 'Olivierplaats', '3813 JD', 'Amersfoort', '2022-06-01 20:28:27', '2022-06-02 15:26:41', 'Geleverd');
 
 -- --------------------------------------------------------
 
@@ -203,7 +175,18 @@ INSERT INTO `orderlines` (`LineID`, `HeaderID`, `ProductID`, `Amount`, `Line_Pri
 (1, 1, 2, 1, '64.99'),
 (2, 1, 3, 3, '209.97'),
 (3, 1, 5, 1, '74.99'),
-(4, 2, 4, 1, '69.99');
+(4, 2, 4, 1, '69.99'),
+(5, 35, 1, 9, '584.55'),
+(6, 35, 2, 5, '324.75'),
+(7, 36, 1, 1, '64.95'),
+(8, 36, 2, 2, '129.90'),
+(9, 36, 3, 3, '209.97'),
+(10, 36, 4, 4, '279.96'),
+(11, 37, 1, 5, '324.75'),
+(12, 38, 1, 5, '324.75'),
+(13, 38, 2, 4, '259.80'),
+(14, 39, 4, 5, '349.95'),
+(15, 39, 2, 3, '194.85');
 
 --
 -- Triggers `orderlines`
@@ -245,7 +228,8 @@ INSERT INTO `productlogs` (`LogID`, `ProductID`, `Modified_Date`, `Modified_By`,
 (2, 1, '2022-03-26 18:00:31', 3, NULL, NULL, NULL, '60.99'),
 (3, 3, '2022-03-26 18:00:31', 3, NULL, NULL, 10, NULL),
 (4, 2, '2022-03-26 18:00:31', 3, NULL, NULL, 20, NULL),
-(5, 5, '2022-03-26 18:00:31', 3, NULL, NULL, 15, NULL);
+(5, 5, '2022-03-26 18:00:31', 3, NULL, NULL, 15, NULL),
+(6, 2, '2022-06-02 14:10:57', NULL, '70s Package', 'Jaren 70 thema met 10 headsets en 1 zender', 16, '64.99');
 
 -- --------------------------------------------------------
 
@@ -268,11 +252,34 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`ProductID`, `Name`, `Description`, `Stock`, `Price`, `Creation_Date`, `Created_By`) VALUES
-(1, '60\'s Package', 'Jaren 60 thema met 10 headsets en 1 zender', 12, '64.99', '2022-03-26 18:00:24', 1),
-(2, '70\'s Package', 'Jaren 70 thema met 10 headsets en 1 zender', 15, '64.99', '2022-03-26 18:00:24', 1),
-(3, '80\'s Package', 'Jaren 80 thema met 10 headsets en 1 zender', 6, '69.99', '2022-03-26 18:00:24', 1),
-(4, '90\'s Package', 'Jaren 90 thema met 10 headsets en 1 zender', 18, '69.99', '2022-03-26 18:00:24', 1),
-(5, '00\'s Package', 'Jaren 00 thema met 10 headsets en 1 zender', 3, '74.99', '2022-03-26 18:00:24', 1);
+(1, '60s Package', 'Jaren 60 thema met 10 headsets en 1 zender', 12, '64.95', '2022-03-26 18:00:24', 1),
+(2, '70s Package', 'Jaren 70 thema met 10 headsets en 1 zender', 16, '64.99', '2022-03-26 18:00:24', 1),
+(3, '80s Package', 'Jaren 80 thema met 10 headsets en 1 zender', 6, '69.99', '2022-03-26 18:00:24', 1),
+(4, '90s Package', 'Jaren 90 thema met 10 headsets en 1 zender', 18, '69.99', '2022-03-26 18:00:24', 1),
+(5, '00s Package', 'Jaren 00 thema met 10 headsets en 1 zender', 3, '74.99', '2022-03-26 18:00:24', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products-images`
+--
+
+CREATE TABLE `products-images` (
+  `TableID` int(11) NOT NULL,
+  `ProductID` int(11) NOT NULL,
+  `ImageID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `products-images`
+--
+
+INSERT INTO `products-images` (`TableID`, `ProductID`, `ImageID`) VALUES
+(1, 3, 5),
+(4, 4, 7),
+(9, 2, 6),
+(10, 1, 10),
+(11, 5, 9);
 
 -- --------------------------------------------------------
 
@@ -309,7 +316,28 @@ INSERT INTO `roles` (`RoleID`, `Name`, `Description`, `Creation_Date`, `Created_
 (2, 'IT', 'Toegang tot medewerkersportaal en de database (lees en schrijf rechten)', '2022-03-26 18:00:11', 1),
 (3, 'Operations', 'Toegang tot medewerkersportaal (lees en schrijf rechten)', '2022-03-26 18:00:11', 1),
 (4, 'Marketing', 'Toegang tot medewerkersportaal (lees en schrijf rechten)', '2022-03-26 18:00:11', 1),
-(5, 'Administratie', 'Toegang tot medewerkersportaal (lees rechten)', '2022-03-26 18:00:11', 1);
+(5, 'Administratie', 'Toegang tot medewerkersportaal (lees rechten)', '2022-03-26 18:00:11', 1),
+(6, 'Test', 'Dit is een update!!', '2022-05-27 13:56:32', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `searchhistories`
+--
+
+CREATE TABLE `searchhistories` (
+  `SearchID` int(11) NOT NULL,
+  `Search_Description` text NOT NULL,
+  `Passed` tinyint(1) NOT NULL DEFAULT 1,
+  `Creation_Date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `searchhistories`
+--
+
+INSERT INTO `searchhistories` (`SearchID`, `Search_Description`, `Passed`, `Creation_Date`) VALUES
+(1, '00\'s thema', 1, '2022-05-27 14:35:14');
 
 -- --------------------------------------------------------
 
@@ -393,7 +421,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `top10productsamount`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `top10productsamount`  AS SELECT `prd`.`Name` AS `ProductName`, `prd`.`Description` AS `ProductDescription`, sum(`ol`.`Amount`) AS `TotalAmountSold` FROM (`orderlines` `ol` left join `products` `prd` on(`ol`.`ProductID` = `prd`.`ProductID`)) GROUP BY `ol`.`ProductID` ORDER BY sum(`ol`.`Amount`) DESC LIMIT 0, 1010  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `top10productsamount`  AS SELECT `prd`.`Name` AS `ProductName`, `prd`.`Description` AS `ProductDescription`, sum(`ol`.`Amount`) AS `TotalAmountSold` FROM (`orderlines` `ol` left join `products` `prd` on(`ol`.`ProductID` = `prd`.`ProductID`)) GROUP BY `ol`.`ProductID` ORDER BY sum(`ol`.`Amount`) DESC LIMIT 0, 10101010  ;
 
 -- --------------------------------------------------------
 
@@ -402,7 +430,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `top10productsprice`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `top10productsprice`  AS SELECT `prd`.`Name` AS `ProductName`, `prd`.`Description` AS `ProductDescription`, sum(`ol`.`Line_Price`) AS `TotalPriceSold` FROM (`orderlines` `ol` left join `products` `prd` on(`ol`.`ProductID` = `prd`.`ProductID`)) GROUP BY `ol`.`ProductID` ORDER BY sum(`ol`.`Line_Price`) DESC LIMIT 0, 1010  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `top10productsprice`  AS SELECT `prd`.`Name` AS `ProductName`, `prd`.`Description` AS `ProductDescription`, sum(`ol`.`Line_Price`) AS `TotalPriceSold` FROM (`orderlines` `ol` left join `products` `prd` on(`ol`.`ProductID` = `prd`.`ProductID`)) GROUP BY `ol`.`ProductID` ORDER BY sum(`ol`.`Line_Price`) DESC LIMIT 0, 10101010  ;
 
 --
 -- Indexes for dumped tables
@@ -422,6 +450,12 @@ ALTER TABLE `employees-roles`
   ADD PRIMARY KEY (`TableID`),
   ADD KEY `EmployeeID` (`EmployeeID`),
   ADD KEY `RoleID` (`RoleID`);
+
+--
+-- Indexes for table `images`
+--
+ALTER TABLE `images`
+  ADD PRIMARY KEY (`ImageID`);
 
 --
 -- Indexes for table `orderheaders`
@@ -454,11 +488,25 @@ ALTER TABLE `products`
   ADD KEY `Created_By` (`Created_By`);
 
 --
+-- Indexes for table `products-images`
+--
+ALTER TABLE `products-images`
+  ADD PRIMARY KEY (`TableID`),
+  ADD KEY `ProductID` (`ProductID`),
+  ADD KEY `ImageID` (`ImageID`);
+
+--
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`RoleID`),
   ADD KEY `Created_By` (`Created_By`);
+
+--
+-- Indexes for table `searchhistories`
+--
+ALTER TABLE `searchhistories`
+  ADD PRIMARY KEY (`SearchID`);
 
 --
 -- Indexes for table `users`
@@ -474,43 +522,61 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `EmployeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `EmployeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `employees-roles`
 --
 ALTER TABLE `employees-roles`
-  MODIFY `TableID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `TableID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `images`
+--
+ALTER TABLE `images`
+  MODIFY `ImageID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `orderheaders`
 --
 ALTER TABLE `orderheaders`
-  MODIFY `HeaderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `HeaderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `orderlines`
 --
 ALTER TABLE `orderlines`
-  MODIFY `LineID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `LineID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `productlogs`
 --
 ALTER TABLE `productlogs`
-  MODIFY `LogID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `LogID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `ProductID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ProductID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `products-images`
+--
+ALTER TABLE `products-images`
+  MODIFY `TableID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `RoleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `RoleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `searchhistories`
+--
+ALTER TABLE `searchhistories`
+  MODIFY `SearchID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -560,6 +626,13 @@ ALTER TABLE `productlogs`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`Created_By`) REFERENCES `employees` (`EmployeeID`) ON DELETE SET NULL;
+
+--
+-- Constraints for table `products-images`
+--
+ALTER TABLE `products-images`
+  ADD CONSTRAINT `products-images_ibfk_1` FOREIGN KEY (`ProductID`) REFERENCES `products` (`ProductID`) ON DELETE CASCADE,
+  ADD CONSTRAINT `products-images_ibfk_2` FOREIGN KEY (`ImageID`) REFERENCES `images` (`ImageID`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `roles`

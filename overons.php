@@ -24,22 +24,19 @@
     <div class="container-fluid text-white">
         <div class="row">
             <div class="col-xs-6 col-md-8 p-5 content">
-                <p> <?php echo $texts[0]; ?>
-                </p>
-            </div>
             <div class="col-xs-6 col-md-4 p-5 content">
                 <p>
                     <img id="logoOverOns" src="Images/Logo.png" />
                 </p>
                 <p>
-                    <?php echo "$titles[2]"?>: STILTE AUBV<br>
+                    <?php echo "$titles[2]"; ?>: STILTE AUBV<br>
                     ADRES: HOGESCHOOLLAAN 1<br>
-                    <?php echo "$texts[2]"?>: 4818 CR<br>
-                    <?php echo "$texts[1]"?>: BREDA<BR>
+                    <?php echo "$texts[2]"; ?>: 4818 CR<br>
+                    <?php echo "$texts[1]"; ?>: BREDA<BR>
                 </p>
                 <p>
                     TEL: 088 5698475<br>
-                    EMAIL: info@stilteaubv.nl<br>
+                    E-MAIL: info@stilteaubv.nl<br>
                     KVK: 8978676748<br>
                 </p>
             </div>
@@ -49,10 +46,10 @@
                 <img id="logoOverOns" src="Images/Logo.png" />
             </p>
             <p>
-                <span class="overonsColorChange">NAAM: </span>STILTE AUBV<br>
+                <span class="overonsColorChange"><?php echo "$titles[2]"; ?> </span>STILTE AUBV<br>
                 <span class="overonsColorChange">ADRES: </span>HOGESCHOOLLAAN 1<br>
-                <span class="overonsColorChange">POSTCODE: </span>4818 CR<br>
-                <span class="overonsColorChange">PLAATS: </span>BREDA<BR>
+                <span class="overonsColorChange"><?php echo "$texts[2]"; ?></span>4818 CR<br>
+                <span class="overonsColorChange"><?php echo "$texts[1]"; ?> </span>BREDA<BR>
             </p>
             <p>
                 <span class="overonsColorChange">TEL: </span>088 5698475<br>
