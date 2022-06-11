@@ -2,13 +2,13 @@
 
 class Employee {
 
-	private $id;
-	private $firstName;
-	private $middleName;
-	private $lastName;
-	private $email;
-	private $creationDate;
-	private $active;
+	private int $id;
+	private string $firstName;
+	private string $middleName;
+	private string $lastName;
+	private string $email;
+	private string $creationDate;
+	private string $active;
 	
 	function  __construct($id, $firstName, $middleName, $lastName, $email, $creationDate, $active) {
 		$this->id = $id;
