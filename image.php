@@ -13,15 +13,15 @@ class Image {
 		$this->imageName = $imageName;
 		$this->imageFilePath = $imageFilePath;
 	}
-	public function getImageName() : string {
+	public function getImageName() {
 		return $this->imageName;
 	}
 
-	public function getImageID() : int {
+	public function getImageID() {
 		return $this->imageID;
 	}
 
-	public function getImageFilePath() : string {
+	public function getImageFilePath() {
 		return $this->imageFilePath;
 	}
 
@@ -29,7 +29,7 @@ class Image {
 	 * Function used to cast Image data into an associative array
 	 * To be used within manager to get an object ready to be uploaded to database.
 	 */
-	public function toArray() : array {
+	public function toArray() {
 		return array('ImageID'=>$this->imageID, 'Name'=>$this->imageName, 'FilePath'=>$this->imageFilePath);
 	}
 }
