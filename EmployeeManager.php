@@ -18,7 +18,7 @@ Class EmployeeManager {
     }
 
     #Creates a employee object based on database row.
-    public function fetchEmployeeData($where, $param) {
+    public function fetchEmployeeData($where, $param) : Employee {
         $results = $this->crud->select('employees', $where, $param);
 		foreach($results as $result) {
 			$this->employee = new Employee($result["EmployeeID"], $result["First_Name"], $result["Middle_Name"], $result["Last_Name"], $result["Email"], $result['Creation_Date'], $result['ACTIVE']);
