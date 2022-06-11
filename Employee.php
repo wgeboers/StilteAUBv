@@ -4,13 +4,13 @@
  */
 class Employee {
 
-	private $id;
-	private $firstName;
-	private $middleName;
-	private $lastName;
-	private $email;
-	private $creationDate;
-	private $active;
+	private int $id;
+	private string $firstName;
+	private ?string $middleName = '';
+	private string $lastName;
+	private string $email;
+	private string $creationDate;
+	private string $active;
 	
 	function  __construct($id, $firstName, $middleName, $lastName, $email, $creationDate, $active) {
 		$this->id = $id;
@@ -23,11 +23,11 @@ class Employee {
 
 	}
     
-	public function getEmployeeID() {
+	public function getEmployeeID() : int {
 		return $this->id;
 	}
 
-	public function getName() {
+	public function getName() : string {
 		return $this->firstName;
 	}
 
@@ -35,7 +35,7 @@ class Employee {
 	 * Function used to put the object values in an associative array
 	 * Use this function to enable Employee object data to be uploaded to the database.
 	 */
-	public function toArray() {
+	public function toArray() : array {
 		return array('EmployeeID'=>$this->id, 'First Name'=>$this->firstName, 'Middle Name'=>$this->middleName, 'Last Name'=>$this->lastName, 'Email'=>$this->email, 'Creation Date'=>$this->creationDate, 'ACTIVE'=>$this->active);
 	}
 }

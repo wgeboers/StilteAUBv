@@ -2,28 +2,28 @@
 
 class Image {
 	
-	protected $imageID;
-	protected $imageName;
-	protected $imageFilePath;
+	protected ?int $imageID;
+	protected ?string $imageName;
+	protected ?string $imageFilePath;
 
 	public function __construct($imageID, $imageName, $imageFilePath) {
 		$this->imageID = $imageID;
 		$this->imageName = $imageName;
 		$this->imageFilePath = $imageFilePath;
 	}
-	public function getImageName() {
+	public function getImageName() : string {
 		return $this->imageName;
 	}
 
-	public function getImageID() {
+	public function getImageID() : int {
 		return $this->imageID;
 	}
 
-	public function getImageFilePath() {
+	public function getImageFilePath() : string  {
 		return $this->imageFilePath;
 	}
 
-	public function toArray() {
+	public function toArray() : array {
 		return array('ImageID'=>$this->imageID, 'Name'=>$this->imageName, 'FilePath'=>$this->imageFilePath);
 	}
 }

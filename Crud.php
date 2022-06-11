@@ -246,15 +246,25 @@ class Crud extends Database {
 		}
 	}
 
-	public function getProductsImages($table) {
+	public function getProductsImages() {
 		try {
-			$select = $this->connection->prepare("SELECT * FROM `$table`");
+			$select = $this->connection->prepare("SELECT prd.*, pi.`ImageID`, img.`File_Name` as ImageName, img.`File_Path` as ImagePath FROM `products`prd LEFT JOIN `products-images` pi ON prd.`ProductID` = pi.`ProductID` LEFT JOIN `images` img ON pi.`ImageID` = img.`ImageID`");
 			$select->execute();
 			return $select->fetchall(PDO::FETCH_ASSOC);
 		} catch(PDOException $e) {
 			echo $e;
 		}
 	}
+
+	// public function getProductsImages($table) {
+	// 	try {
+	// 		$select = $this->connection->prepare("SELECT * FROM `$table`");
+	// 		$select->execute();
+	// 		return $select->fetchall(PDO::FETCH_ASSOC);
+	// 	} catch(PDOException $e) {
+	// 		echo $e;
+	// 	}
+	// }
 
 	public function addProduct($name, $description, $stock, $price){
 		try {

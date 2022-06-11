@@ -5,12 +5,11 @@ require_once('Image.php');
 class Product extends Image {
 	
 
-	private $id;
-	private $name;
-	private $desc;
-	private $stock;
-	private $price;
-	private $creationDate;
+	private int $id;
+	private string $name;
+	private string $desc;
+	private int $stock;
+	private float $price;
 	
 	function  __construct($id, $name, $desc, $stock, $price, $imageID, $imageName, $imageFilePath) {
 		$this->id = $id;
@@ -23,27 +22,27 @@ class Product extends Image {
 		$this->imageFilePath = $imageFilePath;
 	}
 	
-	public function toArray() {
+	public function toArray() : array {
 		return array('ID'=>$this->id, 'Name'=>$this->name, 'Desc'=>$this->desc, 'Stock'=>$this->stock, 'Price'=>$this->price, 'imageID'=>$this->imageID, 'imageName'=>$this->imageName, 'imageFilePath'=>$this->imageFilePath);
 	}
 
-	public function getPrice() {
+	public function getPrice() : float {
 		return $this->price;
 	}
 
-	public function getName() {
+	public function getName() : string {
 		return $this->name;
 	}
 
-	public function getDescription() {
+	public function getDescription() : string {
 		return $this->desc;
 	}
 
-	public function getProductID() {
+	public function getProductID() : int {
 		return $this->id;
 	}
 
-	public function getImagePath() {
+	public function getImagePath() : string {
 		return $this->imageFilePath;
 	}
 
