@@ -80,9 +80,9 @@ Class EmployeeManager {
         }
         return $roleObj;
     }
-    public function insertRole($name, $description) {
+    public function insertRole($name, $description, $createdby) {
 		#Nog veld validatie toevoegen!!!! (js)
-        $this->crud->addRole($name, $description);
+        $this->crud->addRole($name, $description, $createdby);
     }
 
 	public function editRole($id, $name, $description){
@@ -94,7 +94,8 @@ Class EmployeeManager {
 
 	public function insertEmployeeRole($param, $where, $role) {
         $empData = $this->crud->selectByEmployee('employees', $where, $param);
-        $data = $this->crud->addEmployeeRole($role, $where, $param);
+        $empID = $empData[0]['EmployeeID'];
+        $data = $this->crud->addEmployeeRole($empID, $role);
     }
 
 	public function editEmployee($empData = array(), $email){
@@ -107,6 +108,10 @@ Class EmployeeManager {
 
     public function fetchOrders() {
         return $this->crud->getTable('orderheaders');
+    }
+
+    public function fetchRole($name) {
+        return $this->crud->select('roles', 'Name', $name);
     }
 }
 

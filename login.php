@@ -1,7 +1,6 @@
 <?php
 
 #Script that's executed on pressing 'login' in the website header.
-#TODO: Error message is not picked up yet.
 if(!empty($_POST['login'])) {
 	session_start();
 	$email = $_POST["email"];

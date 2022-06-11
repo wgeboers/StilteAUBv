@@ -5,12 +5,11 @@ if(!empty($_POST['addproduct'])) {
 	$description = $_POST["description"];
     $stock = $_POST["stock"];
     $price = $_POST["price"];
-
-	echo$price;
+	$createdby = $_SESSION['id'];
 
 	require_once("ProductManager.php");
 	$pman= new ProductManager();
-	$pman->insertProduct($name, $description, $stock, $price ,'', '' ,'');
+	$pman->insertProduct($name, $description, $stock, $price, $createdby);
 
 	if(isset($_SESSION['url'])) {
 		$url = $_SESSION['url'];

@@ -122,7 +122,7 @@ class Crud extends Database {
 	}
 	public function selectByEmployee($table, $where, $param) {
 		try {
-			$select = $this->connection->prepare("SELECT * FROM {$table} WHERE {$where} = {$param}");
+			$select = $this->connection->prepare("SELECT EmployeeID FROM {$table} WHERE {$where} = '{$param}'");
 			$select->execute();
 			return $select->fetchall(PDO::FETCH_ASSOC);
 		} catch(PDOException $e) {
@@ -235,8 +235,8 @@ class Crud extends Database {
 	######################################################
 	#######################Rollen#########################
 	######################################################
-	public function addRole($name, $description){
-		$insert = $this->connection->prepare("INSERT INTO `roles` (`Name`, `Description`) VALUES ('$name', '$description')");
+	public function addRole($name, $description, $createdby){
+		$insert = $this->connection->prepare("INSERT INTO `roles` (`Name`, `Description`, `Created_By`) VALUES ('$name', '$description', $createdby)");
 		$insert->execute();
 	}
 
@@ -288,8 +288,8 @@ class Crud extends Database {
 		}
 	}
 
-	public function addProduct($name, $description, $stock, $price){
-		$insert = $this->connection->prepare("INSERT INTO `products` (`Name`, `Description`, `Stock`, `Price`) VALUES ('$name', '$description', $stock, $price)");
+	public function addProduct($name, $description, $stock, $price, $createdby){
+		$insert = $this->connection->prepare("INSERT INTO `products` (`Name`, `Description`, `Stock`, `Price`, `Created_By`) VALUES ('$name', '$description', $stock, $price, $createdby)");
 		$insert->execute();
 	}
 
@@ -381,13 +381,13 @@ class Crud extends Database {
 	
 	public function addSearchTerm(string $searchTerm, bool $passed) {
 		try {
-			//$sql = "INSERT IGNORE INTO searchhistories values (:search, TRUE, '')";
-			$sql2 = "INSERT INTO searchhistories (Search_Description, Passed)
-			SELECT * FROM (SELECT :search, :passed) AS tmp
-			WHERE NOT EXISTS (
-				SELECT Search_Description, Passed FROM searchhistories WHERE Search_Description = :search AND Passed = :passed
-			) LIMIT 1";
-			$insert = $this->connection->prepare($sql2);
+			$sql = "INSERT INTO searchhistories (Search_Description, Passed) VALUES (:search, :passed)";
+			// $sql2 = "INSERT INTO searchhistories (Search_Description, Passed)
+			// SELECT * FROM (SELECT :search, :passed) AS tmp
+			// WHERE NOT EXISTS (
+			// 	SELECT Search_Description, Passed FROM searchhistories WHERE Search_Description = :search AND Passed = :passed
+			// ) LIMIT 1";
+			$insert = $this->connection->prepare($sql);
 			$insert->bindParam(':search', $searchTerm, PDO::PARAM_STR);
 			$insert->bindParam(':passed', $passed, PDO::PARAM_INT);
 			$insert->execute();
