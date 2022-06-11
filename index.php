@@ -1,6 +1,12 @@
 
 <!DOCTYPE html>
-<?php include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI']; ?>
+<?php include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI'];
+require_once ('Langmanager.php');
+$langManager = new LangManager();
+$content = $langManager->getContents("index.php");
+$titles = $langManager->getTitles();
+$texts = $langManager->getTexts();
+?>
 <html>
 <head>
     <title>Silent Disco</title>
@@ -26,9 +32,9 @@
                     <div class="text">
                         <div>
                             <h2>
-                                Silent D<span class="hexagonTextChange">isco</span>
+                                <span class="hexagonTextChange"><?php echo "$titles[0]"; ?></span>
                             </h2>
-                            <p> Huur een volledige doe-het-zelf Silent Disco set met koptelefoons. Het systeem is makkelijk aan te sluiten op een laptop of op DJ-apparatuur met het door jou gekozen thema pakket. Binnen een mum van tijd organiseer jij zelf een Silent Disco!</p>
+                            <p> <?php echo "$texts[0]"; ?></p>
                         </div>
                     </div>
                 </div>
@@ -49,7 +55,7 @@
                             <div class="text">
                                 <div>
                                     <p>
-                                        Bekijk onze producten!
+                                        <?php echo "$texts[1]"; ?>
                                     </p>
                                 </div>
                             </div>
@@ -95,33 +101,32 @@
         <h2>Contactformulier</h2>
         <form action="./contactForm.php" method="post" id="contactForm" class="row">
             <div class="col-md-6">
-                <label for="firstName" class="form-label">Voornaam</label>
+                <label for="firstName" class="form-label"><?php echo "$titles[2]"; ?></label>
                 <input type="text" class="form-control" id="firstName" name="firstName">
             </div>
             <div class="col-md-6">
-                <label for="lastName" class="form-label">Achternaam</label>
+                <label for="lastName" class="form-label"><?php echo "$titles[3]"; ?></label>
                 <input type="text" class="form-control" id="lastName" name="lastName">
             </div>
             <div class="col-md-6">
-                <label for="inputEmail" class="form-label">Email</label>
+                <label for="inputEmail" class="form-label"><?php echo "$titles[4]"; ?></label>
                 <input type="email" class="form-control" id="inputEmail" name="inputEmail">
-                <small id="emailHelp" class="form-text text-muted">Wij zullen je email adres niet met andere
-                    delen!</small>
+                <small id="emailHelp" class="form-text text-muted"><?php echo "$texts[4]"; ?></small>
             </div>
             <div class="col-md-6">
-                <label for="" class="form-label">Telefoon</label>
+                <label for="" class="form-label"><?php echo "$titles[5]"; ?></label>
                 <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
             </div>
             <div class="col-md-12">
-                <label for="subject" class="form-label">Onderwerp</label>
+                <label for="subject" class="form-label"><?php echo "$titles[6]"; ?></label>
                 <input type="text" class="form-control" id="subject" name="subject">
             </div>
             <div class="col-md-12">
-                <label for="Textarea1" class="form-label">Omschrijving</label>
+                <label for="Textarea1" class="form-label"><?php echo "$titles[7]"; ?></label>
                 <input type="text" class="form-control" id="description" name="description">
             </div>
             <div class="col-12 text-center">
-                <button type="submit" id="contactButton" name="contactForm" class="btn btn-primary">Verstuur</button>
+                <button type="submit" id="contactButton" name="contactForm" class="btn btn-primary"><?php echo "$titles[8]"; ?></button>
             </div>
         </form>
     </div>

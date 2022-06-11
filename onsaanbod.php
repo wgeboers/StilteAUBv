@@ -139,7 +139,7 @@
     <div class="product-info">
       <h5><?php echo $result->getName(); ?></h5>
       <h5><?php echo $result->getDescription(); ?></h5>
-      <h6>€<?php echo $result->getPrice(); ?></h6>
+      <h6><?php echo $result->getPrice(); ?></h6>
     </div>
   </div>
 <?php

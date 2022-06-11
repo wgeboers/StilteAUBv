@@ -3,6 +3,7 @@
 require_once("Crud.php");
 require_once("Product.php");
 require_once('Image.php');
+include('LangManager.php');
 
 class ProductManager {
         
