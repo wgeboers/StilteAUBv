@@ -23,6 +23,7 @@
             <div>
                 <?php
                     if(isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+                    //Splits op basis van de \ (pip)
                     $cart = explode("|",$_SESSION['cart']);
                     $total = 0;
                     $i = 0;

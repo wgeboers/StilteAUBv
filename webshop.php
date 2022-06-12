@@ -30,23 +30,30 @@
         <div class="container">
             <?php 
                 $results = array();
+                //controle of er een zoekterm is ingevuld
                 if((isset($_POST['searchTerm']) && (!empty($_POST['searchTerm'])))) {
+                    //is er een zoekterm ingevuld zoek dan in de database.
+                    //Er word gezocht binnen de producten of de zoekterm voorkomt in de naam of omschrijving
                     $results = array();
                     $searchTerm = htmlspecialchars($_POST['searchTerm']);
                     $ProductManager->getCatalog($searchTerm);
                     $results = $ProductManager->getProducts();
-
+                    //Controle of de zoekresultaten voor een resultaat zorgen.
+                    //Is dit niet het geval sla de zoekterm op in de database met 0. 0 betekent dat de zoekterm voor niks heeft gezorgd.
                     if (empty($results)) {
                         echo "Geen producten gevonden die voldoen aan de zoekopdracht.";
                         $ProductManager->addSearchTerm($searchTerm, 0);
+                    //Zijn er wel zoekresultaten gevonden sla dan de zoekterm op met 1 in de database. 1 betekend dat de zoekterm geslaagd is.    
                     } else {
                         $ProductManager->addSearchTerm($searchTerm, 1);
                     }
 
                 } else {
+                    //Is er geen zoekterm ingevuld haal dan alle producten op uit de database
                     $ProductManager->getCatalog();
                     $results = $ProductManager->getProducts();   
                 }   
+                //Bouw voor elk resultaat een kaart op met de product informatie
                 foreach($results as $result) {
             ?>
             <div class="card">

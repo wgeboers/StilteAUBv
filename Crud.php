@@ -366,11 +366,6 @@ class Crud extends Database {
 	public function addSearchTerm(string $searchTerm, bool $passed) {
 		try {
 			$sql = "INSERT INTO searchhistories (Search_Description, Passed) VALUES (:search, :passed)";
-			// $sql2 = "INSERT INTO searchhistories (Search_Description, Passed)
-			// SELECT * FROM (SELECT :search, :passed) AS tmp
-			// WHERE NOT EXISTS (
-			// 	SELECT Search_Description, Passed FROM searchhistories WHERE Search_Description = :search AND Passed = :passed
-			// ) LIMIT 1";
 			$insert = $this->connection->prepare($sql);
 			$insert->bindParam(':search', $searchTerm, PDO::PARAM_STR);
 			$insert->bindParam(':passed', $passed, PDO::PARAM_INT);

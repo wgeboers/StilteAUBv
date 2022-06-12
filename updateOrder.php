@@ -7,6 +7,7 @@ if(isset($_POST['updateOrderBtn'])) {
 	$id = $_SESSION['HeaderID'];
 	unset($_SESSION['HeaderID']);
 
+	//Als de status op geleverd op geleverd gezet word vul dan de huidige datum en tijd in.
 	if ($status == 'Geleverd'){
 		$finishedDate = date("Y-m-d H:i:s");
 		$update = $order->editOrder($id, $status, $finishedDate);

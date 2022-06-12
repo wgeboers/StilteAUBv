@@ -27,9 +27,9 @@
                         <th scope="col">Omschrijving</th>
                         <th scope="col">Voorraad</th>
                         <th scope="col">Prijs</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                        <th scope="col">Image ID</th>
+                        <th scope="col">Afbeelding</th>
+                        <th scope="col">Afbeelding pad</th>
                         <th></th>
                     </tr>
                 </thead>

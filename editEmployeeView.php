@@ -24,7 +24,6 @@
                 <div class="container">
                     <div class="row">
                         <h2>Medewerker wijzigen</h2>
-                        <!-- add styling -->
                         <?php include('EmployeeUI.php'); ?><br>
                     </div>    
                 </div>
