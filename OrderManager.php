@@ -17,8 +17,8 @@ Class OrderManager {
 		$this->crud->updateStatus($id, $status);
 	}
 
-	public function insertHeader($deliverAdres, $deliverZipcode, $deliverCity) : int {
-        $data = $this->crud->addOrderHeader($deliverAdres, $deliverZipcode, $deliverCity);
+	public function insertHeader($deliverAdres, $deliverZipcode, $deliverCity, $orderBy) : int {
+        $data = $this->crud->addOrderHeader($deliverAdres, $deliverZipcode, $deliverCity, $orderBy);
 		$this->headerid = $data;
 		return $this->headerid;
     }

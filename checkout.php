@@ -98,9 +98,15 @@
             $deliverZipcode = $_POST["zipcode"];
             $deliverCity = $_POST["city"];
 
+            if(isset($_SESSION['id'])){
+                $orderBy = $_SESSION['id'];
+            } else {
+                $orderBy = 'NULL';
+            }
+
             require_once("OrderManager.php");
             $oman = new OrderManager();
-            $data = $oman->insertHeader($deliverAdres, $deliverZipcode, $deliverCity);
+            $data = $oman->insertHeader($deliverAdres, $deliverZipcode, $deliverCity, $orderBy);
             $headerid = $data;
 
             foreach($cart as $products){
