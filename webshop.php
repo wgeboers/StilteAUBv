@@ -20,16 +20,25 @@
 
 <body class="webshop">
     <div class = 'messages'>
-        <?php include('messages.php'); ?>
+        <?php include('messages.php'); 
+        if($_SESSION['lang'] === 'lang_nl') {
+            $errorMessage = 'Geen producten gevonden die voldoen aan de zoekopdracht';
+            $searchBtn = 'Zoeken';
+        } else {
+            $errorMessage = 'No products associated with your search.';
+            $searchBtn = 'Search';
+        }
+        ?>
     </div>
     <div class="main">   
         <form name="searchCatalog" class="searchCatalog" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
             <input class="searchField" type="text" name="searchTerm"></br>
-            <input class="searchBtn" type="submit" name="submit" value="Zoeken"></br>
+            <input class="searchBtn" type="submit" name="submit" value=<?php echo $searchBtn; ?>></br>
         </form>
         <div class="container">
             <?php 
                 $results = array();
+                
                 //controle of er een zoekterm is ingevuld
                 if((isset($_POST['searchTerm']) && (!empty($_POST['searchTerm'])))) {
                     //is er een zoekterm ingevuld zoek dan in de database.
@@ -41,7 +50,7 @@
                     //Controle of de zoekresultaten voor een resultaat zorgen.
                     //Is dit niet het geval sla de zoekterm op in de database met 0. 0 betekent dat de zoekterm voor niks heeft gezorgd.
                     if (empty($results)) {
-                        echo "Geen producten gevonden die voldoen aan de zoekopdracht.";
+                        echo $errorMessage;
                         $ProductManager->addSearchTerm($searchTerm, 0);
                     //Zijn er wel zoekresultaten gevonden sla dan de zoekterm op met 1 in de database. 1 betekend dat de zoekterm geslaagd is.    
                     } else {
