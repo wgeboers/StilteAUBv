@@ -344,9 +344,9 @@ class Crud extends Database {
 		}
 	}
 
-	public function addOrderHeader($deliverAdres, $deliverZipcode, $deliverCity){
+	public function addOrderHeader($deliverAdres, $deliverZipcode, $deliverCity, $orderBy){
 		try {
-			$insert = $this->connection->prepare("INSERT INTO `orderHeaders` (`Deliver_Adres`, `Deliver_Zipcode`, `Deliver_City`) VALUES ('$deliverAdres', '$deliverZipcode', '$deliverCity')");
+			$insert = $this->connection->prepare("INSERT INTO `orderHeaders` (`Order_By`, `Deliver_Adres`, `Deliver_Zipcode`, `Deliver_City`) VALUES ($orderBy, '$deliverAdres', '$deliverZipcode', '$deliverCity')");
 			$insert->execute();
 			return $this->connection->lastInsertId();
 		} catch(PDOException $e) {
