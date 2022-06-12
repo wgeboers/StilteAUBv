@@ -38,48 +38,5 @@ class Product extends Image {
 	public function getProductID() {
 		return $this->id;
 	}
-
-	
-
-   
-}
-
-class products_en extends Image {
-
-
-    private $id;
-    private $name_en;
-    private $desc_en;
-    private $stock;
-    private $price;
-    private $creationDate;
-
-    function  __construct($id, $name, $desc, $stock, $price) {
-        $this->id = $id;
-        $this->name_en = $name;
-        $this->desc_en = $desc;
-        $this->stock = $stock;
-        $this->price = $price;
-    }
-
-    public function toArray() {
-        return array('ID'=>$this->id, 'Name'=>$this->name_en, 'Desc'=>$this->desc_en, 'Stock'=>$this->stock, 'Price'=>$this->price, 'imageID'=>$this->imageID, 'imageName'=>$this->imageName, 'imageFilePath'=>$this->imageFilePath);
-    }
-
-    public function getPrice() {
-        return $this->price;
-    }
-
-    public function getName() {
-        return $this->name_en;
-    }
-
-    public function getProductID() {
-        return $this->id;
-    }
-
-
-
-
 }
 ?>
