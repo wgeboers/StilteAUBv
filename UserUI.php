@@ -123,6 +123,22 @@ if(basename($_SERVER['PHP_SELF']) === 'userOrders.php') {
                 <tr>";
         }
         foreach($rows as $key=>$value) {
+            switch($value) {
+                case 'Openstaand':
+                    $value = 'Open';
+                    break;
+                case 'Geleverd':
+                    $value =  'Delivered';
+                    break;
+                case 'In behandeling':
+                    $value = 'In progress';
+                    break;
+                case 'Verstuurd':
+                    $value = 'Sent';
+                    break;
+                default:
+                    break;
+            }
             echo "<td name={$key}>{$value}</td>";
         }
         echo "</tr>";
