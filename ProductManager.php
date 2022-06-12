@@ -26,8 +26,13 @@ class ProductManager {
         $results = $this->crud->getProductsSearch($searchTerm);
 
         foreach($results as $result) {
-            $add_product = new Product($result["ProductID"], $result["Name"], $result["Description"], $result["Stock"], $result["Price"], $result["ImageID"],$result["File_Name"], $result["File_Path"]);            
-            array_push($this->products, $add_product);
+            if($_SESSION['lang'] === 'lang_nl') {
+                $add_product = new Product($result["ProductID"], $result["Name"], $result["Description"], $result["Stock"], $result["Price"], $result["ImageID"],$result["File_Name"], $result["File_Path"]);            
+                array_push($this->products, $add_product);
+            } elseif($_SESSION['lang'] ==='lang_en') {
+                $add_product = new Product($result["ProductID"], $result["Name"], $result["description_en"], $result["Stock"], $result["Price"], $result["ImageID"],$result["File_Name"], $result["File_Path"]);            
+                array_push($this->products, $add_product);
+            }
         }
 
     }

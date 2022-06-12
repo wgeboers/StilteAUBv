@@ -17,8 +17,8 @@
 		require_once("UserManager.php");
 		$u_man = new UserManager();
 		$userData = $u_man->fetchUserData($_SESSION['id']);
-		if(!empty($userData->getName())) {
-			$name = $userData->getName();
+		if(!empty($userData->getFirstName())) {
+			$name = $userData->getFirstName();
 		}
 	}
 ?>
