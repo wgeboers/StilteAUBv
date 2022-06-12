@@ -127,7 +127,7 @@ class ProductManager {
             }
         } elseif($_SESSION['lang'] === 'lang_en' && $_SESSION['type'] === 'user') {
             foreach($productData as $product) {
-                $prodObj = new Product($product['ProductID'], $product['Name'], $product['Description_en'], $product['Stock'], $product['Price'], $product['ImageID'], $product['ImageName'], $product['ImagePath']);
+                $prodObj = new Product($product['ProductID'], $product['Name'], $product['description_en'], $product['Stock'], $product['Price'], $product['ImageID'], $product['ImageName'], $product['ImagePath']);
             }
         } else {
             foreach($productData as $product) {
