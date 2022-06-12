@@ -113,7 +113,8 @@ if(basename($_SERVER['PHP_SELF']) === 'userOrders.php') {
         foreach($rows as $key=>$value) {
             echo "<td name={$key}>{$value}</td>";
         }
-        echo "</tr></tbody></table>";
+        echo "</tr>";
     }
+    echo "</tbody></table>";
 }
 ?>
