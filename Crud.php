@@ -286,7 +286,7 @@ class Crud extends Database {
 
 	public function updateProduct($id, $name, $description, $stock, $price){
 		try {
-			$update = $this->connection->prepare("UPDATE `products` SET `price` = '$name', `Description` = '$description', `Stock` = $stock, `Price` = $price WHERE ProductID = $id");
+			$update = $this->connection->prepare("UPDATE `products` SET `Name` = '$name', `Description` = '$description', `Stock` = $stock, `Price` = $price WHERE ProductID = $id");
 			$update->execute();
 		} catch(PDOException $e) {
 			echo $e;
