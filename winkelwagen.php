@@ -40,6 +40,8 @@ $texts = $langManager->getTexts();?>
                                 require_once('ProductManager.php');
                                 $p = new ProductManager();
                                 $id=$product[0];
+                                if(!isset($_SESSION['type']) || $_SESSION['type'] !== 'user')
+                                    $_SESSION['type'] = 'user';
                                 $pObj = $p->fetchSingleProduct($id);
                                 $lineprice = $product[1] * $pObj->getPrice();
                                 $i++;
