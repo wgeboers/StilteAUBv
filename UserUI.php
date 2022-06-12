@@ -62,6 +62,9 @@ if(basename($_SERVER['PHP_SELF']) === 'userInfo.php') {
         $trans = $translationArray[$count];
         if($_SESSION['lang'] === 'lang_nl') {
             echo "<label for='{$key}' class='form-label'>{$trans}</label>";
+            echo "<input type='text' class='form-control' name='{$key}' value={$value}>";
+            echo "</div>";
+            
         } else {
             echo "<label for='{$key}' class='form-label'>{$key}</label>";
             echo "<input type='text' class='form-control' name='{$key}' value={$value}>";
