@@ -38,5 +38,11 @@ class Product extends Image {
 	public function getProductID() {
 		return $this->id;
 	}
+
+	
+
+   
 }
+
+
 ?>

@@ -271,6 +271,7 @@ CREATE TABLE `products` (
   `ProductID` int(11) NOT NULL,
   `Name` varchar(50) NOT NULL,
   `Description` varchar(255) DEFAULT NULL,
+  `Description_en` varchar(255) DEFAULT NULL,
   `Stock` int(11) NOT NULL,
   `Price` decimal(65,2) NOT NULL,
   `Creation_Date` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -281,42 +282,19 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`ProductID`, `Name`, `Description`, `Stock`, `Price`, `Creation_Date`, `Created_By`) VALUES
-(1, '60s Package', 'Jaren 60 thema met 10 headsets en 1 zender', 12, '64.95', '2022-03-26 18:00:24', 1),
-(2, '70s Package', 'Jaren 70 thema met 10 headsets en 1 zender', 16, '64.99', '2022-03-26 18:00:24', 1),
-(3, '80s Package', 'Jaren 80 thema met 10 headsets en 1 zender', 6, '69.99', '2022-03-26 18:00:24', 1),
-(4, '90s Package', 'Jaren 90 thema met 10 headsets en 1 zender', 18, '69.99', '2022-03-26 18:00:24', 1),
-(5, '00s Package', 'Jaren 00 thema met 10 headsets en 1 zender', 3, '74.99', '2022-03-26 18:00:24', 1),
-(1, '60s Package', 'Jaren 60 thema met 10 headsets en 1 zender', 12, '64.95', '2022-03-26 18:00:24', 1),
-(2, '70s Package', 'Jaren 70 thema met 10 headsets en 1 zender', 16, '64.99', '2022-03-26 18:00:24', 1),
-(3, '80s Package', 'Jaren 80 thema met 10 headsets en 1 zender', 6, '69.99', '2022-03-26 18:00:24', 1),
-(4, '90s Package', 'Jaren 90 thema met 10 headsets en 1 zender', 18, '69.99', '2022-03-26 18:00:24', 1),
-(5, '00s Package', 'Jaren 00 thema met 10 headsets en 1 zender', 3, '74.99', '2022-03-26 18:00:24', 1);
+INSERT INTO `products` (`ProductID`, `Name`, `Description`, `Description_en`, `Stock`, `Price`, `Creation_Date`, `Created_By`) VALUES
+(1, '60s Package', 'Jaren 60 thema met 10 headsets en 1 zender', '60s Theme package with 10 headsets and 1 transmitter', 12, '64.95', '2022-03-26 18:00:24', 1),
+(2, '70s Package', 'Jaren 70 thema met 10 headsets en 1 zender', '70s Theme package with 10 headsets and 1 transmitter', 16, '64.99', '2022-03-26 18:00:24', 1),
+(3, '80s Package', 'Jaren 80 thema met 10 headsets en 1 zender', '80s Theme package with 10 headsets and 1 transmitter', 6, '69.99', '2022-03-26 18:00:24', 1),
+(4, '90s Package', 'Jaren 90 thema met 10 headsets en 1 zender', '90s Theme package with 10 headsets and 1 transmitter', 18, '69.99', '2022-03-26 18:00:24', 1),
+(5, '00s Package', 'Jaren 00 thema met 10 headsets en 1 zender', '00s Theme package with 10 headsets and 1 transmitter', 3, '74.99', '2022-03-26 18:00:24', 1),
+(1, '60s Package', 'Jaren 60 thema met 10 headsets en 1 zender', '60s Theme package with 10 headsets and 1 transmitter', 12, '64.95', '2022-03-26 18:00:24', 1),
+(2, '70s Package', 'Jaren 70 thema met 10 headsets en 1 zender', '70s Theme package with 10 headsets and 1 transmitter', 16, '64.99', '2022-03-26 18:00:24', 1),
+(3, '80s Package', 'Jaren 80 thema met 10 headsets en 1 zender', '80s Theme package with 10 headsets and 1 transmitter', 6, '69.99', '2022-03-26 18:00:24', 1),
+(4, '90s Package', 'Jaren 90 thema met 10 headsets en 1 zender', '90s Theme package with 10 headsets and 1 transmitter', 18, '69.99', '2022-03-26 18:00:24', 1),
+(5, '00s Package', 'Jaren 00 thema met 10 headsets en 1 zender', '00s Theme package with 10 headsets and 1 transmitter', 3, '74.99', '2022-03-26 18:00:24', 1);
 
 -- --------------------------------------------------------
-CREATE TABLE `products_en` (
-                               `ProductID` int(11) NOT NULL,
-                               `Name_en` varchar(50) NOT NULL,
-                               `Description_en` varchar(255) NOT NULL,
-                                `Stock` int(11) NOT NULL,
-                               `Price` decimal(65,2) NOT NULL,
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Gegevens worden geëxporteerd voor tabel `products_en`
---
-
-INSERT INTO `products_en` (`ProductID`, `Name_en`, `Description_en`, `Stock`, `Price`) VALUES
-(1, '60s Package', '60s Theme package with 10 headsets and 1 transmitter', 12, '64.95'),
-(2, '70s Package', '70s Theme package with 10 headsets and 1 transmitter', 16, '64.99'),
-(3, '80s Package', '80s Theme package with 10 headsets and 1 transmitter', 6, '69.99'),
-(4, '90s Package', '90s Theme package with 10 headsets and 1 transmitter', 18, '69.99'),
-(5, '00s Package', '00s Theme package with 10 headsets and 1 transmitter', 3, '74.99'),
-(1, '60s Package', '60s Theme package with 10 headsets and 1 transmitter',  12, '64.95'),
-(2, '70s Package', '70s Theme package with 10 headsets and 1 transmitter', 16, '64.99'),
-(3, '80s Package', '80s Theme package with 10 headsets and 1 transmitter', 6, '69.99'),
-(4, '90s Package', '90s Theme package with 10 headsets and 1 transmitter', 18, '69.99'),
-(5, '00s Package', '00s Theme package with 10 headsets and 1 transmitter',  3, '74.99');
 --
 -- Table structure for table `products-images`
 --

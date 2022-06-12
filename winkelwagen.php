@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-<?php include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI']; ?>
+<?php require_once('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI'];
+require_once('Langmanager.php');
+$langManager = new LangManager();
+$content = $langManager->getContents("index.php");
+$titles = $langManager->getTitles();
+$texts = $langManager->getTexts();?>
 <head>
     <title>Silent Disco</title>
    <meta charset="UTF-8">
@@ -64,36 +69,36 @@
                         <div class="row">
                             <h2>Bestelgegevens</h2>
                             <div class="col-md-4">
-                                <label for="firstName" class="form-label">Voornaam</label>
-                                <input type="text" class="form-control" placeholder="Voornaam" name="firstName" id="firstName">
+                                <label for="firstName" class="form-label"><?php echo "$titles[2]"; ?></label>
+                                <input type="text" class="form-control" placeholder="<?php echo "$titles[2]"; ?>" name="firstName" id="firstName">
                             </div>
                             <div class="col-md-4">
-                                <label for="middleName" class="form-label">Tussenvoegsel</label>
-                                <input type="text" class="form-control" placeholder="Tussenvoegsel" name="middleName" id="middleName">
+                                <label for="middleName" class="form-label"><?php echo "$titles[10]"; ?></label>
+                                <input type="text" class="form-control" placeholder="<?php echo "$titles[10]"; ?>" name= "middleName" id="middleName">
                             </div>
                             <div class="col-md-4">
-                                <label for="lastName" class="form-label">Achternaam</label>
-                                <input type="text" class="form-control" placeholder="Achternaam" name="lastName" id="lastName">
+                                <label for="lastName" class="form-label"><?php echo "$titles[3]";?></label>
+                                <input type="text" class="form-control" placeholder="<?php echo "$titles[3]";?>" name="lastName" id="lastName">
                             </div>
                             <div class="col-md-12">
                                 <label for="adres" class="form-label">Adres</label>
-                                <input type="text" class="form-control" placeholder="Straat huisnummer-toevoeging" name="adres" id="adres">
+                                <input type="text" class="form-control" placeholder="<?php echo "$texts[10]";?>" name="adres" id="adres">
                             </div>
                             <div class="col-md-6">
-                                <label for="zipcode" class="form-label">Postcode</label>
-                                <input type="text" class="form-control" placeholder="Postcode" name="zipcode" id="zipcode">
+                                <label for="zipcode" class="form-label"><?php echo "$titles[11]";?></label>
+                                <input type="text" class="form-control" placeholder="<?php echo "$titles[11]";?>" name="zipcode" id="zipcode">
                             </div>
                             <div class="col-md-6">
-                                <label for="city" class="form-label">Stad</label>
-                                <input type="text" class="form-control" placeholder="Stad" name="city" id="city">
+                                <label for="city" class="form-label"><?php echo "$texts[11]";?></label>
+                                <input type="text" class="form-control" placeholder="<?php echo "$texts[11]";?>" name="city" id="city">
                             </div>
                         </div>
                         <div class="col-12 text-center">
-                            <button type="submit" name="addproduct" value="addproduct" class="btn btn-primary" id="addBtn">Afrekenen</button>
+                            <button type="submit" name="addproduct" value="addproduct" class="btn btn-primary" id="addBtn"><?php echo "$titles[12]"; ?></button>
                         </div>
                     </form>
                 </div>
-                <a href="javascript:removeCart()" class="OrderRemove">Winkelwagen leegmaken</a>
+                <a href="javascript:removeCart()" class="OrderRemove"><?php echo "$texts[12]"; ?></a>
             </div>
         </div>
     </div>
