@@ -68,11 +68,6 @@
             $this->assertNotEquals($this->user->getHouseNrAdd(), $this->user2->getHouseNrAdd());
             $this->assertNotEquals($this->user->getZipcode(), $this->user2->getZipcode());
             $this->assertNotEquals($this->user->getCity(), $this->user2->getCity());
-
-
-
-            
-
         }
     }
 ?>
