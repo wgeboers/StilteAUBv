@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <?php require_once('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI'];
-require_once('Langmanager.php');
-$langManager = new LangManager();
-$content = $langManager->getContents("index.php");
-$titles = $langManager->getTitles();
-$texts = $langManager->getTexts();?>
+    require_once('Langmanager.php');
+    $langManager = new LangManager();
+    $content = $langManager->getContents("index.php");
+    $titles = $langManager->getTitles();
+    $texts = $langManager->getTexts();
+    if($_SESSION['lang'] == 'lang_nl') {
+        $fixArray = array('Aantal: ', 'Prijs: ', 'Totaal: ', 'Bestelgegevens');
+    } elseif($_SESSION['lang'] == 'lang_en') {
+        $fixArray = array('Amount: ', 'Price: ', 'Total: ', 'Order details');
+    }
+    ?>
+    
 <head>
     <title>Silent Disco</title>
    <meta charset="UTF-8">
@@ -58,8 +65,8 @@ $texts = $langManager->getTexts();?>
                         ?> alt="Logo">
                         <div class="cardDescription">
                             <h2><?php echo $pObj->getName();?></h2>
-                            <h4>Aantal: <?php echo $product[1];?></h4>
-                            <h4>Prijs: <?php echo "€" .number_format($lineprice, 2, ',', '');?></h4>
+                            <h4><?php echo $fixArray[0]; echo $product[1];?></h4>
+                            <h4><?php echo $fixArray[1]; echo "€" .number_format($lineprice, 2, ',', '');?></h4>
                         </div>
                     </div>
                     <div class="cartRemove">
@@ -76,12 +83,12 @@ $texts = $langManager->getTexts();?>
             </div>
             <div class="orderDetails">
                 <div class="orderTotal">
-                    <h2>Totaal: <?php if(isset($total))  echo "€".number_format($total, 2, ',', '.'); ?></h2>
+                    <h2><?php echo $fixArray[2]; if(isset($total))  echo "€".number_format($total, 2, ',', '.'); ?></h2>
                 </div>
                 <div class="form"> 
                     <form action="checkout.php" method="post" name="checkoutForm" id="checkoutForm">
                         <div class="row">
-                            <h2>Bestelgegevens</h2>
+                            <h2><?php echo $fixArray[3]; ?></h2>
                             <div class="col-md-4">
                                 <label for="firstName" class="form-label"><?php echo "$titles[2]"; ?></label>
                                 <input type="text" class="form-control" placeholder="<?php echo "$titles[2]"; ?>" name="firstName" id="firstName">
