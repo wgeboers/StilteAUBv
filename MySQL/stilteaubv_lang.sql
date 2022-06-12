@@ -41,13 +41,13 @@ CREATE TABLE `content` (
 --
 
 INSERT INTO `content` (`ContentID`, `title_nl`, `title_en`, `text_nl`, `text_en`, `link`) VALUES
-(1, 'Over Ons', 'About Us', 'Wij verkopen silent disco\'s.', 'We sell silent disco\'s.', 'overons.php'),
+(1, 'Over Ons', 'About Us', 'Wij verkopen silent disco\s.', 'We sell silent disco\s.', 'overons.php'),
 (2, 'Over Ons', 'About Us', 'Plaats', 'City', 'overons.php'),
 (3, 'Silent Disco', 'Silent Disco', 'Huur een volledige doe-het-zelf Silent Disco set met koptelefoons. Het systeem is makkelijk aan te sluiten op een laptop of op DJ-apparatuur met het door jou gekozen thema pakket. Binnen een mum van tijd organiseer jij zelf een Silent Disco!', 'Hire your own Silent Disco with headphones. The system is easy-to-use and is compatible with most DJ-gear and laptops. It even has theme songs, so you can get started within minutes!', 'index.php'),
 (4, NULL, NULL, 'Bekijk onze producten!', 'Get your products here!', 'index.php'),
 (5, 'Voornaam', 'First Name', NULL, NULL, 'index.php'),
 (6, 'Achternaam', 'Last Name', NULL, NULL, 'index.php'),
-(7, 'Email', 'Email', 'We zullen je email niet delen met anderen!', 'We won\'t give your email to third parties', 'index.php'),
+(7, 'Email', 'Email', 'We zullen je email niet delen met anderen!', 'We won\t give your email to third parties', 'index.php'),
 (8, 'Telefoon', 'Telephone', NULL, NULL, 'index.php'),
 (9, 'Onderwerp', 'Subject', NULL, NULL, 'index.php'),
 (10, 'Omschrijving', 'Description', NULL, NULL, 'index.php'),
@@ -297,24 +297,26 @@ INSERT INTO `products` (`ProductID`, `Name`, `Description`, `Stock`, `Price`, `C
 CREATE TABLE `products_en` (
                                `ProductID` int(11) NOT NULL,
                                `Name_en` varchar(50) NOT NULL,
-                               `Description_en` varchar(255) NOT NULL
+                               `Description_en` varchar(255) NOT NULL,
+                                `Stock` int(11) NOT NULL,
+                               `Price` decimal(65,2) NOT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `products_en`
 --
 
-INSERT INTO `products_en` (`ProductID`, `Name_en`, `Description_en`) VALUES
-(1, '60s Package', '60s Theme package with 10 headsets and 1 transmitter'),
-(2, '70s Package', '70s Theme package with 10 headsets and 1 transmitter'),
-(3, '80s Package', '80s Theme package with 10 headsets and 1 transmitter'),
-(4, '90s Package', '90s Theme package with 10 headsets and 1 transmitter'),
-(5, '00s Package', '00s Theme package with 10 headsets and 1 transmitter'),
-(1, '60s Package', '60s Theme package with 10 headsets and 1 transmitter'),
-(2, '70s Package', '70s Theme package with 10 headsets and 1 transmitter'),
-(3, '80s Package', '80s Theme package with 10 headsets and 1 transmitter'),
-(4, '90s Package', '90s Theme package with 10 headsets and 1 transmitter'),
-(5, '00s Package', '00s Theme package with 10 headsets and 1 transmitter');
+INSERT INTO `products_en` (`ProductID`, `Name_en`, `Description_en`, `Stock`, `Price`) VALUES
+(1, '60s Package', '60s Theme package with 10 headsets and 1 transmitter', 12, '64.95'),
+(2, '70s Package', '70s Theme package with 10 headsets and 1 transmitter', 16, '64.99'),
+(3, '80s Package', '80s Theme package with 10 headsets and 1 transmitter', 6, '69.99'),
+(4, '90s Package', '90s Theme package with 10 headsets and 1 transmitter', 18, '69.99'),
+(5, '00s Package', '00s Theme package with 10 headsets and 1 transmitter', 3, '74.99'),
+(1, '60s Package', '60s Theme package with 10 headsets and 1 transmitter',  12, '64.95'),
+(2, '70s Package', '70s Theme package with 10 headsets and 1 transmitter', 16, '64.99'),
+(3, '80s Package', '80s Theme package with 10 headsets and 1 transmitter', 6, '69.99'),
+(4, '90s Package', '90s Theme package with 10 headsets and 1 transmitter', 18, '69.99'),
+(5, '00s Package', '00s Theme package with 10 headsets and 1 transmitter',  3, '74.99');
 --
 -- Table structure for table `products-images`
 --

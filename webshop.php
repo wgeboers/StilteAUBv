@@ -3,7 +3,6 @@
     include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI']; 
     require_once('ProductManager.php');
     $ProductManager = new ProductManager();
-
 ?>
 <head>
     <title>Silent Disco</title>
@@ -39,7 +38,7 @@
                                 echo "./".$rows['ImagePath'];
                             }
                         ?> alt="Logo">
-                        <h1><?php echo $rows['Name'] ?></h1>
+                        <h1><?php echo $rows['Name']?></h1>
                         <p><?php echo $rows['Description']?></p>
                         <h3><?php echo "€" . $rows['Price'];?></h3>
                         <div class="shopFlex">
