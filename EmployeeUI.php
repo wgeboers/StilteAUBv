@@ -253,7 +253,7 @@ if(basename($_SERVER['PHP_SELF']) === 'ProductEditView.php') {
         $imName = $rows->getImageName();
         echo "<option value='{$imID}'>'{$imName}'</option>";
     }
-    echo "</select><div class='col-md-12'>
+    echo "</select><div class='col-12 text-center'>
     <button type='submit' class='btn btn-primary' name='updateproduct'>Wijzigen</button>
     </div>
     </form>";
