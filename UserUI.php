@@ -60,9 +60,13 @@ if(basename($_SERVER['PHP_SELF']) === 'userInfo.php') {
             }
         }
         $trans = $translationArray[$count];
-        echo "<label for='{$key}' class='form-label'>{$trans}</label>";
-        echo "<input type='text' class='form-control' name='{$key}' value={$value}>";
-        echo "</div>";
+        if($_SESSION['lang'] === 'lang_nl') {
+            echo "<label for='{$key}' class='form-label'>{$trans}</label>";
+        } else {
+            echo "<label for='{$key}' class='form-label'>{$key}</label>";
+            echo "<input type='text' class='form-control' name='{$key}' value={$value}>";
+            echo "</div>";
+        }
         $count++;
         if(array_key_last($userData) == $key) {
             echo "<br><div class='col-12 text-center'>
@@ -103,7 +107,12 @@ if(basename($_SERVER['PHP_SELF']) === 'userOrders.php') {
                     default:
                         break;
                 }
-                echo "<th scope='col'>{$trans}</th>";
+                if($_SESSION['lang'] === 'lang_nl') 
+                    echo "<th scope='col'>{$trans}</th>";
+                else {
+                    $keys = str_replace('_', ' ', $keys);
+                    echo "<th scope='col'>{$keys}</th>";
+                }
             }
             $count++;
             echo "</tr></thead>

@@ -17,12 +17,17 @@
 </head>
 <body class="medewerkers">
     <?php
+        if($_SESSION['lang'] === 'lang_nl') {
+            $title = 'Jouw Gegevens';
+        } else
+            $title = 'Your information';
+            
         if(isset($_SESSION['id']) && !empty($_SESSION['id'])) {
             require_once('sidenav.php');
             
             echo "<div class='content'>";
             echo "<div class='main'>";
-            echo "<H2>Jouw Gegevens</H2>";
+            echo "<H2>{$title}</H2>";
         
             require_once('UserUI.php');
         }
