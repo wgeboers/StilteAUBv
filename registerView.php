@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php include('header.php'); ?>
+<?php include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI']; ?>
 <head>
     <title>Registreer</title>
    <meta charset="UTF-8">
@@ -19,54 +19,64 @@
             <form action="./registerUser.php" method="post" name="registerForm" id="registerForm">
                 <div class="container">
                     <div class="row">
-                        <h2>Registreren</h2>
+                    <?php
+                            if($_SESSION['lang'] === 'lang_nl') {
+                                $register = 'Registratieformulier';
+                                $labels = array('Voornaam', 'Tussenvoegsel', 'Achternaam', 'Straat', 'Huisnummer', 'toevoeging', 'postcode', 'straat', 'telefoonnummer', 'email', 'wachtwoord', 'aanmaken');
+                            } else {
+                                $register = 'Register form';
+                                $labels = array('First Name', 'Middle Name', 'Last Name', 'Street', 'House Number', 'Addition', 'Zipcode', 'Street', 'Phone Number', 'email', 'password', 'create');
+                            }
+                        ?>
+                        <h2><?php echo $register; ?></h2>
+                        
                         <div class='col-md-5'>
-                            <label for='First_Name' class='form-label'>Voornaam</label>
+                            <label for='First_Name' class='form-label'><?php echo $labels[0]; ?></label>
                             <input type='text' class='form-control' placeholder='Voornaam' name='First_Name' id='First_Name'>
                         </div>
                         <div class='col-md-2'>
-                            <label for='Middle_Name' class='form-label'>Tussenvoegsel</label>
+                            <label for='Middle_Name' class='form-label'><?php echo $labels[1]; ?></label>
                             <input type='text' class='form-control' placeholder='Tussenvoegsel' name='Middle_Name' id='Middle_Name'>
                         </div>
                         <div class='col-md-5'>
-                            <label for='Last_Name' class='form-label'>Achternaam</label>
+                            <label for='Last_Name' class='form-label'><?php echo $labels[2]; ?></label>
                             <input type='text' class='form-control' placeholder='Achternaam' name='Last_Name' id='Last_Name'>
                         </div>
                         <div class='col-md-8'>
-                            <label for='Street' class='form-label'>Straat</label>
+                            <label for='Street' class='form-label'><?php echo $labels[3]; ?></label>
                             <input type='text' class='form-control' name='Street' id='Street'>
                         </div>
                         <div class='col-md-2'>
-                            <label for='House_Number' class='form-label'>Huisnummer</label>
+                            <label for='House_Number' class='form-label'><?php echo $labels[4]; ?></label>
                             <input type='text' class='form-control' name='House_Number' id='House_Number'>
                         </div>
                         <div class='col-md-2'>
-                            <label for='House_Number_Addition' class='form-label'>toevoeging</label>
+                            <label for='House_Number_Addition' class='form-label'><?php echo $labels[5]; ?></label>
                             <input type='text' class='form-control' name='House_Number_Addition' id='House_Number_Addition'>
                         </div>
                         <div class='col-md-4'>
-                            <label for='Zipcode' class='form-label'>Postcode</label>
+                            <label for='Zipcode' class='form-label'><?php echo $labels[6]; ?></label>
                             <input type='text' class='form-control' name='Zipcode' id='Zipcode'>
                         </div>
                         <div class='col-md-8'>
-                            <label for='City' class='form-label'>Stad</label>
+                            <label for='City' class='form-label'><?php echo $labels[7]; ?></label>
                             <input type='text' class='form-control' name='City' id='City'>
                         </div>
                         <div class='col-md-6'>
-                            <label for='Phone_Number' class='form-label'>Telefoonnummer</label>
+                            <label for='Phone_Number' class='form-label'><?php echo $labels[8]; ?></label>
                             <input type='text' class='form-control' name='Phone_Number' id='Phone_Number'>
                         </div>
                         <div class='col-md-6'>
-                            <label for='Email' class='form-label'>Email</label>
+                            <label for='Email' class='form-label'><?php echo $labels[9]; ?></label>
                             <input type='text' class='form-control' placeholder='email@gmail.com' name='Email' id='Email'>
                         </div>
                         <div class='col-md-12'>
-                            <label for='Password' class='form-label'>Wachtwoord</label>
+                            <label for='Password' class='form-label'><?php echo $labels[10]; ?></label>
                             <input type='password' class='form-control' placeholder='Wachtwoord' name='Password' id='Password'>
                         </div>
                     </div>
                     <div class="col-12 text-center">
-                        <button type="submit" name="adduser" value="adduser" class="btn btn-primary" id="addBtn">Aanmaken</button>
+                        <button type="submit" name="adduser" value="adduser" class="btn btn-primary" id="addBtn"><?php echo $labels[11];?></button>
                     </div>
                     <script type="text/javascript" src="Script/registervalidation.js"></script>
                 </div>
