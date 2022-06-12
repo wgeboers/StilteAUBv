@@ -13,11 +13,11 @@ if(isset($_POST['updateBtn'])) {
     $role = $e_man->fetchSingularRoleFromDB('Name', $postRole);
     $e_man->updateEmployeeRole($role->getRoleID(), $employee->getEmployeeID());
     if(isset($_SESSION['url'])) {
-		$url = $_SESSION['url'];
+		$url = '/stilteaubv/employeesView.php';
 	} else {
-		$url = "index.php";
+		$url = '/stilteaubv/employeesView.php';
 	}
-	header("Location: https://localhost$url");
+	header("Location:" .$url);
     exit();
 }
 ?>

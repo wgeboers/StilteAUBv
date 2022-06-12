@@ -19,30 +19,67 @@
 </head>
 
 <body class="webshop">
-    <div class="main">    
+    <div class = 'messages'>
+        <?php include('messages.php'); 
+        if($_SESSION['lang'] === 'lang_nl') {
+            $errorMessage = 'Geen producten gevonden die voldoen aan de zoekopdracht';
+            $searchBtn = 'Zoeken';
+        } else {
+            $errorMessage = 'No products associated with your search.';
+            $searchBtn = 'Search';
+        }
+        ?>
+    </div>
+    <div class="main">   
+        <form name="searchCatalog" class="searchCatalog" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
+            <input class="searchField" type="text" name="searchTerm"></br>
+            <input class="searchBtn" type="submit" name="submit" value=<?php echo $searchBtn; ?>></br>
+        </form>
         <div class="container">
-            <?php
-                require_once('crud.php');
-                $classA = new Crud('root', '');
-                $productData = $classA->getProducts();
+            <?php 
+                $results = array();
+                
+                //controle of er een zoekterm is ingevuld
+                if((isset($_POST['searchTerm']) && (!empty($_POST['searchTerm'])))) {
+                    //is er een zoekterm ingevuld zoek dan in de database.
+                    //Er word gezocht binnen de producten of de zoekterm voorkomt in de naam of omschrijving
+                    $results = array();
+                    $searchTerm = htmlspecialchars($_POST['searchTerm']);
+                    $ProductManager->getCatalog($searchTerm);
+                    $results = $ProductManager->getProducts();
+                    //Controle of de zoekresultaten voor een resultaat zorgen.
+                    //Is dit niet het geval sla de zoekterm op in de database met 0. 0 betekent dat de zoekterm voor niks heeft gezorgd.
+                    if (empty($results)) {
+                        echo $errorMessage;
+                        $ProductManager->addSearchTerm($searchTerm, 0);
+                    //Zijn er wel zoekresultaten gevonden sla dan de zoekterm op met 1 in de database. 1 betekend dat de zoekterm geslaagd is.    
+                    } else {
+                        $ProductManager->addSearchTerm($searchTerm, 1);
+                    }
 
-                foreach($productData as $rows){
+                } else {
+                    //Is er geen zoekterm ingevuld haal dan alle producten op uit de database
+                    $ProductManager->getCatalog();
+                    $results = $ProductManager->getProducts();   
+                }   
+                //Bouw voor elk resultaat een kaart op met de product informatie
+                foreach($results as $result) {
             ?>
             <div class="card">
                 <div class= "cardContent">
-                    <form action="addCart.php?id=<?php echo $rows['ProductID'];?>" method="post">
+                    <form action="addCart.php?id=<?php echo $result->getProductID();?>" method="post">
                         <img src=<?php 
-                            if(empty($rows['ImagePath'])){
+                            if(empty($result->getImageFilePath())){
                                 echo"./Images/Logo.png";
                             } else {
-                                echo "./".$rows['ImagePath'];
+                                echo "./".$result->getImageFilePath();
                             }
                         ?> alt="Logo">
-                        <h1><?php echo $rows['Name']?></h1>
-                        <p><?php echo $rows['Description']?></p>
-                        <h3><?php echo "€" . $rows['Price'];?></h3>
+                        <h1><?php echo $result->getName();?></h1>
+                        <p><?php echo $result->getDescription();?></p>
+                        <h3><?php echo "€" . $result->getPrice();?></h3>
                         <div class="shopFlex">
-                            <input type="number" class="form-control" placeholder="Aantal" name="hoeveelheid" id="hoeveelheid" value=0>
+                            <input type="number" class="form-control" placeholder="Aantal" name="hoeveelheid" id="hoeveelheid" value=0 min="0">
                             <button type="submit" name="addcart" value="addcart" class="shopbtn" id="addBtn">
                                 <img src="./Images/basket-shopping-solid.svg" alt="basket">
                             </button>
@@ -51,9 +88,9 @@
                 </div>
             </div>
             <?php
-                }
-            ?> 
-        </div>  
+            }
+            ?>
+        </div>   
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"

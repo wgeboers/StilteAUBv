@@ -20,17 +20,22 @@ $texts = $langManager->getTexts();?>
 </head>
 
 <body class="overOns">
+    <div class = 'messages'>
+        <?php include('messages.php'); ?>
+    </div>
     <div class="main">
         <div class="container">
             <div>
                 <?php
+                    if(isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+                    //Splits op basis van de \ (pip)
                     $cart = explode("|",$_SESSION['cart']);
                     $total = 0;
                     $i = 0;
                     foreach($cart as $products){
 
                         $product = explode(",", $products);
-                        if(!empty($product)) {
+                        if(!empty($product) && isset($product)) {
                             if(strlen(trim($product[1])) <> 0){
                                 require_once('ProductManager.php');
                                 $p = new ProductManager();
@@ -42,7 +47,13 @@ $texts = $langManager->getTexts();?>
                 ?>
                 <div class="card">
                     <div class= "cardContent">
-                        <img src="./Images/80s.jpg" alt="Logo">
+                        <img src=<?php 
+                            if(empty($pObj->getImagePath())){
+                                echo"./Images/Logo.png";
+                            } else {
+                                echo "./".$pObj->getImagePath();
+                            }
+                        ?> alt="Logo">
                         <div class="cardDescription">
                             <h2><?php echo $pObj->getName();?></h2>
                             <h4>Aantal: <?php echo $product[1];?></h4>
@@ -58,14 +69,15 @@ $texts = $langManager->getTexts();?>
                         }
                     }
                     }
+                }
                 ?> 
             </div>
             <div class="orderDetails">
                 <div class="orderTotal">
-                    <h2>Totaal: <?php echo "€".number_format($total, 2, ',', '.'); ?></h2>
+                    <h2>Totaal: <?php if(isset($total))  echo "€".number_format($total, 2, ',', '.'); ?></h2>
                 </div>
                 <div class="form"> 
-                    <form action="./checkout.php" method="post" name="checkoutForm" id="checkoutForm">
+                    <form action="checkout.php" method="post" name="checkoutForm" id="checkoutForm">
                         <div class="row">
                             <h2>Bestelgegevens</h2>
                             <div class="col-md-4">

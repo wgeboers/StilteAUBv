@@ -17,9 +17,12 @@ if(basename($_SERVER['PHP_SELF']) === 'userInfo.php') {
             $userData = $user->getAllData();
     }
 
+    echo "<div id='usetInfo' class='form'>";
     echo "<form name='userDataForm' id='userdata' method='POST' action='userForm.php'>";
+    echo "<div class='container'>";
+    echo "<div class='row'>";
     foreach($userData as $key=>$value) {
-        echo "<div class='col-md-3'>";
+        echo "<div class='col-md-12'>";
         foreach(array_keys($userData) as $keys) {
             switch($keys) {
                 case 'First Name':
@@ -57,14 +60,20 @@ if(basename($_SERVER['PHP_SELF']) === 'userInfo.php') {
             }
         }
         $trans = $translationArray[$count];
-        echo "<label for='{$key}' class='form-label'>{$trans}</label>";
-        echo "<input type='text' class='form-control' name='{$key}' value={$value}>";
-        echo "</div>";
+        if($_SESSION['lang'] === 'lang_nl') {
+            echo "<label for='{$key}' class='form-label'>{$trans}</label>";
+        } else {
+            echo "<label for='{$key}' class='form-label'>{$key}</label>";
+            echo "<input type='text' class='form-control' name='{$key}' value={$value}>";
+            echo "</div>";
+        }
         $count++;
         if(array_key_last($userData) == $key) {
-            echo "<br><div class='col-3 text-center'>
-            <button type='submit' class='btn btn-primary' name='changeBtn'>Change</button>";
+            echo "<br><div class='col-12 text-center'>
+            <button type='submit' class='btn btn-primary' name='changeBtn'>Wijzigen</button>";
             echo "</form>";
+            echo "</div>";
+            echo "</div>";
         }
     }
 }
@@ -98,7 +107,12 @@ if(basename($_SERVER['PHP_SELF']) === 'userOrders.php') {
                     default:
                         break;
                 }
-                echo "<th scope='col'>{$trans}</th>";
+                if($_SESSION['lang'] === 'lang_nl') 
+                    echo "<th scope='col'>{$trans}</th>";
+                else {
+                    $keys = str_replace('_', ' ', $keys);
+                    echo "<th scope='col'>{$keys}</th>";
+                }
             }
             $count++;
             echo "</tr></thead>
@@ -108,7 +122,8 @@ if(basename($_SERVER['PHP_SELF']) === 'userOrders.php') {
         foreach($rows as $key=>$value) {
             echo "<td name={$key}>{$value}</td>";
         }
-        echo "</tr></tbody></table>";
+        echo "</tr>";
     }
+    echo "</tbody></table>";
 }
 ?>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI']; ?>
+<?php include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI'];?>
 <head>
     <title>Silent Disco</title>
    <meta charset="UTF-8">
@@ -25,7 +25,6 @@
                         <th scope="col">ID</th>
                         <th scope="col">Bestandsnaam</th>
                         <th scope="col">Bestandslocatie</th>
-                        <th></th>
                     </tr>
                 </thead>
                 <?php include('EmployeeUI.php'); ?>

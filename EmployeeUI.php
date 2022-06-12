@@ -11,7 +11,7 @@ $p_man = new ProductManager();
 
 /** MEDEWERKERS BEGINT HIER */
 if(basename($_SERVER['PHP_SELF']) === 'employeesView.php') {
-    $empData = $e_man->getAllEmployees();
+    $empData = $e_man->fetchAllEmployees();
     foreach($empData as $rows) {
         echo "<tr>";
         $row = $rows->toArray();
@@ -33,21 +33,20 @@ if(basename($_SERVER['PHP_SELF']) === 'editEmployeeView.php') {
     unset($empData['EmployeeID']);
     unset($empData['ACTIVE']);
     unset($empData['Creation Date']); 
-    var_dump($empData);
     echo "<form name='EmpUpdateForm' method='post' class='form' action='EmpUpdateForm.php'>";
     foreach($empData as $key=>$value) {
-        echo    "<div class='col-md-4'>
+        echo    "<div class='col-md-12'>
                 <label for='{$key}' class='form-label'>{$key}</label>
                 <input type='text' class='form-control' name='{$key}' value={$value}>
                 </div>";
-    } echo "<div class='col-md-4'>
+    } echo "<div class='col-md-12'>
     <label for='role' class='form-label'>Rol</label>
     <select name='role' id='role' class='form-select customSelect' aria-label='Default select example'>";
     foreach($roles as $rows) {
         $roleName = $rows->getRoleName();
         echo "<option>{$roleName}</option>";
     }
-    echo "</select></div><div class='col-4 text-center'>
+    echo "</select></div><div class='col-12 text-center'>
     <button type='submit' class='btn btn-primary' name='updateBtn'>Wijzigen</button>
     </div>
     </form>";
@@ -113,15 +112,15 @@ if(basename($_SERVER['PHP_SELF']) === 'editRoleView.php') {
     $desc = $role->getRoleDesc();
     $_SESSION['RoleID'] = $role->getRoleID();
     echo "<form name='roleUpdateForm' method='post' class='form' action='updateRole.php'>
-    <div class='col-md-4'>
+    <div class='col-md-12'>
     <label for='Name' class='form-label'>Naam</label>
     <input type='text' class='form-control' name='Name' value={$name}>
     </div>
-    <div class='col-md-4'>
+    <div class='col-md-12'>
     <label for='Description' class='form-label'>Beschrijving</label>
     <input type='text' class='form-control' name='Description' value='{$desc}'>
     </div>
-    </select></div><div class='col-4 text-center'>
+    </select></div><div class='col-12 text-center'>
     <button type='submit' class='btn btn-primary' name='updateRolebtn'>Wijzigen</button>
     </div>
     </form>";
@@ -137,6 +136,7 @@ if(basename($_SERVER['PHP_SELF']) === 'ordersView.php') {
             foreach(array_keys($rows) as $keys) {
                 echo "<th scope='col'>{$keys}</th>";
             }
+            echo "<th></th>";
             $count++;
             echo "</tr></thead>
                 <tbody>
@@ -163,7 +163,7 @@ if(basename($_SERVER['PHP_SELF']) === 'orderDetailsView.php') {
         unset($rows['Order_By']);
         foreach($rows as $key=>$value) {
             if(array_key_last($rows) === $key) {
-                echo "<div class='col-md-4'>
+                echo "<div class='col-md-12'>
                 <label for='Status' class='form-label'>Status</label>
                 <select name='Status' id='Status' class='form-select customSelect' aria-label='Default select example'>
                 <option value='{$status}' selected='selected'>'{$status}'</option>
@@ -172,12 +172,12 @@ if(basename($_SERVER['PHP_SELF']) === 'orderDetailsView.php') {
                 <option value='Verstuurd'>Verstuurd</option>
                 <option value='Geleverd'>Geleverd</option>
                 </select></div>
-                <div class='col-4 text-center'>
+                <div class='col-12 text-center'>
                 <button type='submit' class='btn btn-primary' name='updateOrderBtn'>Wijzigen</button>
                 </div></div>
                 </form>";
             } else {
-            echo    "<div class='col-md-4'>
+            echo    "<div class='col-md-12'>
                     <label for='{$key}' class='form-label'>'{$key}'</label>
                     <input type='text' class='form-control' name='{$key}' value='{$value}' readonly>
                     </div>";
@@ -241,20 +241,19 @@ if(basename($_SERVER['PHP_SELF']) === 'ProductEditView.php') {
     unset($prodArray['imageFilePath']);
     echo "<form name='ProductEditForm' method='post' class='form' action='updateProduct.php'>";
     foreach($prodArray as $key=>$value) {
-        echo    "<div class='col-md-4'>
+        echo    "<div class='col-md-12'>
         <label for='{$key}' class='form-label'>{$key}</label>
         <input type='text' class='form-control' name='{$key}' value='{$value}'>
         </div>";
     }
     echo "<label for='image' class='form-label'>Afbeelding</label>
-    <select name='image' id='image' class='form-select customSelect' aria-label='Default select example'>
-    <option value='{$imName}' selected>{$imName}</option>";
+    <select name='image' id='image' class='form-select customSelect' aria-label='Default select example'>";
     foreach($images as $rows) {
         $imID = $rows->getImageID();
         $imName = $rows->getImageName();
         echo "<option value='{$imID}'>'{$imName}'</option>";
     }
-    echo "</select><div class='col-md-4'>
+    echo "</select><div class='col-12 text-center'>
     <button type='submit' class='btn btn-primary' name='updateproduct'>Wijzigen</button>
     </div>
     </form>";

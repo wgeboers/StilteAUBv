@@ -1,43 +1,43 @@
 <?php
-require_once('order.php');
+//require_once('order.php');
 
 Class OrderManager {
     
-    private $crud;
+    private Crud $crud;
 
     public function __construct() {
         $this->crud = new Crud('root', '');
     }
 
-    public function editOrder($id, $status, $finishedDate){
-		$data = $this->crud->updateOrder($id, $status, $finishedDate);
+    public function editOrder($id, $status, $finishedDate) : void {
+		$this->crud->updateOrder($id, $status, $finishedDate);
 	}
 
-	public function editStatus($id, $status){
-		$data = $this->crud->updateStatus($id, $status);
+	public function editStatus($id, $status) : void{
+		$this->crud->updateStatus($id, $status);
 	}
 
-	public function insertHeader($deliverAdres, $deliverZipcode, $deliverCity) {
-        $data = $this->crud->addOrderHeader($deliverAdres, $deliverZipcode, $deliverCity);
+	public function insertHeader($deliverAdres, $deliverZipcode, $deliverCity, $orderBy) : int {
+        $data = $this->crud->addOrderHeader($deliverAdres, $deliverZipcode, $deliverCity, $orderBy);
 		$this->headerid = $data;
 		return $this->headerid;
     }
 
-	public function insertLine($headerid, $productid, $amount, $linePrice) {
+	public function insertLine($headerid, $productid, $amount, $linePrice)  {
         $data = $this->crud->addOrderLine($headerid, $productid, $amount, $linePrice);
         $this->lineid = $data;
         return $this->lineid;
     }
 
-    public function fetchOrderHeaders() {
+    public function fetchOrderHeaders() : array {
         return $this->crud->getTable('orderheaders');
     }
     
-    public function fetchSingularOrderHeader($id) {
+    public function fetchSingularOrderHeader($id) : array {
         return $this->crud->select('orderheaders', 'HeaderID', $id);
     }
 
-    public function fetchOrderHeadersByUser($id) {
+    public function fetchOrderHeadersByUser($id) : array {
         return $this->crud->select('orderheaders', 'Order_By', $id);
     }
 }

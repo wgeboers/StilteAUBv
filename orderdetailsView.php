@@ -18,7 +18,14 @@
     <?php include('sidenav.php'); ?>
     <div class="content">
         <div class="main">
-            <?php include('EmployeeUI.php'); ?>
+            <div id="bestellingen" class="form">
+                <div class="container">
+                    <div class="row">
+                        <h2>Bestelling details</h2>
+                        <?php include('EmployeeUI.php'); ?>
+                    </div>    
+                </div>
+            </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"

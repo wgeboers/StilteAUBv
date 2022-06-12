@@ -3,9 +3,9 @@
 
 session_start();
 if(isset($_SESSION['url'])) {
-    $url = $_SESSION['url'];
+    $url = "/stilteaubv/Index.php";
 } else {
-    $url = "index.php";
+    $url = "/stilteaubv/Index.php";
 }
 header("Location: https://localhost$url");
 session_unset();

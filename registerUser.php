@@ -1,10 +1,9 @@
 <?php
-if(isset($_POST['register'])) {
+if(isset($_POST['adduser'])) {
     session_start();
-    unset($_POST['register']);
-    if(count($_POST) === 11) {
-        $userData = $_POST;
-    }
+    unset($_POST['adduser']);
+    
+    $userData = $_POST;
 
     require_once('UserManager.php');
     $uman = new UserManager();

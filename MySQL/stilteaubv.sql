@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2022 at 06:52 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 7.4.28
+-- Generation Time: Jun 12, 2022 at 06:08 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -23,6 +23,29 @@ USE stilteaubv;
 --
 -- Database: `stilteaubv`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `content`
+--
+
+CREATE TABLE `content` (
+  `ContentID` int(11) NOT NULL,
+  `title_nl` varchar(255) DEFAULT NULL,
+  `title_en` varchar(255) DEFAULT NULL,
+  `text_nl` text DEFAULT NULL,
+  `text_en` text DEFAULT NULL,
+  `link` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `content`
+--
+
+INSERT INTO `content` (`ContentID`, `title_nl`, `title_en`, `text_nl`, `text_en`, `link`) VALUES
+(1, 'Over Ons', 'About Us', 'Wij verkopen silent disco\'s.', 'We sell silent discos.', 'overons.php'),
+(2, 'Over Ons', 'About Us', 'Wij verkopen nog meer silent disco\'s.', 'We sell even more silent discos.', 'overons.php');
 
 -- --------------------------------------------------------
 
@@ -151,7 +174,9 @@ INSERT INTO `orderheaders` (`HeaderID`, `Order_By`, `Total_Price`, `Deliver_Adre
 (36, NULL, '684.78', 'Olivierplaats', '3813 JD', 'Amersfoort', '2022-05-28 16:56:36', NULL, 'Vertuurd'),
 (37, NULL, '324.75', 'Olivierplaats 34', '3813 JD', 'Amersfoort', '2022-05-29 14:28:19', NULL, 'Vertuurd'),
 (38, NULL, '584.55', 'Olivierplaats', '3813 JD', 'Amersfoort', '2022-05-29 18:23:24', '2022-06-02 15:27:42', 'Geleverd'),
-(39, NULL, '544.80', 'Olivierplaats', '3813 JD', 'Amersfoort', '2022-06-01 20:28:27', '2022-06-02 15:26:41', 'Geleverd');
+(39, NULL, '544.80', 'Olivierplaats', '3813 JD', 'Amersfoort', '2022-06-01 20:28:27', '2022-06-02 15:26:41', 'Geleverd'),
+(40, 1, '279.96', 'Olivierplaats', '3813 JD', 'Amersfoort', '2022-06-12 15:09:59', NULL, 'Openstaand'),
+(41, 1, '279.96', 'Olivierplaats 34', '3813 JD', 'Amersfoort', '2022-06-12 15:43:14', '0000-00-00 00:00:00', 'In behandeling');
 
 -- --------------------------------------------------------
 
@@ -186,7 +211,10 @@ INSERT INTO `orderlines` (`LineID`, `HeaderID`, `ProductID`, `Amount`, `Line_Pri
 (12, 38, 1, 5, '324.75'),
 (13, 38, 2, 4, '259.80'),
 (14, 39, 4, 5, '349.95'),
-(15, 39, 2, 3, '194.85');
+(15, 39, 2, 3, '194.85'),
+(16, 40, 3, 4, '279.96'),
+(17, 41, 3, 2, '139.98'),
+(18, 41, 4, 2, '139.98');
 
 --
 -- Triggers `orderlines`
@@ -337,7 +365,8 @@ CREATE TABLE `searchhistories` (
 --
 
 INSERT INTO `searchhistories` (`SearchID`, `Search_Description`, `Passed`, `Creation_Date`) VALUES
-(1, '00\'s thema', 1, '2022-05-27 14:35:14');
+(4, '60', 1, '2022-06-12 15:44:42'),
+(5, '2010', 0, '2022-06-12 15:44:44');
 
 -- --------------------------------------------------------
 
@@ -390,7 +419,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`UserID`, `First_Name`, `Middle_Name`, `Last_Name`, `Email`, `Phone_Number`, `Password`, `Street`, `House_Number`, `House_Number_Addition`, `Zipcode`, `City`, `Creation_Date`) VALUES
-(1, 'Hans', NULL, 'Poppelaars', 'HansPoppelaars@teleworm.us', '06-19066719', 'gohm6Ahquae', 'Midscheeps', 65, NULL, '8899 BT', 'Vlieland', '2022-03-26 18:00:05'),
+(1, 'Hans', '', 'Poppelaars', 'HansPoppelaars@teleworm.us', '06-19066719', 'gohm6Ahquae', 'Midscheeps', 65, '', '8899', 'Amersfoort', '2022-03-26 18:00:05'),
 (2, 'Gerbert', 'van', 'Muijen', 'GerbertvanMuijen@rhyta.com', '06-37008585', 'Oosh4eif', 'Irenestraat', 32, NULL, '9744 CV', 'Groningen', '2022-03-26 18:00:05'),
 (3, 'Marjolijn', NULL, 'Steverink', 'MarjolijnSteverink@rhyta.com', '06-13191051', 'tohKei1ae', 'Blauwe Pan', 56, '-A', '1317 AP', 'Almere', '2022-03-26 18:00:05'),
 (4, 'Faik', NULL, 'Penterman', 'FaikPenterman@dayrep.com', '06-75750105', 'OoD1ahch4ee', 'Ingenieur Lelystraat', 128, NULL, '5142 AM', 'Waalwijk', '2022-03-26 18:00:05'),
@@ -412,7 +441,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `revenuepermonth`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `revenuepermonth`  AS SELECT year(`orderheaders`.`Finished_Date`) AS `Year`, concat(month(`orderheaders`.`Finished_Date`),' ',monthname(`orderheaders`.`Finished_Date`)) AS `Month`, sum(`orderheaders`.`Total_Price`) AS `Total` FROM `orderheaders` WHERE `orderheaders`.`Status` = 'Geleverd' GROUP BY concat(month(`orderheaders`.`Finished_Date`),' ',monthname(`orderheaders`.`Finished_Date`)), year(`orderheaders`.`Finished_Date`) ORDER BY year(`orderheaders`.`Finished_Date`) ASC, concat(month(`orderheaders`.`Finished_Date`),' ',monthname(`orderheaders`.`Finished_Date`)) ASC  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `revenuepermonth`  AS SELECT year(`orderheaders`.`Finished_Date`) AS `Year`, concat(month(`orderheaders`.`Finished_Date`),' ',monthname(`orderheaders`.`Finished_Date`)) AS `Month`, sum(`orderheaders`.`Total_Price`) AS `Total` FROM `orderheaders` WHERE `orderheaders`.`Status` = 'Geleverd' GROUP BY concat(month(`orderheaders`.`Finished_Date`),' ',monthname(`orderheaders`.`Finished_Date`)), year(`orderheaders`.`Finished_Date`) ORDER BY year(`orderheaders`.`Finished_Date`) ASC, concat(month(`orderheaders`.`Finished_Date`),' ',monthname(`orderheaders`.`Finished_Date`)) ASC ;
 
 -- --------------------------------------------------------
 
@@ -421,7 +450,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `top10productsamount`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `top10productsamount`  AS SELECT `prd`.`Name` AS `ProductName`, `prd`.`Description` AS `ProductDescription`, sum(`ol`.`Amount`) AS `TotalAmountSold` FROM (`orderlines` `ol` left join `products` `prd` on(`ol`.`ProductID` = `prd`.`ProductID`)) GROUP BY `ol`.`ProductID` ORDER BY sum(`ol`.`Amount`) DESC LIMIT 0, 10101010  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `top10productsamount`  AS SELECT `prd`.`Name` AS `ProductName`, `prd`.`Description` AS `ProductDescription`, sum(`ol`.`Amount`) AS `TotalAmountSold` FROM (`orderlines` `ol` left join `products` `prd` on(`ol`.`ProductID` = `prd`.`ProductID`)) GROUP BY `ol`.`ProductID` ORDER BY sum(`ol`.`Amount`) DESC LIMIT 0, 10101010 ;
 
 -- --------------------------------------------------------
 
@@ -430,11 +459,17 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `top10productsprice`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `top10productsprice`  AS SELECT `prd`.`Name` AS `ProductName`, `prd`.`Description` AS `ProductDescription`, sum(`ol`.`Line_Price`) AS `TotalPriceSold` FROM (`orderlines` `ol` left join `products` `prd` on(`ol`.`ProductID` = `prd`.`ProductID`)) GROUP BY `ol`.`ProductID` ORDER BY sum(`ol`.`Line_Price`) DESC LIMIT 0, 10101010  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `top10productsprice`  AS SELECT `prd`.`Name` AS `ProductName`, `prd`.`Description` AS `ProductDescription`, sum(`ol`.`Line_Price`) AS `TotalPriceSold` FROM (`orderlines` `ol` left join `products` `prd` on(`ol`.`ProductID` = `prd`.`ProductID`)) GROUP BY `ol`.`ProductID` ORDER BY sum(`ol`.`Line_Price`) DESC LIMIT 0, 10101010 ;
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `content`
+--
+ALTER TABLE `content`
+  ADD PRIMARY KEY (`ContentID`);
 
 --
 -- Indexes for table `employees`
@@ -519,6 +554,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `content`
+--
+ALTER TABLE `content`
+  MODIFY `ContentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
@@ -540,13 +581,13 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT for table `orderheaders`
 --
 ALTER TABLE `orderheaders`
-  MODIFY `HeaderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `HeaderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `orderlines`
 --
 ALTER TABLE `orderlines`
-  MODIFY `LineID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `LineID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `productlogs`
@@ -558,7 +599,7 @@ ALTER TABLE `productlogs`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `ProductID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ProductID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `products-images`
@@ -576,7 +617,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `searchhistories`
 --
 ALTER TABLE `searchhistories`
-  MODIFY `SearchID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `SearchID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`

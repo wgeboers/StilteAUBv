@@ -22,6 +22,9 @@ $texts = $langManager->getTexts();
     <meta name="keywords" content="SilentDisco, Music, Headset, Party, Dance, Disco">
 </head>
 <body class='homePage'>
+    <div class = 'messages'>
+        <?php include('messages.php'); ?>
+    </div>
 	<div class="parallax">
         <div class="content">
             <div class="container">
@@ -99,7 +102,7 @@ $texts = $langManager->getTexts();
     </div>
     <div class="form" id="contact">
         <h2>Contactformulier</h2>
-        <form action="./contactForm.php" method="post" id="contactForm" class="row">
+        <form action="./Validation/contactFormValidation.php" method="post" id="contactForm" class="row">
             <div class="col-md-6">
                 <label for="firstName" class="form-label"><?php echo "$titles[2]"; ?></label>
                 <input type="text" class="form-control" id="firstName" name="firstName">

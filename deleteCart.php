@@ -1,17 +1,16 @@
 <?php
-// delete_cart.php
 session_start();
 
-// Kijken of die bestaat
+// Controle of de cart gevuld is
 if (empty($_SESSION['cart']))
 {
-// Nee, ga terug
-header("Location: winkelwagen.php");
+// Als dit niet het geval is dan een redirect naar de winkelwagen
+header("Location: https://localhost/stiltaubv/winkelwagen.php");
 } else {
-// Bestaat wel, weghalen
+// Is de cart gevuld haal deze dan leeg doormiddel van unset
 unset($_SESSION['cart']);
 
-// Wel terug naar cart die zal zeggen dat er niets in staat... soort van bevestiging
+// redirect naar index
 header("Location: index.php"); 
 }
 ?> 

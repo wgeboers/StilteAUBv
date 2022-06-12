@@ -14,6 +14,21 @@ li, a, button {
     text-decoration: none;
 }
 
+.messages{
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    padding: 0px 200px 0px 200px;
+}
+
+.messages i{
+    padding-right: 10px;
+}
+
+.messages button{
+    float: right;
+}
+
 ::-webkit-scrollbar{
     width: 5px;
 }
@@ -63,6 +78,8 @@ li, a, button {
     text-align: center;
 }
 
+
+
 .navbar-light .navbar-toggler{
     color: #BB13FE;
     border-color: #BB13FE;
@@ -72,6 +89,11 @@ li, a, button {
 .custom-toggler .navbar-toggler-icon{
     background-image: url(
 "data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(187, 19, 254, 1)' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.LangForm button{
+    background-color: transparent;
+    border-style: none;
 }
 
 .navbar-nav .nav-item .nav-link{
@@ -369,6 +391,19 @@ PopUp
     text-align: center;
 }
 
+.closeBtn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    background-color: transparent;
+    border-style: none;
+}
+
+.closeBtn:hover{
+    color: #BB13FE;
+}
+
 .form-container {
     width: 400px;
     padding: 10px;
@@ -395,6 +430,7 @@ PopUp
     border-color: #BB13FE;
     border-width: 2px;
     width: 100%;
+    max-height: 30px;
     padding: 15px;
     border-radius: 5px;
 }

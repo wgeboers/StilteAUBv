@@ -122,7 +122,7 @@ class Crud extends Database {
 	}
 	public function selectByEmployee($table, $where, $param) {
 		try {
-			$select = $this->connection->prepare("SELECT * FROM {$table} WHERE {$where} = {$param}");
+			$select = $this->connection->prepare("SELECT EmployeeID FROM {$table} WHERE {$where} = '{$param}'");
 			$select->execute();
 			return $select->fetchall(PDO::FETCH_ASSOC);
 		} catch(PDOException $e) {
@@ -168,33 +168,17 @@ class Crud extends Database {
 	}
 
 
-	// //Retreive products from the database based on a search term on name and description
-	// public function getProducts(string $searchTerm = "") {
-	// 	try {
-	// 		$searchTerm = "%$searchTerm%";
-	// 		$select = $this->connection->prepare("SELECT * FROM products WHERE name LIKE :search OR description LIKE :search");
-	// 		$select->bindParam(':search', $searchTerm, PDO::PARAM_STR);
-	// 		$select->execute();
-	// 		return $select->fetchall(PDO::FETCH_ASSOC);
-	// 	} catch(PDOException $e) {
-	// 		echo $e;
-	// 	}
-	// }
-
-	public function selectByEmail($email, $table = 'users') {
+	//Retreive products from the database based on a search term on name and description
+	public function getProductsSearch(string $searchTerm = "") {
 		try {
-			$select = $this->connection->prepare("SELECT * FROM {$table} WHERE `email` = '{$email}'");
+			$searchTerm = "%$searchTerm%";
+			$select = $this->connection->prepare("SELECT prd.*, img.ImageID, img.File_Name, img.File_Path FROM products prd INNER JOIN `products-images` pi on prd.ProductID = pi.ProductID INNER JOIN `images` img on pi.ImageID = img.ImageID WHERE name LIKE :search OR description LIKE :search");
+			$select->bindParam(':search', $searchTerm, PDO::PARAM_STR);
 			$select->execute();
-			return $select->fetchall(PDO::FETCH_OBJ);
+			return $select->fetchall(PDO::FETCH_ASSOC);
 		} catch(PDOException $e) {
 			echo $e;
 		}
-	}
-
-	public function addEmployee($firstName, $middleName, $lastName, $email, $password){
-		$insert = $this->connection->prepare("INSERT INTO `employees` (`First_Name`, `Middle_Name`, `Last_Name`, `Email`, `Password`) VALUES ('$firstName', '$middleName', '$lastName', '$email', '$password')");
-		$insert->execute();
-		return $this->connection->lastInsertId();
 	}
 
 	public function addEmployeeRole($id, $roleID){
@@ -205,21 +189,6 @@ class Crud extends Database {
 			echo $e;
 		}
 
-	}
-
-	public function getEmployee($table, $id) {
-		try {
-			$select = $this->connection->prepare("SELECT emp.*, er.`RoleID`, rol.`Name` FROM `$table`emp INNER JOIN `employees-roles` er ON emp.`EmployeeID` = er.`EmployeeID` INNER JOIN `roles` rol ON er.`RoleID` = rol.`RoleID` WHERE emp.EmployeeID = $id");
-			$select->execute();
-			return $select->fetch(PDO::FETCH_ASSOC);
-		} catch(PDOException $e) {
-			echo $e;
-		}
-	}
-
-	public function updateEmployee($id, $firstName, $middleName, $lastName, $email, $password, $active){
-		$update = $this->connection->prepare("UPDATE `employees` SET `First_Name` = '$firstName', `Middle_Name` = '$middleName', `Last_Name` = '$lastName', `Email` = '$email', `Password` = '$password', `ACTIVE` = '$active' WHERE EmployeeID = $id");
-		$update->execute();
 	}
 
 	public function updateEmployeeRole($role, $id){
@@ -235,16 +204,15 @@ class Crud extends Database {
 	######################################################
 	#######################Rollen#########################
 	######################################################
-	public function addRole($name, $description){
-		$insert = $this->connection->prepare("INSERT INTO `roles` (`Name`, `Description`) VALUES ('$name', '$description')");
+	public function addRole($name, $description, $createdby){
+		$insert = $this->connection->prepare("INSERT INTO `roles` (`Name`, `Description`, `Created_By`) VALUES ('$name', '$description', $createdby)");
 		$insert->execute();
 	}
 
-	public function getRole($table, $id) {
+	public function getRole($name, $description) {
 		try {
-			$select = $this->connection->prepare("SELECT * FROM `$table` WHERE RoleID = $id");
-			$select->execute();
-			return $select->fetch(PDO::FETCH_ASSOC);
+			$insert = $this->connection->prepare("INSERT INTO `roles` (`Name`, `Description`) VALUES ('$name', '$description')");
+			$insert->execute();
 		} catch(PDOException $e) {
 			echo $e;
 		}
@@ -278,9 +246,9 @@ class Crud extends Database {
 		}
 	}
 
-	public function getProductsImages($table) {
+	public function getProductsImages() {
 		try {
-			$select = $this->connection->prepare("SELECT * FROM `$table`");
+			$select = $this->connection->prepare("SELECT prd.*, pi.`ImageID`, img.`File_Name` as ImageName, img.`File_Path` as ImagePath FROM `products`prd LEFT JOIN `products-images` pi ON prd.`ProductID` = pi.`ProductID` LEFT JOIN `images` img ON pi.`ImageID` = img.`ImageID`");
 			$select->execute();
 			return $select->fetchall(PDO::FETCH_ASSOC);
 		} catch(PDOException $e) {
@@ -288,86 +256,102 @@ class Crud extends Database {
 		}
 	}
 
+	// public function getProductsImages($table) {
+	// 	try {
+	// 		$select = $this->connection->prepare("SELECT * FROM `$table`");
+	// 		$select->execute();
+	// 		return $select->fetchall(PDO::FETCH_ASSOC);
+	// 	} catch(PDOException $e) {
+	// 		echo $e;
+	// 	}
+	// }
+
 	public function addProduct($name, $description, $stock, $price){
-		$insert = $this->connection->prepare("INSERT INTO `products` (`Name`, `Description`, `Stock`, `Price`) VALUES ('$name', '$description', $stock, $price)");
-		$insert->execute();
+		try {
+			$insert = $this->connection->prepare("INSERT INTO `products` (`Name`, `Description`, `Stock`, `Price`) VALUES ('$name', '$description', $stock, $price)");
+			$insert->execute();
+		} catch(PDOException $e) {
+			echo $e;
+		}
 	}
 
 	public function addProductLog($id, $name, $description, $stock, $price){
-		$insert = $this->connection->prepare("INSERT INTO `productlogs` (`ProductID`, `Name`, `Description`, `Stock`, `Price`) VALUES ($id, '$name', '$description', $stock, $price)");
-		$insert->execute();
-	}
-
-	public function getProduct($table, $id) {
 		try {
-			$select = $this->connection->prepare("SELECT prd.*, pi.`ImageID`, img.`File_Name` as ImageName, img.`File_Path` as ImagePath FROM `$table`prd LEFT JOIN `products-images` pi ON prd.`ProductID` = pi.`ProductID` LEFT JOIN `images` img ON pi.`ImageID` = img.`ImageID` WHERE prd.ProductID = $id;");
-			$select->execute();
-			return $select->fetch(PDO::FETCH_ASSOC);
+			$insert = $this->connection->prepare("INSERT INTO `productlogs` (`ProductID`, `Name`, `Description`, `Stock`, `Price`) VALUES ($id, '$name', '$description', $stock, $price)");
+			$insert->execute();
 		} catch(PDOException $e) {
 			echo $e;
 		}
 	}
 
 	public function updateProduct($id, $name, $description, $stock, $price){
-		$update = $this->connection->prepare("UPDATE `products` SET `price` = '$name', `Description` = '$description', `Stock` = $stock, `Price` = $price WHERE ProductID = $id");
-		$update->execute();
+		try {
+			$update = $this->connection->prepare("UPDATE `products` SET `price` = '$name', `Description` = '$description', `Stock` = $stock, `Price` = $price WHERE ProductID = $id");
+			$update->execute();
+		} catch(PDOException $e) {
+			echo $e;
+		}
 	}
 
 	public function addProductImage($id, $imageId){
-		$insert = $this->connection->prepare("INSERT INTO `products-images` (`ProductID`, `ImageID`) VALUES ('$id', '$imageId')");
-		$insert->execute();
+		try {
+			$insert = $this->connection->prepare("INSERT INTO `products-images` (`ProductID`, `ImageID`) VALUES ('$id', '$imageId')");
+			$insert->execute();
+		} catch(PDOException $e) {
+			echo $e;
+		}
 	}
 	
 	public function updateProductImage($id, $imageId){
-		$update = $this->connection->prepare("UPDATE `products-images` SET `ImageID` = $imageId WHERE ProductID = $id");
-		$update->execute();
+		try {
+			$update = $this->connection->prepare("UPDATE `products-images` SET `ImageID` = $imageId WHERE ProductID = $id");
+			$update->execute();
+		} catch(PDOException $e) {
+			echo $e;
+		}
 	}
 
 	######################################################
 	######################Images##########################
 	######################################################
 	public function addImage($fileName, $filePath){
-		$insert = $this->connection->prepare("INSERT INTO `images` (`File_Name`, `File_Path`) VALUES ('$fileName', '$filePath')");
-		$insert->execute();
+		try {
+			$insert = $this->connection->prepare("INSERT INTO `images` (`File_Name`, `File_Path`) VALUES ('$fileName', '$filePath')");
+			$insert->execute();
+		} catch(PDOException $e) {
+			echo $e;
+		}
 	}
 
 	######################################################
 	#######################Orders#########################
 	######################################################
-	public function getOrder($table, $id) {
+	public function updateOrder($id, $status, $finishedDate){
 		try {
-			$select = $this->connection->prepare("SELECT * FROM `$table` WHERE HeaderID = $id");
-			$select->execute();
-			return $select->fetch(PDO::FETCH_ASSOC);
+		$update = $this->connection->prepare("UPDATE `orderheaders` SET `Status` = '$status', `Finished_Date` = '$finishedDate' WHERE HeaderID = $id");
+		$update->execute();
 		} catch(PDOException $e) {
 			echo $e;
 		}
-	}
-
-	public function updateOrder($id, $status, $finishedDate){
-		$update = $this->connection->prepare("UPDATE `orderheaders` SET `Status` = '$status', `Finished_Date` = '$finishedDate' WHERE HeaderID = $id");
-		$update->execute();
 	}
 
 	public function updateStatus($id, $status){
-		$update = $this->connection->prepare("UPDATE `orderheaders` SET `Status` = '$status' WHERE HeaderID = $id");
-		$update->execute();
-	}
-
-	public function getOrdersDetail($id) {
 		try {
-			$select = $this->connection->prepare("SELECT prd.`Name`, prd.`Description`, ol.`Amount`, ol.`Line_Price` FROM `orderlines` ol INNER JOIN `products` prd ON ol.`ProductID` = prd.`ProductID` where ol.`HeaderID` = $id;");
-			$select->execute();
-			return $select->fetchall(PDO::FETCH_OBJ);
+			$update = $this->connection->prepare("UPDATE `orderheaders` SET `Status` = '$status' WHERE HeaderID = $id");
+			$update->execute();
 		} catch(PDOException $e) {
 			echo $e;
 		}
 	}
 
-	public function addOrderHeader($deliverAdres, $deliverZipcode, $deliverCity){
-		$insert = $this->connection->prepare("INSERT INTO `orderHeaders` (`Deliver_Adres`, `Deliver_Zipcode`, `Deliver_City`) VALUES ('$deliverAdres', '$deliverZipcode', '$deliverCity')");
-		$insert->execute();
-		return $this->connection->lastInsertId();
+	public function addOrderHeader($deliverAdres, $deliverZipcode, $deliverCity, $orderBy){
+		try {
+			$insert = $this->connection->prepare("INSERT INTO `orderHeaders` (`Order_By`, `Deliver_Adres`, `Deliver_Zipcode`, `Deliver_City`) VALUES ($orderBy, '$deliverAdres', '$deliverZipcode', '$deliverCity')");
+			$insert->execute();
+			return $this->connection->lastInsertId();
+		} catch(PDOException $e) {
+			echo $e;
+		}
 	}	
 
 	public function addOrderLine($headerid, $productid, $amount, $linePrice){
@@ -381,13 +365,8 @@ class Crud extends Database {
 	
 	public function addSearchTerm(string $searchTerm, bool $passed) {
 		try {
-			//$sql = "INSERT IGNORE INTO searchhistories values (:search, TRUE, '')";
-			$sql2 = "INSERT INTO searchhistories (Search_Description, Passed)
-			SELECT * FROM (SELECT :search, :passed) AS tmp
-			WHERE NOT EXISTS (
-				SELECT Search_Description, Passed FROM searchhistories WHERE Search_Description = :search AND Passed = :passed
-			) LIMIT 1";
-			$insert = $this->connection->prepare($sql2);
+			$sql = "INSERT INTO searchhistories (Search_Description, Passed) VALUES (:search, :passed)";
+			$insert = $this->connection->prepare($sql);
 			$insert->bindParam(':search', $searchTerm, PDO::PARAM_STR);
 			$insert->bindParam(':passed', $passed, PDO::PARAM_INT);
 			$insert->execute();
@@ -407,4 +386,5 @@ class Crud extends Database {
         }
     }
 }
+
 ?>

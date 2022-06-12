@@ -8,11 +8,7 @@ if(isset($_POST['updateRolebtn'])) {
 	unset($_SESSION['RoleID']);
 	$e_man->editRole($role->getRoleID(), $_POST['Name'], $_POST['Description']);
 
-	if(isset($_SESSION['url'])) {
-		$url = $_SESSION['url'];
-	} else {
-		$url = "index.php";
-	}
+	$url = '/stilteaubv/rolesView.php';
 	header("Location: https://localhost$url");
 	exit();
 }

@@ -1,7 +1,6 @@
 <?php
 
 #Script that's executed on pressing 'login' in the website header.
-#TODO: Error message is not picked up yet.
 if(!empty($_POST['login'])) {
 	session_start();
 	$email = $_POST["email"];
@@ -12,8 +11,7 @@ if(!empty($_POST['login'])) {
 		require_once("UserManager.php");
 		$u_man = new UserManager();
 		$u_man->login($email, $password);
-		$_SESSION['active'] = true;
-		if(isset($u_man)) {
+		if($u_man->getLoggedIn()) {
 			$u_man->fetchUserData($_SESSION['id']);
 			$_SESSION['type'] = 'user';
 		}
