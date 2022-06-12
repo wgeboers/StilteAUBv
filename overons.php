@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI']; 
         require_once('LangManager.php');
+        //Haal de titel en tekst op aan de hand van de geselecteerde taal in de sessie
         $langManager = new LangManager();
         $content = $langManager->getContents("overons.php");
         $titles = $langManager->getTitles();
@@ -21,35 +22,25 @@
 </head>
 
 <body class="overOns">
-    <div class="container-fluid text-white">
-        <div class="row">
-            <div class="col-xs-6 col-md-8 p-5 content">
-            <div class="col-xs-6 col-md-4 p-5 content">
-                <p>
-                    <img id="logoOverOns" src="Images/Logo.png" />
-                </p>
-                <p>
-                    <?php echo "$titles[2]"; ?>: STILTE AUBV<br>
-                    ADRES: HOGESCHOOLLAAN 1<br>
-                    <?php echo "$texts[2]"; ?>: 4818 CR<br>
-                    <?php echo "$texts[1]"; ?>: BREDA<BR>
-                </p>
-                <p>
-                    TEL: 088 5698475<br>
-                    E-MAIL: info@stilteaubv.nl<br>
-                    KVK: 8978676748<br>
-                </p>
-            </div>
+    <div class="container">
+        <div class = "child">
+            <p> 
+                <?php echo $texts[0]; ?>
+            </p>
+            <p>
+                <?php echo $texts[1]; ?>
+            </p>
+            <p>
         </div>
         <div class = "child">
             <p>
                 <img id="logoOverOns" src="Images/Logo.png" />
             </p>
             <p>
-                <span class="overonsColorChange"><?php echo "$titles[2]"; ?> </span>STILTE AUBV<br>
+                <span class="overonsColorChange">NAAM: </span>STILTE AUBV<br>
                 <span class="overonsColorChange">ADRES: </span>HOGESCHOOLLAAN 1<br>
-                <span class="overonsColorChange"><?php echo "$texts[2]"; ?></span>4818 CR<br>
-                <span class="overonsColorChange"><?php echo "$texts[1]"; ?> </span>BREDA<BR>
+                <span class="overonsColorChange">POSTCODE: </span>4818 CR<br>
+                <span class="overonsColorChange">PLAATS: </span>BREDA<BR>
             </p>
             <p>
                 <span class="overonsColorChange">TEL: </span>088 5698475<br>
