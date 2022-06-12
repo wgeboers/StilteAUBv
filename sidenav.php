@@ -17,8 +17,8 @@ if($_SESSION['lang'] === 'lang_nl') {
                 <a href="productsView.php">Artikelen</a>
                 <a href="imagesView.php">Afbeeldingen</a>
         <?php 
-        } if($_SESSION['type'] === 'user') {
-                echo "<a href='userInfo.php'>{$infoTitle}</a>
+        } if($_SESSION['type'] !== 'employee') {
+                echo "<a href='userInfo.php'>{$infoTitle}</a><br>
                 <a href='userOrders.php'>{$orderTitle}</a>";
         }
         ?>
