@@ -20,7 +20,7 @@
         if($_SESSION['lang'] === 'lang_nl') {
             $title = 'Jouw Gegevens';
         } else
-            $title = 'Your information';
+            $title = 'Your profile';
             
         if(isset($_SESSION['id']) && !empty($_SESSION['id'])) {
             require_once('sidenav.php');
