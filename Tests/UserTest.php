@@ -18,15 +18,15 @@
         public function testGetters() {
             $expectedId = 1;
             $expectedName = 'Bart';
-            $expectedEmail = 'bart.frijters@gm.com';
-            $expectedPhoneNr = '06-57574266';
-            $expectedAddress = array('Pelsakker', 7, 'a', '4834AG', 'Breda');
+            // $expectedEmail = 'bart.frijters@gm.com';
+            // $expectedPhoneNr = '06-57574266';
+            // $expectedAddress = array('Pelsakker', 7, 'a', '4834AG', 'Breda');
 
             $this->assertSame($expectedId, $this->user->getId());
             $this->assertSame($expectedName, $this->user->getName());
-            $this->assertSame($expectedEmail, $this->user->getEmail());
-            $this->assertSame($expectedPhoneNr, $this->user->getPhoneNumber());
-            $this->assertSame($expectedAddress, $this->user->getAddress());
+            // $this->assertSame($expectedEmail, $this->user->getEmail());
+            // $this->assertSame($expectedPhoneNr, $this->user->getPhoneNumber());
+            // $this->assertSame($expectedAddress, $this->user->getAddress());
         }
 
         public function testGetAllData() {

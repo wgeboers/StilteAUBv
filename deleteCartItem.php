@@ -1,18 +1,14 @@
 <?php
-// delete_cart_item.php
-// item uit winkelwagen verwijderen
 session_start();
-
-// Variables
 $item = $_GET['item'];
 
-// Wederom, kijken of winkelwagen bestaat
+// Controle of de sessie bestaat en gevuld is
 if (empty($_SESSION['cart']))
 {
-    // Winkelwagen leeg, gan naar startscherm :)
+    // is de winkelwagen leeg dan een redirect naar index
     header("Location: index.php");
 } else {
-    // Winkelwagen uit elkaar plukken
+    // winkelwagen splitsen op de | (pipe)
     $cart2 = explode("|",$_SESSION['cart']);
 
     // Tellen aantal items in winkelwagen
@@ -21,23 +17,14 @@ if (empty($_SESSION['cart']))
     // kijken of het in de winkelwagen staat
     $i=0;
     foreach($cart2 as $products) {
-        // Split
-        /*
-        $product[x] -->
-        x == 0 -> productnummer
-        x == 1 -> hoeveelheid
-        */
         $product = explode(",",$products);
         $i++;
-        if ($i != $item) { // Dus als die niet die is die verwijderd moet worden
-            // Var toevoegen aan nieuwe winkelwagen
+        if ($i != $item) { 
             $inNewCart = $product[0].",".$product[1];
             $newCart = $newCart."|".$inNewCart;
         }
     }
 
-    // Er staat nog een | vooraan, even weghalen (had natuurlijk ook eerder
-    // een controle kunnen doen en die daar niet plaatsen
     $newCart = substr($newCart,1);
 }
 
@@ -45,6 +32,5 @@ if (empty($_SESSION['cart']))
 unset($_SESSION['cart']);
 $_SESSION['cart'] = $newCart;
 
-// En terugsturen
 header("Location: winkelwagen.php");
 ?> 

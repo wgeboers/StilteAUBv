@@ -1,5 +1,6 @@
 <?php
-if(!empty($_POST['addproduct'])) {
+//Controleert of de post gevuld is
+if(!empty($_POST['addproduct'])) { 
 	session_start();
 	$name = $_POST["name"];
 	$description = $_POST["description"];
@@ -11,11 +12,7 @@ if(!empty($_POST['addproduct'])) {
 	$pman= new ProductManager();
 	$pman->insertProduct($name, $description, $stock, $price, $createdby);
 
-	if(isset($_SESSION['url'])) {
-		$url = $_SESSION['url'];
-	} else {
-		$url = "/stilteaubv/index.php";
-	}
+	$url = "/stilteaubv/productsView.php";
 	header("Location: https://localhost$url");
 	exit();
 }

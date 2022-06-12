@@ -1,4 +1,5 @@
 <?php
+//Controle of de post gevuld is
 if(!empty($_POST['addrole'])) {
 	session_start();
 	$name = $_POST["name"];

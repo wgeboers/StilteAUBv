@@ -1,7 +1,10 @@
 <?php
     session_start();
+    //Controle of de post import gevuld is
     if(!empty($_POST['import'])) {
+        //open de file met lees rechten
         $fh = fopen($_FILES["file"]["tmp_name"], "r");
+        //haal de id van de ingelogde medewerker uit de sessie id
         $createdby = $_SESSION['id'];
         if($fh===false) {exit("Error opening uploaded CSV file");}
 

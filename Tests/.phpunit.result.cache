@@ -1,1 +1,1 @@
-{"version":1,"defects":{"UserTest::testConstructor":4,"UserTest::testGetters":4},"times":{"UserTest::testConstructor":0,"UserTest::testGetters":0}}
+{"version":1,"defects":{"UserTest::testConstructor":4,"UserTest::testGetters":4,"UserTest::testGetAllData":5,"Warning":6,"ProductTest::testConstructor":4},"times":{"UserTest::testConstructor":0,"UserTest::testGetters":0,"UserTest::testGetAllData":0,"Warning":0,"EmployeeTest::testConstructor":0,"EmployeeTest::testGetters":0,"ProductTest::testConstructor":0,"ProductTest::testGetters":0}}

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php include('header.php'); $_SESSION['url'] = $_SERVER['REQUEST_URI']; 
         include('LangManager.php');
+        //Haal de titel en tekst op aan de hand van de geselecteerde taal in de sessie
         $langManager = new LangManager();
         $content = $langManager->getContents("overons.php");
         $titles = $langManager->getTitles();

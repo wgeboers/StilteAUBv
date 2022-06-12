@@ -110,6 +110,7 @@
             $headerid = $data;
 
             foreach($cart as $products){
+                //scheidt de waardes op basis van de ,
                 $product = explode(",",$products);
 
                 require_once('ProductManager.php');
