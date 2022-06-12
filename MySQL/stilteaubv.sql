@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2022 at 06:08 PM
+-- Generation Time: Jun 12, 2022 at 11:27 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -44,8 +44,22 @@ CREATE TABLE `content` (
 --
 
 INSERT INTO `content` (`ContentID`, `title_nl`, `title_en`, `text_nl`, `text_en`, `link`) VALUES
-(1, 'Over Ons', 'About Us', 'Wij verkopen silent disco\'s.', 'We sell silent discos.', 'overons.php'),
-(2, 'Over Ons', 'About Us', 'Wij verkopen nog meer silent disco\'s.', 'We sell even more silent discos.', 'overons.php');
+(1, 'Over Ons', 'About Us', 'Wij zijn 4 jonge gasten die zelf van een feestje houden. Dit hebben wij natuurlijk ook moeten missen door de noodzakelijke restricties van COVID-19. Door deze restricties is het helaas niet meer mogelijk om in grote groepen te genieten van activiteiten. Vandaar dat Stilte AUBv op het idee is gekomen om silent disco’s te leveren. Door de ervaring van een concert, disco of nachtclub in de woonkamer van jou te krijgen hopen wij deze tijden ook weer wat gemoedelijker voor jou te maken.', 'We are 4 young guys who like to party ourselves. Of course we also had to miss this due to the necessary restrictions of COVID-19. Due to these restrictions it is unfortunately no longer possible to enjoy activities in large groups. That is why Stilte AUBv came up with the idea to supply silent discos. Through the experience of a concert, disco or nightclub in your living room, we hope to make these times a little more pleasant for you.', 'overons.php'),
+(2, 'Over Ons', 'About Us', 'Wij hebben als doel om het organiseren van een silent disco zo makelijk mogelijk te maken vandaar dat je bij ons een vooraf gedefineerd theme pakket huurt. Dit pakket bevat alle benodigde apparatuur en muziek wat ervoor zorgt dat het voor jou plug and play is.', 'We aim to make organizing a silent disco as easy as possible, which is why you rent a predefined theme package from us. This package contains all the necessary equipment and music which ensures that it is plug and play for you.', 'overons.php'),
+(3, 'Silent Disco', 'Silent Disco', 'Huur een volledige doe-het-zelf Silent Disco set met koptelefoons. Het systeem is makkelijk aan te sluiten op een laptop of op DJ-apparatuur met het door jou gekozen thema pakket. Binnen een mum van tijd organiseer jij zelf een Silent Disco!', 'Hire your own Silent Disco with headphones. The system is easy-to-use and is compatible with most DJ-gear and laptops. It even has theme songs, so you can get started within minutes!', 'index.php'),
+(4, NULL, NULL, 'Bekijk onze producten!', 'Get your products here!', 'index.php'),
+(5, 'Voornaam', 'First Name', 'Weet je zeker dat je dit product wilt verwijderen?', 'Are you sure that you want to remove your item?', 'index.php'),
+(6, 'Achternaam', 'Last Name', 'Weet je zeker dat je de winkelwagen wilt leeghalen?', 'Are you sure that you want to empty your cart?', 'index.php'),
+(7, 'Email', 'Email', 'We zullen je email niet delen met anderen!', 'We won\'t give your email to third parties', 'index.php'),
+(8, 'Telefoon', 'Telephone', 'Wachtwoord', 'Password', 'index.php'),
+(9, 'Onderwerp', 'Subject', 'Straat', 'Street', 'index.php'),
+(10, 'Omschrijving', 'Description', 'Huisnummer', 'Housenumber', 'index.php'),
+(11, 'Verzenden', 'Send', 'Toevoeging', 'Addon', 'index.php'),
+(12, 'Contactformulier', 'Contact us', 'Registreer', 'Register', 'index.php'),
+(13, 'Naam', 'Name', 'Postcode', 'Zip code', 'overons.php'),
+(14, 'Tussenvoegsel', 'Middle name', 'Straat huisnummer-toevoeging', 'Street housenumber-addon', 'index.php'),
+(15, 'Postcode', 'Zip code', 'Stad', 'City', 'index.php'),
+(16, 'Afrekenen', 'Purchase', 'Winkelwagen leegmaken', 'Empty cart', 'index.php');
 
 -- --------------------------------------------------------
 
@@ -71,14 +85,11 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`EmployeeID`, `First_Name`, `Middle_Name`, `Last_Name`, `Email`, `Password`, `Creation_Date`, `Created_By`, `Last_Active`, `ACTIVE`) VALUES
-(1, 'wesley', NULL, 'Geboers', 'w.geboers@student.avans.nl', 'P@ssw0rd@2022!', '2022-03-26 18:00:00', NULL, NULL, 1),
+(1, 'wesley', '', 'Geboers', 'w.geboers@student.avans.nl', 'P@ssw0rd@2022!', '2022-03-26 18:00:00', NULL, NULL, 1),
 (2, 'Marcel', NULL, 'Forman', 'm.forman@student.avans.nl', 'P@ssw0rd@2022!', '2022-03-26 18:00:00', 1, NULL, 1),
 (3, 'Bart', NULL, 'Frijters', 'bjal.frijters@student.avans.nl', 'P@ssw0rd@2022!', '2022-03-26 18:00:00', 1, NULL, 1),
 (4, 'Thomas', NULL, 'Daane', 'trbl.daane@student.avans.nl', 'P@ssw0rd@2022!', '2022-03-26 18:00:00', 1, NULL, 1),
-(5, 'Sanel', 'van den', 'Bogert', 'avd.bogert@student.avans.nl', 'P@ssw0rd@2022!', '2022-03-26 18:00:00', 1, NULL, 1),
-(6, 'Tinky', '', 'WInky', 'l.schippers@student.avans.nl', '<br /><b>Notice</b>:  Und', '2022-03-26 18:00:00', 1, NULL, 1),
-(14, 'Jan', 'van', 'Blisteren', 'jvanblisteren@gmail.com', '<br /><b>Notice</b>:  Und', '2022-05-29 17:32:11', NULL, NULL, 1),
-(15, 'Piet', '', 'fesfes', 'fesfe@gmail.com', '1Gizmo99mimo7', '2022-05-29 18:24:18', NULL, NULL, 1);
+(5, 'Sanel', 'van den', 'Bogert', 'avd.bogert@student.avans.nl', 'P@ssw0rd@2022!', '2022-03-26 18:00:00', 1, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -97,13 +108,11 @@ CREATE TABLE `employees-roles` (
 --
 
 INSERT INTO `employees-roles` (`TableID`, `EmployeeID`, `RoleID`) VALUES
-(1, 1, 2),
+(1, 1, 5),
 (2, 2, 1),
 (3, 3, 3),
 (4, 4, 4),
-(5, 5, 5),
-(7, 14, 4),
-(8, 15, 1);
+(5, 5, 5);
 
 -- --------------------------------------------------------
 
@@ -168,15 +177,18 @@ CREATE TABLE `orderheaders` (
 --
 
 INSERT INTO `orderheaders` (`HeaderID`, `Order_By`, `Total_Price`, `Deliver_Adres`, `Deliver_Zipcode`, `Deliver_City`, `Creation_Date`, `Finished_Date`, `Status`) VALUES
-(1, 1, '349.95', 'Midscheeps 65', '8899 BT', 'Vlieland', '2022-03-26 18:00:37', NULL, 'In behandeling'),
-(2, 3, '69.99', 'Blauwe Pan 56-A', '1317 AP', 'Almere', '2022-03-26 18:00:37', '2022-03-26 19:00:37', 'Openstaand'),
+(1, 1, '349.95', 'Midscheeps 65', '8899 BT', 'Vlieland', '2022-03-26 18:00:37', '0000-00-00 00:00:00', 'Verstuurd'),
+(2, 3, '69.99', 'Blauwe Pan 56-A', '1317 AP', 'Almere', '2022-03-26 18:00:37', '0000-00-00 00:00:00', 'Verstuurd'),
 (35, NULL, '909.30', 'Olivierplaats', '3813 JD', 'Amersfoort', '2022-05-28 16:55:19', '2022-06-02 15:32:20', 'Geleverd'),
 (36, NULL, '684.78', 'Olivierplaats', '3813 JD', 'Amersfoort', '2022-05-28 16:56:36', NULL, 'Vertuurd'),
 (37, NULL, '324.75', 'Olivierplaats 34', '3813 JD', 'Amersfoort', '2022-05-29 14:28:19', NULL, 'Vertuurd'),
 (38, NULL, '584.55', 'Olivierplaats', '3813 JD', 'Amersfoort', '2022-05-29 18:23:24', '2022-06-02 15:27:42', 'Geleverd'),
 (39, NULL, '544.80', 'Olivierplaats', '3813 JD', 'Amersfoort', '2022-06-01 20:28:27', '2022-06-02 15:26:41', 'Geleverd'),
 (40, 1, '279.96', 'Olivierplaats', '3813 JD', 'Amersfoort', '2022-06-12 15:09:59', NULL, 'Openstaand'),
-(41, 1, '279.96', 'Olivierplaats 34', '3813 JD', 'Amersfoort', '2022-06-12 15:43:14', '0000-00-00 00:00:00', 'In behandeling');
+(41, 1, '279.96', 'Olivierplaats 34', '3813 JD', 'Amersfoort', '2022-06-12 15:43:14', '2022-06-12 23:02:17', 'Geleverd'),
+(42, 1, '139.98', 'Olivierplaats', '3813 JD', 'Amersfoort', '2022-06-12 21:09:18', NULL, 'Openstaand'),
+(43, 1, '209.97', 'Olivierplaats', '3813 JD', 'Amersfoort', '2022-06-12 21:13:05', NULL, 'Openstaand'),
+(44, NULL, '69.99', 'Olivierplaats', '3813 JD', 'Amersfoort', '2022-06-12 21:22:58', NULL, 'Openstaand');
 
 -- --------------------------------------------------------
 
@@ -214,7 +226,10 @@ INSERT INTO `orderlines` (`LineID`, `HeaderID`, `ProductID`, `Amount`, `Line_Pri
 (15, 39, 2, 3, '194.85'),
 (16, 40, 3, 4, '279.96'),
 (17, 41, 3, 2, '139.98'),
-(18, 41, 4, 2, '139.98');
+(18, 41, 4, 2, '139.98'),
+(19, 42, 3, 2, '139.98'),
+(20, 43, 3, 3, '209.97'),
+(21, 44, 3, 1, '69.99');
 
 --
 -- Triggers `orderlines`
@@ -257,7 +272,20 @@ INSERT INTO `productlogs` (`LogID`, `ProductID`, `Modified_Date`, `Modified_By`,
 (3, 3, '2022-03-26 18:00:31', 3, NULL, NULL, 10, NULL),
 (4, 2, '2022-03-26 18:00:31', 3, NULL, NULL, 20, NULL),
 (5, 5, '2022-03-26 18:00:31', 3, NULL, NULL, 15, NULL),
-(6, 2, '2022-06-02 14:10:57', NULL, '70s Package', 'Jaren 70 thema met 10 headsets en 1 zender', 16, '64.99');
+(6, 2, '2022-06-02 14:10:57', NULL, '70s Package', 'Jaren 70 thema met 10 headsets en 1 zender', 16, '64.99'),
+(7, 1, '2022-06-12 19:58:11', NULL, '60s Package', 'Jaren 60 thema met 10 headsets en 1 zender', 15, '64.95'),
+(8, 4, '2022-06-12 21:02:53', NULL, '90s Package4', 'Jaren 90 thema met 10 headsets en 1 zender', 18, '69.99'),
+(9, 3, '2022-06-12 21:03:03', NULL, '80s Package4', 'Jaren 80 thema met 10 headsets en 1 zender', 6, '69.99'),
+(10, 1, '2022-06-12 21:03:47', NULL, '60s Package', 'Jaren 60 thema met 10 headsets en 1 zender', 10, '64.95'),
+(11, 1, '2022-06-12 21:03:48', NULL, '60s Package', 'Jaren 60 thema met 10 headsets en 1 zender', 10, '64.95'),
+(12, 1, '2022-06-12 21:03:55', NULL, '60s Package', 'Jaren 60 thema met 10 headsets en 1 zender', 15, '64.95'),
+(13, 2, '2022-06-12 21:04:19', NULL, '70s Packages', 'Jaren 70 thema met 10 headsets en 1 zender', 16, '64.99'),
+(14, 3, '2022-06-12 21:04:25', NULL, '80s Package', 'Jaren 80 thema met 10 headsets en 1 zenders', 6, '69.99'),
+(15, 3, '2022-06-12 21:04:29', NULL, '80s Package', 'Jaren 80 thema met 10 headsets en 1 zender', 6, '69.99'),
+(16, 3, '2022-06-12 21:04:53', NULL, '80s Package', 'Jaren 80 thema met 10 headsets en 1 zender', 6, '69.99'),
+(17, 4, '2022-06-12 21:04:57', NULL, '90s Package', 'Jaren 90 thema met 10 headsets en 1 zender', 18, '69.99'),
+(18, 2, '2022-06-12 21:05:01', NULL, '70s Package', 'Jaren 70 thema met 10 headsets en 1 zender', 16, '64.99'),
+(19, 1, '2022-06-12 21:05:05', NULL, '60s Package', 'Jaren 60 thema met 10 headsets en 1 zender', 15, '64.95');
 
 -- --------------------------------------------------------
 
@@ -272,19 +300,20 @@ CREATE TABLE `products` (
   `Stock` int(11) NOT NULL,
   `Price` decimal(65,2) NOT NULL,
   `Creation_Date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `Created_By` int(11) DEFAULT NULL
+  `Created_By` int(11) DEFAULT NULL,
+  `description_en` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`ProductID`, `Name`, `Description`, `Stock`, `Price`, `Creation_Date`, `Created_By`) VALUES
-(1, '60s Package', 'Jaren 60 thema met 10 headsets en 1 zender', 12, '64.95', '2022-03-26 18:00:24', 1),
-(2, '70s Package', 'Jaren 70 thema met 10 headsets en 1 zender', 16, '64.99', '2022-03-26 18:00:24', 1),
-(3, '80s Package', 'Jaren 80 thema met 10 headsets en 1 zender', 6, '69.99', '2022-03-26 18:00:24', 1),
-(4, '90s Package', 'Jaren 90 thema met 10 headsets en 1 zender', 18, '69.99', '2022-03-26 18:00:24', 1),
-(5, '00s Package', 'Jaren 00 thema met 10 headsets en 1 zender', 3, '74.99', '2022-03-26 18:00:24', 1);
+INSERT INTO `products` (`ProductID`, `Name`, `Description`, `Stock`, `Price`, `Creation_Date`, `Created_By`, `description_en`) VALUES
+(1, '60s Package', 'Jaren 60 thema met 10 headsets en 1 zender', 15, '64.95', '2022-03-26 18:00:24', 1, '60\'s theme with 10 headsets and a receiver'),
+(2, '70s Package', 'Jaren 70 thema met 10 headsets en 1 zender', 16, '64.99', '2022-03-26 18:00:24', 1, '70\'s package with 10 headsets and a receiver'),
+(3, '80s Package', 'Jaren 80 thema met 10 headsets en 1 zender', 6, '69.99', '2022-03-26 18:00:24', 1, '80\'s package with 10 headsets and a receiver'),
+(4, '90s Package', 'Jaren 90 thema met 10 headsets en 1 zender', 18, '69.99', '2022-03-26 18:00:24', 1, '90\'s package with 10 headsets and a receiver'),
+(5, '00s Package', 'Jaren 00 thema met 10 headsets en 1 zender', 3, '74.99', '2022-03-26 18:00:24', 1, '00s package with 10 headsets and a receiver');
 
 -- --------------------------------------------------------
 
@@ -344,8 +373,7 @@ INSERT INTO `roles` (`RoleID`, `Name`, `Description`, `Creation_Date`, `Created_
 (2, 'IT', 'Toegang tot medewerkersportaal en de database (lees en schrijf rechten)', '2022-03-26 18:00:11', 1),
 (3, 'Operations', 'Toegang tot medewerkersportaal (lees en schrijf rechten)', '2022-03-26 18:00:11', 1),
 (4, 'Marketing', 'Toegang tot medewerkersportaal (lees en schrijf rechten)', '2022-03-26 18:00:11', 1),
-(5, 'Administratie', 'Toegang tot medewerkersportaal (lees rechten)', '2022-03-26 18:00:11', 1),
-(6, 'Test', 'Dit is een update!!', '2022-05-27 13:56:32', NULL);
+(5, 'Administratie', 'Toegang tot medewerkersportaal (lees rechten)', '2022-03-26 18:00:11', 1);
 
 -- --------------------------------------------------------
 
@@ -365,8 +393,10 @@ CREATE TABLE `searchhistories` (
 --
 
 INSERT INTO `searchhistories` (`SearchID`, `Search_Description`, `Passed`, `Creation_Date`) VALUES
-(4, '60', 1, '2022-06-12 15:44:42'),
-(5, '2010', 0, '2022-06-12 15:44:44');
+(9, '70', 1, '2022-06-12 21:02:36'),
+(10, '80', 1, '2022-06-12 21:02:38'),
+(11, '90', 1, '2022-06-12 21:26:12'),
+(12, '2010', 0, '2022-06-12 21:26:14');
 
 -- --------------------------------------------------------
 
@@ -557,49 +587,49 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `content`
 --
 ALTER TABLE `content`
-  MODIFY `ContentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ContentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `EmployeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `EmployeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `employees-roles`
 --
 ALTER TABLE `employees-roles`
-  MODIFY `TableID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `TableID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `ImageID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ImageID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `orderheaders`
 --
 ALTER TABLE `orderheaders`
-  MODIFY `HeaderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `HeaderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `orderlines`
 --
 ALTER TABLE `orderlines`
-  MODIFY `LineID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `LineID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `productlogs`
 --
 ALTER TABLE `productlogs`
-  MODIFY `LogID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `LogID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `ProductID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `ProductID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `products-images`
@@ -611,19 +641,19 @@ ALTER TABLE `products-images`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `RoleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `RoleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `searchhistories`
 --
 ALTER TABLE `searchhistories`
-  MODIFY `SearchID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `SearchID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
