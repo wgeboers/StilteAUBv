@@ -44,15 +44,19 @@
 					<li class="nav-item">
 						<a class="nav-link" aria-current="page" href="webshop.php" id="webshop">Webshop</a>
 					</li>
+					<?php if($_SESSION['lang'] === 'lang_nl')  {
+						$about = 'Over Ons';
+					} else 
+						$about = 'About Us';?>
 					<li class="nav-item">
-						<a class="nav-link" href="overons.php" id="overons">Over ons</a>
+						<a class="nav-link" href="overons.php" id="overons"><?php echo $about; ?></a>
 					</li>
 					<?php
-						if(isset($_SESSION["id"]) && !empty($_SESSION["id"])){
-							ECHO "<li class='nav-item'>
-							<a class='nav-link'  href='dashboardView.php' id='Dashboard'>Dashboard</a>
-							</li>";
-						}
+					if(isset($_SESSION["id"]) && !empty($_SESSION["id"])){
+						echo "<li class='nav-item'>
+						<a class='nav-link'  href='dashboardView.php' id='Dashboard'>Dashboard</a>
+						</li>";
+					}
 					?>
 				</ul>
 				<ul class="navbar-nav position-absolute end-0 mx-3">
