@@ -9,7 +9,7 @@ if(isset($_POST['adduser'])) {
     $uman = new UserManager();
     $uman->insertUserIntoDB($userData);
     if(isset($_SESSION['url'])) {
-		$url = $_SESSION['url'];
+		$url = "/stilteaubv/index.php";
 	} else {
 		$url = "/stilteaubv/index.php";
 	}
