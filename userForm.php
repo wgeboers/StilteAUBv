@@ -12,7 +12,7 @@ if(isset($_POST['changeBtn'])) {
     $u_man->updateUserData($userData);
     $u_man->fetchUserData($_SESSION['id']);
     
-    $url = '/stilteaubv/dashboardView.php';
+    $url = '/stilteaubv/userInfo.php';
     header("Location: https://localhost$url");
     exit();
 }
