@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-<?php include('header.php'); ?>
+<?php include('header.php');
+require_once ('Langmanager.php');
+$langManager = new LangManager();
+$content = $langManager->getContents("index.php");
+$titles = $langManager->getTitles();
+$texts = $langManager->getTexts();?>
 <head>
     <title>Registreer</title>
    <meta charset="UTF-8">
@@ -18,58 +23,58 @@
         <form id='registerForm' method='post' action='./registerUser.php'>
             <div class='row'>
                 <div class='col-md-4'>
-                    <label for='First_Name' class='form-label'>Voornaam</label>
-                    <input type='text' class='form-control' placeholder='Voornaam' name='First_Name' id='First_Name'>
+                    <label for='First_Name' class='form-label'><?php echo "$titles[2]"; ?></label>
+                    <input type='text' class='form-control' placeholder='<?php echo "$titles[2]"; ?>' name='First_Name' id='First_Name'>
                 </div>
                 <div class='col-md-4'>
-                    <label for='Middle_Name' class='form-label'>Tussenvoegsel</label>
-                    <input type='text' class='form-control' placeholder='Tussenvoegsel' name='Middle_Name' id='Middle_Name'>
+                    <label for='Middle_Name' class='form-label'><?php echo "$titles[10]"; ?></label>
+                    <input type='text' class='form-control' placeholder='<?php echo "$titles[10]"; ?>' name='Middle_Name' id='Middle_Name'>
                 </div>
                 <div class='col-md-4'>
-                    <label for='Last_Name' class='form-label'>Achternaam</label>
-                    <input type='text' class='form-control' placeholder='Achternaam' name='Last_Name' id='Last_Name'>
+                    <label for='Last_Name' class='form-label'><?php echo "$titles[3]";?></label>
+                    <input type='text' class='form-control' placeholder='<?php echo "$titles[3]";?>' name='Last_Name' id='Last_Name'>
                 </div>
             </div>
             <div class='row'>
             <div class='col-md-4'>
-                    <label for='Phone_Number' class='form-label'>Telefoonnummer</label>
-                    <input type='text' class='form-control' name='Phone_Number' id='Phone_Number'>
+                    <label for='Phone_Number' class='form-label'><?php echo "$titles[5]"; ?></label>
+                    <input type='text' class='form-control' name='<?php echo "$titles[5]"; ?>' id='Phone_Number'>
                 </div>
                 <div class='col-md-4'>
-                    <label for='Email' class='form-label'>Email</label>
+                    <label for='Email' class='form-label'><?php echo "$titles[4]"; ?></label>
                     <input type='text' class='form-control' placeholder='email@gmail.com' name='Email' id='Email'>
                 </div>
                 <div class='col-md-4'>
-                    <label for='Password' class='form-label'>Wachtwoord</label>
-                    <input type='password' class='form-control' placeholder='Wachtwoord' name='Password' id='Password'>
+                    <label for='Password' class='form-label'><?php echo "$texts[6]";?></label>
+                    <input type='password' class='form-control' placeholder='<?php echo "$texts[6]";?>' name='Password' id='Password'>
                 </div>
             </div>
             <div class='row'>
                 <div class='col-md-3'>
-                    <label for='Street' class='form-label'>Straat</label>
+                    <label for='Street' class='form-label'><?php echo "$texts[7]";?></label>
                     <input type='text' class='form-control' name='Street' id='Street'>
                 </div>
                 <div class='col-md-3'>
-                    <label for='House_Number' class='form-label'>Huisnummer</label>
+                    <label for='House_Number' class='form-label'><?php echo "$texts[8]";?></label>
                     <input type='text' class='form-control' name='House_Number' id='House_Number'>
                 </div>
                 <div class='col-md-3'>
-                    <label for='House_Number_Addition' class='form-label'>toevoeging</label>
+                    <label for='House_Number_Addition' class='form-label'><?php echo "$texts[9]";?></label>
                     <input type='text' class='form-control' name='House_Number_Addition' id='House_Number_Addition'>
                 </div>
                 <div class='col-md-3'>
-                    <label for='Zipcode' class='form-label'>Postcode</label>
+                    <label for='Zipcode' class='form-label'><?php echo "$titles[11]";?></label>
                     <input type='text' class='form-control' name='Zipcode' id='Zipcode'>
                 </div>
                 <div class='col-md-3'>
-                    <label for='City' class='form-label'>Stad</label>
+                    <label for='City' class='form-label'><?php echo "$texts[11]";?></label>
                     <input type='text' class='form-control' name='City' id='City'>
                 </div>
             </div>
             <div class='row'>
                 <div class='col-md-2 text-center justfiy-content-center'>
                     <br>
-                    <button type='submit' name='register' value='register' class='btn btn-primary'>Registreer</button>
+                    <button type='submit' name='register' value='register' class='btn btn-primary'><?php echo "$titles[10]";?></button>
                 </div>
             </div>
         </form>

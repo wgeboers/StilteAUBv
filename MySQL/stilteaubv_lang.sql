@@ -45,19 +45,18 @@ INSERT INTO `content` (`ContentID`, `title_nl`, `title_en`, `text_nl`, `text_en`
 (2, 'Over Ons', 'About Us', 'Plaats', 'City', 'overons.php'),
 (3, 'Silent Disco', 'Silent Disco', 'Huur een volledige doe-het-zelf Silent Disco set met koptelefoons. Het systeem is makkelijk aan te sluiten op een laptop of op DJ-apparatuur met het door jou gekozen thema pakket. Binnen een mum van tijd organiseer jij zelf een Silent Disco!', 'Hire your own Silent Disco with headphones. The system is easy-to-use and is compatible with most DJ-gear and laptops. It even has theme songs, so you can get started within minutes!', 'index.php'),
 (4, NULL, NULL, 'Bekijk onze producten!', 'Get your products here!', 'index.php'),
-(5, 'Voornaam', 'First Name', NULL, NULL, 'index.php'),
-(6, 'Achternaam', 'Last Name', NULL, NULL, 'index.php'),
+(5, 'Voornaam', 'First Name', 'Weet je zeker dat je dit product wilt verwijderen?', 'Are you sure that you want to remove your item?', 'index.php'),
+(6, 'Achternaam', 'Last Name', 'Weet je zeker dat je de winkelwagen wilt leeghalen?', 'Are you sure that you want to empty your cart?', 'index.php'),
 (7, 'Email', 'Email', 'We zullen je email niet delen met anderen!', 'We won\'t give your email to third parties', 'index.php'),
-(8, 'Telefoon', 'Telephone', NULL, NULL, 'index.php'),
-(9, 'Onderwerp', 'Subject', NULL, NULL, 'index.php'),
-(10, 'Omschrijving', 'Description', NULL, NULL, 'index.php'),
-(11, 'Verzenden', 'Send', NULL, NULL, 'index.php'),
-(12, 'Contactformulier', 'Contact us', NULL, NULL, 'index.php'),
+(8, 'Telefoon', 'Telephone', 'Wachtwoord', 'Password', 'index.php'),
+(9, 'Onderwerp', 'Subject', 'Straat', 'Street', 'index.php'),
+(10, 'Omschrijving', 'Description', 'Huisnummer', 'Housenumber', 'index.php'),
+(11, 'Verzenden', 'Send', 'Toevoeging', 'Addon', 'index.php'),
+(12, 'Contactformulier', 'Contact us', 'Registreer', 'Register', 'index.php'),
 (13, 'Naam', 'Name', 'Postcode', 'Zip code', 'overons.php'),
 (14, 'Tussenvoegsel', 'Middle name', 'Straat huisnummer-toevoeging', 'Street housenumber-addon', 'index.php'),
 (15, 'Postcode', 'Zip code', 'Stad', 'City', 'index.php'),
 (16, 'Afrekenen', 'Purchase', 'Winkelwagen leegmaken', 'Empty cart', 'index.php');
-
 --
 -- Indexen voor geëxporteerde tabellen
 --

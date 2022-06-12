@@ -82,7 +82,7 @@ $texts = $langManager->getTexts();?>
                             </div>
                             <div class="col-md-12">
                                 <label for="adres" class="form-label">Adres</label>
-                                <input type="text" class="form-control" placeholder="<?php echo "$texts[10]";?>" name="adres" id="adres">
+                                <input type="text" class="form-control" placeholder="Adres" name="adres" id="adres">
                             </div>
                             <div class="col-md-6">
                                 <label for="zipcode" class="form-label"><?php echo "$titles[11]";?></label>
@@ -134,13 +134,13 @@ $texts = $langManager->getTexts();?>
     <script type="text/javascript" src="Script/base.js"></script>
     <script type="text/javascript">
         function removeItem(item) {
-            var answer = confirm ('Weet je zeker dat je dit product wilt verwijderen?')
+            var answer = confirm ('<?php echo "$texts[2]";?>')
             if (answer)
                 window.location="deleteCartItem.php?item=" + item;
         }
 
         function removeCart() {
-            var answer = confirm ('Weet je zeker dat je de winkelwagen wilt leeghalen?')
+            var answer = confirm ('<?php echo "$texts[3]";?>')
             if (answer)
                 window.location="deleteCart.php";
         }
