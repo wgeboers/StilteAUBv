@@ -18,8 +18,8 @@
 		require_once("UserManager.php");
 		$u_man = new UserManager();
 		$userData = $u_man->fetchUserData($_SESSION['id']);
-		if(!empty($userData->getFirstName())) {
-			$name = $userData->getFirstName();
+		if(!empty($userData->getName())) {
+			$name = $userData->getName();
 		}
 		#unset($e_man); //This object wont be used for anything but displaying an employee's name.
 	}
@@ -50,11 +50,10 @@
 						<a class="nav-link" href="overons.php" id="overons">Over ons</a>
 					</li>
 					<?php
-						if(isset($_SESSION["id"]) && !empty($_SESSION["id"])){ ?>
-							<li class='nav-item'>
+						if(isset($_SESSION["id"]) && !empty($_SESSION["id"])){
+							ECHO "<li class='nav-item'>
 							<a class='nav-link'  href='dashboardView.php' id='Dashboard'>Dashboard</a>
-							</li>
-						<?php 
+							</li>";
 						}
 					?>
 				</ul>
