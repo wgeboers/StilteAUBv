@@ -4,13 +4,13 @@
  */
 class User {
 	
-	private int $id;
-	private string $firstName;
-	private ?string $midName;
-	private string $lastName;
-	private string $email;
-	private string $phoneNr;
-	private string $street;
+	private int $id;											//Data Types:
+	private string $firstName;									//String = een reeks tekens
+	private ?string $midName;									//Integer = een niet decimaal getal
+	private string $lastName;									//Float|double = getal met decimaal teken
+	private string $email;										//Boolean = TRUE of FALSE
+	private string $phoneNr;									
+	private string $street;										
 	private int $houseNr;
 	private ?string $houseNrAdd;
 	private string $zipcode;

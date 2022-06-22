@@ -1,25 +1,24 @@
 <?php
-/**
- * Class used to describe the entity 'Employee'
- */
-class Employee {
-
-	private int $id;
-	private string $firstName;
-	private ?string $middleName = '';
-	private string $lastName;
+//klasse (Employee) = een template voor een object | Object = een instantie van een klasse
+class Employee { 
+	//Properties|Eigenschappen
+	private int $id;											//Public, protected en private zijn toegangsmodifiers die de toegankelijkheid bepalen.
+	private string $firstName;									//Public = De property of method is overal te benaderen (default).
+	private ?string $middleName = '';							//Protected = kan alleen benaderd worden binnen de klasse of de klasses die zijn afgeleid.
+	private string $lastName;									//Private = Is ALLEEN toegangelijk binnen de klasse
 	private string $email;
 	private string $creationDate;
 	private string $active;
 	
-	function  __construct($id, $firstName, $middleName, $lastName, $email, $creationDate, $active) {
-		$this->id = $id;
-		$this->firstName = $firstName;
-		$this->middleName = $middleName;
+	//Methods|Methode
+	function  __construct($id, $firstName, $middleName, $lastName, $email, $creationDate, $active) {		
+		$this->id = $id;										//Met een constructor kan je de eigenschappen van een object initialiseren bij het maken van een object.
+		$this->firstName = $firstName;							//PHP roept een constructor functie automatisch aan wanneer een object gemaakt wordt.
+		$this->middleName = $middleName;						//De constructor word hier gebruikt voor de setters.
 		$this->lastName = $lastName;
-		$this->email = $email;
+		$this->email = $email;									
 		$this->creationDate = $creationDate;
-		$this->active = $active;
+		$this->active = $active;								//$this is een sleutelwoord, verwijst naar het huidige object en is alleen beschikbaar binnen een methoden.
 
 	}
     

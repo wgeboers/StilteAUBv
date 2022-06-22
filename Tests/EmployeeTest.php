@@ -19,9 +19,9 @@
             $expectedId = 1;
             $expectedName = 'Wesley';
 
-            $this->assertSame($expectedId, $this->employee->getEmployeeID());
-            $this->assertSame($expectedName, $this->employee->getName());
-        }
+            $this->assertSame($expectedId, $this->employee->getEmployeeID());           //assertSame is niet gelijk aan assertEquels
+            $this->assertSame($expectedName, $this->employee->getName());               //assertSame controleert of de waarde gelijk en type gelijk is
+        }                                                                               //assertEqual controleert alleen of de waarde gelijk is en kijkt niet naar type
 
     }
 ?>

@@ -1,6 +1,6 @@
 <?php
 //Controleert of de post gevuld is
-if(!empty($_POST['addproduct'])) { 
+if(!empty($_POST['addproduct'])) { 						//$_POST is een SUperglobal
 	session_start();
 	$name = $_POST["name"];
 	$description = $_POST["description"];

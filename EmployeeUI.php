@@ -5,8 +5,8 @@
 require_once('EmployeeManager.php');
 require_once('OrderManager.php');
 require_once('ProductManager.php');
-$e_man = new EmployeeManager();
-$o_man = new OrderManager();
+$e_man = new EmployeeManager();                     //new maakt een object van een klasse. new is een trefwoord.
+$o_man = new OrderManager();                        //o_man is een instantie van de klasse OrderManager
 $p_man = new ProductManager();
 
 /** MEDEWERKERS BEGINT HIER */
